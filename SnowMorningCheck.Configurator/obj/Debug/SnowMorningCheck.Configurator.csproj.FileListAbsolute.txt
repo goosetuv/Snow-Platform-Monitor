@@ -1,0 +1,10 @@
+C:\Users\laimmc\source\repos\SnowMorningCheck\SnowMorningCheck.Configurator\bin\Debug\SnowMorningCheck.Configurator.exe.config
+C:\Users\laimmc\source\repos\SnowMorningCheck\SnowMorningCheck.Configurator\bin\Debug\SnowMorningCheck.Configurator.exe
+C:\Users\laimmc\source\repos\SnowMorningCheck\SnowMorningCheck.Configurator\bin\Debug\SnowMorningCheck.Configurator.pdb
+C:\Users\laimmc\source\repos\SnowMorningCheck\SnowMorningCheck.Configurator\obj\Debug\SnowMorningCheck.Configurator.csprojAssemblyReference.cache
+C:\Users\laimmc\source\repos\SnowMorningCheck\SnowMorningCheck.Configurator\obj\Debug\SnowMorningCheck.Configurator.frmMain.resources
+C:\Users\laimmc\source\repos\SnowMorningCheck\SnowMorningCheck.Configurator\obj\Debug\SnowMorningCheck.Configurator.Properties.Resources.resources
+C:\Users\laimmc\source\repos\SnowMorningCheck\SnowMorningCheck.Configurator\obj\Debug\SnowMorningCheck.Configurator.csproj.GenerateResource.cache
+C:\Users\laimmc\source\repos\SnowMorningCheck\SnowMorningCheck.Configurator\obj\Debug\SnowMorningCheck.Configurator.csproj.CoreCompileInputs.cache
+C:\Users\laimmc\source\repos\SnowMorningCheck\SnowMorningCheck.Configurator\obj\Debug\SnowMorningCheck.Configurator.exe
+C:\Users\laimmc\source\repos\SnowMorningCheck\SnowMorningCheck.Configurator\obj\Debug\SnowMorningCheck.Configurator.pdb
