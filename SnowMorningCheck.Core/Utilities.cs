@@ -1,7 +1,7 @@
 ﻿using System;
 using Laim;
 
-namespace SnowMorningCheck.Core
+namespace SnowPlatformMonitor.Core
 {
     public static class Utilities
     {
