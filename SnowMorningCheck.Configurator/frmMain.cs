@@ -1,11 +1,14 @@
 ﻿
 #region Dependencies
 using System;
+using System.IO;
 using System.Diagnostics;
-using System.Threading;
 using System.Windows.Forms;
 using System.Reflection;
 using SnowPlatformMonitor.Core;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 #endregion
 
 namespace SnowPlatformMonitor.Configurator
@@ -17,6 +20,7 @@ namespace SnowPlatformMonitor.Configurator
         ApplicationConfiguration ac = new ApplicationConfiguration();
         DirectoryConfiguration dc = new DirectoryConfiguration();
         private string ConnectionString;
+        private string ConnectionStringParameters;
         #endregion
 
         #region Constructor
@@ -24,6 +28,7 @@ namespace SnowPlatformMonitor.Configurator
         {
             InitializeComponent();
             RefreshConfigurationTab();
+            RefreshServersTab();
         }
         #endregion
 
@@ -43,7 +48,10 @@ namespace SnowPlatformMonitor.Configurator
                     "InventoryServerDeviceReporting",
                     "InventoryServerProcessing",
                     "InventoryServerStorage",
-                    "ExportType"
+                    "ExportType",
+                    "RunScheduleHours",
+                    "RunScheduleMinutes",
+                    "RunScheduleSeconds"
                 };
 
                 // works out which data type we're using
@@ -67,7 +75,10 @@ namespace SnowPlatformMonitor.Configurator
                     cbConfigINVDeviceReporting.Checked.ToString(),
                     cbConfigINVProcessingDir.Checked.ToString(),
                     cbConfigINVStorage.Checked.ToString(),
-                    ExportType
+                    ExportType,
+                    numServiceMScheduleTimeHours.Value.ToString(), 
+                    numServiceMScheduleTimeMins.Value.ToString(),
+                    numServiceMScheduleTimeSecs.Value.ToString()
                 };
 
                 string result = ac.SaveConfig("spm", NodeList, ValueList);
@@ -107,13 +118,15 @@ namespace SnowPlatformMonitor.Configurator
             }
             else
             {
-                string SqlConnection = "Data Source=" + txtServersSQL.Text + ";Application Name=" + Text + ";User=" + txtServersSQLUser.Text + ";Password=" + txtServersSQLPass.Text + txtServersSQLParam.Text;
+                string SqlConnection = "Data Source=" + txtServersSQL.Text + ";Application Name=" + Text + ";User=" + txtServersSQLUser.Text + ";Password=" + txtServersSQLPass.Text;
+                string SqlConnectionParam = txtServersSQLParam.Text;
 
-                if (Utilities.IsSqlCorrect(SqlConnection))
+                if (Utilities.IsSqlCorrect(SqlConnection + SqlConnectionParam))
                 {
                     btnServersSave.Enabled = true;
                     MessageBox.Show("Connection successful", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ConnectionString = SqlConnection;
+                    ConnectionStringParameters = SqlConnectionParam;
                 }
                 else
                 {
@@ -139,7 +152,8 @@ namespace SnowPlatformMonitor.Configurator
                         "LicenseManagerDrive",
                         "InventoryServer",
                         "InventoryServerDrive",
-                        "ConnectionString"
+                        "ConnectionString",
+                        "ConnectionStringParameters"
                     };
 
                     string[] ValueList =
@@ -148,7 +162,8 @@ namespace SnowPlatformMonitor.Configurator
                         txtServersSLMDrive.Text,
                         txtServersINV.Text,
                         txtServersINVDrive.Text,
-                        Utilities.Encrypt(ConnectionString)
+                        Utilities.Encrypt(ConnectionString),
+                        Utilities.Encrypt(ConnectionStringParameters)
                     };
 
                     string result = ac.SaveConfig("servers", NodeList, ValueList);
@@ -199,25 +214,29 @@ namespace SnowPlatformMonitor.Configurator
         /// <summary>
         /// Used for updating each tab when they are refreshed.
         /// </summary>
-        private void TabConfigLoader(object sender, EventArgs e)
-        {
-            // done via tab name instead of index
-            // reason: tab order may change, names wont
+        //private void TabConfigLoader(object sender, EventArgs e)
+        //{
+        //    // done via tab name instead of index
+        //    // reason: tab order may change, names wont
 
-            TabControl tc = (TabControl)sender;
-            switch (tc.SelectedTab.Name)
-            {
-                case "tabConfiguration":
-                    RefreshConfigurationTab();
-                    break;
-                case "tabServers":
-                    // load servers.config
-                    break;
-                case "tabSMTP":
-                    // load smtp.config
-                    break;
-            }
-        }
+        //    TabControl tc = (TabControl)sender;
+        //    switch (tc.SelectedTab.Name)
+        //    {
+        //        case "tabConfiguration":
+        //            RefreshConfigurationTab();
+        //            break;
+        //        case "tabServers":
+        //            DialogResult result = MessageBox.Show("Do you wish to refresh this tab?  Please note that a refresh may cause the program to freeze temporarily.", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+        //            if(result == DialogResult.Yes)
+        //            {
+        //                RefreshServersTab();
+        //            }
+        //            break;
+        //        case "tabSMTP":
+        //            // load smtp.config
+        //            break;
+        //    }
+        //}
 
         /// <summary>
         /// Used for checking or unchecking all checkboxes on the configuration tab
@@ -238,15 +257,37 @@ namespace SnowPlatformMonitor.Configurator
         {
             try
             {
-                if (Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ExportType") == "EXCELWORKBOOK")
+                if(File.Exists(dc.Config + ac.AppConfig))
                 {
-                    rbConfigExcelWB.Checked = true;
-                    rbConfigPDF.Checked = false;
-                }
-                else
-                {
-                    rbConfigExcelWB.Checked = false;
-                    rbConfigPDF.Checked = true;
+
+                    // Export type
+                    if (Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ExportType") == "EXCELWORKBOOK")
+                    {
+                        rbConfigExcelWB.Checked = true;
+                        rbConfigPDF.Checked = false;
+                    }
+                    else
+                    {
+                        rbConfigExcelWB.Checked = false;
+                        rbConfigPDF.Checked = true;
+                    }
+
+                    // Schedule
+                    numServiceMScheduleTimeHours.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "RunScheduleHours"));
+                    numServiceMScheduleTimeMins.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "RunScheduleMinutes"));
+                    numServiceMScheduleTimeSecs.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "RunScheduleSeconds"));
+
+                    // Data Update Job
+                    cbConfigDUJStatus.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "DataUpdateJobStatus"));
+                    // License Manager
+                    cbConfigSLMServices.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "LicenseManagerServices"));
+                    cbConfigSLMDeviceReporting.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "LicenseManagerDeviceReporting"));
+                    cbConfigSLMStorage.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "LicenseManagerStorage"));
+                    // Inventory Server
+                    cbConfigINVServices.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerServices"));
+                    cbConfigINVDeviceReporting.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerDeviceReporting"));
+                    cbConfigINVProcessingDir.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerProcessing"));
+                    cbConfigINVStorage.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerStorage"));
                 }
             } catch (Exception ex)
             {
@@ -258,6 +299,21 @@ namespace SnowPlatformMonitor.Configurator
         {
             try
             {
+                if(File.Exists(dc.Config + ac.ServerConfig))
+                {
+                    // License Manager
+                    txtServersSLM.Text = Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "LicenseManager");
+                    txtServersSLMDrive.Text = Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "LicenseManagerDrive");
+                    // Inventory Server
+                    txtServersINV.Text = Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "InventoryServer");
+                    txtServersINVDrive.Text = Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "InventoryServerDrive");
+                    // SQL Configuration
+                    var cs = new SqlConnectionStringBuilder(Utilities.Decrypt(Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "ConnectionString")));
+                    txtServersSQL.Text = cs.DataSource;
+                    txtServersSQLUser.Text = cs.UserID;
+                    txtServersSQLPass.Text = cs.Password;
+                    txtServersSQLParam.Text = Utilities.Decrypt(Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "ConnectionStringParameters"));
+                }
 
             } catch (Exception ex)
             {
@@ -265,5 +321,14 @@ namespace SnowPlatformMonitor.Configurator
             }
 }
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //List<string> vs = DataUpdateJob.GetJobStatus();
+            //foreach(string i in vs)
+            //{
+            //    MessageBox.Show(i.ToString());
+            //}
+        }
     }
 }

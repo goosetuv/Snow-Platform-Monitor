@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SnowPlatformMonitor")]
+[assembly: AssemblyTitle("SnowPlatformMonitor.Service")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Laim McKenzie")]
-[assembly: AssemblyProduct("SnowPlatformMonitor.Configurator")]
+[assembly: AssemblyProduct("SnowPlatformMonitor.Service")]
 [assembly: AssemblyCopyright("Copyright © Laim McKenzie 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3ca77f2c-9a5f-4756-a4f2-9396416c2ecd")]
+[assembly: Guid("46dba673-d017-4a49-80ec-d471c6087751")]
 
 // Version information for an assembly consists of the following four values:
 //

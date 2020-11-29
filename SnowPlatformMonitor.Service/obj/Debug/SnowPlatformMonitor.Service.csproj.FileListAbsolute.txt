@@ -1,0 +1,12 @@
+C:\Development\Source Code\Snow-Platform-Checks\SnowPlatformMonitor.Service\bin\Debug\SnowPlatformMonitor.Service.exe.config
+C:\Development\Source Code\Snow-Platform-Checks\SnowPlatformMonitor.Service\bin\Debug\SnowPlatformMonitor.Service.exe
+C:\Development\Source Code\Snow-Platform-Checks\SnowPlatformMonitor.Service\bin\Debug\SnowPlatformMonitor.Service.pdb
+C:\Development\Source Code\Snow-Platform-Checks\Build\SnowPlatformMonitor.Service.exe.config
+C:\Development\Source Code\Snow-Platform-Checks\Build\SnowPlatformMonitor.Service.exe
+C:\Development\Source Code\Snow-Platform-Checks\Build\SnowPlatformMonitor.Service.pdb
+C:\Development\Source Code\Snow-Platform-Checks\SnowPlatformMonitor.Service\obj\Debug\SnowPlatformMonitor.Service.csproj.CoreCompileInputs.cache
+C:\Development\Source Code\Snow-Platform-Checks\SnowPlatformMonitor.Service\obj\Debug\SnowPlatformMonitor.Service.exe
+C:\Development\Source Code\Snow-Platform-Checks\SnowPlatformMonitor.Service\obj\Debug\SnowPlatformMonitor.Service.pdb
+C:\Development\Source Code\Snow-Platform-Checks\SnowPlatformMonitor.Service\obj\Debug\SnowPlatformMonitor.Service.SnowPlatformMonitor.resources
+C:\Development\Source Code\Snow-Platform-Checks\SnowPlatformMonitor.Service\obj\Debug\SnowPlatformMonitor.Service.csproj.GenerateResource.cache
+C:\Development\Source Code\Snow-Platform-Checks\SnowPlatformMonitor.Service\obj\Debug\SnowPlatformMonitor.Service.csproj.CopyComplete

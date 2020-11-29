@@ -5,11 +5,3 @@ C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Configurator\bi
 C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Configurator\bin\x64\Debug\Laim.Utility.dll
 C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Configurator\bin\x64\Debug\SnowPlatformMonitor.Core.pdb
 C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Configurator\bin\x64\Debug\Laim.Utility.xml
-C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Configurator\obj\x64\Debug\SnowPlatformMonitor.Configurator.csprojAssemblyReference.cache
-C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Configurator\obj\x64\Debug\SnowPlatformMonitor.Configurator.frmMain.resources
-C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Configurator\obj\x64\Debug\SnowPlatformMonitor.Configurator.Properties.Resources.resources
-C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Configurator\obj\x64\Debug\SnowPlatformMonitor.Configurator.csproj.GenerateResource.cache
-C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Configurator\obj\x64\Debug\SnowPlatformMonitor.Configurator.csproj.CoreCompileInputs.cache
-C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Configurator\obj\x64\Debug\SnowPlatformMonitor.Configurator.csproj.CopyComplete
-C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Configurator\obj\x64\Debug\SnowPlatformMonitor.Configurator.exe
-C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Configurator\obj\x64\Debug\SnowPlatformMonitor.Configurator.pdb

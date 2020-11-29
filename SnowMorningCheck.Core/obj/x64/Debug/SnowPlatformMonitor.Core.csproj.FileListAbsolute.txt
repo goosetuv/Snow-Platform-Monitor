@@ -2,7 +2,3 @@ C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Core\bin\x64\De
 C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Core\bin\x64\Debug\SnowPlatformMonitor.Core.pdb
 C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Core\bin\x64\Debug\Laim.Utility.dll
 C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Core\bin\x64\Debug\Laim.Utility.xml
-C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Core\obj\x64\Debug\SnowPlatformMonitor.Core.csproj.CoreCompileInputs.cache
-C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Core\obj\x64\Debug\SnowPlatformMonitor.Core.csproj.CopyComplete
-C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Core\obj\x64\Debug\SnowPlatformMonitor.Core.dll
-C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Core\obj\x64\Debug\SnowPlatformMonitor.Core.pdb

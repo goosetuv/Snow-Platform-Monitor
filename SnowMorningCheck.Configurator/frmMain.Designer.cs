@@ -30,6 +30,14 @@
         {
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabConfiguration = new System.Windows.Forms.TabPage();
+            this.gbServiceMSchedule = new System.Windows.Forms.GroupBox();
+            this.lblServiceMTimeSecs = new System.Windows.Forms.Label();
+            this.lblServiceMTimeMins = new System.Windows.Forms.Label();
+            this.numServiceMScheduleTimeSecs = new System.Windows.Forms.NumericUpDown();
+            this.lblServiceMTimeHours = new System.Windows.Forms.Label();
+            this.numServiceMScheduleTimeMins = new System.Windows.Forms.NumericUpDown();
+            this.numServiceMScheduleTimeHours = new System.Windows.Forms.NumericUpDown();
+            this.lblServiceMScheduleTime = new System.Windows.Forms.Label();
             this.gbConfigDataExport = new System.Windows.Forms.GroupBox();
             this.rbConfigPDF = new System.Windows.Forms.RadioButton();
             this.rbConfigExcelWB = new System.Windows.Forms.RadioButton();
@@ -68,17 +76,23 @@
             this.lblServersSQLUser = new System.Windows.Forms.Label();
             this.tabSMTP = new System.Windows.Forms.TabPage();
             this.tabServiceManager = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabAbout = new System.Windows.Forms.TabPage();
             this.btnAboutConfigDir = new System.Windows.Forms.Button();
             this.btnAboutLogDir = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.tabControlMain.SuspendLayout();
             this.tabConfiguration.SuspendLayout();
+            this.gbServiceMSchedule.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numServiceMScheduleTimeSecs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numServiceMScheduleTimeMins)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numServiceMScheduleTimeHours)).BeginInit();
             this.gbConfigDataExport.SuspendLayout();
             this.tabServers.SuspendLayout();
             this.gbServersINV.SuspendLayout();
             this.gbServersSLM.SuspendLayout();
             this.gbServersSQL.SuspendLayout();
+            this.tabServiceManager.SuspendLayout();
             this.tabAbout.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,10 +109,10 @@
             this.tabControlMain.Size = new System.Drawing.Size(316, 408);
             this.tabControlMain.TabIndex = 0;
             this.tabControlMain.TabStop = false;
-            this.tabControlMain.SelectedIndexChanged += new System.EventHandler(this.TabConfigLoader);
             // 
             // tabConfiguration
             // 
+            this.tabConfiguration.Controls.Add(this.gbServiceMSchedule);
             this.tabConfiguration.Controls.Add(this.gbConfigDataExport);
             this.tabConfiguration.Controls.Add(this.btnConfigUncheckAll);
             this.tabConfiguration.Controls.Add(this.btnConfigCheckAll);
@@ -119,11 +133,99 @@
             this.tabConfiguration.Text = "Configuration";
             this.tabConfiguration.UseVisualStyleBackColor = true;
             // 
+            // gbServiceMSchedule
+            // 
+            this.gbServiceMSchedule.Controls.Add(this.lblServiceMTimeSecs);
+            this.gbServiceMSchedule.Controls.Add(this.lblServiceMTimeMins);
+            this.gbServiceMSchedule.Controls.Add(this.numServiceMScheduleTimeSecs);
+            this.gbServiceMSchedule.Controls.Add(this.lblServiceMTimeHours);
+            this.gbServiceMSchedule.Controls.Add(this.numServiceMScheduleTimeMins);
+            this.gbServiceMSchedule.Controls.Add(this.numServiceMScheduleTimeHours);
+            this.gbServiceMSchedule.Controls.Add(this.lblServiceMScheduleTime);
+            this.gbServiceMSchedule.Location = new System.Drawing.Point(20, 76);
+            this.gbServiceMSchedule.Name = "gbServiceMSchedule";
+            this.gbServiceMSchedule.Size = new System.Drawing.Size(268, 53);
+            this.gbServiceMSchedule.TabIndex = 14;
+            this.gbServiceMSchedule.TabStop = false;
+            this.gbServiceMSchedule.Text = "Schedule (Daily)";
+            // 
+            // lblServiceMTimeSecs
+            // 
+            this.lblServiceMTimeSecs.AutoSize = true;
+            this.lblServiceMTimeSecs.Location = new System.Drawing.Point(249, 22);
+            this.lblServiceMTimeSecs.Name = "lblServiceMTimeSecs";
+            this.lblServiceMTimeSecs.Size = new System.Drawing.Size(14, 13);
+            this.lblServiceMTimeSecs.TabIndex = 4;
+            this.lblServiceMTimeSecs.Text = "S";
+            // 
+            // lblServiceMTimeMins
+            // 
+            this.lblServiceMTimeMins.AutoSize = true;
+            this.lblServiceMTimeMins.Location = new System.Drawing.Point(178, 22);
+            this.lblServiceMTimeMins.Name = "lblServiceMTimeMins";
+            this.lblServiceMTimeMins.Size = new System.Drawing.Size(16, 13);
+            this.lblServiceMTimeMins.TabIndex = 3;
+            this.lblServiceMTimeMins.Text = "M";
+            // 
+            // numServiceMScheduleTimeSecs
+            // 
+            this.numServiceMScheduleTimeSecs.Location = new System.Drawing.Point(200, 18);
+            this.numServiceMScheduleTimeSecs.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.numServiceMScheduleTimeSecs.Name = "numServiceMScheduleTimeSecs";
+            this.numServiceMScheduleTimeSecs.Size = new System.Drawing.Size(47, 20);
+            this.numServiceMScheduleTimeSecs.TabIndex = 3;
+            // 
+            // lblServiceMTimeHours
+            // 
+            this.lblServiceMTimeHours.AutoSize = true;
+            this.lblServiceMTimeHours.Location = new System.Drawing.Point(108, 22);
+            this.lblServiceMTimeHours.Name = "lblServiceMTimeHours";
+            this.lblServiceMTimeHours.Size = new System.Drawing.Size(15, 13);
+            this.lblServiceMTimeHours.TabIndex = 2;
+            this.lblServiceMTimeHours.Text = "H";
+            // 
+            // numServiceMScheduleTimeMins
+            // 
+            this.numServiceMScheduleTimeMins.Location = new System.Drawing.Point(129, 18);
+            this.numServiceMScheduleTimeMins.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.numServiceMScheduleTimeMins.Name = "numServiceMScheduleTimeMins";
+            this.numServiceMScheduleTimeMins.Size = new System.Drawing.Size(47, 20);
+            this.numServiceMScheduleTimeMins.TabIndex = 2;
+            // 
+            // numServiceMScheduleTimeHours
+            // 
+            this.numServiceMScheduleTimeHours.Location = new System.Drawing.Point(59, 18);
+            this.numServiceMScheduleTimeHours.Maximum = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            this.numServiceMScheduleTimeHours.Name = "numServiceMScheduleTimeHours";
+            this.numServiceMScheduleTimeHours.Size = new System.Drawing.Size(47, 20);
+            this.numServiceMScheduleTimeHours.TabIndex = 1;
+            // 
+            // lblServiceMScheduleTime
+            // 
+            this.lblServiceMScheduleTime.AutoSize = true;
+            this.lblServiceMScheduleTime.Location = new System.Drawing.Point(20, 20);
+            this.lblServiceMScheduleTime.Name = "lblServiceMScheduleTime";
+            this.lblServiceMScheduleTime.Size = new System.Drawing.Size(33, 13);
+            this.lblServiceMScheduleTime.TabIndex = 0;
+            this.lblServiceMScheduleTime.Text = "Time:";
+            // 
             // gbConfigDataExport
             // 
             this.gbConfigDataExport.Controls.Add(this.rbConfigPDF);
             this.gbConfigDataExport.Controls.Add(this.rbConfigExcelWB);
-            this.gbConfigDataExport.Location = new System.Drawing.Point(20, 17);
+            this.gbConfigDataExport.Location = new System.Drawing.Point(20, 20);
             this.gbConfigDataExport.Name = "gbConfigDataExport";
             this.gbConfigDataExport.Size = new System.Drawing.Size(268, 50);
             this.gbConfigDataExport.TabIndex = 13;
@@ -133,18 +235,19 @@
             // rbConfigPDF
             // 
             this.rbConfigPDF.AutoSize = true;
-            this.rbConfigPDF.Location = new System.Drawing.Point(19, 20);
+            this.rbConfigPDF.Location = new System.Drawing.Point(207, 19);
             this.rbConfigPDF.Name = "rbConfigPDF";
             this.rbConfigPDF.Size = new System.Drawing.Size(46, 17);
             this.rbConfigPDF.TabIndex = 11;
             this.rbConfigPDF.Text = "PDF";
             this.rbConfigPDF.UseVisualStyleBackColor = true;
+            this.rbConfigPDF.Visible = false;
             // 
             // rbConfigExcelWB
             // 
             this.rbConfigExcelWB.AutoSize = true;
             this.rbConfigExcelWB.Checked = true;
-            this.rbConfigExcelWB.Location = new System.Drawing.Point(149, 20);
+            this.rbConfigExcelWB.Location = new System.Drawing.Point(20, 20);
             this.rbConfigExcelWB.Name = "rbConfigExcelWB";
             this.rbConfigExcelWB.Size = new System.Drawing.Size(104, 17);
             this.rbConfigExcelWB.TabIndex = 12;
@@ -154,29 +257,31 @@
             // 
             // btnConfigUncheckAll
             // 
-            this.btnConfigUncheckAll.Location = new System.Drawing.Point(20, 347);
+            this.btnConfigUncheckAll.Location = new System.Drawing.Point(20, 352);
             this.btnConfigUncheckAll.Name = "btnConfigUncheckAll";
             this.btnConfigUncheckAll.Size = new System.Drawing.Size(75, 23);
             this.btnConfigUncheckAll.TabIndex = 2;
             this.btnConfigUncheckAll.TabStop = false;
             this.btnConfigUncheckAll.Text = "Uncheck All";
             this.btnConfigUncheckAll.UseVisualStyleBackColor = true;
+            this.btnConfigUncheckAll.Visible = false;
             this.btnConfigUncheckAll.Click += new System.EventHandler(this.btnConfigUncheckAll_Click);
             // 
             // btnConfigCheckAll
             // 
-            this.btnConfigCheckAll.Location = new System.Drawing.Point(20, 318);
+            this.btnConfigCheckAll.Location = new System.Drawing.Point(20, 323);
             this.btnConfigCheckAll.Name = "btnConfigCheckAll";
             this.btnConfigCheckAll.Size = new System.Drawing.Size(75, 23);
             this.btnConfigCheckAll.TabIndex = 1;
             this.btnConfigCheckAll.TabStop = false;
             this.btnConfigCheckAll.Text = "Check All";
             this.btnConfigCheckAll.UseVisualStyleBackColor = true;
+            this.btnConfigCheckAll.Visible = false;
             this.btnConfigCheckAll.Click += new System.EventHandler(this.btnConfigCheckAll_Click);
             // 
             // btnConfigSave
             // 
-            this.btnConfigSave.Location = new System.Drawing.Point(213, 347);
+            this.btnConfigSave.Location = new System.Drawing.Point(213, 352);
             this.btnConfigSave.Name = "btnConfigSave";
             this.btnConfigSave.Size = new System.Drawing.Size(75, 23);
             this.btnConfigSave.TabIndex = 8;
@@ -188,9 +293,7 @@
             // cbConfigINVStorage
             // 
             this.cbConfigINVStorage.AutoSize = true;
-            this.cbConfigINVStorage.Checked = true;
-            this.cbConfigINVStorage.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbConfigINVStorage.Location = new System.Drawing.Point(20, 262);
+            this.cbConfigINVStorage.Location = new System.Drawing.Point(20, 296);
             this.cbConfigINVStorage.Name = "cbConfigINVStorage";
             this.cbConfigINVStorage.Size = new System.Drawing.Size(174, 17);
             this.cbConfigINVStorage.TabIndex = 7;
@@ -201,9 +304,7 @@
             // cbConfigSLMStorage
             // 
             this.cbConfigSLMStorage.AutoSize = true;
-            this.cbConfigSLMStorage.Checked = true;
-            this.cbConfigSLMStorage.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbConfigSLMStorage.Location = new System.Drawing.Point(20, 170);
+            this.cbConfigSLMStorage.Location = new System.Drawing.Point(20, 204);
             this.cbConfigSLMStorage.Name = "cbConfigSLMStorage";
             this.cbConfigSLMStorage.Size = new System.Drawing.Size(212, 17);
             this.cbConfigSLMStorage.TabIndex = 6;
@@ -214,9 +315,7 @@
             // cbConfigINVProcessingDir
             // 
             this.cbConfigINVProcessingDir.AutoSize = true;
-            this.cbConfigINVProcessingDir.Checked = true;
-            this.cbConfigINVProcessingDir.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbConfigINVProcessingDir.Location = new System.Drawing.Point(20, 239);
+            this.cbConfigINVProcessingDir.Location = new System.Drawing.Point(20, 273);
             this.cbConfigINVProcessingDir.Name = "cbConfigINVProcessingDir";
             this.cbConfigINVProcessingDir.Size = new System.Drawing.Size(200, 17);
             this.cbConfigINVProcessingDir.TabIndex = 5;
@@ -227,9 +326,7 @@
             // cbConfigINVServices
             // 
             this.cbConfigINVServices.AutoSize = true;
-            this.cbConfigINVServices.Checked = true;
-            this.cbConfigINVServices.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbConfigINVServices.Location = new System.Drawing.Point(20, 193);
+            this.cbConfigINVServices.Location = new System.Drawing.Point(20, 227);
             this.cbConfigINVServices.Name = "cbConfigINVServices";
             this.cbConfigINVServices.Size = new System.Drawing.Size(178, 17);
             this.cbConfigINVServices.TabIndex = 4;
@@ -240,9 +337,7 @@
             // cbConfigINVDeviceReporting
             // 
             this.cbConfigINVDeviceReporting.AutoSize = true;
-            this.cbConfigINVDeviceReporting.Checked = true;
-            this.cbConfigINVDeviceReporting.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbConfigINVDeviceReporting.Location = new System.Drawing.Point(20, 216);
+            this.cbConfigINVDeviceReporting.Location = new System.Drawing.Point(20, 250);
             this.cbConfigINVDeviceReporting.Name = "cbConfigINVDeviceReporting";
             this.cbConfigINVDeviceReporting.Size = new System.Drawing.Size(186, 17);
             this.cbConfigINVDeviceReporting.TabIndex = 3;
@@ -253,9 +348,7 @@
             // cbConfigSLMDeviceReporting
             // 
             this.cbConfigSLMDeviceReporting.AutoSize = true;
-            this.cbConfigSLMDeviceReporting.Checked = true;
-            this.cbConfigSLMDeviceReporting.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbConfigSLMDeviceReporting.Location = new System.Drawing.Point(20, 147);
+            this.cbConfigSLMDeviceReporting.Location = new System.Drawing.Point(20, 181);
             this.cbConfigSLMDeviceReporting.Name = "cbConfigSLMDeviceReporting";
             this.cbConfigSLMDeviceReporting.Size = new System.Drawing.Size(224, 17);
             this.cbConfigSLMDeviceReporting.TabIndex = 2;
@@ -266,9 +359,7 @@
             // cbConfigSLMServices
             // 
             this.cbConfigSLMServices.AutoSize = true;
-            this.cbConfigSLMServices.Checked = true;
-            this.cbConfigSLMServices.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbConfigSLMServices.Location = new System.Drawing.Point(20, 124);
+            this.cbConfigSLMServices.Location = new System.Drawing.Point(20, 158);
             this.cbConfigSLMServices.Name = "cbConfigSLMServices";
             this.cbConfigSLMServices.Size = new System.Drawing.Size(216, 17);
             this.cbConfigSLMServices.TabIndex = 1;
@@ -279,9 +370,7 @@
             // cbConfigDUJStatus
             // 
             this.cbConfigDUJStatus.AutoSize = true;
-            this.cbConfigDUJStatus.Checked = true;
-            this.cbConfigDUJStatus.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbConfigDUJStatus.Location = new System.Drawing.Point(20, 101);
+            this.cbConfigDUJStatus.Location = new System.Drawing.Point(20, 135);
             this.cbConfigDUJStatus.Name = "cbConfigDUJStatus";
             this.cbConfigDUJStatus.Size = new System.Drawing.Size(140, 17);
             this.cbConfigDUJStatus.TabIndex = 0;
@@ -309,7 +398,7 @@
             this.gbServersINV.Controls.Add(this.txtServersINVDrive);
             this.gbServersINV.Controls.Add(this.lblServersINV);
             this.gbServersINV.Controls.Add(this.txtServersINV);
-            this.gbServersINV.Location = new System.Drawing.Point(17, 101);
+            this.gbServersINV.Location = new System.Drawing.Point(20, 106);
             this.gbServersINV.Name = "gbServersINV";
             this.gbServersINV.Size = new System.Drawing.Size(271, 80);
             this.gbServersINV.TabIndex = 9;
@@ -355,7 +444,7 @@
             this.gbServersSLM.Controls.Add(this.txtServersSLMDrive);
             this.gbServersSLM.Controls.Add(this.txtServersSLM);
             this.gbServersSLM.Controls.Add(this.lblServersSLM);
-            this.gbServersSLM.Location = new System.Drawing.Point(17, 15);
+            this.gbServersSLM.Location = new System.Drawing.Point(20, 20);
             this.gbServersSLM.Name = "gbServersSLM";
             this.gbServersSLM.Size = new System.Drawing.Size(271, 80);
             this.gbServersSLM.TabIndex = 8;
@@ -398,7 +487,7 @@
             // btnServersSave
             // 
             this.btnServersSave.Enabled = false;
-            this.btnServersSave.Location = new System.Drawing.Point(213, 347);
+            this.btnServersSave.Location = new System.Drawing.Point(213, 352);
             this.btnServersSave.Name = "btnServersSave";
             this.btnServersSave.Size = new System.Drawing.Size(75, 23);
             this.btnServersSave.TabIndex = 7;
@@ -418,7 +507,7 @@
             this.gbServersSQL.Controls.Add(this.txtServersSQLPass);
             this.gbServersSQL.Controls.Add(this.txtServersSQLUser);
             this.gbServersSQL.Controls.Add(this.lblServersSQLUser);
-            this.gbServersSQL.Location = new System.Drawing.Point(17, 187);
+            this.gbServersSQL.Location = new System.Drawing.Point(20, 192);
             this.gbServersSQL.Name = "gbServersSQL";
             this.gbServersSQL.Size = new System.Drawing.Size(271, 154);
             this.gbServersSQL.TabIndex = 6;
@@ -512,12 +601,23 @@
             // 
             // tabServiceManager
             // 
+            this.tabServiceManager.Controls.Add(this.button1);
             this.tabServiceManager.Location = new System.Drawing.Point(4, 22);
             this.tabServiceManager.Name = "tabServiceManager";
             this.tabServiceManager.Size = new System.Drawing.Size(308, 382);
             this.tabServiceManager.TabIndex = 2;
             this.tabServiceManager.Text = "Service Manager";
             this.tabServiceManager.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(15, 336);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tabAbout
             // 
@@ -570,11 +670,16 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MinimumSize = new System.Drawing.Size(356, 412);
             this.Name = "frmMain";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Snow Platform Monitor";
             this.tabControlMain.ResumeLayout(false);
             this.tabConfiguration.ResumeLayout(false);
             this.tabConfiguration.PerformLayout();
+            this.gbServiceMSchedule.ResumeLayout(false);
+            this.gbServiceMSchedule.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numServiceMScheduleTimeSecs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numServiceMScheduleTimeMins)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numServiceMScheduleTimeHours)).EndInit();
             this.gbConfigDataExport.ResumeLayout(false);
             this.gbConfigDataExport.PerformLayout();
             this.tabServers.ResumeLayout(false);
@@ -584,6 +689,7 @@
             this.gbServersSLM.PerformLayout();
             this.gbServersSQL.ResumeLayout(false);
             this.gbServersSQL.PerformLayout();
+            this.tabServiceManager.ResumeLayout(false);
             this.tabAbout.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -635,6 +741,15 @@
         private System.Windows.Forms.TextBox txtServersINVDrive;
         private System.Windows.Forms.Label lblServersINVDrive;
         private System.Windows.Forms.Label lblServersSLMDrive;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox gbServiceMSchedule;
+        private System.Windows.Forms.Label lblServiceMTimeSecs;
+        private System.Windows.Forms.Label lblServiceMTimeMins;
+        private System.Windows.Forms.NumericUpDown numServiceMScheduleTimeSecs;
+        private System.Windows.Forms.Label lblServiceMTimeHours;
+        private System.Windows.Forms.NumericUpDown numServiceMScheduleTimeMins;
+        private System.Windows.Forms.NumericUpDown numServiceMScheduleTimeHours;
+        private System.Windows.Forms.Label lblServiceMScheduleTime;
     }
 }
 

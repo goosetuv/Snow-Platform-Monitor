@@ -1,0 +1,7 @@
+C:\Development\Source Code\Snow-Platform-Checks\SnowPlatformMonitor.Service\bin\x64\Debug\SnowPlatformMonitor.Service.exe.config
+C:\Development\Source Code\Snow-Platform-Checks\SnowPlatformMonitor.Service\bin\x64\Debug\SnowPlatformMonitor.Service.exe
+C:\Development\Source Code\Snow-Platform-Checks\SnowPlatformMonitor.Service\bin\x64\Debug\SnowPlatformMonitor.Service.pdb
+C:\Development\Source Code\Snow-Platform-Checks\SnowPlatformMonitor.Service\bin\x64\Debug\SnowPlatformMonitor.Core.dll
+C:\Development\Source Code\Snow-Platform-Checks\SnowPlatformMonitor.Service\bin\x64\Debug\Laim.Utility.dll
+C:\Development\Source Code\Snow-Platform-Checks\SnowPlatformMonitor.Service\bin\x64\Debug\SnowPlatformMonitor.Core.pdb
+C:\Development\Source Code\Snow-Platform-Checks\SnowPlatformMonitor.Service\bin\x64\Debug\Laim.Utility.xml

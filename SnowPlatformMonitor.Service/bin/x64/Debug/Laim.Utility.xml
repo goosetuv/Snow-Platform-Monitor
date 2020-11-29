@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Laim.Utility</name>
+    </assembly>
+    <members>
+        <member name="T:Laim.ColumnSelector">
+            <summary>
+            Add Column Selector to DataGridView(s) to allow columns to be added or removed by the user
+            </summary>
+        </member>
+        <member name="T:Laim.ColumnSelector.DataGridViewColumnSelector">
+            <summary>
+            Add column show/hide capability to a DataGridView. When user right-clicks 
+            the cell origin a popup, containing a list of checkbox and column names, is
+            shown. 
+            </summary>
+        </member>
+        <member name="F:Laim.ColumnSelector.DataGridViewColumnSelector.MaxHeight">
+            <summary>
+            The max height of the popup
+            </summary>
+        </member>
+        <member name="F:Laim.ColumnSelector.DataGridViewColumnSelector.Width">
+            <summary>
+            The width of the popup
+            </summary>
+        </member>
+        <member name="P:Laim.ColumnSelector.DataGridViewColumnSelector.DataGridView">
+            <summary>
+            Gets or sets the DataGridView to which the DataGridViewColumnSelector is attached
+            </summary>
+        </member>
+        <member name="M:Laim.ColumnSelector.DataGridViewColumnSelector.mDataGridView_CellMouseClick(System.Object,System.Windows.Forms.DataGridViewCellMouseEventArgs)">
+            <summary>
+            When user right-clicks the cell origin, it clears and fill the CheckedListBox with
+            columns header text. Then it shows the popup. 
+            In this way the CheckedListBox items are always refreshed to reflect changes occurred in 
+            DataGridView columns (column additions or name changes and so on).
+            </summary>
+        </member>
+        <member name="M:Laim.ColumnSelector.DataGridViewColumnSelector.#ctor">
+            <summary>
+            The constructor creates an instance of CheckedListBox and ToolStripDropDown.
+            the CheckedListBox is hosted by ToolStripControlHost, which in turn is
+            added to ToolStripDropDown.
+            </summary>
+        </member>
+        <member name="M:Laim.ColumnSelector.DataGridViewColumnSelector.#ctor(System.Windows.Forms.DataGridView)">
+            <summary>
+            Set the Column Selector against the DataGridView
+            </summary>
+            <param name="dgv">The DataGridView you're using</param>
+        </member>
+        <member name="T:Laim.Extensions">
+            <summary>
+            Static Extensions
+            </summary>
+        </member>
+        <member name="M:Laim.Extensions.ToEnum``1(System.String,System.Boolean)">
+            <summary>
+            Convert a string to an Enum
+            </summary>
+            <typeparam name="T">The enum type</typeparam>
+            <param name="value">Your string</param>
+            <param name="ignoreCase">Whether to ignore string case or not</param>
+            <returns>Enum</returns>
+            <example>
+            <code>
+            private TableStyles ts = Extensions.ToEnum[TableStyles](value) // [ should be replaced with gt and lt tags
+            </code>
+            </example>
+        </member>
+        <member name="T:Laim.Kryptos">
+            <summary>
+            Custom Cryptography Class with predefined classes
+            </summary>
+        </member>
+        <member name="M:Laim.Kryptos.Encrypt(System.String,System.String)">
+            <summary>
+            Encrypt a choosen string
+            </summary>
+            <param name="value">The string you want encrypted</param>
+            <param name="hash">The hash you want to use to encrypt the string</param>
+            <returns>An encrypted version of your string</returns>
+        </member>
+        <member name="M:Laim.Kryptos.Decrypt(System.String,System.String)">
+            <summary>
+            Decrypt a chosen string
+            </summary>
+            <param name="value">Encrypted String</param>
+            <param name="hash">Hash used to encrypt the string</param>
+            <returns>Decrypted string</returns>
+        </member>
+        <member name="M:Laim.Kryptos.GetHardwareID">
+            <summary>
+            Get's a UDID HardwareID of the Machine
+            </summary>
+            <returns>HardwareID</returns>
+        </member>
+        <member name="M:Laim.Kryptos.GetHash(System.String)">
+            <summary>
+            Generates a random MD5 Hash
+            </summary>
+            <param name="s">String you want hashed</param>
+            <returns>Hashed String</returns>
+        </member>
+        <member name="M:Laim.Kryptos.GetHexString(System.Collections.Generic.IList{System.Byte})">
+            <summary>
+            Converts MD5 hash to Hex String 
+            </summary>
+            <param name="bt">Hashed Byte</param>
+            <returns>Hex string following XXXX-XXXX formatting</returns>
+        </member>
+        <member name="M:Laim.Kryptos.Identifier(System.String,System.String)">
+            <summary>
+            Gets data from WMI
+            </summary>
+            <param name="wmiClass">The specific class you're wanting data from</param>
+            <param name="wmiProperty">The specific property from the wmi class you want</param>
+            <returns>Wmi Information</returns>
+        </member>
+        <member name="T:Laim.MSSqlServer">
+            <summary>
+            SQL Server Class 
+            </summary>
+        </member>
+        <member name="M:Laim.MSSqlServer.CheckConnnection(System.String)">
+            <summary>
+            Checks if the current connection string is valid
+            </summary>
+            <param name="SqlConn">SQL Server Connection String</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:Laim.MSSqlServer.Execute(System.String,System.String,System.Collections.Generic.List{System.Data.SqlClient.SqlParameter},System.Int32)">
+            <summary>
+            Execute SQL Statements against a database using ExecuteNonQuery
+            </summary>
+            <param name="SqlConn">The SQL Connection String</param>
+            <param name="SqlQuery">The SQL Query to be run</param>
+            <param name="SqlParameters">Any parameters that are in the SQL query</param>
+            <param name="cmdTimeout">The amount of time before the command times out in seconds</param>
+            <returns>Number of rows affected by query</returns>
+        </member>
+        <member name="M:Laim.MSSqlServer.ExecuteReadString(System.String,System.String,System.Collections.Generic.List{System.Data.SqlClient.SqlParameter},System.Int32)">
+            <summary>
+            Retrieve data from a database table into a DataTable
+            </summary>
+            <param name="SqlConn">The SQL Connection String</param>
+            <param name="SqlQuery">The SQL Query to be run</param>
+            <param name="SqlParameters">Any parameters that are in the SQL query</param>
+            <param name="cmdTimeout">The amount of time before the command times out in seconds</param>
+            <returns>DataTable</returns>
+        </member>
+        <member name="M:Laim.MSSqlServer.ExecuteReadDataTable(System.String,System.String,System.Collections.Generic.List{System.Data.SqlClient.SqlParameter},System.Int32)">
+            <summary>
+            Retrieve data from a database table into a DataTable
+            </summary>
+            <param name="SqlConn">The SQL Connection String</param>
+            <param name="SqlQuery">The SQL Query to be run</param>
+            <param name="SqlParameters">Any parameters that are in the SQL query</param>
+            <param name="cmdTimeout">The amount of time before the command times out in seconds</param>
+            <returns>DataTable</returns>
+        </member>
+        <member name="M:Laim.MSSqlServer.ExecuteReadList(System.String,System.String,System.Collections.Generic.List{System.Data.SqlClient.SqlParameter},System.Int32)">
+            <summary>
+            Retrieve data from a database table into a Generic List String
+            </summary>
+            <param name="SqlConn">The SQL Connection String</param>
+            <param name="SqlQuery">The SQL Query to be run</param>
+            <param name="SqlParameters">Any parameters that are in the SQL query</param>
+            <param name="cmdTimeout">The amount of time before the command times out in seconds</param>
+            <returns></returns>
+        </member>
+        <member name="M:Laim.MSSqlServer.GetServerList">
+            <summary>
+            Get the servers availalbe in the environment
+            </summary>
+            <returns>Server List</returns>
+        </member>
+        <member name="T:Laim.Utility">
+            <summary>
+            Main utility class
+            </summary>
+        </member>
+        <member name="M:Laim.Utility.Random(System.Boolean,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Generates a Randomized String 
+            </summary>
+            <param name="incNum">Include numbers in string</param>
+            <param name="min">The minimum amount of characters to return</param>
+            <param name="max">The maximum amount of characters to return</param>
+            <param name="incSpec">Include special characters or not</param>
+            <returns>Randomized String</returns>
+        </member>
+        <member name="M:Laim.Utility.SetDoubleBuffered(System.Windows.Forms.Control)">
+            <summary>
+            Sets the control DoubleBuffer to true to stop weird lag
+            </summary>
+            <param name="control">Your component (DataGridView, ComboBox etc.)</param>
+        </member>
+        <member name="T:Laim.XmlConfigurator">
+            <summary>
+            Xml Class, kinda cool
+            </summary>
+        </member>
+        <member name="M:Laim.XmlConfigurator.Write(System.String,System.String[],System.String[],System.String)">
+            <summary>
+            Write to an XML File
+            </summary>
+            <param name="Path">The Configuration file location</param>
+            <param name="NodeList">The list of nodes in the xml file</param>
+            <param name="ValueList">The list of values to each node in the xml file</param>
+            <param name="RootNode">The root node of the configuration file, default is Configuration.</param>
+        </member>
+        <member name="M:Laim.XmlConfigurator.Read(System.String,System.String,System.String)">
+            <summary>
+            Read an XML file based on specific node
+            </summary>
+            <param name="Path">The XML file location</param>
+            <param name="Node">The specific node you need data from</param>
+            <param name="RootNode">The root node of the configuration file, default is Configuration.</param>
+            <returns>Node Value from XML File</returns>
+        </member>
+    </members>
+</doc>
