@@ -7,7 +7,8 @@ using System.Windows.Forms;
 using System.Reflection;
 using SnowPlatformMonitor.Core;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
+using AutoUpdaterDotNET;
+using System.Net;
 using System.Collections.Generic;
 #endregion
 
@@ -27,8 +28,9 @@ namespace SnowPlatformMonitor.Configurator
         public frmMain()
         {
             InitializeComponent();
-            RefreshConfigurationTab();
-            RefreshServersTab();
+            CheckForUpdates();
+            LoadConfiguration();
+            LoadServersConfiguration();
         }
         #endregion
 
@@ -40,6 +42,10 @@ namespace SnowPlatformMonitor.Configurator
 
                 string[] NodeList =
                 {
+                    "ExportType",
+                    "ScheduleHours",
+                    "ScheduleMinutes",
+                    "ScheduleSeconds",
                     "DataUpdateJobStatus",
                     "LicenseManagerServices",
                     "LicenseManagerDeviceReporting",
@@ -48,10 +54,8 @@ namespace SnowPlatformMonitor.Configurator
                     "InventoryServerDeviceReporting",
                     "InventoryServerProcessing",
                     "InventoryServerStorage",
-                    "ExportType",
-                    "RunScheduleHours",
-                    "RunScheduleMinutes",
-                    "RunScheduleSeconds"
+                    "InventoryServerProcessingDirectory",
+                    "InventoryServerProcessingThreshold"
                 };
 
                 // works out which data type we're using
@@ -67,6 +71,10 @@ namespace SnowPlatformMonitor.Configurator
 
                 string[] ValueList =
                 {
+                    ExportType,
+                    numServiceMScheduleTimeHours.Value.ToString(),
+                    numServiceMScheduleTimeMins.Value.ToString(),
+                    numServiceMScheduleTimeSecs.Value.ToString(),
                     cbConfigDUJStatus.Checked.ToString(),
                     cbConfigSLMServices.Checked.ToString(),
                     cbConfigSLMDeviceReporting.Checked.ToString(),
@@ -75,10 +83,8 @@ namespace SnowPlatformMonitor.Configurator
                     cbConfigINVDeviceReporting.Checked.ToString(),
                     cbConfigINVProcessingDir.Checked.ToString(),
                     cbConfigINVStorage.Checked.ToString(),
-                    ExportType,
-                    numServiceMScheduleTimeHours.Value.ToString(), 
-                    numServiceMScheduleTimeMins.Value.ToString(),
-                    numServiceMScheduleTimeSecs.Value.ToString()
+                    @"\Program Files\Snow Software\Snow Inventory\Server\Incoming\data\processing",
+                    "100"
                 };
 
                 string result = ac.SaveConfig("spm", NodeList, ValueList);
@@ -170,6 +176,7 @@ namespace SnowPlatformMonitor.Configurator
                     if (result == "configsaved")
                     {
                         MessageBox.Show("Configuration saved", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnServersSave.Enabled = false;
                     }
                     else
                     {
@@ -211,32 +218,6 @@ namespace SnowPlatformMonitor.Configurator
         #endregion
 
         #region Functions
-        /// <summary>
-        /// Used for updating each tab when they are refreshed.
-        /// </summary>
-        //private void TabConfigLoader(object sender, EventArgs e)
-        //{
-        //    // done via tab name instead of index
-        //    // reason: tab order may change, names wont
-
-        //    TabControl tc = (TabControl)sender;
-        //    switch (tc.SelectedTab.Name)
-        //    {
-        //        case "tabConfiguration":
-        //            RefreshConfigurationTab();
-        //            break;
-        //        case "tabServers":
-        //            DialogResult result = MessageBox.Show("Do you wish to refresh this tab?  Please note that a refresh may cause the program to freeze temporarily.", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-        //            if(result == DialogResult.Yes)
-        //            {
-        //                RefreshServersTab();
-        //            }
-        //            break;
-        //        case "tabSMTP":
-        //            // load smtp.config
-        //            break;
-        //    }
-        //}
 
         /// <summary>
         /// Used for checking or unchecking all checkboxes on the configuration tab
@@ -253,7 +234,7 @@ namespace SnowPlatformMonitor.Configurator
             }
         }
 
-        private void RefreshConfigurationTab()
+        private void LoadConfiguration()
         {
             try
             {
@@ -273,9 +254,9 @@ namespace SnowPlatformMonitor.Configurator
                     }
 
                     // Schedule
-                    numServiceMScheduleTimeHours.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "RunScheduleHours"));
-                    numServiceMScheduleTimeMins.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "RunScheduleMinutes"));
-                    numServiceMScheduleTimeSecs.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "RunScheduleSeconds"));
+                    numServiceMScheduleTimeHours.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ScheduleHours"));
+                    numServiceMScheduleTimeMins.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ScheduleMinutes"));
+                    numServiceMScheduleTimeSecs.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ScheduleSeconds"));
 
                     // Data Update Job
                     cbConfigDUJStatus.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "DataUpdateJobStatus"));
@@ -295,7 +276,7 @@ namespace SnowPlatformMonitor.Configurator
             }
         }
 
-        private void RefreshServersTab()
+        private void LoadServersConfiguration()
         {
             try
             {
@@ -320,15 +301,29 @@ namespace SnowPlatformMonitor.Configurator
                 Logger.Log("SPMConfigurator", ex.Message + ex.StackTrace, MethodBase.GetCurrentMethod().Name, "FATAL");
             }
 }
+
+        #region Updater
+        /// <summary>
+        ///  Checks if there are any updates available for the app, using AutoUpdater.NET
+        /// </summary>
+        private void CheckForUpdates()
+        {
+            AutoUpdater.Start("https://laim.scot/updates/spm.xml");
+            AutoUpdater.ShowSkipButton = false;
+            AutoUpdater.OpenDownloadPage = true;
+            AutoUpdater.HttpUserAgent = "AutoUpdater-SPM";
+            AutoUpdater.UpdateFormSize = new System.Drawing.Size(Width, Height);
+            AutoUpdater.PersistenceProvider = new JsonFilePersistenceProvider(Path.Combine(Environment.CurrentDirectory, "updates.json"));
+        }
+
+        #endregion
+
         #endregion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //List<string> vs = DataUpdateJob.GetJobStatus();
-            //foreach(string i in vs)
-            //{
-            //    MessageBox.Show(i.ToString());
-            //}
+            InventoryServer inventoryServer = new InventoryServer();
+            MessageBox.Show(inventoryServer.ProcessingDirectory());
         }
     }
 }

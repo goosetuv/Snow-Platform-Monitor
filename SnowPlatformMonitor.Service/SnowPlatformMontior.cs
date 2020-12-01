@@ -34,7 +34,7 @@ namespace SnowPlatformMonitor.Service
 
                 Logger.Log("SPMService", string.Format("Version: {0}", ServiceVersion), MethodBase.GetCurrentMethod().Name, "INFO");
                 Logger.Log("SPMService", "Service is starting up...", MethodBase.GetCurrentMethod().Name, "INFO");
-                Logger.Log("SPMService", "Loading Module [ServiceSchedule].", MethodBase.GetCurrentMethod().Name, "INFO");
+                Logger.Log("SPMService", "[ServiceSchedule] Loading Module.", MethodBase.GetCurrentMethod().Name, "INFO");
                 InitializeSchedule();
 
             } catch (Exception ex)
@@ -56,9 +56,9 @@ namespace SnowPlatformMonitor.Service
         {
             try
             {
-                int Hours = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "RunScheduleHours"));
-                int Minutes = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "RunScheduleMinutes"));
-                int Seconds = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "RunScheduleSeconds"));
+                int Hours = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ScheduleHours"));
+                int Minutes = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ScheduleMinutes"));
+                int Seconds = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ScheduleSeconds"));
                 int FrequencyHours = 24;
                 int FrequencyMinutes = 0;
                 int FrequencySeconds = 0;
@@ -85,7 +85,7 @@ namespace SnowPlatformMonitor.Service
                 firstExecution = current > scheduledTime ? intervalPeriod - (current - scheduledTime) : scheduledTime - current;
 
                 // create callback - this is the method that is called on every interval
-                TimerCallback callback = new TimerCallback(ServiceDebug);
+                TimerCallback callback = new TimerCallback(ServiceExporter);
 
                 // create timer
                 _timer = new Timer(callback, null, Convert.ToInt32(firstExecution), Convert.ToInt32(intervalPeriod));
@@ -99,11 +99,46 @@ namespace SnowPlatformMonitor.Service
             }
         }
 
-        public void ServiceDebug(object state)
+        /// <summary>
+        /// Used for pulling the data that has been selected in the configuration
+        /// </summary>
+        /// <param name="state"></param>
+        public void ServiceExporter(object state)
         {
-            Logger.Log("SPMService", "Hey, it works!", MethodBase.GetCurrentMethod().Name, "INFO");
-            _timer.Dispose();
-            InitializeSchedule();
+            try
+            {
+                Logger.Log("SPMService", "[ServiceExporter] Starting Module.", MethodBase.GetCurrentMethod().Name, "INFO");
+                string Config = dc.Config + ac.AppConfig;
+
+                bool DataUpdateJobStatus = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "DataUpdateJobStatus"));
+                bool LicenseManagerServices = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "LicenseManagerServices"));
+                bool LicenseManagerDeviceReporting = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "LicenseManagerDeviceReporting"));
+                bool LicenseManagerStorage = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "LicenseManagerStorage"));
+                bool InventoryServerServices = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "InventoryServerServices"));
+                bool InventoryServerStorage = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "InventoryServerStorage"));
+                bool InventoryServerDeviceReporting = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "InventoryServerDeviceReporting"));
+                bool InventoryServerProcessing = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "InventoryServerProcessing"));
+
+                Logger.Log("SPMService", "[ServiceExporter] Configuration loaded.", MethodBase.GetCurrentMethod().Name, "INFO");
+
+                if (DataUpdateJobStatus)
+                {
+                    DataUpdateJob duj = new DataUpdateJob();
+                    if (duj.GetExport())
+                    {
+                        Logger.Log("SPMService", "[ServiceExporter] Data Update Job information exported.", MethodBase.GetCurrentMethod().Name, "INFO");
+                    }
+                }
+
+
+                Logger.Log("SPMService", "[ServiceExporter] Schedule will now be refreshed.", MethodBase.GetCurrentMethod().Name, "INFO");
+                _timer.Dispose();
+                InitializeSchedule();
+            } catch (Exception ex)
+            {
+                Logger.Log("SPMService", ex.Message, MethodBase.GetCurrentMethod().Name, "FATAL");
+                Stop();
+            }
         }
         #endregion
     }

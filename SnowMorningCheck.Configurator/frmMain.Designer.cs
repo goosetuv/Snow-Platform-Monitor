@@ -293,7 +293,8 @@
             // cbConfigINVStorage
             // 
             this.cbConfigINVStorage.AutoSize = true;
-            this.cbConfigINVStorage.Location = new System.Drawing.Point(20, 296);
+            this.cbConfigINVStorage.Enabled = false;
+            this.cbConfigINVStorage.Location = new System.Drawing.Point(20, 300);
             this.cbConfigINVStorage.Name = "cbConfigINVStorage";
             this.cbConfigINVStorage.Size = new System.Drawing.Size(174, 17);
             this.cbConfigINVStorage.TabIndex = 7;
@@ -304,7 +305,8 @@
             // cbConfigSLMStorage
             // 
             this.cbConfigSLMStorage.AutoSize = true;
-            this.cbConfigSLMStorage.Location = new System.Drawing.Point(20, 204);
+            this.cbConfigSLMStorage.Enabled = false;
+            this.cbConfigSLMStorage.Location = new System.Drawing.Point(20, 208);
             this.cbConfigSLMStorage.Name = "cbConfigSLMStorage";
             this.cbConfigSLMStorage.Size = new System.Drawing.Size(212, 17);
             this.cbConfigSLMStorage.TabIndex = 6;
@@ -315,7 +317,7 @@
             // cbConfigINVProcessingDir
             // 
             this.cbConfigINVProcessingDir.AutoSize = true;
-            this.cbConfigINVProcessingDir.Location = new System.Drawing.Point(20, 273);
+            this.cbConfigINVProcessingDir.Location = new System.Drawing.Point(20, 277);
             this.cbConfigINVProcessingDir.Name = "cbConfigINVProcessingDir";
             this.cbConfigINVProcessingDir.Size = new System.Drawing.Size(200, 17);
             this.cbConfigINVProcessingDir.TabIndex = 5;
@@ -326,7 +328,8 @@
             // cbConfigINVServices
             // 
             this.cbConfigINVServices.AutoSize = true;
-            this.cbConfigINVServices.Location = new System.Drawing.Point(20, 227);
+            this.cbConfigINVServices.Enabled = false;
+            this.cbConfigINVServices.Location = new System.Drawing.Point(20, 231);
             this.cbConfigINVServices.Name = "cbConfigINVServices";
             this.cbConfigINVServices.Size = new System.Drawing.Size(178, 17);
             this.cbConfigINVServices.TabIndex = 4;
@@ -337,7 +340,8 @@
             // cbConfigINVDeviceReporting
             // 
             this.cbConfigINVDeviceReporting.AutoSize = true;
-            this.cbConfigINVDeviceReporting.Location = new System.Drawing.Point(20, 250);
+            this.cbConfigINVDeviceReporting.Enabled = false;
+            this.cbConfigINVDeviceReporting.Location = new System.Drawing.Point(20, 254);
             this.cbConfigINVDeviceReporting.Name = "cbConfigINVDeviceReporting";
             this.cbConfigINVDeviceReporting.Size = new System.Drawing.Size(186, 17);
             this.cbConfigINVDeviceReporting.TabIndex = 3;
@@ -348,7 +352,8 @@
             // cbConfigSLMDeviceReporting
             // 
             this.cbConfigSLMDeviceReporting.AutoSize = true;
-            this.cbConfigSLMDeviceReporting.Location = new System.Drawing.Point(20, 181);
+            this.cbConfigSLMDeviceReporting.Enabled = false;
+            this.cbConfigSLMDeviceReporting.Location = new System.Drawing.Point(20, 185);
             this.cbConfigSLMDeviceReporting.Name = "cbConfigSLMDeviceReporting";
             this.cbConfigSLMDeviceReporting.Size = new System.Drawing.Size(224, 17);
             this.cbConfigSLMDeviceReporting.TabIndex = 2;
@@ -359,7 +364,8 @@
             // cbConfigSLMServices
             // 
             this.cbConfigSLMServices.AutoSize = true;
-            this.cbConfigSLMServices.Location = new System.Drawing.Point(20, 158);
+            this.cbConfigSLMServices.Enabled = false;
+            this.cbConfigSLMServices.Location = new System.Drawing.Point(20, 162);
             this.cbConfigSLMServices.Name = "cbConfigSLMServices";
             this.cbConfigSLMServices.Size = new System.Drawing.Size(216, 17);
             this.cbConfigSLMServices.TabIndex = 1;
@@ -370,7 +376,7 @@
             // cbConfigDUJStatus
             // 
             this.cbConfigDUJStatus.AutoSize = true;
-            this.cbConfigDUJStatus.Location = new System.Drawing.Point(20, 135);
+            this.cbConfigDUJStatus.Location = new System.Drawing.Point(20, 139);
             this.cbConfigDUJStatus.Name = "cbConfigDUJStatus";
             this.cbConfigDUJStatus.Size = new System.Drawing.Size(140, 17);
             this.cbConfigDUJStatus.TabIndex = 0;

@@ -117,6 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DataUpdateJobErrorLog" xml:space="preserve">
+    <value>SELECT TOP 5 * FROM SnowLicenseManager.dbo.tblErrorLog
+ORDER BY logDate DESC</value>
+    <comment>Gets the most recent 5 error logs for DUJ</comment>
+  </data>
+  <data name="DataUpdateJobErrorSevere" xml:space="preserve">
+    <value>SELECT TOP 5 * FROM msdb.dbo.sysjobhistory where sql_severity &gt; 0 order by run_date desc, run_time desc</value>
+    <comment>Gets sysjobhistory</comment>
+  </data>
+  <data name="DataUpdateJobParallel" xml:space="preserve">
+    <value>SELECT * FROM SnowLicenseManager.inv.tblJobParallelStep
+WHERE Status = -1</value>
+    <comment>Checks if parallel steps have reset as expected</comment>
+  </data>
   <data name="DataUpdateJobStatus" xml:space="preserve">
     <value>SELECT
     job.name, 

@@ -1,0 +1,9 @@
+﻿# SnowPlatformMonitor.Core Credits
+JamieSee from Stackoverflow for their ping method
+https://stackoverflow.com/questions/11800958/using-ping-in-c-sharp
+
+Marc from Stackoverflow for their multi-extension search method for Directories
+https://stackoverflow.com/questions/7039580/multiple-file-extensions-searchpattern-for-system-io-directory-getfiles
+
+EPPlus
+https://www.epplussoftware.com/en, licensed under PolyForm Noncommercial License 1.0.0 https://polyformproject.org/licenses/noncommercial/1.0.0/
