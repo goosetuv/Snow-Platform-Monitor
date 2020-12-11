@@ -67,6 +67,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -76,6 +77,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\WindowsServices.cs" />
     <Compile Include="Configuration\ApplicationConfiguration.cs" />
     <Compile Include="Classes\DataRetriever.cs" />
     <Compile Include="Configuration\DirectoryConfiguration.cs" />

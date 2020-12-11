@@ -13,7 +13,7 @@ namespace SnowPlatformMonitor.Core.Classes
         public string ProcessingDirectory()
         {
             string ServerName = Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "InventoryServer");
-            string InventoryPath = Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "InventoryServerDrive") + ":" + Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerProcessingDirectory");
+            string InventoryPath = @"\\" + ServerName + @"\" + Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "InventoryServerDrive") + @"$\" + Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerProcessingDirectory");
             int InventoryThreshold = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerProcessingThreshold"));
             int FileCount = 0;
             

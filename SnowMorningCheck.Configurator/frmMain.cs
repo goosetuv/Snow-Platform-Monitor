@@ -357,6 +357,9 @@ namespace SnowPlatformMonitor.Configurator
         {
             DataRetriever exporter = new DataRetriever();
             exporter.GetDataUpdateJob();
+            exporter.GetServices("Inventory", "localhost");
+
+            MessageBox.Show(exporter.GetInventoryDirectoryCount());
         }
     }
 }

@@ -458,7 +458,6 @@
             // cbConfigINVServices
             // 
             this.cbConfigINVServices.AutoSize = true;
-            this.cbConfigINVServices.Enabled = false;
             this.cbConfigINVServices.Location = new System.Drawing.Point(20, 254);
             this.cbConfigINVServices.Name = "cbConfigINVServices";
             this.cbConfigINVServices.Size = new System.Drawing.Size(178, 17);
@@ -494,7 +493,6 @@
             // cbConfigSLMServices
             // 
             this.cbConfigSLMServices.AutoSize = true;
-            this.cbConfigSLMServices.Enabled = false;
             this.cbConfigSLMServices.Location = new System.Drawing.Point(20, 185);
             this.cbConfigSLMServices.Name = "cbConfigSLMServices";
             this.cbConfigSLMServices.Size = new System.Drawing.Size(216, 17);

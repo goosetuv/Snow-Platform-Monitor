@@ -64,7 +64,7 @@ namespace SnowPlatformMonitor.Service
                 int FrequencyMinutes = 0;
                 int FrequencySeconds = 0;
 
-                Logger.Log("SPMService", string.Format("[ServiceSchedule] Schedule loaded from configuration file, run at {0}:{1}:{2} every {3}h{4}m{5}s.", Hours, Minutes, Seconds, FrequencyHours, FrequencyMinutes, FrequencySeconds), MethodBase.GetCurrentMethod().Name, "INFO");
+                Logger.Log("SPMService", string.Format("[ServiceSchedule] Schedule loaded from configuration file, run at {0}h{1}m{2}s every {3}h{4}m{5}s.", Hours, Minutes, Seconds, FrequencyHours, FrequencyMinutes, FrequencySeconds), MethodBase.GetCurrentMethod().Name, "INFO");
 
                 ServiceSchedule(new TimeSpan(Hours, Minutes, Seconds), new TimeSpan(FrequencyHours, FrequencyMinutes, FrequencySeconds));
             } catch (Exception ex)
@@ -109,29 +109,50 @@ namespace SnowPlatformMonitor.Service
             try
             {
                 Logger.Log("SPMService", "[ServiceExporter] Starting Module.", MethodBase.GetCurrentMethod().Name, "INFO");
-                string Config = dc.Config + ac.AppConfig;
+                string AppConfig = dc.Config + ac.AppConfig;
+                string ServerConfig = dc.Config + ac.ServerConfig;
 
-                bool DataUpdateJobStatus = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "DataUpdateJobStatus"));
-                bool Office365AdobeImportTables = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "Office365AdobeImportTables"));
-                bool LicenseManagerServices = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "LicenseManagerServices"));
-                bool LicenseManagerDeviceReporting = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "LicenseManagerDeviceReporting"));
-                bool LicenseManagerStorage = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "LicenseManagerStorage"));
-                bool InventoryServerServices = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "InventoryServerServices"));
-                bool InventoryServerStorage = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "InventoryServerStorage"));
-                bool InventoryServerDeviceReporting = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "InventoryServerDeviceReporting"));
-                bool InventoryServerProcessing = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "InventoryServerProcessing"));
+                bool DataUpdateJobStatus = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "DataUpdateJobStatus"));
+                bool Office365AdobeImportTables = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "Office365AdobeImportTables"));
+                bool LicenseManagerServices = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "LicenseManagerServices"));
+                bool LicenseManagerDeviceReporting = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "LicenseManagerDeviceReporting"));
+                bool LicenseManagerStorage = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "LicenseManagerStorage"));
+                bool InventoryServerServices = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "InventoryServerServices"));
+                bool InventoryServerStorage = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "InventoryServerStorage"));
+                bool InventoryServerDeviceReporting = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "InventoryServerDeviceReporting"));
+                bool InventoryServerProcessing = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "InventoryServerProcessing"));
+                string LicenseManagerServer = Utilities.ReadXMLValue(ServerConfig, "LicenseManager");
+                string InventoryServer = Utilities.ReadXMLValue(ServerConfig, "InventoryServer");
 
                 Logger.Log("SPMService", "[ServiceExporter] Configuration loaded.", MethodBase.GetCurrentMethod().Name, "INFO");
 
+                DataRetriever dataRetriever = new DataRetriever();
+
+                Logger.Log("SPMService", "[ServiceExporter] Data Retriever loaded.", MethodBase.GetCurrentMethod().Name, "INFO");
+                
                 if (DataUpdateJobStatus)
                 {
-                    DataRetriever dataRetriever = new DataRetriever();
                     if (dataRetriever.GetDataUpdateJob())
                     {
                         Logger.Log("SPMService", "[ServiceExporter] Data Update Job information exported.", MethodBase.GetCurrentMethod().Name, "INFO");
                     }
                 }
 
+                if (LicenseManagerServices)
+                {
+                    if (dataRetriever.GetServices("License Manager", LicenseManagerServer))
+                    {
+                        Logger.Log("SPMService", "[ServiceExporter] Windows Services information exported for LicenseManager.", MethodBase.GetCurrentMethod().Name, "INFO");
+                    }
+                }
+
+                if (InventoryServerServices)
+                {
+                    if (dataRetriever.GetServices("Inventory Server", InventoryServer))
+                    {
+                        Logger.Log("SPMService", "[ServiceExporter] Windows Services information exported for InventoryServer.", MethodBase.GetCurrentMethod().Name, "INFO");
+                    }
+                }
 
                 Logger.Log("SPMService", "[ServiceExporter] Schedule will now be refreshed.", MethodBase.GetCurrentMethod().Name, "INFO");
                 _timer.Dispose();
