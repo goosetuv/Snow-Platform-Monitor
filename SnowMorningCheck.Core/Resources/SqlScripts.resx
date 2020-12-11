@@ -161,4 +161,13 @@ WHERE
     run_requested_date IS NOT NULL AND stop_execution_date IS NULL AND job.name LIKE '%License Manager%'</value>
     <comment>Gets the current running status of the data update job, i.e if the job is running or not</comment>
   </data>
+  <data name="InventoryReportedAllTime" xml:space="preserve">
+    <value>SELECT COUNT(*) FROM SnowInventory.inv.DataClientView2</value>
+    <comment>Gets the amount of devices that have reported in total</comment>
+  </data>
+  <data name="InventoryReportedToday" xml:space="preserve">
+    <value>SELECT COUNT(*) FROM SnowInventory.inv.DataClientView2
+WHERE CAST(LastUpdate AS DATE) = CAST(GETDATE() AS Date)</value>
+    <comment>Gets the amount of devices that have reported today</comment>
+  </data>
 </root>

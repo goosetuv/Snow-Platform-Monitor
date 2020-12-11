@@ -1,9 +1,12 @@
-﻿# SnowPlatformMonitor.Core Credits
+﻿SnowPlatformMonitor.Core
 JamieSee from Stackoverflow for their ping method
-https://stackoverflow.com/questions/11800958/using-ping-in-c-sharp
+https://stackoverflow.com/a/11804416
 
-Marc from Stackoverflow for their multi-extension search method for Directories
-https://stackoverflow.com/questions/7039580/multiple-file-extensions-searchpattern-for-system-io-directory-getfiles
+Marc from Stackoverflow for their multi-extension search method for Directories, licensed under Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) https://creativecommons.org/licenses/by-sa/4.0/
+https://stackoverflow.com/a/30082323
+
+SiL3NC3 from Stackoverflow for their worksheet row count method for EEPlus, licensed under Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) https://creativecommons.org/licenses/by-sa/4.0/
+https://stackoverflow.com/a/51082473
 
 EPPlus
 https://www.epplussoftware.com/en, licensed under PolyForm Noncommercial License 1.0.0 https://polyformproject.org/licenses/noncommercial/1.0.0/

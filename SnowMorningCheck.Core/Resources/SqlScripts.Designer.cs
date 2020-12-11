@@ -119,5 +119,24 @@ namespace SnowPlatformMonitor.Core.Resources {
                 return ResourceManager.GetString("DataUpdateJobStatus", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT COUNT(*) FROM SnowInventory.inv.DataClientView2.
+        /// </summary>
+        public static string InventoryReportedAllTime {
+            get {
+                return ResourceManager.GetString("InventoryReportedAllTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT COUNT(*) FROM SnowInventory.inv.DataClientView2
+        ///WHERE CAST(LastUpdate AS DATE) = CAST(GETDATE() AS Date).
+        /// </summary>
+        public static string InventoryReportedToday {
+            get {
+                return ResourceManager.GetString("InventoryReportedToday", resourceCulture);
+            }
+        }
     }
 }

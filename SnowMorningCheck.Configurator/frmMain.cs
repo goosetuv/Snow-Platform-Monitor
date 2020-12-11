@@ -5,11 +5,11 @@ using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Reflection;
-using SnowPlatformMonitor.Core;
+using SnowPlatformMonitor.Core.Classes;
+using SnowPlatformMonitor.Core.Configuration;
 using System.Data.SqlClient;
 using AutoUpdaterDotNET;
-using System.Net;
-using System.Collections.Generic;
+using System.Drawing;
 #endregion
 
 namespace SnowPlatformMonitor.Configurator
@@ -28,9 +28,7 @@ namespace SnowPlatformMonitor.Configurator
         public frmMain()
         {
             InitializeComponent();
-            CheckForUpdates();
-            LoadConfiguration();
-            LoadServersConfiguration();
+            AppLoad();
         }
         #endregion
 
@@ -47,11 +45,14 @@ namespace SnowPlatformMonitor.Configurator
                     "ScheduleMinutes",
                     "ScheduleSeconds",
                     "DataUpdateJobStatus",
+                    "Office365AdobeImportTables",
                     "LicenseManagerServices",
                     "LicenseManagerDeviceReporting",
+                    "LicenseManagerDeviceThreshold",
                     "LicenseManagerStorage",
                     "InventoryServerServices",
                     "InventoryServerDeviceReporting",
+                    "InventoryServerDeviceThreshold",
                     "InventoryServerProcessing",
                     "InventoryServerStorage",
                     "InventoryServerProcessingDirectory",
@@ -76,15 +77,18 @@ namespace SnowPlatformMonitor.Configurator
                     numServiceMScheduleTimeMins.Value.ToString(),
                     numServiceMScheduleTimeSecs.Value.ToString(),
                     cbConfigDUJStatus.Checked.ToString(),
+                    cbConfigOffice365Adobe.Checked.ToString(),
                     cbConfigSLMServices.Checked.ToString(),
                     cbConfigSLMDeviceReporting.Checked.ToString(),
+                    numConfigAdvSLMDeviceThreshold.Value.ToString(),
                     cbConfigSLMStorage.Checked.ToString(),
                     cbConfigINVServices.Checked.ToString(),
                     cbConfigINVDeviceReporting.Checked.ToString(),
+                    numConfigAdvINVDeviceThreshold.Value.ToString(),
                     cbConfigINVProcessingDir.Checked.ToString(),
                     cbConfigINVStorage.Checked.ToString(),
-                    @"\Program Files\Snow Software\Snow Inventory\Server\Incoming\data\processing",
-                    "100"
+                    txtConfigAdvINVProcessingDirectory.Text,
+                    numConfigAdvINVProcessingThreshold.Value.ToString()
                 };
 
                 string result = ac.SaveConfig("spm", NodeList, ValueList);
@@ -104,14 +108,18 @@ namespace SnowPlatformMonitor.Configurator
             }
         }
 
-        private void btnConfigCheckAll_Click(object sender, EventArgs e)
+        private void btnConfigAdvanced_Click(object sender, EventArgs e)
         {
-            CheckBoxChanger(true);
-        }
- 
-        private void btnConfigUncheckAll_Click(object sender, EventArgs e)
-        {
-            CheckBoxChanger(false);
+            if (Size.Width == MinimumSize.Width && Size.Height == MinimumSize.Height)
+            {
+                Size = new Size(MaximumSize.Width, MaximumSize.Height);
+                gbConfigAdvanced.Visible = true;
+            }
+            else
+            {
+                Size = new Size(MinimumSize.Width, MinimumSize.Height);
+                gbConfigAdvanced.Visible = false;
+            }
         }
         #endregion
 
@@ -258,8 +266,9 @@ namespace SnowPlatformMonitor.Configurator
                     numServiceMScheduleTimeMins.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ScheduleMinutes"));
                     numServiceMScheduleTimeSecs.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ScheduleSeconds"));
 
-                    // Data Update Job
+                    // Core
                     cbConfigDUJStatus.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "DataUpdateJobStatus"));
+                    cbConfigOffice365Adobe.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "Office365AdobeImportTables"));
                     // License Manager
                     cbConfigSLMServices.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "LicenseManagerServices"));
                     cbConfigSLMDeviceReporting.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "LicenseManagerDeviceReporting"));
@@ -269,6 +278,13 @@ namespace SnowPlatformMonitor.Configurator
                     cbConfigINVDeviceReporting.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerDeviceReporting"));
                     cbConfigINVProcessingDir.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerProcessing"));
                     cbConfigINVStorage.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerStorage"));
+
+                    // Advanced
+                    numConfigAdvINVDeviceThreshold.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerDeviceThreshold"));
+                    numConfigAdvINVProcessingThreshold.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerProcessingThreshold"));
+                    numConfigAdvSLMDeviceThreshold.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "LicenseManagerDeviceThreshold"));
+
+                    txtConfigAdvINVProcessingDirectory.Text = Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerProcessingDirectory");
                 }
             } catch (Exception ex)
             {
@@ -302,6 +318,23 @@ namespace SnowPlatformMonitor.Configurator
             }
 }
 
+        private void LoadVisualDesign()
+        {
+            this.Size = new Size(MinimumSize.Width, MinimumSize.Height);
+
+            lblAboutAppInfo.Text = $"{ProductName}{Environment.NewLine}Version {ProductVersion}{Environment.NewLine}PRE-RELEASE-BUILD";
+
+            Text = string.Format("{0} - {1}", ProductName, ProductVersion); 
+        }
+
+        private void AppLoad()
+        {
+            CheckForUpdates();
+            LoadVisualDesign();
+            LoadConfiguration();
+            LoadServersConfiguration();
+        }
+
         #region Updater
         /// <summary>
         ///  Checks if there are any updates available for the app, using AutoUpdater.NET
@@ -322,8 +355,8 @@ namespace SnowPlatformMonitor.Configurator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            InventoryServer inventoryServer = new InventoryServer();
-            MessageBox.Show(inventoryServer.ProcessingDirectory());
+            DataRetriever exporter = new DataRetriever();
+            exporter.GetDataUpdateJob();
         }
     }
 }

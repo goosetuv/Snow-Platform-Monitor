@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
+using SnowPlatformMonitor.Core.Configuration;
 
-namespace SnowPlatformMonitor.Core
+namespace SnowPlatformMonitor.Core.Classes
 {
     public static class Logger
     {

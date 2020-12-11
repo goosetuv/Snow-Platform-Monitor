@@ -2,7 +2,7 @@
 using System.Net.NetworkInformation;
 using Laim;
 
-namespace SnowPlatformMonitor.Core
+namespace SnowPlatformMonitor.Core.Classes
 {
     public static class Utilities
     {

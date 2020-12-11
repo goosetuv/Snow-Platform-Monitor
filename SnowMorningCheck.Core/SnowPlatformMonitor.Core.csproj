@@ -76,18 +76,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationConfiguration.cs" />
-    <Compile Include="DataUpdateJob.cs" />
-    <Compile Include="DirectoryConfiguration.cs" />
-    <Compile Include="InventoryServer.cs" />
-    <Compile Include="Logger.cs" />
+    <Compile Include="Configuration\ApplicationConfiguration.cs" />
+    <Compile Include="Classes\DataRetriever.cs" />
+    <Compile Include="Configuration\DirectoryConfiguration.cs" />
+    <Compile Include="Classes\InventoryServer.cs" />
+    <Compile Include="Classes\Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\SqlScripts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SqlScripts.resx</DependentUpon>
     </Compile>
-    <Compile Include="Utilities.cs" />
+    <Compile Include="Classes\Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\SqlScripts.resx">

@@ -3,7 +3,8 @@ using System.Globalization;
 using System.Reflection;
 using System.ServiceProcess;
 using System.Threading;
-using SnowPlatformMonitor.Core;
+using SnowPlatformMonitor.Core.Classes;
+using SnowPlatformMonitor.Core.Configuration;
 
 namespace SnowPlatformMonitor.Service
 {
@@ -111,6 +112,7 @@ namespace SnowPlatformMonitor.Service
                 string Config = dc.Config + ac.AppConfig;
 
                 bool DataUpdateJobStatus = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "DataUpdateJobStatus"));
+                bool Office365AdobeImportTables = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "Office365AdobeImportTables"));
                 bool LicenseManagerServices = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "LicenseManagerServices"));
                 bool LicenseManagerDeviceReporting = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "LicenseManagerDeviceReporting"));
                 bool LicenseManagerStorage = Convert.ToBoolean(Utilities.ReadXMLValue(Config, "LicenseManagerStorage"));
@@ -123,8 +125,8 @@ namespace SnowPlatformMonitor.Service
 
                 if (DataUpdateJobStatus)
                 {
-                    DataUpdateJob duj = new DataUpdateJob();
-                    if (duj.GetExport())
+                    DataRetriever dataRetriever = new DataRetriever();
+                    if (dataRetriever.GetDataUpdateJob())
                     {
                         Logger.Log("SPMService", "[ServiceExporter] Data Update Job information exported.", MethodBase.GetCurrentMethod().Name, "INFO");
                     }

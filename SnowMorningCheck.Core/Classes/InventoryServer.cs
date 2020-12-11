@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using SnowPlatformMonitor.Core.Configuration;
 
-namespace SnowPlatformMonitor.Core
+namespace SnowPlatformMonitor.Core.Classes
 {
     public class InventoryServer
     {
@@ -12,7 +13,7 @@ namespace SnowPlatformMonitor.Core
         public string ProcessingDirectory()
         {
             string ServerName = Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "InventoryServer");
-            string InventoryPath = Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "InventoryServerDrive") + ":" +Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerProcessingDirectory");
+            string InventoryPath = Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "InventoryServerDrive") + ":" + Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerProcessingDirectory");
             int InventoryThreshold = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerProcessingThreshold"));
             int FileCount = 0;
             
@@ -32,10 +33,10 @@ namespace SnowPlatformMonitor.Core
 
                     if(FileCount > InventoryThreshold)
                     {
-                        return "Threshold hit! " + FileCount.ToString() + " files";
+                        return "Threshold hit! " + FileCount.ToString() + " inventory files";
                     } else
                     {
-                        return FileCount.ToString() + " files";
+                        return FileCount.ToString() + " inventory files";
                     }
                 } else
                 {

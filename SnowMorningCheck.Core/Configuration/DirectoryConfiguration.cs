@@ -2,7 +2,7 @@
 using System.IO;
 using System.Reflection;
 
-namespace SnowPlatformMonitor.Core
+namespace SnowPlatformMonitor.Core.Configuration
 {
     public class DirectoryConfiguration
     {

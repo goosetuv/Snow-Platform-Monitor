@@ -2,7 +2,7 @@
 using System.IO;
 using Laim;
 
-namespace SnowPlatformMonitor.Core
+namespace SnowPlatformMonitor.Core.Configuration
 {
     public class ApplicationConfiguration
     {
