@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Globalization;
 using System.Reflection;
 using System.ServiceProcess;
 using System.Threading;
+using System.Xml;
 using SnowPlatformMonitor.Core.Classes;
 using SnowPlatformMonitor.Core.Configuration;
 
@@ -17,6 +17,7 @@ namespace SnowPlatformMonitor.Service
         readonly ApplicationConfiguration ac = new ApplicationConfiguration();
         private double firstExecution;
         public static string ServiceVersion { get; private set; }
+        private bool Configured = false;
         #endregion
 
         #region Constructor
@@ -35,8 +36,17 @@ namespace SnowPlatformMonitor.Service
 
                 Logger.Log("SPMService", string.Format("Version: {0}", ServiceVersion), MethodBase.GetCurrentMethod().Name, "INFO");
                 Logger.Log("SPMService", "Service is starting up...", MethodBase.GetCurrentMethod().Name, "INFO");
-                Logger.Log("SPMService", "[ServiceSchedule] Loading Module.", MethodBase.GetCurrentMethod().Name, "INFO");
-                InitializeSchedule();
+
+                InitializeConfiguration();
+
+                if(Configured == true)
+                {
+                    InitializeSchedule();
+                } else
+                {
+                    Logger.Log("SPMService", "Exports are not configured, the service will now stop.", MethodBase.GetCurrentMethod().Name, "INFO");
+                    Stop();
+                }
 
             } catch (Exception ex)
             {
@@ -64,13 +74,43 @@ namespace SnowPlatformMonitor.Service
                 int FrequencyMinutes = 0;
                 int FrequencySeconds = 0;
 
-                Logger.Log("SPMService", string.Format("[ServiceSchedule] Schedule loaded from configuration file, run at {0}h{1}m{2}s every {3}h{4}m{5}s.", Hours, Minutes, Seconds, FrequencyHours, FrequencyMinutes, FrequencySeconds), MethodBase.GetCurrentMethod().Name, "INFO");
+                Logger.Log("SPMService", string.Format("Schedule loaded from configuration file, run at {0}h{1}m{2}s every {3}h{4}m{5}s.", Hours, Minutes, Seconds, FrequencyHours, FrequencyMinutes, FrequencySeconds), MethodBase.GetCurrentMethod().Name, "INFO");
 
                 ServiceSchedule(new TimeSpan(Hours, Minutes, Seconds), new TimeSpan(FrequencyHours, FrequencyMinutes, FrequencySeconds));
             } catch (Exception ex)
             {
                 Logger.Log("SPMService", ex.Message, MethodBase.GetCurrentMethod().Name, "FATAL");
                 Stop();
+            }
+        }
+
+        protected void InitializeConfiguration()
+        {
+            try
+            {
+                //Load the XML file in XmlDocument.
+                XmlDocument doc = new XmlDocument();
+                doc.Load(dc.Config + ac.AppConfig);
+
+                //Fetch all the Nodes.
+                XmlNodeList nodeList = doc.SelectNodes("//text()");
+
+                //Loop through the Nodes.
+                foreach (XmlNode node in nodeList)
+                {
+                    //Fetch the Node's Name and InnerText values.
+                    Logger.Log("SPMService", node.ParentNode.Name + ": " + node.InnerText, MethodBase.GetCurrentMethod().Name, "DEBUG");
+
+                    if(node.InnerText.ToLower() == "true")
+                    {
+                        Configured = true;
+                    }
+                }
+
+            } catch (Exception ex)
+            {
+                Logger.Log("SPMService", ex.Message, MethodBase.GetCurrentMethod().Name, "FATAL");
+                Stop(); 
             }
         }
 
@@ -92,7 +132,7 @@ namespace SnowPlatformMonitor.Service
                 _timer = new Timer(callback, null, Convert.ToInt32(firstExecution), Convert.ToInt32(intervalPeriod));
 
                 // Add some log events so the user knows what's actually happening 
-                Logger.Log("SPMService", string.Format("[ServiceSchedule] Next run is scheduled for - {0}.", DateTime.Now.AddMilliseconds(firstExecution).ToString()), MethodBase.GetCurrentMethod().Name, "INFO");
+                Logger.Log("SPMService", string.Format("Next run is scheduled for - {0}.", DateTime.Now.AddMilliseconds(firstExecution).ToString()), MethodBase.GetCurrentMethod().Name, "INFO");
             } catch (Exception ex)
             {
                 Logger.Log("SPMService", ex.Message, MethodBase.GetCurrentMethod().Name, "FATAL");
@@ -108,7 +148,7 @@ namespace SnowPlatformMonitor.Service
         {
             try
             {
-                Logger.Log("SPMService", "[ServiceExporter] Starting Module.", MethodBase.GetCurrentMethod().Name, "INFO");
+                Logger.Log("SPMService", "Starting Module.", MethodBase.GetCurrentMethod().Name, "INFO");
                 string AppConfig = dc.Config + ac.AppConfig;
                 string ServerConfig = dc.Config + ac.ServerConfig;
 
@@ -124,17 +164,17 @@ namespace SnowPlatformMonitor.Service
                 string LicenseManagerServer = Utilities.ReadXMLValue(ServerConfig, "LicenseManager");
                 string InventoryServer = Utilities.ReadXMLValue(ServerConfig, "InventoryServer");
 
-                Logger.Log("SPMService", "[ServiceExporter] Configuration loaded.", MethodBase.GetCurrentMethod().Name, "INFO");
+                Logger.Log("SPMService", "Configuration loaded.", MethodBase.GetCurrentMethod().Name, "INFO");
 
                 DataRetriever dataRetriever = new DataRetriever();
 
-                Logger.Log("SPMService", "[ServiceExporter] Data Retriever loaded.", MethodBase.GetCurrentMethod().Name, "INFO");
+                Logger.Log("SPMService", "Data Retriever loaded.", MethodBase.GetCurrentMethod().Name, "INFO");
                 
                 if (DataUpdateJobStatus)
                 {
                     if (dataRetriever.GetDataUpdateJob())
                     {
-                        Logger.Log("SPMService", "[ServiceExporter] Data Update Job information exported.", MethodBase.GetCurrentMethod().Name, "INFO");
+                        Logger.Log("SPMService", "Data Update Job information exported.", MethodBase.GetCurrentMethod().Name, "INFO");
                     }
                 }
 
@@ -142,7 +182,7 @@ namespace SnowPlatformMonitor.Service
                 {
                     if (dataRetriever.GetServices("License Manager", LicenseManagerServer))
                     {
-                        Logger.Log("SPMService", "[ServiceExporter] Windows Services information exported for LicenseManager.", MethodBase.GetCurrentMethod().Name, "INFO");
+                        Logger.Log("SPMService", "Windows Services information exported for LicenseManager.", MethodBase.GetCurrentMethod().Name, "INFO");
                     }
                 }
 
@@ -150,11 +190,35 @@ namespace SnowPlatformMonitor.Service
                 {
                     if (dataRetriever.GetServices("Inventory Server", InventoryServer))
                     {
-                        Logger.Log("SPMService", "[ServiceExporter] Windows Services information exported for InventoryServer.", MethodBase.GetCurrentMethod().Name, "INFO");
+                        Logger.Log("SPMService", "Windows Services information exported for InventoryServer.", MethodBase.GetCurrentMethod().Name, "INFO");
                     }
                 }
 
-                Logger.Log("SPMService", "[ServiceExporter] Schedule will now be refreshed.", MethodBase.GetCurrentMethod().Name, "INFO");
+                if (Office365AdobeImportTables)
+                {
+                    if(dataRetriever.GetConnectorImportTables())
+                    {
+                        Logger.Log("SPMService", "Office 365 and Adobe Import tables exported.", MethodBase.GetCurrentMethod().Name, "INFO");
+                    }
+                }
+
+                if (LicenseManagerDeviceReporting)
+                {
+                    if (dataRetriever.GetReportedToday(slm: true))
+                    {
+                        Logger.Log("SPMService", "LicenseManager Device Reporting exported.", MethodBase.GetCurrentMethod().Name, "INFO");
+                    }
+                }
+
+                if (InventoryServerDeviceReporting)
+                {
+                    if (dataRetriever.GetReportedToday(sinv: true))
+                    {
+                        Logger.Log("SPMService", "SnowInvenotry Device Reporting exported.", MethodBase.GetCurrentMethod().Name, "INFO");
+                    }
+                }
+
+                Logger.Log("SPMService", "Schedule will now be refreshed!", MethodBase.GetCurrentMethod().Name, "INFO");
                 _timer.Dispose();
                 InitializeSchedule();
             } catch (Exception ex)

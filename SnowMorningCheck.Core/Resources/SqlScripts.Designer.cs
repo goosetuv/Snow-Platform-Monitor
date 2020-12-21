@@ -61,6 +61,15 @@ namespace SnowPlatformMonitor.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT * FROM SnowLicenseManager.adobecc.Import.
+        /// </summary>
+        public static string AdobeImport {
+            get {
+                return ResourceManager.GetString("AdobeImport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT TOP 5 * FROM SnowLicenseManager.dbo.tblErrorLog
         ///ORDER BY logDate DESC.
         /// </summary>
@@ -121,21 +130,31 @@ namespace SnowPlatformMonitor.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT COUNT(*) FROM SnowInventory.inv.DataClientView2.
-        /// </summary>
-        public static string InventoryReportedAllTime {
-            get {
-                return ResourceManager.GetString("InventoryReportedAllTime", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to SELECT COUNT(*) FROM SnowInventory.inv.DataClientView2
+        ///   Looks up a localized string similar to SELECT * FROM SnowInventory.inv.DataClientView2
         ///WHERE CAST(LastUpdate AS DATE) = CAST(GETDATE() AS Date).
         /// </summary>
         public static string InventoryReportedToday {
             get {
                 return ResourceManager.GetString("InventoryReportedToday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT * FROM SnowLicenseManager.dbo.tblComputer
+        ///WHERE CAST(LastScanDate AS DATE) = CAST(GETDATE() - 1 AS Date).
+        /// </summary>
+        public static string LicenseManagerReportedToday {
+            get {
+                return ResourceManager.GetString("LicenseManagerReportedToday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT * FROM SnowLicenseManager.o365.Import.
+        /// </summary>
+        public static string Office365Import {
+            get {
+                return ResourceManager.GetString("Office365Import", resourceCulture);
             }
         }
     }

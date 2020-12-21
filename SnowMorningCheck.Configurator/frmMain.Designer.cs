@@ -30,6 +30,7 @@
         {
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabConfiguration = new System.Windows.Forms.TabPage();
+            this.cbConfigLogInterrogator = new System.Windows.Forms.CheckBox();
             this.gbConfigAdvanced = new System.Windows.Forms.GroupBox();
             this.lblConfigAdvProcessingDirectory = new System.Windows.Forms.Label();
             this.txtConfigAdvINVProcessingDirectory = new System.Windows.Forms.TextBox();
@@ -49,9 +50,6 @@
             this.numServiceMScheduleTimeMins = new System.Windows.Forms.NumericUpDown();
             this.numServiceMScheduleTimeHours = new System.Windows.Forms.NumericUpDown();
             this.lblServiceMScheduleTime = new System.Windows.Forms.Label();
-            this.gbConfigDataExport = new System.Windows.Forms.GroupBox();
-            this.rbConfigPDF = new System.Windows.Forms.RadioButton();
-            this.rbConfigExcelWB = new System.Windows.Forms.RadioButton();
             this.btnConfigSave = new System.Windows.Forms.Button();
             this.cbConfigINVStorage = new System.Windows.Forms.CheckBox();
             this.cbConfigSLMStorage = new System.Windows.Forms.CheckBox();
@@ -100,7 +98,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numServiceMScheduleTimeSecs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numServiceMScheduleTimeMins)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numServiceMScheduleTimeHours)).BeginInit();
-            this.gbConfigDataExport.SuspendLayout();
             this.tabServers.SuspendLayout();
             this.gbServersINV.SuspendLayout();
             this.gbServersSLM.SuspendLayout();
@@ -128,11 +125,11 @@
             // 
             // tabConfiguration
             // 
+            this.tabConfiguration.Controls.Add(this.cbConfigLogInterrogator);
             this.tabConfiguration.Controls.Add(this.gbConfigAdvanced);
             this.tabConfiguration.Controls.Add(this.btnConfigAdvanced);
             this.tabConfiguration.Controls.Add(this.cbConfigOffice365Adobe);
             this.tabConfiguration.Controls.Add(this.gbServiceMSchedule);
-            this.tabConfiguration.Controls.Add(this.gbConfigDataExport);
             this.tabConfiguration.Controls.Add(this.btnConfigSave);
             this.tabConfiguration.Controls.Add(this.cbConfigINVStorage);
             this.tabConfiguration.Controls.Add(this.cbConfigSLMStorage);
@@ -150,6 +147,17 @@
             this.tabConfiguration.Text = "Configuration";
             this.tabConfiguration.UseVisualStyleBackColor = true;
             // 
+            // cbConfigLogInterrogator
+            // 
+            this.cbConfigLogInterrogator.AutoSize = true;
+            this.cbConfigLogInterrogator.Enabled = false;
+            this.cbConfigLogInterrogator.Location = new System.Drawing.Point(20, 136);
+            this.cbConfigLogInterrogator.Name = "cbConfigLogInterrogator";
+            this.cbConfigLogInterrogator.Size = new System.Drawing.Size(147, 17);
+            this.cbConfigLogInterrogator.TabIndex = 18;
+            this.cbConfigLogInterrogator.Text = "Platform Logs Interrogator";
+            this.cbConfigLogInterrogator.UseVisualStyleBackColor = true;
+            // 
             // gbConfigAdvanced
             // 
             this.gbConfigAdvanced.Controls.Add(this.lblConfigAdvProcessingDirectory);
@@ -160,7 +168,7 @@
             this.gbConfigAdvanced.Controls.Add(this.numConfigAdvINVDeviceThreshold);
             this.gbConfigAdvanced.Controls.Add(this.numConfigAdvSLMDeviceThreshold);
             this.gbConfigAdvanced.Controls.Add(this.lblConfigAdvSLMDeviceThreshold);
-            this.gbConfigAdvanced.Location = new System.Drawing.Point(20, 346);
+            this.gbConfigAdvanced.Location = new System.Drawing.Point(20, 347);
             this.gbConfigAdvanced.Name = "gbConfigAdvanced";
             this.gbConfigAdvanced.Size = new System.Drawing.Size(268, 211);
             this.gbConfigAdvanced.TabIndex = 17;
@@ -190,9 +198,9 @@
             this.lblConfigAdvINVProcessingThreshold.AutoSize = true;
             this.lblConfigAdvINVProcessingThreshold.Location = new System.Drawing.Point(17, 113);
             this.lblConfigAdvINVProcessingThreshold.Name = "lblConfigAdvINVProcessingThreshold";
-            this.lblConfigAdvINVProcessingThreshold.Size = new System.Drawing.Size(140, 13);
+            this.lblConfigAdvINVProcessingThreshold.Size = new System.Drawing.Size(163, 13);
             this.lblConfigAdvINVProcessingThreshold.TabIndex = 5;
-            this.lblConfigAdvINVProcessingThreshold.Text = "SINV Processing Threshold:";
+            this.lblConfigAdvINVProcessingThreshold.Text = "SINV Max Processing Threshold:";
             // 
             // numConfigAdvINVProcessingThreshold
             // 
@@ -216,9 +224,9 @@
             this.lblConfigAdvINVDeviceThreshold.AutoSize = true;
             this.lblConfigAdvINVDeviceThreshold.Location = new System.Drawing.Point(17, 69);
             this.lblConfigAdvINVDeviceThreshold.Name = "lblConfigAdvINVDeviceThreshold";
-            this.lblConfigAdvINVDeviceThreshold.Size = new System.Drawing.Size(122, 13);
+            this.lblConfigAdvINVDeviceThreshold.Size = new System.Drawing.Size(193, 13);
             this.lblConfigAdvINVDeviceThreshold.TabIndex = 3;
-            this.lblConfigAdvINVDeviceThreshold.Text = "SINV Device Threshold:";
+            this.lblConfigAdvINVDeviceThreshold.Text = "SINV min. Device Reporting Threshold:";
             // 
             // numConfigAdvINVDeviceThreshold
             // 
@@ -259,9 +267,9 @@
             this.lblConfigAdvSLMDeviceThreshold.AutoSize = true;
             this.lblConfigAdvSLMDeviceThreshold.Location = new System.Drawing.Point(17, 25);
             this.lblConfigAdvSLMDeviceThreshold.Name = "lblConfigAdvSLMDeviceThreshold";
-            this.lblConfigAdvSLMDeviceThreshold.Size = new System.Drawing.Size(119, 13);
+            this.lblConfigAdvSLMDeviceThreshold.Size = new System.Drawing.Size(190, 13);
             this.lblConfigAdvSLMDeviceThreshold.TabIndex = 0;
-            this.lblConfigAdvSLMDeviceThreshold.Text = "SLM Device Threshold:";
+            this.lblConfigAdvSLMDeviceThreshold.Text = "SLM min. Device Reporting Threshold:";
             // 
             // btnConfigAdvanced
             // 
@@ -277,8 +285,7 @@
             // cbConfigOffice365Adobe
             // 
             this.cbConfigOffice365Adobe.AutoSize = true;
-            this.cbConfigOffice365Adobe.Enabled = false;
-            this.cbConfigOffice365Adobe.Location = new System.Drawing.Point(20, 162);
+            this.cbConfigOffice365Adobe.Location = new System.Drawing.Point(20, 113);
             this.cbConfigOffice365Adobe.Name = "cbConfigOffice365Adobe";
             this.cbConfigOffice365Adobe.Size = new System.Drawing.Size(197, 17);
             this.cbConfigOffice365Adobe.TabIndex = 15;
@@ -295,7 +302,7 @@
             this.gbServiceMSchedule.Controls.Add(this.numServiceMScheduleTimeMins);
             this.gbServiceMSchedule.Controls.Add(this.numServiceMScheduleTimeHours);
             this.gbServiceMSchedule.Controls.Add(this.lblServiceMScheduleTime);
-            this.gbServiceMSchedule.Location = new System.Drawing.Point(20, 76);
+            this.gbServiceMSchedule.Location = new System.Drawing.Point(20, 21);
             this.gbServiceMSchedule.Name = "gbServiceMSchedule";
             this.gbServiceMSchedule.Size = new System.Drawing.Size(268, 53);
             this.gbServiceMSchedule.TabIndex = 14;
@@ -374,40 +381,6 @@
             this.lblServiceMScheduleTime.TabIndex = 0;
             this.lblServiceMScheduleTime.Text = "Time:";
             // 
-            // gbConfigDataExport
-            // 
-            this.gbConfigDataExport.Controls.Add(this.rbConfigPDF);
-            this.gbConfigDataExport.Controls.Add(this.rbConfigExcelWB);
-            this.gbConfigDataExport.Location = new System.Drawing.Point(20, 20);
-            this.gbConfigDataExport.Name = "gbConfigDataExport";
-            this.gbConfigDataExport.Size = new System.Drawing.Size(268, 50);
-            this.gbConfigDataExport.TabIndex = 13;
-            this.gbConfigDataExport.TabStop = false;
-            this.gbConfigDataExport.Text = "Export Type";
-            // 
-            // rbConfigPDF
-            // 
-            this.rbConfigPDF.AutoSize = true;
-            this.rbConfigPDF.Location = new System.Drawing.Point(207, 19);
-            this.rbConfigPDF.Name = "rbConfigPDF";
-            this.rbConfigPDF.Size = new System.Drawing.Size(46, 17);
-            this.rbConfigPDF.TabIndex = 11;
-            this.rbConfigPDF.Text = "PDF";
-            this.rbConfigPDF.UseVisualStyleBackColor = true;
-            this.rbConfigPDF.Visible = false;
-            // 
-            // rbConfigExcelWB
-            // 
-            this.rbConfigExcelWB.AutoSize = true;
-            this.rbConfigExcelWB.Checked = true;
-            this.rbConfigExcelWB.Location = new System.Drawing.Point(20, 20);
-            this.rbConfigExcelWB.Name = "rbConfigExcelWB";
-            this.rbConfigExcelWB.Size = new System.Drawing.Size(104, 17);
-            this.rbConfigExcelWB.TabIndex = 12;
-            this.rbConfigExcelWB.TabStop = true;
-            this.rbConfigExcelWB.Text = "Excel Workbook";
-            this.rbConfigExcelWB.UseVisualStyleBackColor = true;
-            // 
             // btnConfigSave
             // 
             this.btnConfigSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -424,7 +397,7 @@
             // 
             this.cbConfigINVStorage.AutoSize = true;
             this.cbConfigINVStorage.Enabled = false;
-            this.cbConfigINVStorage.Location = new System.Drawing.Point(20, 323);
+            this.cbConfigINVStorage.Location = new System.Drawing.Point(20, 297);
             this.cbConfigINVStorage.Name = "cbConfigINVStorage";
             this.cbConfigINVStorage.Size = new System.Drawing.Size(174, 17);
             this.cbConfigINVStorage.TabIndex = 7;
@@ -436,7 +409,7 @@
             // 
             this.cbConfigSLMStorage.AutoSize = true;
             this.cbConfigSLMStorage.Enabled = false;
-            this.cbConfigSLMStorage.Location = new System.Drawing.Point(20, 231);
+            this.cbConfigSLMStorage.Location = new System.Drawing.Point(20, 205);
             this.cbConfigSLMStorage.Name = "cbConfigSLMStorage";
             this.cbConfigSLMStorage.Size = new System.Drawing.Size(212, 17);
             this.cbConfigSLMStorage.TabIndex = 6;
@@ -447,7 +420,7 @@
             // cbConfigINVProcessingDir
             // 
             this.cbConfigINVProcessingDir.AutoSize = true;
-            this.cbConfigINVProcessingDir.Location = new System.Drawing.Point(20, 300);
+            this.cbConfigINVProcessingDir.Location = new System.Drawing.Point(20, 274);
             this.cbConfigINVProcessingDir.Name = "cbConfigINVProcessingDir";
             this.cbConfigINVProcessingDir.Size = new System.Drawing.Size(200, 17);
             this.cbConfigINVProcessingDir.TabIndex = 5;
@@ -458,7 +431,7 @@
             // cbConfigINVServices
             // 
             this.cbConfigINVServices.AutoSize = true;
-            this.cbConfigINVServices.Location = new System.Drawing.Point(20, 254);
+            this.cbConfigINVServices.Location = new System.Drawing.Point(20, 228);
             this.cbConfigINVServices.Name = "cbConfigINVServices";
             this.cbConfigINVServices.Size = new System.Drawing.Size(178, 17);
             this.cbConfigINVServices.TabIndex = 4;
@@ -469,8 +442,7 @@
             // cbConfigINVDeviceReporting
             // 
             this.cbConfigINVDeviceReporting.AutoSize = true;
-            this.cbConfigINVDeviceReporting.Enabled = false;
-            this.cbConfigINVDeviceReporting.Location = new System.Drawing.Point(20, 277);
+            this.cbConfigINVDeviceReporting.Location = new System.Drawing.Point(20, 251);
             this.cbConfigINVDeviceReporting.Name = "cbConfigINVDeviceReporting";
             this.cbConfigINVDeviceReporting.Size = new System.Drawing.Size(186, 17);
             this.cbConfigINVDeviceReporting.TabIndex = 3;
@@ -481,8 +453,7 @@
             // cbConfigSLMDeviceReporting
             // 
             this.cbConfigSLMDeviceReporting.AutoSize = true;
-            this.cbConfigSLMDeviceReporting.Enabled = false;
-            this.cbConfigSLMDeviceReporting.Location = new System.Drawing.Point(20, 208);
+            this.cbConfigSLMDeviceReporting.Location = new System.Drawing.Point(20, 182);
             this.cbConfigSLMDeviceReporting.Name = "cbConfigSLMDeviceReporting";
             this.cbConfigSLMDeviceReporting.Size = new System.Drawing.Size(224, 17);
             this.cbConfigSLMDeviceReporting.TabIndex = 2;
@@ -493,7 +464,7 @@
             // cbConfigSLMServices
             // 
             this.cbConfigSLMServices.AutoSize = true;
-            this.cbConfigSLMServices.Location = new System.Drawing.Point(20, 185);
+            this.cbConfigSLMServices.Location = new System.Drawing.Point(20, 159);
             this.cbConfigSLMServices.Name = "cbConfigSLMServices";
             this.cbConfigSLMServices.Size = new System.Drawing.Size(216, 17);
             this.cbConfigSLMServices.TabIndex = 1;
@@ -504,7 +475,7 @@
             // cbConfigDUJStatus
             // 
             this.cbConfigDUJStatus.AutoSize = true;
-            this.cbConfigDUJStatus.Location = new System.Drawing.Point(20, 139);
+            this.cbConfigDUJStatus.Location = new System.Drawing.Point(20, 90);
             this.cbConfigDUJStatus.Name = "cbConfigDUJStatus";
             this.cbConfigDUJStatus.Size = new System.Drawing.Size(140, 17);
             this.cbConfigDUJStatus.TabIndex = 0;
@@ -821,8 +792,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numServiceMScheduleTimeSecs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numServiceMScheduleTimeMins)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numServiceMScheduleTimeHours)).EndInit();
-            this.gbConfigDataExport.ResumeLayout(false);
-            this.gbConfigDataExport.PerformLayout();
             this.tabServers.ResumeLayout(false);
             this.gbServersINV.ResumeLayout(false);
             this.gbServersINV.PerformLayout();
@@ -868,9 +837,6 @@
         private System.Windows.Forms.CheckBox cbConfigINVStorage;
         private System.Windows.Forms.CheckBox cbConfigSLMStorage;
         private System.Windows.Forms.Button btnConfigSave;
-        private System.Windows.Forms.RadioButton rbConfigPDF;
-        private System.Windows.Forms.RadioButton rbConfigExcelWB;
-        private System.Windows.Forms.GroupBox gbConfigDataExport;
         private System.Windows.Forms.Label lblAboutAppInfo;
         private System.Windows.Forms.Button btnAboutLogDir;
         private System.Windows.Forms.Button btnAboutConfigDir;
@@ -900,6 +866,7 @@
         private System.Windows.Forms.Label lblConfigAdvINVProcessingThreshold;
         private System.Windows.Forms.Label lblConfigAdvProcessingDirectory;
         private System.Windows.Forms.TextBox txtConfigAdvINVProcessingDirectory;
+        private System.Windows.Forms.CheckBox cbConfigLogInterrogator;
     }
 }
 

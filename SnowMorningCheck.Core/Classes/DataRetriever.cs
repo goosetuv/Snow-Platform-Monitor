@@ -1,45 +1,36 @@
-﻿using System;
+﻿#region Dependencies
+using System;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using Laim;
 using OfficeOpenXml;
 using SnowPlatformMonitor.Core.Configuration;
+#endregion
 
 namespace SnowPlatformMonitor.Core.Classes
 {
     public class DataRetriever
     {
+        #region Fields
         private readonly DirectoryConfiguration dc = new DirectoryConfiguration();
         private readonly ApplicationConfiguration ac = new ApplicationConfiguration();
-        private readonly string ExportName = "-SnowPlatformMonitor.xlsx";
-        private readonly string DateFormat = "ddMMyyyy";
-
-        internal DataTable RunResourceDataTable(string resourceName, string connectionString)
-        {           
-            return MSSqlServer.ExecuteReadDataTable(connectionString, Resources.SqlScripts.ResourceManager.GetString(resourceName));
-        }
+        public readonly string ExportName = "-SnowPlatformMonitor.xlsx";
+        public readonly string DateFormat = "ddMMyyyy";
+        #endregion
 
         public bool GetDataUpdateJob()
         {
-            // decrypt the connection string
-            string ConnectionString = Utilities.Decrypt(Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "ConnectionString"));
-            string ConnectionStringParameters = Utilities.Decrypt(Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "ConnectionStringParameters"));
-
-            // pull the duj data into data tables
-            DataTable dtDataUpdateJobStatus = RunResourceDataTable("DataUpdateJobStatus", ConnectionString + ConnectionStringParameters);
-            DataTable dtDataUpdateJobErrorLog = RunResourceDataTable("DataUpdateJobErrorLog", ConnectionString + ConnectionStringParameters);
-            DataTable dtDataUpdateJobErrorSevere = RunResourceDataTable("DataUpdateJobErrorSevere", ConnectionString + ConnectionStringParameters);
-            DataTable dtDataUpdateJobParallel = RunResourceDataTable("DataUpdateJobParallel", ConnectionString + ConnectionStringParameters);
+            SqlRunner sqlRunner = new SqlRunner();
 
             // create a work book and add the duj data into their own seperate sheets
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName)))
             {
-                pck.Workbook.Worksheets.Add("Status").Cells["A1"].LoadFromDataTable(dtDataUpdateJobStatus, true).AutoFitColumns();
-                pck.Workbook.Worksheets.Add("Error Log").Cells["A1"].LoadFromDataTable(dtDataUpdateJobErrorLog, true).AutoFitColumns();
-                pck.Workbook.Worksheets.Add("Error Severe").Cells["A1"].LoadFromDataTable(dtDataUpdateJobErrorSevere, true).AutoFitColumns();
-                pck.Workbook.Worksheets.Add("Parallel Step").Cells["A1"].LoadFromDataTable(dtDataUpdateJobParallel, true).AutoFitColumns();
+                pck.Workbook.Worksheets.Add("Status").Cells["A1"].LoadFromDataTable(sqlRunner.RunSQLDataTable("DataUpdateJobStatus"), true).AutoFitColumns();
+                pck.Workbook.Worksheets.Add("Error Log").Cells["A1"].LoadFromDataTable(sqlRunner.RunSQLDataTable("DataUpdateJobErrorLog"), true).AutoFitColumns();
+                pck.Workbook.Worksheets.Add("Error Severe").Cells["A1"].LoadFromDataTable(sqlRunner.RunSQLDataTable("DataUpdateJobErrorSevere"), true).AutoFitColumns();
+                pck.Workbook.Worksheets.Add("Parallel Step").Cells["A1"].LoadFromDataTable(sqlRunner.RunSQLDataTable("DataUpdateJobParallel"), true).AutoFitColumns();
 
                 TabColor(pck, "RowCount");
 
@@ -50,6 +41,70 @@ namespace SnowPlatformMonitor.Core.Classes
             {
                 return true;
             } else {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Returns the Adobe and Office 365 Import Tables
+        /// </summary>
+        /// <returns></returns>
+        public bool GetConnectorImportTables()
+        {
+            LicenseManager licenseManager = new LicenseManager();
+
+            // create a work book and add the duj data into their own seperate sheets
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName)))
+            {
+                pck.Workbook.Worksheets.Add("Office 365").Cells["A1"].LoadFromDataTable(licenseManager.Office365Import(), true).AutoFitColumns();
+                pck.Workbook.Worksheets.Add("Adobe Creative Cloud").Cells["A1"].LoadFromDataTable(licenseManager.AdobeImport(), true).AutoFitColumns();
+                TabColor(pck, "RowCount");
+
+                pck.Save();
+            }
+
+            if (File.Exists(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Returns inventoried devices today/yesterday for Inventory and SLM
+        /// </summary>
+        /// <returns></returns>
+        public bool GetReportedToday(bool slm = false, bool sinv = false)
+        {
+            InventoryServer inventoryServer = new InventoryServer();
+            LicenseManager licenseManager = new LicenseManager();
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName)))
+            {
+                if(slm)
+                {
+                    pck.Workbook.Worksheets.Add("SLM DeviceReporting (Yday)").Cells["A1"].LoadFromDataTable(licenseManager.ReportedYesterday(), true).AutoFitColumns();
+                    TabColor(pck, "DeviceReporting", Convert.ToInt32(XmlConfigurator.Read(dc.Config + ac.AppConfig, "LicenseManagerDeviceThreshold")), "SLM DeviceReporting (Yday)");
+                }
+
+                if(sinv)
+                {
+                    pck.Workbook.Worksheets.Add("SINV DeviceReporting (Today)").Cells["A1"].LoadFromDataTable(inventoryServer.ReportedToday(), true).AutoFitColumns();
+                    TabColor(pck, "DeviceReporting", Convert.ToInt32(XmlConfigurator.Read(dc.Config + ac.AppConfig, "InventoryServerDeviceThreshold")), "SINV DeviceReporting (Today)");
+                }
+                pck.Save();
+            }
+
+            if (File.Exists(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName))
+            {
+                return true;
+            }
+            else
+            {
                 return false;
             }
         }
@@ -101,7 +156,7 @@ namespace SnowPlatformMonitor.Core.Classes
         /// </summary>
         /// <param name="pck">The ExcelPackage</param>
         /// <returns></returns>
-        internal ExcelPackage TabColor(ExcelPackage pck, string type)
+        internal ExcelPackage TabColor(ExcelPackage pck, string type, int rowCount = 0, string worksheetName = "")
         {
             foreach (ExcelWorksheet worksheet in pck.Workbook.Worksheets)
             {
@@ -117,7 +172,19 @@ namespace SnowPlatformMonitor.Core.Classes
                     }
                 }
 
-                if(type == "ServiceCheck")
+                if (type == "DeviceReporting" && worksheet.Name == worksheetName)
+                {
+                    if (GetDimensionRows(worksheet) < rowCount)
+                    {
+                        worksheet.TabColor = Color.Red;
+                    }
+                    else
+                    {
+                        worksheet.TabColor = Color.Green;
+                    }
+                }
+
+                if (type == "ServiceCheck")
                 {
                     bool StoppedService = false;
 

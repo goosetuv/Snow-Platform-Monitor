@@ -77,6 +77,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\LicenseManager.cs" />
+    <Compile Include="Classes\SqlRunner.cs" />
     <Compile Include="Classes\WindowsServices.cs" />
     <Compile Include="Configuration\ApplicationConfiguration.cs" />
     <Compile Include="Classes\DataRetriever.cs" />

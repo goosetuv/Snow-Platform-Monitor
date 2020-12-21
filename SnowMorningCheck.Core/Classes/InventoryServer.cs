@@ -1,14 +1,26 @@
-﻿using System;
+﻿#region Dependencies
+using System;
+using System.Data;
 using System.IO;
 using System.Linq;
 using SnowPlatformMonitor.Core.Configuration;
+#endregion
 
 namespace SnowPlatformMonitor.Core.Classes
 {
     public class InventoryServer
     {
+        #region Fields
         private readonly DirectoryConfiguration dc = new DirectoryConfiguration();
         private readonly ApplicationConfiguration ac = new ApplicationConfiguration();
+        #endregion
+
+        public DataTable ReportedToday()
+        {
+            SqlRunner sqlRunner = new SqlRunner();
+
+            return sqlRunner.RunSQLDataTable("InventoryReportedToday");
+        }
 
         public string ProcessingDirectory()
         {

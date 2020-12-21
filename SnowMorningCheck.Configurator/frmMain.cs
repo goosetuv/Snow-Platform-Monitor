@@ -60,15 +60,8 @@ namespace SnowPlatformMonitor.Configurator
                 };
 
                 // works out which data type we're using
+                // For future use
                 string ExportType = "EXCELWORKBOOK"; // default
-                if(rbConfigPDF.Checked)
-                {
-                    ExportType = "PDF";
-                } 
-                else if (rbConfigExcelWB.Checked) 
-                {
-                    ExportType = "EXCELWORKBOOK";
-                }
 
                 string[] ValueList =
                 {
@@ -249,18 +242,6 @@ namespace SnowPlatformMonitor.Configurator
                 if(File.Exists(dc.Config + ac.AppConfig))
                 {
 
-                    // Export type
-                    if (Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ExportType") == "EXCELWORKBOOK")
-                    {
-                        rbConfigExcelWB.Checked = true;
-                        rbConfigPDF.Checked = false;
-                    }
-                    else
-                    {
-                        rbConfigExcelWB.Checked = false;
-                        rbConfigPDF.Checked = true;
-                    }
-
                     // Schedule
                     numServiceMScheduleTimeHours.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ScheduleHours"));
                     numServiceMScheduleTimeMins.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ScheduleMinutes"));
@@ -358,6 +339,8 @@ namespace SnowPlatformMonitor.Configurator
             DataRetriever exporter = new DataRetriever();
             exporter.GetDataUpdateJob();
             exporter.GetServices("Inventory", "localhost");
+            exporter.GetConnectorImportTables();
+            exporter.GetReportedToday(true, true);
 
             MessageBox.Show(exporter.GetInventoryDirectoryCount());
         }

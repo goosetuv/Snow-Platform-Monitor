@@ -1,6 +1,8 @@
-﻿using System;
+﻿#region Dependencies
+using System;
 using System.Net.NetworkInformation;
 using Laim;
+#endregion
 
 namespace SnowPlatformMonitor.Core.Classes
 {

@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdobeImport" xml:space="preserve">
+    <value>SELECT * FROM SnowLicenseManager.adobecc.Import</value>
+    <comment>Gets the import table for Adobe Creative Cloud</comment>
+  </data>
   <data name="DataUpdateJobErrorLog" xml:space="preserve">
     <value>SELECT TOP 5 * FROM SnowLicenseManager.dbo.tblErrorLog
 ORDER BY logDate DESC</value>
@@ -161,13 +165,18 @@ WHERE
     run_requested_date IS NOT NULL AND stop_execution_date IS NULL AND job.name LIKE '%License Manager%'</value>
     <comment>Gets the current running status of the data update job, i.e if the job is running or not</comment>
   </data>
-  <data name="InventoryReportedAllTime" xml:space="preserve">
-    <value>SELECT COUNT(*) FROM SnowInventory.inv.DataClientView2</value>
-    <comment>Gets the amount of devices that have reported in total</comment>
-  </data>
   <data name="InventoryReportedToday" xml:space="preserve">
-    <value>SELECT COUNT(*) FROM SnowInventory.inv.DataClientView2
+    <value>SELECT * FROM SnowInventory.inv.DataClientView2
 WHERE CAST(LastUpdate AS DATE) = CAST(GETDATE() AS Date)</value>
     <comment>Gets the amount of devices that have reported today</comment>
+  </data>
+  <data name="LicenseManagerReportedToday" xml:space="preserve">
+    <value>SELECT * FROM SnowLicenseManager.dbo.tblComputer
+WHERE CAST(LastScanDate AS DATE) = CAST(GETDATE() - 1 AS Date)</value>
+    <comment>Gets the amount of devives that have reported today (todays date - 1 since SLM is a day behind)</comment>
+  </data>
+  <data name="Office365Import" xml:space="preserve">
+    <value>SELECT * FROM SnowLicenseManager.o365.Import</value>
+    <comment>Gets the import table for Microsoft Office 365</comment>
   </data>
 </root>
