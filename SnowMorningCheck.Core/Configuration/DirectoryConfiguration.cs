@@ -10,7 +10,8 @@ namespace SnowPlatformMonitor.Core.Configuration
 
         public string Logs = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\Logs\"; // logs directory
         public string Config = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\Configuration\"; // file configuration directory
-        public string Export = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\Export\"; // temp export directory
+        public string Export = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\Exports\"; // temp export directory
+        public string Resources = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\Resources\";
 
         // check if the directory exists else create it
         public bool DirectoryExists(string path)

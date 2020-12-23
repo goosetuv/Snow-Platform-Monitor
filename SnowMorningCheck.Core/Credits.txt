@@ -1,5 +1,6 @@
-﻿SnowPlatformMonitor.Core
-JamieSee from Stackoverflow for their ping method
+﻿# Overall Credits
+
+JamieSee from Stackoverflow for their ping method, licensed under Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) https://creativecommons.org/licenses/by-sa/4.0/
 https://stackoverflow.com/a/11804416
 
 Marc from Stackoverflow for their multi-extension search method for Directories, licensed under Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) https://creativecommons.org/licenses/by-sa/4.0/
@@ -10,3 +11,14 @@ https://stackoverflow.com/a/51082473
 
 EPPlus
 https://www.epplussoftware.com/en, licensed under PolyForm Noncommercial License 1.0.0 https://polyformproject.org/licenses/noncommercial/1.0.0/
+
+Play Button Icon
+Icon made by Freepik www.flaticon.com
+https://www.flaticon.com/free-icon/play-button_375?term=play%20button&page=1&position=2&related_item_id=375
+
+Stop Button Icon
+Icon made by Freepik www.flaticon.com
+https://www.flaticon.com/free-icon/stop-button_2914?term=stop%20button&page=1&position=3&related_item_id=2914
+
+AutoUpdater.NET by ravibpatel
+https://github.com/ravibpatel/AutoUpdater.NET/blob/master/LICENSE

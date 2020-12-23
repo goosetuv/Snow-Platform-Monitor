@@ -83,11 +83,16 @@
             this.lblServersSQLUser = new System.Windows.Forms.Label();
             this.tabSMTP = new System.Windows.Forms.TabPage();
             this.tabServiceManager = new System.Windows.Forms.TabPage();
+            this.btnServiceMngrStop = new System.Windows.Forms.Button();
+            this.btnServiceMngrStart = new System.Windows.Forms.Button();
+            this.pbServiceMngrStatus = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.tabAbout = new System.Windows.Forms.TabPage();
             this.btnAboutConfigDir = new System.Windows.Forms.Button();
             this.btnAboutLogDir = new System.Windows.Forms.Button();
             this.lblAboutAppInfo = new System.Windows.Forms.Label();
+            this.btnServiceMngrInstall = new System.Windows.Forms.Button();
+            this.btnServiceMngrUninstall = new System.Windows.Forms.Button();
             this.tabControlMain.SuspendLayout();
             this.tabConfiguration.SuspendLayout();
             this.gbConfigAdvanced.SuspendLayout();
@@ -103,6 +108,7 @@
             this.gbServersSLM.SuspendLayout();
             this.gbServersSQL.SuspendLayout();
             this.tabServiceManager.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbServiceMngrStatus)).BeginInit();
             this.tabAbout.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,7 +125,7 @@
             this.tabControlMain.Location = new System.Drawing.Point(12, 12);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(316, 620);
+            this.tabControlMain.Size = new System.Drawing.Size(316, 407);
             this.tabControlMain.TabIndex = 0;
             this.tabControlMain.TabStop = false;
             // 
@@ -142,7 +148,7 @@
             this.tabConfiguration.Location = new System.Drawing.Point(4, 22);
             this.tabConfiguration.Name = "tabConfiguration";
             this.tabConfiguration.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConfiguration.Size = new System.Drawing.Size(308, 594);
+            this.tabConfiguration.Size = new System.Drawing.Size(308, 381);
             this.tabConfiguration.TabIndex = 4;
             this.tabConfiguration.Text = "Configuration";
             this.tabConfiguration.UseVisualStyleBackColor = true;
@@ -302,7 +308,7 @@
             this.gbServiceMSchedule.Controls.Add(this.numServiceMScheduleTimeMins);
             this.gbServiceMSchedule.Controls.Add(this.numServiceMScheduleTimeHours);
             this.gbServiceMSchedule.Controls.Add(this.lblServiceMScheduleTime);
-            this.gbServiceMSchedule.Location = new System.Drawing.Point(20, 21);
+            this.gbServiceMSchedule.Location = new System.Drawing.Point(20, 20);
             this.gbServiceMSchedule.Name = "gbServiceMSchedule";
             this.gbServiceMSchedule.Size = new System.Drawing.Size(268, 53);
             this.gbServiceMSchedule.TabIndex = 14;
@@ -492,7 +498,7 @@
             this.tabServers.Location = new System.Drawing.Point(4, 22);
             this.tabServers.Name = "tabServers";
             this.tabServers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabServers.Size = new System.Drawing.Size(308, 594);
+            this.tabServers.Size = new System.Drawing.Size(308, 381);
             this.tabServers.TabIndex = 0;
             this.tabServers.Text = "Servers";
             this.tabServers.UseVisualStyleBackColor = true;
@@ -699,28 +705,63 @@
             this.tabSMTP.Location = new System.Drawing.Point(4, 22);
             this.tabSMTP.Name = "tabSMTP";
             this.tabSMTP.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSMTP.Size = new System.Drawing.Size(308, 594);
+            this.tabSMTP.Size = new System.Drawing.Size(308, 381);
             this.tabSMTP.TabIndex = 1;
             this.tabSMTP.Text = "SMTP";
             this.tabSMTP.UseVisualStyleBackColor = true;
             // 
             // tabServiceManager
             // 
+            this.tabServiceManager.Controls.Add(this.btnServiceMngrUninstall);
+            this.tabServiceManager.Controls.Add(this.btnServiceMngrInstall);
+            this.tabServiceManager.Controls.Add(this.btnServiceMngrStop);
+            this.tabServiceManager.Controls.Add(this.btnServiceMngrStart);
+            this.tabServiceManager.Controls.Add(this.pbServiceMngrStatus);
             this.tabServiceManager.Controls.Add(this.button1);
             this.tabServiceManager.Location = new System.Drawing.Point(4, 22);
             this.tabServiceManager.Name = "tabServiceManager";
-            this.tabServiceManager.Size = new System.Drawing.Size(308, 594);
+            this.tabServiceManager.Size = new System.Drawing.Size(308, 381);
             this.tabServiceManager.TabIndex = 2;
             this.tabServiceManager.Text = "Service Manager";
             this.tabServiceManager.UseVisualStyleBackColor = true;
             // 
+            // btnServiceMngrStop
+            // 
+            this.btnServiceMngrStop.Enabled = false;
+            this.btnServiceMngrStop.Location = new System.Drawing.Point(90, 183);
+            this.btnServiceMngrStop.Name = "btnServiceMngrStop";
+            this.btnServiceMngrStop.Size = new System.Drawing.Size(128, 23);
+            this.btnServiceMngrStop.TabIndex = 3;
+            this.btnServiceMngrStop.Text = "Stop";
+            this.btnServiceMngrStop.UseVisualStyleBackColor = true;
+            // 
+            // btnServiceMngrStart
+            // 
+            this.btnServiceMngrStart.Enabled = false;
+            this.btnServiceMngrStart.Location = new System.Drawing.Point(90, 154);
+            this.btnServiceMngrStart.Name = "btnServiceMngrStart";
+            this.btnServiceMngrStart.Size = new System.Drawing.Size(128, 23);
+            this.btnServiceMngrStart.TabIndex = 2;
+            this.btnServiceMngrStart.Text = "Start";
+            this.btnServiceMngrStart.UseVisualStyleBackColor = true;
+            // 
+            // pbServiceMngrStatus
+            // 
+            this.pbServiceMngrStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbServiceMngrStatus.Location = new System.Drawing.Point(90, 20);
+            this.pbServiceMngrStatus.Name = "pbServiceMngrStatus";
+            this.pbServiceMngrStatus.Size = new System.Drawing.Size(128, 128);
+            this.pbServiceMngrStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbServiceMngrStatus.TabIndex = 1;
+            this.pbServiceMngrStatus.TabStop = false;
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(15, 336);
+            this.button1.Location = new System.Drawing.Point(9, 20);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
+            this.button1.Text = "Dev";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -731,7 +772,7 @@
             this.tabAbout.Controls.Add(this.lblAboutAppInfo);
             this.tabAbout.Location = new System.Drawing.Point(4, 22);
             this.tabAbout.Name = "tabAbout";
-            this.tabAbout.Size = new System.Drawing.Size(308, 594);
+            this.tabAbout.Size = new System.Drawing.Size(308, 381);
             this.tabAbout.TabIndex = 3;
             this.tabAbout.Text = "About";
             this.tabAbout.UseVisualStyleBackColor = true;
@@ -765,12 +806,34 @@
             this.lblAboutAppInfo.Text = "{0}\r\n{1}\r\n{3}";
             this.lblAboutAppInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnServiceMngrInstall
+            // 
+            this.btnServiceMngrInstall.Enabled = false;
+            this.btnServiceMngrInstall.Location = new System.Drawing.Point(90, 212);
+            this.btnServiceMngrInstall.Name = "btnServiceMngrInstall";
+            this.btnServiceMngrInstall.Size = new System.Drawing.Size(128, 23);
+            this.btnServiceMngrInstall.TabIndex = 4;
+            this.btnServiceMngrInstall.Text = "Install Service";
+            this.btnServiceMngrInstall.UseVisualStyleBackColor = true;
+            this.btnServiceMngrInstall.Click += new System.EventHandler(this.btnServiceMngrInstall_Click);
+            // 
+            // btnServiceMngrUninstall
+            // 
+            this.btnServiceMngrUninstall.Enabled = false;
+            this.btnServiceMngrUninstall.Location = new System.Drawing.Point(90, 241);
+            this.btnServiceMngrUninstall.Name = "btnServiceMngrUninstall";
+            this.btnServiceMngrUninstall.Size = new System.Drawing.Size(128, 23);
+            this.btnServiceMngrUninstall.TabIndex = 5;
+            this.btnServiceMngrUninstall.Text = "Uninstall Service";
+            this.btnServiceMngrUninstall.UseVisualStyleBackColor = true;
+            this.btnServiceMngrUninstall.Click += new System.EventHandler(this.btnServiceMngrUninstall_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(340, 644);
+            this.ClientSize = new System.Drawing.Size(340, 431);
             this.Controls.Add(this.tabControlMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -800,6 +863,7 @@
             this.gbServersSQL.ResumeLayout(false);
             this.gbServersSQL.PerformLayout();
             this.tabServiceManager.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbServiceMngrStatus)).EndInit();
             this.tabAbout.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -867,6 +931,11 @@
         private System.Windows.Forms.Label lblConfigAdvProcessingDirectory;
         private System.Windows.Forms.TextBox txtConfigAdvINVProcessingDirectory;
         private System.Windows.Forms.CheckBox cbConfigLogInterrogator;
+        private System.Windows.Forms.PictureBox pbServiceMngrStatus;
+        private System.Windows.Forms.Button btnServiceMngrStart;
+        private System.Windows.Forms.Button btnServiceMngrStop;
+        private System.Windows.Forms.Button btnServiceMngrInstall;
+        private System.Windows.Forms.Button btnServiceMngrUninstall;
     }
 }
 

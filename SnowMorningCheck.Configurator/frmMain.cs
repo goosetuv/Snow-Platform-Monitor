@@ -10,6 +10,7 @@ using SnowPlatformMonitor.Core.Configuration;
 using System.Data.SqlClient;
 using AutoUpdaterDotNET;
 using System.Drawing;
+using System.Configuration.Install;
 #endregion
 
 namespace SnowPlatformMonitor.Configurator
@@ -18,8 +19,9 @@ namespace SnowPlatformMonitor.Configurator
     {
 
         #region Fields
-        ApplicationConfiguration ac = new ApplicationConfiguration();
-        DirectoryConfiguration dc = new DirectoryConfiguration();
+        readonly ApplicationConfiguration ac = new ApplicationConfiguration();
+        readonly DirectoryConfiguration dc = new DirectoryConfiguration();
+        readonly ServiceManager sc = new ServiceManager();
         private string ConnectionString;
         private string ConnectionStringParameters;
         #endregion
@@ -193,6 +195,36 @@ namespace SnowPlatformMonitor.Configurator
         }
         #endregion
 
+        #region Service Manager
+        private void btnServiceMngrInstall_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ManagedInstallerClass.InstallHelper(new string[] { "SnowPlatformMonitor.Service.exe" });
+                LoadServiceStatus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception thrown, please review ServiceInstaller logs in the root directory.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Log("SPMConfigurator", ex.Message + ex.StackTrace, MethodBase.GetCurrentMethod().Name, "ERROR");
+            }
+        }
+
+        private void btnServiceMngrUninstall_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ManagedInstallerClass.InstallHelper(new string[] { "/u", "SnowPlatformMonitor.Service.exe" });
+                LoadServiceStatus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception thrown, please review ServiceInstaller logs in the root directory.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Log("SPMConfigurator", ex.Message + ex.StackTrace, MethodBase.GetCurrentMethod().Name, "ERROR");
+            }
+        }
+        #endregion
+
         #region About
         private void btnAboutLogDir_Click(object sender, EventArgs e)
         {
@@ -308,12 +340,46 @@ namespace SnowPlatformMonitor.Configurator
             Text = string.Format("{0} - {1}", ProductName, ProductVersion); 
         }
 
+        private void LoadServiceStatus()
+        {
+            try
+            {
+                if (sc.ServiceStatus("SnowPlatformMonitor") == "Running")
+                {
+                    pbServiceMngrStatus.Image = Properties.Resources.play_button;
+                    btnServiceMngrStart.Enabled = false;
+                    btnServiceMngrStop.Enabled = true;
+                    btnServiceMngrInstall.Enabled = false;
+                    btnServiceMngrUninstall.Enabled = false;
+                }
+                else
+                {
+                    pbServiceMngrStatus.Image = Properties.Resources.stop_button;
+                    btnServiceMngrStop.Enabled = false;
+                    btnServiceMngrStart.Enabled = true;
+                    btnServiceMngrInstall.Enabled = false;
+                    btnServiceMngrUninstall.Enabled = true;
+                }
+            } catch (Exception ex)
+            {
+                if(ex.Message.Contains("was not found on computer"))
+                {
+                    btnServiceMngrInstall.Enabled = true;
+                    btnServiceMngrUninstall.Enabled = false;
+                } else
+                {
+                    Logger.Log("SPMConfigurator", ex.Message + ex.StackTrace, MethodBase.GetCurrentMethod().Name, "ERROR");
+                }
+            }
+        }
+
         private void AppLoad()
         {
             CheckForUpdates();
             LoadVisualDesign();
             LoadConfiguration();
             LoadServersConfiguration();
+            LoadServiceStatus();
         }
 
         #region Updater
@@ -326,14 +392,19 @@ namespace SnowPlatformMonitor.Configurator
             AutoUpdater.ShowSkipButton = false;
             AutoUpdater.OpenDownloadPage = true;
             AutoUpdater.HttpUserAgent = "AutoUpdater-SPM";
-            AutoUpdater.UpdateFormSize = new System.Drawing.Size(Width, Height);
-            AutoUpdater.PersistenceProvider = new JsonFilePersistenceProvider(Path.Combine(Environment.CurrentDirectory, "updates.json"));
+            AutoUpdater.UpdateFormSize = new Size(Width, Height);
+            AutoUpdater.PersistenceProvider = new JsonFilePersistenceProvider(Path.Combine(dc.Resources, "updates.json"));
         }
 
         #endregion
 
         #endregion
 
+
+
+
+
+        //debug, remove in release
         private void button1_Click(object sender, EventArgs e)
         {
             DataRetriever exporter = new DataRetriever();
