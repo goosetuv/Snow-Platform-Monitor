@@ -10,6 +10,9 @@ using SnowPlatformMonitor.Core.Configuration;
 
 namespace SnowPlatformMonitor.Core.Classes
 {
+    //TODO: Change the Tab Color function, because it sucks.
+    //TODO CONT.: Change validation for when a function runs instead of checking if the file exists lol
+
     public class DataRetriever
     {
         #region Fields
@@ -109,7 +112,13 @@ namespace SnowPlatformMonitor.Core.Classes
             }
         }
 
-        public bool GetServices(string type, string hostname)
+        /// <summary>
+        /// Returns the services and their status from the chosen server
+        /// </summary>
+        /// <param name="type">SLM or SINV</param>
+        /// <param name="hostname">Server Name</param>
+        /// <returns></returns>
+        public bool GetWindowsServices(string type, string hostname)
         {
             WindowsServices windowsServices = new WindowsServices();
 
@@ -133,10 +142,41 @@ namespace SnowPlatformMonitor.Core.Classes
             }
         }
 
+
         public string GetInventoryDirectoryCount()
         {
             InventoryServer inventoryServer = new InventoryServer();
             return inventoryServer.ProcessingDirectory();
+        }
+
+        /// <summary>
+        /// Returns the storage from the chosen server
+        /// </summary>
+        /// <param name="type">SLM or SINV</param>
+        /// <param name="hostname">Server Name</param>
+        /// <returns></returns>
+        public bool GetWindowsStorage(string type, string hostname)
+        {
+            WindowsStorage windowsStorage = new WindowsStorage();
+
+            DataTable dtWindowsStorage = windowsStorage.GetWindowStorage(hostname, "Win32_LogicalDisk");
+
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName)))
+            {
+                pck.Workbook.Worksheets.Add(type + " Storage").Cells["A1"].LoadFromDataTable(dtWindowsStorage, true).AutoFitColumns();
+                TabColor(pck, "Default", worksheetName: type + " Storage");
+                pck.Save();
+            }
+
+            if (File.Exists(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -203,6 +243,11 @@ namespace SnowPlatformMonitor.Core.Classes
                     {
                         worksheet.TabColor = Color.Green;
                     }
+                }
+
+                if (type == "Default" && worksheet.Name == worksheetName)
+                {
+                    worksheet.TabColor = Color.Orange;
                 }
             }
 

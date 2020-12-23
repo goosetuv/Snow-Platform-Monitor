@@ -30,6 +30,8 @@
         {
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabConfiguration = new System.Windows.Forms.TabPage();
+            this.btnConfigAdvanced = new System.Windows.Forms.Button();
+            this.btnConfigSave = new System.Windows.Forms.Button();
             this.cbConfigLogInterrogator = new System.Windows.Forms.CheckBox();
             this.gbConfigAdvanced = new System.Windows.Forms.GroupBox();
             this.lblConfigAdvProcessingDirectory = new System.Windows.Forms.Label();
@@ -40,7 +42,6 @@
             this.numConfigAdvINVDeviceThreshold = new System.Windows.Forms.NumericUpDown();
             this.numConfigAdvSLMDeviceThreshold = new System.Windows.Forms.NumericUpDown();
             this.lblConfigAdvSLMDeviceThreshold = new System.Windows.Forms.Label();
-            this.btnConfigAdvanced = new System.Windows.Forms.Button();
             this.cbConfigOffice365Adobe = new System.Windows.Forms.CheckBox();
             this.gbServiceMSchedule = new System.Windows.Forms.GroupBox();
             this.lblServiceMTimeSecs = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@
             this.numServiceMScheduleTimeMins = new System.Windows.Forms.NumericUpDown();
             this.numServiceMScheduleTimeHours = new System.Windows.Forms.NumericUpDown();
             this.lblServiceMScheduleTime = new System.Windows.Forms.Label();
-            this.btnConfigSave = new System.Windows.Forms.Button();
             this.cbConfigINVStorage = new System.Windows.Forms.CheckBox();
             this.cbConfigSLMStorage = new System.Windows.Forms.CheckBox();
             this.cbConfigINVProcessingDir = new System.Windows.Forms.CheckBox();
@@ -83,6 +83,8 @@
             this.lblServersSQLUser = new System.Windows.Forms.Label();
             this.tabSMTP = new System.Windows.Forms.TabPage();
             this.tabServiceManager = new System.Windows.Forms.TabPage();
+            this.btnServiceMngrUninstall = new System.Windows.Forms.Button();
+            this.btnServiceMngrInstall = new System.Windows.Forms.Button();
             this.btnServiceMngrStop = new System.Windows.Forms.Button();
             this.btnServiceMngrStart = new System.Windows.Forms.Button();
             this.pbServiceMngrStatus = new System.Windows.Forms.PictureBox();
@@ -91,8 +93,6 @@
             this.btnAboutConfigDir = new System.Windows.Forms.Button();
             this.btnAboutLogDir = new System.Windows.Forms.Button();
             this.lblAboutAppInfo = new System.Windows.Forms.Label();
-            this.btnServiceMngrInstall = new System.Windows.Forms.Button();
-            this.btnServiceMngrUninstall = new System.Windows.Forms.Button();
             this.tabControlMain.SuspendLayout();
             this.tabConfiguration.SuspendLayout();
             this.gbConfigAdvanced.SuspendLayout();
@@ -125,18 +125,18 @@
             this.tabControlMain.Location = new System.Drawing.Point(12, 12);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(316, 407);
+            this.tabControlMain.Size = new System.Drawing.Size(316, 620);
             this.tabControlMain.TabIndex = 0;
             this.tabControlMain.TabStop = false;
             // 
             // tabConfiguration
             // 
+            this.tabConfiguration.Controls.Add(this.btnConfigAdvanced);
+            this.tabConfiguration.Controls.Add(this.btnConfigSave);
             this.tabConfiguration.Controls.Add(this.cbConfigLogInterrogator);
             this.tabConfiguration.Controls.Add(this.gbConfigAdvanced);
-            this.tabConfiguration.Controls.Add(this.btnConfigAdvanced);
             this.tabConfiguration.Controls.Add(this.cbConfigOffice365Adobe);
             this.tabConfiguration.Controls.Add(this.gbServiceMSchedule);
-            this.tabConfiguration.Controls.Add(this.btnConfigSave);
             this.tabConfiguration.Controls.Add(this.cbConfigINVStorage);
             this.tabConfiguration.Controls.Add(this.cbConfigSLMStorage);
             this.tabConfiguration.Controls.Add(this.cbConfigINVProcessingDir);
@@ -148,10 +148,33 @@
             this.tabConfiguration.Location = new System.Drawing.Point(4, 22);
             this.tabConfiguration.Name = "tabConfiguration";
             this.tabConfiguration.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConfiguration.Size = new System.Drawing.Size(308, 381);
+            this.tabConfiguration.Size = new System.Drawing.Size(308, 594);
             this.tabConfiguration.TabIndex = 4;
             this.tabConfiguration.Text = "Configuration";
             this.tabConfiguration.UseVisualStyleBackColor = true;
+            // 
+            // btnConfigAdvanced
+            // 
+            this.btnConfigAdvanced.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnConfigAdvanced.Location = new System.Drawing.Point(20, 565);
+            this.btnConfigAdvanced.Name = "btnConfigAdvanced";
+            this.btnConfigAdvanced.Size = new System.Drawing.Size(75, 23);
+            this.btnConfigAdvanced.TabIndex = 16;
+            this.btnConfigAdvanced.Text = "Advanced";
+            this.btnConfigAdvanced.UseVisualStyleBackColor = true;
+            this.btnConfigAdvanced.Click += new System.EventHandler(this.btnConfigAdvanced_Click);
+            // 
+            // btnConfigSave
+            // 
+            this.btnConfigSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnConfigSave.Location = new System.Drawing.Point(213, 565);
+            this.btnConfigSave.Name = "btnConfigSave";
+            this.btnConfigSave.Size = new System.Drawing.Size(75, 23);
+            this.btnConfigSave.TabIndex = 8;
+            this.btnConfigSave.TabStop = false;
+            this.btnConfigSave.Text = "Save";
+            this.btnConfigSave.UseVisualStyleBackColor = true;
+            this.btnConfigSave.Click += new System.EventHandler(this.btnConfigSave_Click);
             // 
             // cbConfigLogInterrogator
             // 
@@ -277,17 +300,6 @@
             this.lblConfigAdvSLMDeviceThreshold.TabIndex = 0;
             this.lblConfigAdvSLMDeviceThreshold.Text = "SLM min. Device Reporting Threshold:";
             // 
-            // btnConfigAdvanced
-            // 
-            this.btnConfigAdvanced.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnConfigAdvanced.Location = new System.Drawing.Point(20, 564);
-            this.btnConfigAdvanced.Name = "btnConfigAdvanced";
-            this.btnConfigAdvanced.Size = new System.Drawing.Size(75, 23);
-            this.btnConfigAdvanced.TabIndex = 16;
-            this.btnConfigAdvanced.Text = "Advanced";
-            this.btnConfigAdvanced.UseVisualStyleBackColor = true;
-            this.btnConfigAdvanced.Click += new System.EventHandler(this.btnConfigAdvanced_Click);
-            // 
             // cbConfigOffice365Adobe
             // 
             this.cbConfigOffice365Adobe.AutoSize = true;
@@ -387,22 +399,9 @@
             this.lblServiceMScheduleTime.TabIndex = 0;
             this.lblServiceMScheduleTime.Text = "Time:";
             // 
-            // btnConfigSave
-            // 
-            this.btnConfigSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnConfigSave.Location = new System.Drawing.Point(213, 564);
-            this.btnConfigSave.Name = "btnConfigSave";
-            this.btnConfigSave.Size = new System.Drawing.Size(75, 23);
-            this.btnConfigSave.TabIndex = 8;
-            this.btnConfigSave.TabStop = false;
-            this.btnConfigSave.Text = "Save";
-            this.btnConfigSave.UseVisualStyleBackColor = true;
-            this.btnConfigSave.Click += new System.EventHandler(this.btnConfigSave_Click);
-            // 
             // cbConfigINVStorage
             // 
             this.cbConfigINVStorage.AutoSize = true;
-            this.cbConfigINVStorage.Enabled = false;
             this.cbConfigINVStorage.Location = new System.Drawing.Point(20, 297);
             this.cbConfigINVStorage.Name = "cbConfigINVStorage";
             this.cbConfigINVStorage.Size = new System.Drawing.Size(174, 17);
@@ -414,7 +413,6 @@
             // cbConfigSLMStorage
             // 
             this.cbConfigSLMStorage.AutoSize = true;
-            this.cbConfigSLMStorage.Enabled = false;
             this.cbConfigSLMStorage.Location = new System.Drawing.Point(20, 205);
             this.cbConfigSLMStorage.Name = "cbConfigSLMStorage";
             this.cbConfigSLMStorage.Size = new System.Drawing.Size(212, 17);
@@ -498,7 +496,7 @@
             this.tabServers.Location = new System.Drawing.Point(4, 22);
             this.tabServers.Name = "tabServers";
             this.tabServers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabServers.Size = new System.Drawing.Size(308, 381);
+            this.tabServers.Size = new System.Drawing.Size(308, 594);
             this.tabServers.TabIndex = 0;
             this.tabServers.Text = "Servers";
             this.tabServers.UseVisualStyleBackColor = true;
@@ -705,7 +703,7 @@
             this.tabSMTP.Location = new System.Drawing.Point(4, 22);
             this.tabSMTP.Name = "tabSMTP";
             this.tabSMTP.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSMTP.Size = new System.Drawing.Size(308, 381);
+            this.tabSMTP.Size = new System.Drawing.Size(308, 594);
             this.tabSMTP.TabIndex = 1;
             this.tabSMTP.Text = "SMTP";
             this.tabSMTP.UseVisualStyleBackColor = true;
@@ -720,10 +718,32 @@
             this.tabServiceManager.Controls.Add(this.button1);
             this.tabServiceManager.Location = new System.Drawing.Point(4, 22);
             this.tabServiceManager.Name = "tabServiceManager";
-            this.tabServiceManager.Size = new System.Drawing.Size(308, 381);
+            this.tabServiceManager.Size = new System.Drawing.Size(308, 594);
             this.tabServiceManager.TabIndex = 2;
             this.tabServiceManager.Text = "Service Manager";
             this.tabServiceManager.UseVisualStyleBackColor = true;
+            // 
+            // btnServiceMngrUninstall
+            // 
+            this.btnServiceMngrUninstall.Enabled = false;
+            this.btnServiceMngrUninstall.Location = new System.Drawing.Point(90, 241);
+            this.btnServiceMngrUninstall.Name = "btnServiceMngrUninstall";
+            this.btnServiceMngrUninstall.Size = new System.Drawing.Size(128, 23);
+            this.btnServiceMngrUninstall.TabIndex = 5;
+            this.btnServiceMngrUninstall.Text = "Uninstall Service";
+            this.btnServiceMngrUninstall.UseVisualStyleBackColor = true;
+            this.btnServiceMngrUninstall.Click += new System.EventHandler(this.btnServiceMngrUninstall_Click);
+            // 
+            // btnServiceMngrInstall
+            // 
+            this.btnServiceMngrInstall.Enabled = false;
+            this.btnServiceMngrInstall.Location = new System.Drawing.Point(90, 212);
+            this.btnServiceMngrInstall.Name = "btnServiceMngrInstall";
+            this.btnServiceMngrInstall.Size = new System.Drawing.Size(128, 23);
+            this.btnServiceMngrInstall.TabIndex = 4;
+            this.btnServiceMngrInstall.Text = "Install Service";
+            this.btnServiceMngrInstall.UseVisualStyleBackColor = true;
+            this.btnServiceMngrInstall.Click += new System.EventHandler(this.btnServiceMngrInstall_Click);
             // 
             // btnServiceMngrStop
             // 
@@ -734,6 +754,7 @@
             this.btnServiceMngrStop.TabIndex = 3;
             this.btnServiceMngrStop.Text = "Stop";
             this.btnServiceMngrStop.UseVisualStyleBackColor = true;
+            this.btnServiceMngrStop.Click += new System.EventHandler(this.btnServiceMngrStop_Click);
             // 
             // btnServiceMngrStart
             // 
@@ -744,6 +765,7 @@
             this.btnServiceMngrStart.TabIndex = 2;
             this.btnServiceMngrStart.Text = "Start";
             this.btnServiceMngrStart.UseVisualStyleBackColor = true;
+            this.btnServiceMngrStart.Click += new System.EventHandler(this.btnServiceMngrStart_Click);
             // 
             // pbServiceMngrStatus
             // 
@@ -806,34 +828,12 @@
             this.lblAboutAppInfo.Text = "{0}\r\n{1}\r\n{3}";
             this.lblAboutAppInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnServiceMngrInstall
-            // 
-            this.btnServiceMngrInstall.Enabled = false;
-            this.btnServiceMngrInstall.Location = new System.Drawing.Point(90, 212);
-            this.btnServiceMngrInstall.Name = "btnServiceMngrInstall";
-            this.btnServiceMngrInstall.Size = new System.Drawing.Size(128, 23);
-            this.btnServiceMngrInstall.TabIndex = 4;
-            this.btnServiceMngrInstall.Text = "Install Service";
-            this.btnServiceMngrInstall.UseVisualStyleBackColor = true;
-            this.btnServiceMngrInstall.Click += new System.EventHandler(this.btnServiceMngrInstall_Click);
-            // 
-            // btnServiceMngrUninstall
-            // 
-            this.btnServiceMngrUninstall.Enabled = false;
-            this.btnServiceMngrUninstall.Location = new System.Drawing.Point(90, 241);
-            this.btnServiceMngrUninstall.Name = "btnServiceMngrUninstall";
-            this.btnServiceMngrUninstall.Size = new System.Drawing.Size(128, 23);
-            this.btnServiceMngrUninstall.TabIndex = 5;
-            this.btnServiceMngrUninstall.Text = "Uninstall Service";
-            this.btnServiceMngrUninstall.UseVisualStyleBackColor = true;
-            this.btnServiceMngrUninstall.Click += new System.EventHandler(this.btnServiceMngrUninstall_Click);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(340, 431);
+            this.ClientSize = new System.Drawing.Size(340, 644);
             this.Controls.Add(this.tabControlMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;

@@ -4,7 +4,6 @@ using System;
 using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms;
-using System.Reflection;
 using SnowPlatformMonitor.Core.Classes;
 using SnowPlatformMonitor.Core.Configuration;
 using System.Data.SqlClient;
@@ -12,6 +11,8 @@ using AutoUpdaterDotNET;
 using System.Drawing;
 using System.Configuration.Install;
 #endregion
+
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
 
 namespace SnowPlatformMonitor.Configurator
 {
@@ -24,6 +25,8 @@ namespace SnowPlatformMonitor.Configurator
         readonly ServiceManager sc = new ServiceManager();
         private string ConnectionString;
         private string ConnectionStringParameters;
+
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(frmMain));
         #endregion
 
         #region Constructor
@@ -184,6 +187,7 @@ namespace SnowPlatformMonitor.Configurator
                     else
                     {
                         MessageBox.Show(result, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        log.Error(result);
                     }
                 }
 
@@ -191,6 +195,7 @@ namespace SnowPlatformMonitor.Configurator
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                log.Error(ex);
             }
         }
         #endregion
@@ -206,7 +211,7 @@ namespace SnowPlatformMonitor.Configurator
             catch (Exception ex)
             {
                 MessageBox.Show("Exception thrown, please review ServiceInstaller logs in the root directory.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Logger.Log("SPMConfigurator", ex.Message + ex.StackTrace, MethodBase.GetCurrentMethod().Name, "ERROR");
+                log.Error(ex);
             }
         }
 
@@ -216,11 +221,53 @@ namespace SnowPlatformMonitor.Configurator
             {
                 ManagedInstallerClass.InstallHelper(new string[] { "/u", "SnowPlatformMonitor.Service.exe" });
                 LoadServiceStatus();
+                btnServiceMngrStart.Enabled = false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Exception thrown, please review ServiceInstaller logs in the root directory.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Logger.Log("SPMConfigurator", ex.Message + ex.StackTrace, MethodBase.GetCurrentMethod().Name, "ERROR");
+                log.Error(ex);
+            }
+        }
+
+        private void btnServiceMngrStart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (sc.ServiceStatus("SnowPlatformMonitor") != "Running")
+                {
+                    sc.Start("SnowPlatformMonitor");
+                    log.Debug("Service Started via SPM GUI");
+                    System.Threading.Thread.Sleep(3000);
+                    LoadServiceStatus();
+                    log.Debug("Service Manager refreshed");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Service error", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                log.Error(ex);
+            }
+        }
+
+        private void btnServiceMngrStop_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (sc.ServiceStatus("SnowPlatformMonitor") == "Running")
+                {
+                    sc.Stop("SnowPlatformMonitor");
+                    log.Debug("Service Stopped via SPM GUI");
+                    System.Threading.Thread.Sleep(3000);
+                    LoadServiceStatus();
+                    log.Debug("Service Manager refreshed");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Service error", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                log.Error(ex);
             }
         }
         #endregion
@@ -278,30 +325,36 @@ namespace SnowPlatformMonitor.Configurator
                     numServiceMScheduleTimeHours.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ScheduleHours"));
                     numServiceMScheduleTimeMins.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ScheduleMinutes"));
                     numServiceMScheduleTimeSecs.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ScheduleSeconds"));
+                    log.Debug("Schedule values have been populated from Configuration File");
 
                     // Core
                     cbConfigDUJStatus.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "DataUpdateJobStatus"));
                     cbConfigOffice365Adobe.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "Office365AdobeImportTables"));
+                    log.Debug("Core values have been populated from Configuration File");
+
                     // License Manager
                     cbConfigSLMServices.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "LicenseManagerServices"));
                     cbConfigSLMDeviceReporting.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "LicenseManagerDeviceReporting"));
                     cbConfigSLMStorage.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "LicenseManagerStorage"));
+                    log.Debug("License Manager values have been populated from Configuration File");
+
                     // Inventory Server
                     cbConfigINVServices.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerServices"));
                     cbConfigINVDeviceReporting.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerDeviceReporting"));
                     cbConfigINVProcessingDir.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerProcessing"));
                     cbConfigINVStorage.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerStorage"));
+                    log.Debug("Inventory Server values have been populated from Configuration File");
 
                     // Advanced
                     numConfigAdvINVDeviceThreshold.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerDeviceThreshold"));
                     numConfigAdvINVProcessingThreshold.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerProcessingThreshold"));
                     numConfigAdvSLMDeviceThreshold.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "LicenseManagerDeviceThreshold"));
-
                     txtConfigAdvINVProcessingDirectory.Text = Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerProcessingDirectory");
+                    log.Debug("Advanced Configuration values have been populated from Configuration File");
                 }
             } catch (Exception ex)
             {
-                Logger.Log("SPMConfigurator", ex.Message + ex.StackTrace, MethodBase.GetCurrentMethod().Name, "FATAL");
+                log.Error(ex);
             }
         }
 
@@ -314,22 +367,28 @@ namespace SnowPlatformMonitor.Configurator
                     // License Manager
                     txtServersSLM.Text = Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "LicenseManager");
                     txtServersSLMDrive.Text = Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "LicenseManagerDrive");
+                    log.Debug("License Manager values have been populated from Configuration File");
+
+
                     // Inventory Server
                     txtServersINV.Text = Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "InventoryServer");
                     txtServersINVDrive.Text = Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "InventoryServerDrive");
+                    log.Debug("Inventory Server values have been populated from Configuration File");
+
                     // SQL Configuration
                     var cs = new SqlConnectionStringBuilder(Utilities.Decrypt(Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "ConnectionString")));
                     txtServersSQL.Text = cs.DataSource;
                     txtServersSQLUser.Text = cs.UserID;
                     txtServersSQLPass.Text = cs.Password;
                     txtServersSQLParam.Text = Utilities.Decrypt(Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "ConnectionStringParameters"));
+                    log.Debug("SQL Server values have been populated from Configuration File");
                 }
 
             } catch (Exception ex)
             {
-                Logger.Log("SPMConfigurator", ex.Message + ex.StackTrace, MethodBase.GetCurrentMethod().Name, "FATAL");
+                log.Error(ex);
             }
-}
+        }
 
         private void LoadVisualDesign()
         {
@@ -344,8 +403,11 @@ namespace SnowPlatformMonitor.Configurator
         {
             try
             {
-                if (sc.ServiceStatus("SnowPlatformMonitor") == "Running")
+                string serviceStatus = sc.ServiceStatus("SnowPlatformMonitor");
+                if (serviceStatus == "Running")
                 {
+                    log.Debug("SnowPlatformMonitor.Service : " + serviceStatus);
+
                     pbServiceMngrStatus.Image = Properties.Resources.play_button;
                     btnServiceMngrStart.Enabled = false;
                     btnServiceMngrStop.Enabled = true;
@@ -354,6 +416,8 @@ namespace SnowPlatformMonitor.Configurator
                 }
                 else
                 {
+                    log.Debug("SnowPlatformMonitor.Service : " + serviceStatus);
+
                     pbServiceMngrStatus.Image = Properties.Resources.stop_button;
                     btnServiceMngrStop.Enabled = false;
                     btnServiceMngrStart.Enabled = true;
@@ -368,7 +432,7 @@ namespace SnowPlatformMonitor.Configurator
                     btnServiceMngrUninstall.Enabled = false;
                 } else
                 {
-                    Logger.Log("SPMConfigurator", ex.Message + ex.StackTrace, MethodBase.GetCurrentMethod().Name, "ERROR");
+                    log.Error(ex);
                 }
             }
         }
@@ -380,6 +444,7 @@ namespace SnowPlatformMonitor.Configurator
             LoadConfiguration();
             LoadServersConfiguration();
             LoadServiceStatus();
+            log.Debug("AppLoad completed");
         }
 
         #region Updater
@@ -388,12 +453,14 @@ namespace SnowPlatformMonitor.Configurator
         /// </summary>
         private void CheckForUpdates()
         {
+            log.Debug("Checking for updates...");
             AutoUpdater.Start("https://laim.scot/updates/spm.xml");
             AutoUpdater.ShowSkipButton = false;
             AutoUpdater.OpenDownloadPage = true;
             AutoUpdater.HttpUserAgent = "AutoUpdater-SPM";
             AutoUpdater.UpdateFormSize = new Size(Width, Height);
             AutoUpdater.PersistenceProvider = new JsonFilePersistenceProvider(Path.Combine(dc.Resources, "updates.json"));
+            log.Debug("Update check finished, popup should appear if there are updates available");
         }
 
         #endregion
@@ -401,15 +468,12 @@ namespace SnowPlatformMonitor.Configurator
         #endregion
 
 
-
-
-
         //debug, remove in release
         private void button1_Click(object sender, EventArgs e)
         {
             DataRetriever exporter = new DataRetriever();
             exporter.GetDataUpdateJob();
-            exporter.GetServices("Inventory", "localhost");
+            exporter.GetWindowsServices("Inventory", "localhost");
             exporter.GetConnectorImportTables();
             exporter.GetReportedToday(true, true);
 

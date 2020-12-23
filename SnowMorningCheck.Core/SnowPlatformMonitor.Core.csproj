@@ -66,6 +66,7 @@
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Threading.Tasks" />
@@ -81,11 +82,11 @@
     <Compile Include="Classes\ServiceManager.cs" />
     <Compile Include="Classes\SqlRunner.cs" />
     <Compile Include="Classes\WindowsServices.cs" />
+    <Compile Include="Classes\WindowsStorage.cs" />
     <Compile Include="Configuration\ApplicationConfiguration.cs" />
     <Compile Include="Classes\DataRetriever.cs" />
     <Compile Include="Configuration\DirectoryConfiguration.cs" />
     <Compile Include="Classes\InventoryServer.cs" />
-    <Compile Include="Classes\Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\SqlScripts.Designer.cs">
       <AutoGen>True</AutoGen>

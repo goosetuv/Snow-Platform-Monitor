@@ -37,30 +37,24 @@ namespace SnowPlatformMonitor.Core.Classes
             return MSSqlServer.CheckConnnection(sqlConnection);
         }   
 
-        public static bool PingHost(string nameOrAddress)
+        public static bool PingHost(string hostName)
         {
-            bool pingable = false;
-            Ping pinger = null;
-
             try
             {
-                pinger = new Ping();
-                PingReply reply = pinger.Send(nameOrAddress);
-                pingable = reply.Status == IPStatus.Success;
+                Ping p = new Ping();
+                if (p.Send(hostName, 200).Status == IPStatus.Success)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            catch (PingException)
+            catch (Exception)
             {
                 return false;
             }
-            finally
-            {
-                if (pinger != null)
-                {
-                    pinger.Dispose();
-                }
-            }
-
-            return pingable;
         }
 }
 }
