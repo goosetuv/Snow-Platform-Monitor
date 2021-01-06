@@ -157,5 +157,15 @@ namespace SnowPlatformMonitor.Core.Resources {
                 return ResourceManager.GetString("Office365Import", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT TOP 1 UpdatedDate, SRSUpdateDate FROM SnowLicenseManager.dbo.tblApplication
+        ///ORDER BY SRSUpdateDate DESC.
+        /// </summary>
+        public static string SRSUpdateDate {
+            get {
+                return ResourceManager.GetString("SRSUpdateDate", resourceCulture);
+            }
+        }
     }
 }

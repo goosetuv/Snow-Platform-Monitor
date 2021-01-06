@@ -23,5 +23,11 @@ namespace SnowPlatformMonitor.Core.Classes
             return sqlRunner.RunSQLDataTable("AdobeImport");
         }
 
+        public string SRSImportDate()
+        {
+            SqlRunner sqlRunner = new SqlRunner();
+            return sqlRunner.RunSQLString("SRSUpdateDate");
+        }
+
     }
 }

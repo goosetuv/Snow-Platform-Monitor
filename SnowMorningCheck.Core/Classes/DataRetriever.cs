@@ -142,11 +142,16 @@ namespace SnowPlatformMonitor.Core.Classes
             }
         }
 
-
         public string GetInventoryDirectoryCount()
         {
             InventoryServer inventoryServer = new InventoryServer();
             return inventoryServer.ProcessingDirectory();
+        }
+
+        public string GetSRSImportDate()
+        {
+            LicenseManager licenseManager = new LicenseManager();
+            return licenseManager.SRSImportDate();
         }
 
         /// <summary>

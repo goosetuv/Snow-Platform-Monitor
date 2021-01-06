@@ -179,4 +179,9 @@ WHERE CAST(LastScanDate AS DATE) = CAST(GETDATE() - 1 AS Date)</value>
     <value>SELECT * FROM SnowLicenseManager.o365.Import</value>
     <comment>Gets the import table for Microsoft Office 365</comment>
   </data>
+  <data name="SRSUpdateDate" xml:space="preserve">
+    <value>SELECT TOP 1 UpdatedDate, SRSUpdateDate FROM SnowLicenseManager.dbo.tblApplication
+ORDER BY SRSUpdateDate DESC</value>
+    <comment>Gets the most recent updated application dates</comment>
+  </data>
 </root>

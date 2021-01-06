@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Management;
 
 namespace SnowPlatformMonitor.Core.Classes
@@ -10,8 +11,8 @@ namespace SnowPlatformMonitor.Core.Classes
             DataTable dt = new DataTable();
 
             dt.Columns.Add("Name");
-            dt.Columns.Add("Size");
-            dt.Columns.Add("Free Space");
+            dt.Columns.Add("Size (GB)");
+            dt.Columns.Add("Free Space (GB)");
 
             ManagementObjectSearcher query = null;
             ManagementObjectCollection queryCollection = null;
@@ -37,7 +38,7 @@ namespace SnowPlatformMonitor.Core.Classes
 
             ManagementScope msc = new ManagementScope(mp, opt);
 
-            SelectQuery q = new SelectQuery(win32Type); //Win32_Environment, Win32_Service
+            SelectQuery q = new SelectQuery(win32Type); //Win32_Environment, Win32_Service etc
 
             query = new ManagementObjectSearcher(msc, q, null);
             queryCollection = query.Get();
@@ -46,8 +47,8 @@ namespace SnowPlatformMonitor.Core.Classes
             {
                 DataRow dr = dt.NewRow();
                 dr["Name"] = mo["Name"];
-                dr["Size"] = mo["Size"];
-                dr["Free Space"] = mo["FreeSpace"];
+                dr["Size (GB)"] = Convert.ToInt64(mo["Size"]) / 1024 / 1024 / 1024;
+                dr["Free Space (GB)"] = Convert.ToInt64(mo["FreeSpace"]) / 1024 / 1024 / 1024;
                 dt.Rows.Add(dr);
             }
 

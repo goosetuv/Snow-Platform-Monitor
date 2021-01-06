@@ -93,6 +93,7 @@
             this.btnAboutConfigDir = new System.Windows.Forms.Button();
             this.btnAboutLogDir = new System.Windows.Forms.Button();
             this.lblAboutAppInfo = new System.Windows.Forms.Label();
+            this.btnAboutExportsDir = new System.Windows.Forms.Button();
             this.tabControlMain.SuspendLayout();
             this.tabConfiguration.SuspendLayout();
             this.gbConfigAdvanced.SuspendLayout();
@@ -125,7 +126,7 @@
             this.tabControlMain.Location = new System.Drawing.Point(12, 12);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(316, 620);
+            this.tabControlMain.Size = new System.Drawing.Size(316, 407);
             this.tabControlMain.TabIndex = 0;
             this.tabControlMain.TabStop = false;
             // 
@@ -148,7 +149,7 @@
             this.tabConfiguration.Location = new System.Drawing.Point(4, 22);
             this.tabConfiguration.Name = "tabConfiguration";
             this.tabConfiguration.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConfiguration.Size = new System.Drawing.Size(308, 594);
+            this.tabConfiguration.Size = new System.Drawing.Size(308, 381);
             this.tabConfiguration.TabIndex = 4;
             this.tabConfiguration.Text = "Configuration";
             this.tabConfiguration.UseVisualStyleBackColor = true;
@@ -156,7 +157,7 @@
             // btnConfigAdvanced
             // 
             this.btnConfigAdvanced.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnConfigAdvanced.Location = new System.Drawing.Point(20, 565);
+            this.btnConfigAdvanced.Location = new System.Drawing.Point(20, 352);
             this.btnConfigAdvanced.Name = "btnConfigAdvanced";
             this.btnConfigAdvanced.Size = new System.Drawing.Size(75, 23);
             this.btnConfigAdvanced.TabIndex = 16;
@@ -167,7 +168,7 @@
             // btnConfigSave
             // 
             this.btnConfigSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnConfigSave.Location = new System.Drawing.Point(213, 565);
+            this.btnConfigSave.Location = new System.Drawing.Point(213, 352);
             this.btnConfigSave.Name = "btnConfigSave";
             this.btnConfigSave.Size = new System.Drawing.Size(75, 23);
             this.btnConfigSave.TabIndex = 8;
@@ -789,12 +790,13 @@
             // 
             // tabAbout
             // 
+            this.tabAbout.Controls.Add(this.btnAboutExportsDir);
             this.tabAbout.Controls.Add(this.btnAboutConfigDir);
             this.tabAbout.Controls.Add(this.btnAboutLogDir);
             this.tabAbout.Controls.Add(this.lblAboutAppInfo);
             this.tabAbout.Location = new System.Drawing.Point(4, 22);
             this.tabAbout.Name = "tabAbout";
-            this.tabAbout.Size = new System.Drawing.Size(308, 381);
+            this.tabAbout.Size = new System.Drawing.Size(308, 594);
             this.tabAbout.TabIndex = 3;
             this.tabAbout.Text = "About";
             this.tabAbout.UseVisualStyleBackColor = true;
@@ -828,12 +830,22 @@
             this.lblAboutAppInfo.Text = "{0}\r\n{1}\r\n{3}";
             this.lblAboutAppInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnAboutExportsDir
+            // 
+            this.btnAboutExportsDir.Location = new System.Drawing.Point(117, 294);
+            this.btnAboutExportsDir.Name = "btnAboutExportsDir";
+            this.btnAboutExportsDir.Size = new System.Drawing.Size(75, 23);
+            this.btnAboutExportsDir.TabIndex = 5;
+            this.btnAboutExportsDir.Text = "Exports";
+            this.btnAboutExportsDir.UseVisualStyleBackColor = true;
+            this.btnAboutExportsDir.Click += new System.EventHandler(this.btnAboutExportsDir_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(340, 644);
+            this.ClientSize = new System.Drawing.Size(340, 431);
             this.Controls.Add(this.tabControlMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -936,6 +948,7 @@
         private System.Windows.Forms.Button btnServiceMngrStop;
         private System.Windows.Forms.Button btnServiceMngrInstall;
         private System.Windows.Forms.Button btnServiceMngrUninstall;
+        private System.Windows.Forms.Button btnAboutExportsDir;
     }
 }
 

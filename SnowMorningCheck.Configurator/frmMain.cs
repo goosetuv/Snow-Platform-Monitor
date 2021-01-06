@@ -295,6 +295,18 @@ namespace SnowPlatformMonitor.Configurator
                 MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnAboutExportsDir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start(dc.Export);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         #endregion
 
         #region Functions
@@ -476,8 +488,13 @@ namespace SnowPlatformMonitor.Configurator
             exporter.GetWindowsServices("Inventory", "localhost");
             exporter.GetConnectorImportTables();
             exporter.GetReportedToday(true, true);
+            exporter.GetWindowsStorage("License Manager", txtServersSLM.Text);
+            exporter.GetWindowsStorage("Inventory Server", txtServersINV.Text);
 
+            MessageBox.Show(exporter.GetSRSImportDate());
             MessageBox.Show(exporter.GetInventoryDirectoryCount());
         }
+
+
     }
 }
