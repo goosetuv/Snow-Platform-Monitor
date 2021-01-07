@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using AutoUpdaterDotNET;
 using System.Drawing;
 using System.Configuration.Install;
+using System.Xml;
 #endregion
 
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
@@ -37,7 +38,7 @@ namespace SnowPlatformMonitor.Configurator
         }
         #endregion
 
-        #region Configuration
+        #region General (tab)
         private void btnConfigSave_Click(object sender, EventArgs e)
         {
             try
@@ -200,7 +201,53 @@ namespace SnowPlatformMonitor.Configurator
         }
         #endregion
 
-        #region Service Manager
+        #region SMTP
+        private void btnSMTPSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                string[] NodeList = {
+                    "Username",
+                    "Password",
+                    "Port",
+                    "SSLEnabled",
+                    "Host",
+                    "Sender",
+                    "SendTo",
+                    "CC",
+                    "Subject"
+                };
+                string[] ValueList = {
+                    txtSMTPUsername.Text,
+                    Utilities.Encrypt(txtSMTPPassword.Text),
+                    numSMTPPort.Text,
+                    cbxSMTPEnableSSL.Checked.ToString(),
+                    txtSMTPHost.Text,
+                    txtSMTPSender.Text,
+                    txtSMTPSendTo.Text,
+                    txtSMTPcc.Text,
+                    txtSMTPSubject.Text
+                };
+                string result = ac.SaveConfig("smtp", NodeList, ValueList);
+                if (result == "configsaved")
+                {
+                    MessageBox.Show("Configuration saved", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(result, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+
+        #region Service
         private void btnServiceMngrInstall_Click(object sender, EventArgs e)
         {
             try
@@ -272,8 +319,47 @@ namespace SnowPlatformMonitor.Configurator
         }
         #endregion
 
-        #region About
-        private void btnAboutLogDir_Click(object sender, EventArgs e)
+        #region Logging
+        private void btnLoggingSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Load log4net settings for the GUI
+                XmlDocument guiLog4Net = new XmlDocument();
+                guiLog4Net.Load("SnowPlatformMonitor.exe.config");
+                guiLog4Net.SelectSingleNode("//log4net/root/level").Attributes["value"].Value = cbLoggingGUILevel.SelectedItem.ToString();
+                guiLog4Net.SelectSingleNode("//log4net/appender/layout/conversionPattern").Attributes["value"].Value = txtLoggingGUIFormat.Text;
+                guiLog4Net.SelectSingleNode("//log4net/appender/maximumFileSize").Attributes["value"].Value = string.Format("{0}{1}", numLoggingGUISize.Value, "MB");
+                guiLog4Net.Save("SnowPlatformMonitor.exe.config");
+
+                // Load log4net settings for the Service
+                XmlDocument svcLog4Net = new XmlDocument();
+                svcLog4Net.Load("SnowPlatformMonitor.Service.exe.config");
+                svcLog4Net.SelectSingleNode("//log4net/root/level").Attributes["value"].Value = cbLoggingServiceLevel.SelectedItem.ToString();
+                svcLog4Net.SelectSingleNode("//log4net/appender/layout/conversionPattern").Attributes["value"].Value = txtLoggingServiceFormat.Text;
+                svcLog4Net.SelectSingleNode("//log4net/appender/maximumFileSize").Attributes["value"].Value = string.Format("{0}{1}", numLoggingServiceSize.Value, "MB");
+                svcLog4Net.Save("SnowPlatformMonitor.Service.exe.config");
+            } catch (Exception ex)
+            {
+                log.Error(ex);
+            }
+        }
+
+        private void linkLoggingFormat_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                Process.Start("https://logging.apache.org/log4net/log4net-1.2.13/release/sdk/log4net.Layout.PatternLayout.html");
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+            }
+        }
+        #endregion
+
+        #region Help
+        private void btnHelpLogDir_Click(object sender, EventArgs e)
         {
             try
             {
@@ -284,7 +370,7 @@ namespace SnowPlatformMonitor.Configurator
             }
         }
 
-        private void btnAboutConfigDir_Click(object sender, EventArgs e)
+        private void btnHelpConfigDir_Click(object sender, EventArgs e)
         {
             try
             {
@@ -296,11 +382,47 @@ namespace SnowPlatformMonitor.Configurator
             }
         }
 
-        private void btnAboutExportsDir_Click(object sender, EventArgs e)
+        private void btnHelpExportsDir_Click(object sender, EventArgs e)
         {
             try
             {
                 Process.Start(dc.Export);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnHelpSupport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start("https://github.com/goosetuv/Snow-Platform-Monitor/issues");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnHelpReleases_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start("https://github.com/goosetuv/Snow-Platform-Monitor/releases");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnHelpGuides_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start("https://github.com/goosetuv/Snow-Platform-Monitor/wiki");
             }
             catch (Exception ex)
             {
@@ -370,6 +492,29 @@ namespace SnowPlatformMonitor.Configurator
             }
         }
 
+        private void LoadSMTPConfiguration()
+        {
+            try
+            {
+                if (ac.ConfigExists(ac.SMTPConfig))
+                {
+                    txtSMTPUsername.Text = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Username");
+                    txtSMTPPassword.Text = Utilities.Decrypt(Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Password"));
+                    numSMTPPort.Text = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Port");
+                    cbxSMTPEnableSSL.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "SSLEnabled"));
+                    txtSMTPHost.Text = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Host");
+                    txtSMTPSender.Text = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Sender");
+                    txtSMTPSendTo.Text = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "SendTo");
+                    txtSMTPcc.Text = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "CC");
+                    txtSMTPSubject.Text = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Subject");
+                    log.Debug("SMTP values have been populated from Configuration File");
+                }
+            } catch (Exception ex)
+            {
+                log.Error(ex);
+            }
+        }
+
         private void LoadServersConfiguration()
         {
             try
@@ -406,9 +551,38 @@ namespace SnowPlatformMonitor.Configurator
         {
             this.Size = new Size(MinimumSize.Width, MinimumSize.Height);
 
-            lblAboutAppInfo.Text = $"{ProductName}{Environment.NewLine}Version {ProductVersion}{Environment.NewLine}PRE-RELEASE-BUILD";
+            lblHelpAppInfo.Text = $"v{ProductVersion}{Environment.NewLine}PRE-RELEASE-BUILD{Environment.NewLine}Copyright (c) 2020 - {DateTime.Now.Year} Laim McKenzie.";
 
-            Text = string.Format("{0} - {1}", ProductName, ProductVersion); 
+            Text = string.Format("{0} Configurator", ProductName); 
+        }
+
+        private void LoadLogging()
+        {
+            try
+            {
+
+                // Load log4net settings for the GUI
+                XmlDocument guiLog4Net = new XmlDocument();
+                guiLog4Net.Load("SnowPlatformMonitor.exe.config");
+                
+                cbLoggingGUILevel.SelectedItem = guiLog4Net.SelectSingleNode("//log4net/root/level").Attributes["value"].Value;
+                txtLoggingGUIFormat.Text = guiLog4Net.SelectSingleNode("//log4net/appender/layout/conversionPattern").Attributes["value"].Value;
+                string guiFileSize = guiLog4Net.SelectSingleNode("//log4net/appender/maximumFileSize").Attributes["value"].Value;
+                numLoggingGUISize.Value = Convert.ToInt32(guiFileSize.Remove(guiFileSize.Length - 2));
+
+                // Load log4net settings for the Service
+                XmlDocument svcLog4Net = new XmlDocument();
+                svcLog4Net.Load("SnowPlatformMonitor.Service.exe.config");
+
+                cbLoggingServiceLevel.SelectedItem = svcLog4Net.SelectSingleNode("//log4net/root/level").Attributes["value"].Value;
+                txtLoggingServiceFormat.Text = svcLog4Net.SelectSingleNode("//log4net/appender/layout/conversionPattern").Attributes["value"].Value;
+                string svcFileSize = svcLog4Net.SelectSingleNode("//log4net/appender/maximumFileSize").Attributes["value"].Value;
+                numLoggingServiceSize.Value = Convert.ToInt32(svcFileSize.Remove(svcFileSize.Length - 2));
+
+            } catch (Exception ex)
+            {
+                log.Fatal(ex);
+            }
         }
 
         private void LoadServiceStatus()
@@ -455,6 +629,8 @@ namespace SnowPlatformMonitor.Configurator
             LoadVisualDesign();
             LoadConfiguration();
             LoadServersConfiguration();
+            LoadSMTPConfiguration();
+            LoadLogging();
             LoadServiceStatus();
             log.Debug("AppLoad completed");
         }

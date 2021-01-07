@@ -54,6 +54,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoUpdater.NET">
       <HintPath>..\..\..\Libraries\AutoUpdater.NET\AutoUpdater.NET.dll</HintPath>
@@ -118,7 +121,10 @@
       <Name>SnowPlatformMonitor.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="icon.ico" />
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Stop.png" />
   </ItemGroup>

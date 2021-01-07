@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabConfiguration = new System.Windows.Forms.TabPage();
             this.btnConfigAdvanced = new System.Windows.Forms.Button();
@@ -82,18 +83,60 @@
             this.txtServersSQLUser = new System.Windows.Forms.TextBox();
             this.lblServersSQLUser = new System.Windows.Forms.Label();
             this.tabSMTP = new System.Windows.Forms.TabPage();
+            this.lblSMTPSubject = new System.Windows.Forms.Label();
+            this.txtSMTPSubject = new System.Windows.Forms.TextBox();
+            this.cbxSMTPEnableSSL = new System.Windows.Forms.CheckBox();
+            this.numSMTPPort = new System.Windows.Forms.NumericUpDown();
+            this.btnSMTPTest = new System.Windows.Forms.Button();
+            this.btnSMTPSave = new System.Windows.Forms.Button();
+            this.lblSMTPcc = new System.Windows.Forms.Label();
+            this.txtSMTPcc = new System.Windows.Forms.TextBox();
+            this.lbSMTPSendTo = new System.Windows.Forms.Label();
+            this.txtSMTPSendTo = new System.Windows.Forms.TextBox();
+            this.lblSMTPSender = new System.Windows.Forms.Label();
+            this.txtSMTPSender = new System.Windows.Forms.TextBox();
+            this.lblSMTPHost = new System.Windows.Forms.Label();
+            this.txtSMTPHost = new System.Windows.Forms.TextBox();
+            this.lblSMTPPort = new System.Windows.Forms.Label();
+            this.lblSMTPPassword = new System.Windows.Forms.Label();
+            this.txtSMTPPassword = new System.Windows.Forms.TextBox();
+            this.lblSMTPUsername = new System.Windows.Forms.Label();
+            this.txtSMTPUsername = new System.Windows.Forms.TextBox();
             this.tabServiceManager = new System.Windows.Forms.TabPage();
             this.btnServiceMngrUninstall = new System.Windows.Forms.Button();
             this.btnServiceMngrInstall = new System.Windows.Forms.Button();
             this.btnServiceMngrStop = new System.Windows.Forms.Button();
             this.btnServiceMngrStart = new System.Windows.Forms.Button();
-            this.pbServiceMngrStatus = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.tabAbout = new System.Windows.Forms.TabPage();
-            this.btnAboutConfigDir = new System.Windows.Forms.Button();
-            this.btnAboutLogDir = new System.Windows.Forms.Button();
-            this.lblAboutAppInfo = new System.Windows.Forms.Label();
-            this.btnAboutExportsDir = new System.Windows.Forms.Button();
+            this.pbServiceMngrStatus = new System.Windows.Forms.PictureBox();
+            this.tabLogging = new System.Windows.Forms.TabPage();
+            this.linkLoggingFormat = new System.Windows.Forms.LinkLabel();
+            this.btnLoggingSave = new System.Windows.Forms.Button();
+            this.gbLoggingService = new System.Windows.Forms.GroupBox();
+            this.lblLoggingServiceSizeMB = new System.Windows.Forms.Label();
+            this.lblLoggingServiceFormat = new System.Windows.Forms.Label();
+            this.numLoggingServiceSize = new System.Windows.Forms.NumericUpDown();
+            this.lblLoggingServiceSize = new System.Windows.Forms.Label();
+            this.txtLoggingServiceFormat = new System.Windows.Forms.TextBox();
+            this.cbLoggingServiceLevel = new System.Windows.Forms.ComboBox();
+            this.lblLoggingServiceLevel = new System.Windows.Forms.Label();
+            this.gbLoggingGUI = new System.Windows.Forms.GroupBox();
+            this.lblLoggingGUISizeMB = new System.Windows.Forms.Label();
+            this.numLoggingGUISize = new System.Windows.Forms.NumericUpDown();
+            this.lblLoggingGUISize = new System.Windows.Forms.Label();
+            this.txtLoggingGUIFormat = new System.Windows.Forms.TextBox();
+            this.lblLoggingGUIFormat = new System.Windows.Forms.Label();
+            this.cbLoggingGUILevel = new System.Windows.Forms.ComboBox();
+            this.lblLoggingGUILevel = new System.Windows.Forms.Label();
+            this.tabHelp = new System.Windows.Forms.TabPage();
+            this.btnHelpGuides = new System.Windows.Forms.Button();
+            this.btnHelpReleases = new System.Windows.Forms.Button();
+            this.btnHelpSupport = new System.Windows.Forms.Button();
+            this.btnHelpExportsDir = new System.Windows.Forms.Button();
+            this.btnHelpConfigDir = new System.Windows.Forms.Button();
+            this.btnHelpLogDir = new System.Windows.Forms.Button();
+            this.lblHelpAppInfo = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControlMain.SuspendLayout();
             this.tabConfiguration.SuspendLayout();
             this.gbConfigAdvanced.SuspendLayout();
@@ -108,9 +151,17 @@
             this.gbServersINV.SuspendLayout();
             this.gbServersSLM.SuspendLayout();
             this.gbServersSQL.SuspendLayout();
+            this.tabSMTP.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSMTPPort)).BeginInit();
             this.tabServiceManager.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbServiceMngrStatus)).BeginInit();
-            this.tabAbout.SuspendLayout();
+            this.tabLogging.SuspendLayout();
+            this.gbLoggingService.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numLoggingServiceSize)).BeginInit();
+            this.gbLoggingGUI.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numLoggingGUISize)).BeginInit();
+            this.tabHelp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlMain
@@ -122,7 +173,8 @@
             this.tabControlMain.Controls.Add(this.tabServers);
             this.tabControlMain.Controls.Add(this.tabSMTP);
             this.tabControlMain.Controls.Add(this.tabServiceManager);
-            this.tabControlMain.Controls.Add(this.tabAbout);
+            this.tabControlMain.Controls.Add(this.tabLogging);
+            this.tabControlMain.Controls.Add(this.tabHelp);
             this.tabControlMain.Location = new System.Drawing.Point(12, 12);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
@@ -151,7 +203,7 @@
             this.tabConfiguration.Padding = new System.Windows.Forms.Padding(3);
             this.tabConfiguration.Size = new System.Drawing.Size(308, 381);
             this.tabConfiguration.TabIndex = 4;
-            this.tabConfiguration.Text = "Configuration";
+            this.tabConfiguration.Text = "General";
             this.tabConfiguration.UseVisualStyleBackColor = true;
             // 
             // btnConfigAdvanced
@@ -497,7 +549,7 @@
             this.tabServers.Location = new System.Drawing.Point(4, 22);
             this.tabServers.Name = "tabServers";
             this.tabServers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabServers.Size = new System.Drawing.Size(308, 594);
+            this.tabServers.Size = new System.Drawing.Size(308, 381);
             this.tabServers.TabIndex = 0;
             this.tabServers.Text = "Servers";
             this.tabServers.UseVisualStyleBackColor = true;
@@ -701,13 +753,195 @@
             // 
             // tabSMTP
             // 
+            this.tabSMTP.Controls.Add(this.lblSMTPSubject);
+            this.tabSMTP.Controls.Add(this.txtSMTPSubject);
+            this.tabSMTP.Controls.Add(this.cbxSMTPEnableSSL);
+            this.tabSMTP.Controls.Add(this.numSMTPPort);
+            this.tabSMTP.Controls.Add(this.btnSMTPTest);
+            this.tabSMTP.Controls.Add(this.btnSMTPSave);
+            this.tabSMTP.Controls.Add(this.lblSMTPcc);
+            this.tabSMTP.Controls.Add(this.txtSMTPcc);
+            this.tabSMTP.Controls.Add(this.lbSMTPSendTo);
+            this.tabSMTP.Controls.Add(this.txtSMTPSendTo);
+            this.tabSMTP.Controls.Add(this.lblSMTPSender);
+            this.tabSMTP.Controls.Add(this.txtSMTPSender);
+            this.tabSMTP.Controls.Add(this.lblSMTPHost);
+            this.tabSMTP.Controls.Add(this.txtSMTPHost);
+            this.tabSMTP.Controls.Add(this.lblSMTPPort);
+            this.tabSMTP.Controls.Add(this.lblSMTPPassword);
+            this.tabSMTP.Controls.Add(this.txtSMTPPassword);
+            this.tabSMTP.Controls.Add(this.lblSMTPUsername);
+            this.tabSMTP.Controls.Add(this.txtSMTPUsername);
             this.tabSMTP.Location = new System.Drawing.Point(4, 22);
             this.tabSMTP.Name = "tabSMTP";
             this.tabSMTP.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSMTP.Size = new System.Drawing.Size(308, 594);
+            this.tabSMTP.Size = new System.Drawing.Size(308, 381);
             this.tabSMTP.TabIndex = 1;
             this.tabSMTP.Text = "SMTP";
             this.tabSMTP.UseVisualStyleBackColor = true;
+            // 
+            // lblSMTPSubject
+            // 
+            this.lblSMTPSubject.AutoSize = true;
+            this.lblSMTPSubject.Location = new System.Drawing.Point(32, 202);
+            this.lblSMTPSubject.Name = "lblSMTPSubject";
+            this.lblSMTPSubject.Size = new System.Drawing.Size(46, 13);
+            this.lblSMTPSubject.TabIndex = 41;
+            this.lblSMTPSubject.Text = "Subject:";
+            // 
+            // txtSMTPSubject
+            // 
+            this.txtSMTPSubject.Location = new System.Drawing.Point(84, 199);
+            this.txtSMTPSubject.Name = "txtSMTPSubject";
+            this.txtSMTPSubject.Size = new System.Drawing.Size(204, 20);
+            this.txtSMTPSubject.TabIndex = 40;
+            // 
+            // cbxSMTPEnableSSL
+            // 
+            this.cbxSMTPEnableSSL.AutoSize = true;
+            this.cbxSMTPEnableSSL.Location = new System.Drawing.Point(84, 225);
+            this.cbxSMTPEnableSSL.Name = "cbxSMTPEnableSSL";
+            this.cbxSMTPEnableSSL.Size = new System.Drawing.Size(130, 17);
+            this.cbxSMTPEnableSSL.TabIndex = 39;
+            this.cbxSMTPEnableSSL.Text = "Enable SSL (Optional)";
+            this.cbxSMTPEnableSSL.UseVisualStyleBackColor = true;
+            // 
+            // numSMTPPort
+            // 
+            this.numSMTPPort.Location = new System.Drawing.Point(84, 69);
+            this.numSMTPPort.Maximum = new decimal(new int[] {
+            1316134912,
+            2328,
+            0,
+            0});
+            this.numSMTPPort.Name = "numSMTPPort";
+            this.numSMTPPort.Size = new System.Drawing.Size(204, 20);
+            this.numSMTPPort.TabIndex = 38;
+            // 
+            // btnSMTPTest
+            // 
+            this.btnSMTPTest.Location = new System.Drawing.Point(213, 323);
+            this.btnSMTPTest.Name = "btnSMTPTest";
+            this.btnSMTPTest.Size = new System.Drawing.Size(75, 23);
+            this.btnSMTPTest.TabIndex = 37;
+            this.btnSMTPTest.Text = "Test";
+            this.btnSMTPTest.UseVisualStyleBackColor = true;
+            // 
+            // btnSMTPSave
+            // 
+            this.btnSMTPSave.Location = new System.Drawing.Point(213, 352);
+            this.btnSMTPSave.Name = "btnSMTPSave";
+            this.btnSMTPSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSMTPSave.TabIndex = 33;
+            this.btnSMTPSave.Text = "Save";
+            this.btnSMTPSave.UseVisualStyleBackColor = true;
+            this.btnSMTPSave.Click += new System.EventHandler(this.btnSMTPSave_Click);
+            // 
+            // lblSMTPcc
+            // 
+            this.lblSMTPcc.AutoSize = true;
+            this.lblSMTPcc.Location = new System.Drawing.Point(54, 176);
+            this.lblSMTPcc.Name = "lblSMTPcc";
+            this.lblSMTPcc.Size = new System.Drawing.Size(24, 13);
+            this.lblSMTPcc.TabIndex = 36;
+            this.lblSMTPcc.Text = "CC:";
+            // 
+            // txtSMTPcc
+            // 
+            this.txtSMTPcc.Location = new System.Drawing.Point(84, 173);
+            this.txtSMTPcc.Name = "txtSMTPcc";
+            this.txtSMTPcc.Size = new System.Drawing.Size(204, 20);
+            this.txtSMTPcc.TabIndex = 35;
+            // 
+            // lbSMTPSendTo
+            // 
+            this.lbSMTPSendTo.AutoSize = true;
+            this.lbSMTPSendTo.Location = new System.Drawing.Point(27, 150);
+            this.lbSMTPSendTo.Name = "lbSMTPSendTo";
+            this.lbSMTPSendTo.Size = new System.Drawing.Size(51, 13);
+            this.lbSMTPSendTo.TabIndex = 34;
+            this.lbSMTPSendTo.Text = "Send To:";
+            // 
+            // txtSMTPSendTo
+            // 
+            this.txtSMTPSendTo.Location = new System.Drawing.Point(84, 147);
+            this.txtSMTPSendTo.Name = "txtSMTPSendTo";
+            this.txtSMTPSendTo.Size = new System.Drawing.Size(204, 20);
+            this.txtSMTPSendTo.TabIndex = 32;
+            // 
+            // lblSMTPSender
+            // 
+            this.lblSMTPSender.AutoSize = true;
+            this.lblSMTPSender.Location = new System.Drawing.Point(34, 124);
+            this.lblSMTPSender.Name = "lblSMTPSender";
+            this.lblSMTPSender.Size = new System.Drawing.Size(44, 13);
+            this.lblSMTPSender.TabIndex = 31;
+            this.lblSMTPSender.Text = "Sender:";
+            // 
+            // txtSMTPSender
+            // 
+            this.txtSMTPSender.Location = new System.Drawing.Point(84, 121);
+            this.txtSMTPSender.Name = "txtSMTPSender";
+            this.txtSMTPSender.Size = new System.Drawing.Size(204, 20);
+            this.txtSMTPSender.TabIndex = 30;
+            // 
+            // lblSMTPHost
+            // 
+            this.lblSMTPHost.AutoSize = true;
+            this.lblSMTPHost.Location = new System.Drawing.Point(46, 98);
+            this.lblSMTPHost.Name = "lblSMTPHost";
+            this.lblSMTPHost.Size = new System.Drawing.Size(32, 13);
+            this.lblSMTPHost.TabIndex = 29;
+            this.lblSMTPHost.Text = "Host:";
+            // 
+            // txtSMTPHost
+            // 
+            this.txtSMTPHost.Location = new System.Drawing.Point(84, 95);
+            this.txtSMTPHost.Name = "txtSMTPHost";
+            this.txtSMTPHost.Size = new System.Drawing.Size(204, 20);
+            this.txtSMTPHost.TabIndex = 28;
+            // 
+            // lblSMTPPort
+            // 
+            this.lblSMTPPort.AutoSize = true;
+            this.lblSMTPPort.Location = new System.Drawing.Point(49, 71);
+            this.lblSMTPPort.Name = "lblSMTPPort";
+            this.lblSMTPPort.Size = new System.Drawing.Size(29, 13);
+            this.lblSMTPPort.TabIndex = 27;
+            this.lblSMTPPort.Text = "Port:";
+            // 
+            // lblSMTPPassword
+            // 
+            this.lblSMTPPassword.AutoSize = true;
+            this.lblSMTPPassword.Location = new System.Drawing.Point(22, 46);
+            this.lblSMTPPassword.Name = "lblSMTPPassword";
+            this.lblSMTPPassword.Size = new System.Drawing.Size(56, 13);
+            this.lblSMTPPassword.TabIndex = 26;
+            this.lblSMTPPassword.Text = "Password:";
+            // 
+            // txtSMTPPassword
+            // 
+            this.txtSMTPPassword.Location = new System.Drawing.Point(84, 43);
+            this.txtSMTPPassword.Name = "txtSMTPPassword";
+            this.txtSMTPPassword.Size = new System.Drawing.Size(204, 20);
+            this.txtSMTPPassword.TabIndex = 25;
+            this.txtSMTPPassword.UseSystemPasswordChar = true;
+            // 
+            // lblSMTPUsername
+            // 
+            this.lblSMTPUsername.AutoSize = true;
+            this.lblSMTPUsername.Location = new System.Drawing.Point(20, 20);
+            this.lblSMTPUsername.Name = "lblSMTPUsername";
+            this.lblSMTPUsername.Size = new System.Drawing.Size(58, 13);
+            this.lblSMTPUsername.TabIndex = 24;
+            this.lblSMTPUsername.Text = "Username:";
+            // 
+            // txtSMTPUsername
+            // 
+            this.txtSMTPUsername.Location = new System.Drawing.Point(84, 17);
+            this.txtSMTPUsername.Name = "txtSMTPUsername";
+            this.txtSMTPUsername.Size = new System.Drawing.Size(204, 20);
+            this.txtSMTPUsername.TabIndex = 23;
             // 
             // tabServiceManager
             // 
@@ -715,13 +949,13 @@
             this.tabServiceManager.Controls.Add(this.btnServiceMngrInstall);
             this.tabServiceManager.Controls.Add(this.btnServiceMngrStop);
             this.tabServiceManager.Controls.Add(this.btnServiceMngrStart);
-            this.tabServiceManager.Controls.Add(this.pbServiceMngrStatus);
             this.tabServiceManager.Controls.Add(this.button1);
+            this.tabServiceManager.Controls.Add(this.pbServiceMngrStatus);
             this.tabServiceManager.Location = new System.Drawing.Point(4, 22);
             this.tabServiceManager.Name = "tabServiceManager";
-            this.tabServiceManager.Size = new System.Drawing.Size(308, 594);
+            this.tabServiceManager.Size = new System.Drawing.Size(308, 381);
             this.tabServiceManager.TabIndex = 2;
-            this.tabServiceManager.Text = "Service Manager";
+            this.tabServiceManager.Text = "Service";
             this.tabServiceManager.UseVisualStyleBackColor = true;
             // 
             // btnServiceMngrUninstall
@@ -768,16 +1002,6 @@
             this.btnServiceMngrStart.UseVisualStyleBackColor = true;
             this.btnServiceMngrStart.Click += new System.EventHandler(this.btnServiceMngrStart_Click);
             // 
-            // pbServiceMngrStatus
-            // 
-            this.pbServiceMngrStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbServiceMngrStatus.Location = new System.Drawing.Point(90, 20);
-            this.pbServiceMngrStatus.Name = "pbServiceMngrStatus";
-            this.pbServiceMngrStatus.Size = new System.Drawing.Size(128, 128);
-            this.pbServiceMngrStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbServiceMngrStatus.TabIndex = 1;
-            this.pbServiceMngrStatus.TabStop = false;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(9, 20);
@@ -788,57 +1012,332 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // tabAbout
+            // pbServiceMngrStatus
             // 
-            this.tabAbout.Controls.Add(this.btnAboutExportsDir);
-            this.tabAbout.Controls.Add(this.btnAboutConfigDir);
-            this.tabAbout.Controls.Add(this.btnAboutLogDir);
-            this.tabAbout.Controls.Add(this.lblAboutAppInfo);
-            this.tabAbout.Location = new System.Drawing.Point(4, 22);
-            this.tabAbout.Name = "tabAbout";
-            this.tabAbout.Size = new System.Drawing.Size(308, 594);
-            this.tabAbout.TabIndex = 3;
-            this.tabAbout.Text = "About";
-            this.tabAbout.UseVisualStyleBackColor = true;
+            this.pbServiceMngrStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbServiceMngrStatus.Location = new System.Drawing.Point(90, 20);
+            this.pbServiceMngrStatus.Name = "pbServiceMngrStatus";
+            this.pbServiceMngrStatus.Size = new System.Drawing.Size(128, 128);
+            this.pbServiceMngrStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbServiceMngrStatus.TabIndex = 1;
+            this.pbServiceMngrStatus.TabStop = false;
             // 
-            // btnAboutConfigDir
+            // tabLogging
             // 
-            this.btnAboutConfigDir.Location = new System.Drawing.Point(117, 265);
-            this.btnAboutConfigDir.Name = "btnAboutConfigDir";
-            this.btnAboutConfigDir.Size = new System.Drawing.Size(75, 23);
-            this.btnAboutConfigDir.TabIndex = 4;
-            this.btnAboutConfigDir.Text = "Configuraton";
-            this.btnAboutConfigDir.UseVisualStyleBackColor = true;
-            this.btnAboutConfigDir.Click += new System.EventHandler(this.btnAboutConfigDir_Click);
+            this.tabLogging.Controls.Add(this.linkLoggingFormat);
+            this.tabLogging.Controls.Add(this.btnLoggingSave);
+            this.tabLogging.Controls.Add(this.gbLoggingService);
+            this.tabLogging.Controls.Add(this.gbLoggingGUI);
+            this.tabLogging.Location = new System.Drawing.Point(4, 22);
+            this.tabLogging.Name = "tabLogging";
+            this.tabLogging.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLogging.Size = new System.Drawing.Size(308, 381);
+            this.tabLogging.TabIndex = 5;
+            this.tabLogging.Text = "Logging";
+            this.tabLogging.UseVisualStyleBackColor = true;
             // 
-            // btnAboutLogDir
+            // linkLoggingFormat
             // 
-            this.btnAboutLogDir.Location = new System.Drawing.Point(117, 236);
-            this.btnAboutLogDir.Name = "btnAboutLogDir";
-            this.btnAboutLogDir.Size = new System.Drawing.Size(75, 23);
-            this.btnAboutLogDir.TabIndex = 3;
-            this.btnAboutLogDir.Text = "Logs";
-            this.btnAboutLogDir.UseVisualStyleBackColor = true;
-            this.btnAboutLogDir.Click += new System.EventHandler(this.btnAboutLogDir_Click);
+            this.linkLoggingFormat.AutoSize = true;
+            this.linkLoggingFormat.Location = new System.Drawing.Point(17, 275);
+            this.linkLoggingFormat.Name = "linkLoggingFormat";
+            this.linkLoggingFormat.Size = new System.Drawing.Size(161, 13);
+            this.linkLoggingFormat.TabIndex = 9;
+            this.linkLoggingFormat.TabStop = true;
+            this.linkLoggingFormat.Text = "Log Format Conversion Patterns.";
+            this.linkLoggingFormat.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLoggingFormat_LinkClicked);
             // 
-            // lblAboutAppInfo
+            // btnLoggingSave
             // 
-            this.lblAboutAppInfo.Location = new System.Drawing.Point(3, 166);
-            this.lblAboutAppInfo.Name = "lblAboutAppInfo";
-            this.lblAboutAppInfo.Size = new System.Drawing.Size(302, 50);
-            this.lblAboutAppInfo.TabIndex = 2;
-            this.lblAboutAppInfo.Text = "{0}\r\n{1}\r\n{3}";
-            this.lblAboutAppInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnLoggingSave.Location = new System.Drawing.Point(213, 352);
+            this.btnLoggingSave.Name = "btnLoggingSave";
+            this.btnLoggingSave.Size = new System.Drawing.Size(75, 23);
+            this.btnLoggingSave.TabIndex = 8;
+            this.btnLoggingSave.TabStop = false;
+            this.btnLoggingSave.Text = "Save";
+            this.btnLoggingSave.UseVisualStyleBackColor = true;
+            this.btnLoggingSave.Click += new System.EventHandler(this.btnLoggingSave_Click);
             // 
-            // btnAboutExportsDir
+            // gbLoggingService
             // 
-            this.btnAboutExportsDir.Location = new System.Drawing.Point(117, 294);
-            this.btnAboutExportsDir.Name = "btnAboutExportsDir";
-            this.btnAboutExportsDir.Size = new System.Drawing.Size(75, 23);
-            this.btnAboutExportsDir.TabIndex = 5;
-            this.btnAboutExportsDir.Text = "Exports";
-            this.btnAboutExportsDir.UseVisualStyleBackColor = true;
-            this.btnAboutExportsDir.Click += new System.EventHandler(this.btnAboutExportsDir_Click);
+            this.gbLoggingService.Controls.Add(this.lblLoggingServiceSizeMB);
+            this.gbLoggingService.Controls.Add(this.lblLoggingServiceFormat);
+            this.gbLoggingService.Controls.Add(this.numLoggingServiceSize);
+            this.gbLoggingService.Controls.Add(this.lblLoggingServiceSize);
+            this.gbLoggingService.Controls.Add(this.txtLoggingServiceFormat);
+            this.gbLoggingService.Controls.Add(this.cbLoggingServiceLevel);
+            this.gbLoggingService.Controls.Add(this.lblLoggingServiceLevel);
+            this.gbLoggingService.Location = new System.Drawing.Point(20, 144);
+            this.gbLoggingService.Name = "gbLoggingService";
+            this.gbLoggingService.Size = new System.Drawing.Size(268, 118);
+            this.gbLoggingService.TabIndex = 1;
+            this.gbLoggingService.TabStop = false;
+            this.gbLoggingService.Text = "Service Configuration";
+            // 
+            // lblLoggingServiceSizeMB
+            // 
+            this.lblLoggingServiceSizeMB.AutoSize = true;
+            this.lblLoggingServiceSizeMB.Location = new System.Drawing.Point(223, 82);
+            this.lblLoggingServiceSizeMB.Name = "lblLoggingServiceSizeMB";
+            this.lblLoggingServiceSizeMB.Size = new System.Drawing.Size(23, 13);
+            this.lblLoggingServiceSizeMB.TabIndex = 9;
+            this.lblLoggingServiceSizeMB.Text = "MB";
+            // 
+            // lblLoggingServiceFormat
+            // 
+            this.lblLoggingServiceFormat.AutoSize = true;
+            this.lblLoggingServiceFormat.Location = new System.Drawing.Point(14, 57);
+            this.lblLoggingServiceFormat.Name = "lblLoggingServiceFormat";
+            this.lblLoggingServiceFormat.Size = new System.Drawing.Size(63, 13);
+            this.lblLoggingServiceFormat.TabIndex = 4;
+            this.lblLoggingServiceFormat.Text = "Log Format:";
+            // 
+            // numLoggingServiceSize
+            // 
+            this.numLoggingServiceSize.Location = new System.Drawing.Point(83, 80);
+            this.numLoggingServiceSize.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numLoggingServiceSize.Name = "numLoggingServiceSize";
+            this.numLoggingServiceSize.Size = new System.Drawing.Size(134, 20);
+            this.numLoggingServiceSize.TabIndex = 8;
+            this.numLoggingServiceSize.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // lblLoggingServiceSize
+            // 
+            this.lblLoggingServiceSize.AutoSize = true;
+            this.lblLoggingServiceSize.Location = new System.Drawing.Point(5, 82);
+            this.lblLoggingServiceSize.Name = "lblLoggingServiceSize";
+            this.lblLoggingServiceSize.Size = new System.Drawing.Size(72, 13);
+            this.lblLoggingServiceSize.TabIndex = 7;
+            this.lblLoggingServiceSize.Text = "Max File Size:";
+            // 
+            // txtLoggingServiceFormat
+            // 
+            this.txtLoggingServiceFormat.Location = new System.Drawing.Point(83, 54);
+            this.txtLoggingServiceFormat.Name = "txtLoggingServiceFormat";
+            this.txtLoggingServiceFormat.Size = new System.Drawing.Size(163, 20);
+            this.txtLoggingServiceFormat.TabIndex = 4;
+            // 
+            // cbLoggingServiceLevel
+            // 
+            this.cbLoggingServiceLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLoggingServiceLevel.FormattingEnabled = true;
+            this.cbLoggingServiceLevel.Items.AddRange(new object[] {
+            "ALL",
+            "DEBUG",
+            "INFO",
+            "WARN",
+            "ERROR",
+            "FATAL"});
+            this.cbLoggingServiceLevel.Location = new System.Drawing.Point(83, 27);
+            this.cbLoggingServiceLevel.Name = "cbLoggingServiceLevel";
+            this.cbLoggingServiceLevel.Size = new System.Drawing.Size(163, 21);
+            this.cbLoggingServiceLevel.TabIndex = 2;
+            // 
+            // lblLoggingServiceLevel
+            // 
+            this.lblLoggingServiceLevel.AutoSize = true;
+            this.lblLoggingServiceLevel.Location = new System.Drawing.Point(20, 30);
+            this.lblLoggingServiceLevel.Name = "lblLoggingServiceLevel";
+            this.lblLoggingServiceLevel.Size = new System.Drawing.Size(57, 13);
+            this.lblLoggingServiceLevel.TabIndex = 2;
+            this.lblLoggingServiceLevel.Text = "Log Level:";
+            // 
+            // gbLoggingGUI
+            // 
+            this.gbLoggingGUI.Controls.Add(this.lblLoggingGUISizeMB);
+            this.gbLoggingGUI.Controls.Add(this.numLoggingGUISize);
+            this.gbLoggingGUI.Controls.Add(this.lblLoggingGUISize);
+            this.gbLoggingGUI.Controls.Add(this.txtLoggingGUIFormat);
+            this.gbLoggingGUI.Controls.Add(this.lblLoggingGUIFormat);
+            this.gbLoggingGUI.Controls.Add(this.cbLoggingGUILevel);
+            this.gbLoggingGUI.Controls.Add(this.lblLoggingGUILevel);
+            this.gbLoggingGUI.Location = new System.Drawing.Point(20, 20);
+            this.gbLoggingGUI.Name = "gbLoggingGUI";
+            this.gbLoggingGUI.Size = new System.Drawing.Size(268, 118);
+            this.gbLoggingGUI.TabIndex = 0;
+            this.gbLoggingGUI.TabStop = false;
+            this.gbLoggingGUI.Text = "GUI Configuration";
+            // 
+            // lblLoggingGUISizeMB
+            // 
+            this.lblLoggingGUISizeMB.AutoSize = true;
+            this.lblLoggingGUISizeMB.Location = new System.Drawing.Point(223, 82);
+            this.lblLoggingGUISizeMB.Name = "lblLoggingGUISizeMB";
+            this.lblLoggingGUISizeMB.Size = new System.Drawing.Size(23, 13);
+            this.lblLoggingGUISizeMB.TabIndex = 6;
+            this.lblLoggingGUISizeMB.Text = "MB";
+            // 
+            // numLoggingGUISize
+            // 
+            this.numLoggingGUISize.Location = new System.Drawing.Point(83, 80);
+            this.numLoggingGUISize.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numLoggingGUISize.Name = "numLoggingGUISize";
+            this.numLoggingGUISize.Size = new System.Drawing.Size(134, 20);
+            this.numLoggingGUISize.TabIndex = 5;
+            this.numLoggingGUISize.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // lblLoggingGUISize
+            // 
+            this.lblLoggingGUISize.AutoSize = true;
+            this.lblLoggingGUISize.Location = new System.Drawing.Point(5, 82);
+            this.lblLoggingGUISize.Name = "lblLoggingGUISize";
+            this.lblLoggingGUISize.Size = new System.Drawing.Size(72, 13);
+            this.lblLoggingGUISize.TabIndex = 4;
+            this.lblLoggingGUISize.Text = "Max File Size:";
+            // 
+            // txtLoggingGUIFormat
+            // 
+            this.txtLoggingGUIFormat.Location = new System.Drawing.Point(83, 54);
+            this.txtLoggingGUIFormat.Name = "txtLoggingGUIFormat";
+            this.txtLoggingGUIFormat.Size = new System.Drawing.Size(163, 20);
+            this.txtLoggingGUIFormat.TabIndex = 3;
+            // 
+            // lblLoggingGUIFormat
+            // 
+            this.lblLoggingGUIFormat.AutoSize = true;
+            this.lblLoggingGUIFormat.Location = new System.Drawing.Point(14, 57);
+            this.lblLoggingGUIFormat.Name = "lblLoggingGUIFormat";
+            this.lblLoggingGUIFormat.Size = new System.Drawing.Size(63, 13);
+            this.lblLoggingGUIFormat.TabIndex = 2;
+            this.lblLoggingGUIFormat.Text = "Log Format:";
+            // 
+            // cbLoggingGUILevel
+            // 
+            this.cbLoggingGUILevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLoggingGUILevel.FormattingEnabled = true;
+            this.cbLoggingGUILevel.Items.AddRange(new object[] {
+            "ALL",
+            "DEBUG",
+            "INFO",
+            "WARN",
+            "ERROR",
+            "FATAL"});
+            this.cbLoggingGUILevel.Location = new System.Drawing.Point(83, 27);
+            this.cbLoggingGUILevel.Name = "cbLoggingGUILevel";
+            this.cbLoggingGUILevel.Size = new System.Drawing.Size(163, 21);
+            this.cbLoggingGUILevel.TabIndex = 1;
+            // 
+            // lblLoggingGUILevel
+            // 
+            this.lblLoggingGUILevel.AutoSize = true;
+            this.lblLoggingGUILevel.Location = new System.Drawing.Point(20, 30);
+            this.lblLoggingGUILevel.Name = "lblLoggingGUILevel";
+            this.lblLoggingGUILevel.Size = new System.Drawing.Size(57, 13);
+            this.lblLoggingGUILevel.TabIndex = 0;
+            this.lblLoggingGUILevel.Text = "Log Level:";
+            // 
+            // tabHelp
+            // 
+            this.tabHelp.Controls.Add(this.btnHelpGuides);
+            this.tabHelp.Controls.Add(this.btnHelpReleases);
+            this.tabHelp.Controls.Add(this.btnHelpSupport);
+            this.tabHelp.Controls.Add(this.btnHelpExportsDir);
+            this.tabHelp.Controls.Add(this.btnHelpConfigDir);
+            this.tabHelp.Controls.Add(this.btnHelpLogDir);
+            this.tabHelp.Controls.Add(this.lblHelpAppInfo);
+            this.tabHelp.Controls.Add(this.pictureBox1);
+            this.tabHelp.Location = new System.Drawing.Point(4, 22);
+            this.tabHelp.Name = "tabHelp";
+            this.tabHelp.Size = new System.Drawing.Size(308, 381);
+            this.tabHelp.TabIndex = 3;
+            this.tabHelp.Text = "Help";
+            this.tabHelp.UseVisualStyleBackColor = true;
+            // 
+            // btnHelpGuides
+            // 
+            this.btnHelpGuides.Location = new System.Drawing.Point(210, 166);
+            this.btnHelpGuides.Name = "btnHelpGuides";
+            this.btnHelpGuides.Size = new System.Drawing.Size(75, 23);
+            this.btnHelpGuides.TabIndex = 9;
+            this.btnHelpGuides.Text = "Guides";
+            this.btnHelpGuides.UseVisualStyleBackColor = true;
+            this.btnHelpGuides.Click += new System.EventHandler(this.btnHelpGuides_Click);
+            // 
+            // btnHelpReleases
+            // 
+            this.btnHelpReleases.Location = new System.Drawing.Point(117, 166);
+            this.btnHelpReleases.Name = "btnHelpReleases";
+            this.btnHelpReleases.Size = new System.Drawing.Size(75, 23);
+            this.btnHelpReleases.TabIndex = 8;
+            this.btnHelpReleases.Text = "Releases";
+            this.btnHelpReleases.UseVisualStyleBackColor = true;
+            this.btnHelpReleases.Click += new System.EventHandler(this.btnHelpReleases_Click);
+            // 
+            // btnHelpSupport
+            // 
+            this.btnHelpSupport.Location = new System.Drawing.Point(20, 166);
+            this.btnHelpSupport.Name = "btnHelpSupport";
+            this.btnHelpSupport.Size = new System.Drawing.Size(75, 23);
+            this.btnHelpSupport.TabIndex = 7;
+            this.btnHelpSupport.Text = "Support";
+            this.btnHelpSupport.UseVisualStyleBackColor = true;
+            this.btnHelpSupport.Click += new System.EventHandler(this.btnHelpSupport_Click);
+            // 
+            // btnHelpExportsDir
+            // 
+            this.btnHelpExportsDir.Location = new System.Drawing.Point(117, 215);
+            this.btnHelpExportsDir.Name = "btnHelpExportsDir";
+            this.btnHelpExportsDir.Size = new System.Drawing.Size(75, 23);
+            this.btnHelpExportsDir.TabIndex = 5;
+            this.btnHelpExportsDir.Text = "Exports";
+            this.btnHelpExportsDir.UseVisualStyleBackColor = true;
+            this.btnHelpExportsDir.Click += new System.EventHandler(this.btnHelpExportsDir_Click);
+            // 
+            // btnHelpConfigDir
+            // 
+            this.btnHelpConfigDir.Location = new System.Drawing.Point(210, 215);
+            this.btnHelpConfigDir.Name = "btnHelpConfigDir";
+            this.btnHelpConfigDir.Size = new System.Drawing.Size(75, 23);
+            this.btnHelpConfigDir.TabIndex = 4;
+            this.btnHelpConfigDir.Text = "Configuraton";
+            this.btnHelpConfigDir.UseVisualStyleBackColor = true;
+            this.btnHelpConfigDir.Click += new System.EventHandler(this.btnHelpConfigDir_Click);
+            // 
+            // btnHelpLogDir
+            // 
+            this.btnHelpLogDir.Location = new System.Drawing.Point(20, 215);
+            this.btnHelpLogDir.Name = "btnHelpLogDir";
+            this.btnHelpLogDir.Size = new System.Drawing.Size(75, 23);
+            this.btnHelpLogDir.TabIndex = 3;
+            this.btnHelpLogDir.Text = "Logs";
+            this.btnHelpLogDir.UseVisualStyleBackColor = true;
+            this.btnHelpLogDir.Click += new System.EventHandler(this.btnHelpLogDir_Click);
+            // 
+            // lblHelpAppInfo
+            // 
+            this.lblHelpAppInfo.Location = new System.Drawing.Point(3, 317);
+            this.lblHelpAppInfo.Name = "lblHelpAppInfo";
+            this.lblHelpAppInfo.Size = new System.Drawing.Size(302, 64);
+            this.lblHelpAppInfo.TabIndex = 2;
+            this.lblHelpAppInfo.Text = "{0}\r\n{1}";
+            this.lblHelpAppInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Image = global::SnowPlatformMonitor.Configurator.Properties.Resources.logo;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(308, 127);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
             // 
             // frmMain
             // 
@@ -848,12 +1347,13 @@
             this.ClientSize = new System.Drawing.Size(340, 431);
             this.Controls.Add(this.tabControlMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(356, 683);
             this.MinimumSize = new System.Drawing.Size(356, 470);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "{0} - {1}";
+            this.Text = "AppName AppType";
             this.tabControlMain.ResumeLayout(false);
             this.tabConfiguration.ResumeLayout(false);
             this.tabConfiguration.PerformLayout();
@@ -874,9 +1374,21 @@
             this.gbServersSLM.PerformLayout();
             this.gbServersSQL.ResumeLayout(false);
             this.gbServersSQL.PerformLayout();
+            this.tabSMTP.ResumeLayout(false);
+            this.tabSMTP.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSMTPPort)).EndInit();
             this.tabServiceManager.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbServiceMngrStatus)).EndInit();
-            this.tabAbout.ResumeLayout(false);
+            this.tabLogging.ResumeLayout(false);
+            this.tabLogging.PerformLayout();
+            this.gbLoggingService.ResumeLayout(false);
+            this.gbLoggingService.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numLoggingServiceSize)).EndInit();
+            this.gbLoggingGUI.ResumeLayout(false);
+            this.gbLoggingGUI.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numLoggingGUISize)).EndInit();
+            this.tabHelp.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -887,7 +1399,7 @@
         private System.Windows.Forms.TabPage tabServers;
         private System.Windows.Forms.TabPage tabSMTP;
         private System.Windows.Forms.TabPage tabServiceManager;
-        private System.Windows.Forms.TabPage tabAbout;
+        private System.Windows.Forms.TabPage tabHelp;
         private System.Windows.Forms.TextBox txtServersSLM;
         private System.Windows.Forms.Label lblServersSLM;
         private System.Windows.Forms.Label lblServersSql;
@@ -913,9 +1425,9 @@
         private System.Windows.Forms.CheckBox cbConfigINVStorage;
         private System.Windows.Forms.CheckBox cbConfigSLMStorage;
         private System.Windows.Forms.Button btnConfigSave;
-        private System.Windows.Forms.Label lblAboutAppInfo;
-        private System.Windows.Forms.Button btnAboutLogDir;
-        private System.Windows.Forms.Button btnAboutConfigDir;
+        private System.Windows.Forms.Label lblHelpAppInfo;
+        private System.Windows.Forms.Button btnHelpLogDir;
+        private System.Windows.Forms.Button btnHelpConfigDir;
         private System.Windows.Forms.GroupBox gbServersSLM;
         private System.Windows.Forms.TextBox txtServersSLMDrive;
         private System.Windows.Forms.GroupBox gbServersINV;
@@ -948,7 +1460,49 @@
         private System.Windows.Forms.Button btnServiceMngrStop;
         private System.Windows.Forms.Button btnServiceMngrInstall;
         private System.Windows.Forms.Button btnServiceMngrUninstall;
-        private System.Windows.Forms.Button btnAboutExportsDir;
+        private System.Windows.Forms.Button btnHelpExportsDir;
+        private System.Windows.Forms.TabPage tabLogging;
+        private System.Windows.Forms.GroupBox gbLoggingService;
+        private System.Windows.Forms.GroupBox gbLoggingGUI;
+        private System.Windows.Forms.Label lblLoggingGUILevel;
+        private System.Windows.Forms.ComboBox cbLoggingGUILevel;
+        private System.Windows.Forms.ComboBox cbLoggingServiceLevel;
+        private System.Windows.Forms.Label lblLoggingServiceLevel;
+        private System.Windows.Forms.TextBox txtLoggingGUIFormat;
+        private System.Windows.Forms.Label lblLoggingGUIFormat;
+        private System.Windows.Forms.Label lblLoggingServiceFormat;
+        private System.Windows.Forms.TextBox txtLoggingServiceFormat;
+        private System.Windows.Forms.Label lblLoggingGUISizeMB;
+        private System.Windows.Forms.NumericUpDown numLoggingGUISize;
+        private System.Windows.Forms.Label lblLoggingGUISize;
+        private System.Windows.Forms.Label lblLoggingServiceSizeMB;
+        private System.Windows.Forms.NumericUpDown numLoggingServiceSize;
+        private System.Windows.Forms.Label lblLoggingServiceSize;
+        private System.Windows.Forms.Button btnLoggingSave;
+        private System.Windows.Forms.LinkLabel linkLoggingFormat;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnHelpReleases;
+        private System.Windows.Forms.Button btnHelpSupport;
+        private System.Windows.Forms.Button btnHelpGuides;
+        private System.Windows.Forms.Label lblSMTPSubject;
+        private System.Windows.Forms.TextBox txtSMTPSubject;
+        private System.Windows.Forms.CheckBox cbxSMTPEnableSSL;
+        private System.Windows.Forms.NumericUpDown numSMTPPort;
+        private System.Windows.Forms.Button btnSMTPTest;
+        private System.Windows.Forms.Button btnSMTPSave;
+        private System.Windows.Forms.Label lblSMTPcc;
+        private System.Windows.Forms.TextBox txtSMTPcc;
+        private System.Windows.Forms.Label lbSMTPSendTo;
+        private System.Windows.Forms.TextBox txtSMTPSendTo;
+        private System.Windows.Forms.Label lblSMTPSender;
+        private System.Windows.Forms.TextBox txtSMTPSender;
+        private System.Windows.Forms.Label lblSMTPHost;
+        private System.Windows.Forms.TextBox txtSMTPHost;
+        private System.Windows.Forms.Label lblSMTPPort;
+        private System.Windows.Forms.Label lblSMTPPassword;
+        private System.Windows.Forms.TextBox txtSMTPPassword;
+        private System.Windows.Forms.Label lblSMTPUsername;
+        private System.Windows.Forms.TextBox txtSMTPUsername;
     }
 }
 
