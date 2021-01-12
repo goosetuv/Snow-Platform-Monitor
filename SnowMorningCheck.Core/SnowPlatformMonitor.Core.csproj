@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\LicenseManager.cs" />
+    <Compile Include="Classes\Mailer.cs" />
     <Compile Include="Classes\ServiceManager.cs" />
     <Compile Include="Classes\SqlRunner.cs" />
     <Compile Include="Classes\WindowsServices.cs" />
@@ -102,7 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\SqlScripts.resx">
@@ -115,7 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Credits.txt" />
-    <None Include="Resources\email.html" />
+    <EmbeddedResource Include="Resources\email.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

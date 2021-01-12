@@ -142,6 +142,42 @@ namespace SnowPlatformMonitor.Core.Classes
             }
         }
 
+        /// <summary>
+        /// Returns the additional methods that need added into a datatable (such as, DirectoryCount, SRSImportDate etc.)
+        /// </summary>
+        /// <returns></returns>
+        public bool GetExtras(bool SRS, bool InventoryCount)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Component");
+            dt.Columns.Add("Value");
+            if(SRS)
+            {
+                dt.Rows.Add("SRSImportDate", GetSRSImportDate());
+            }
+            if(InventoryCount)
+            {
+                dt.Rows.Add("InventoryDirectoryCount", GetInventoryDirectoryCount());
+            }
+
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName)))
+            {
+                pck.Workbook.Worksheets.Add("Extras").Cells["A1"].LoadFromDataTable(dt, true).AutoFitColumns();
+                TabColor(pck, "Default", worksheetName: "Extras");
+                pck.Save();
+            }
+
+            if (File.Exists(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public string GetInventoryDirectoryCount()
         {
             InventoryServer inventoryServer = new InventoryServer();

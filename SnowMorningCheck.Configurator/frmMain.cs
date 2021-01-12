@@ -52,6 +52,7 @@ namespace SnowPlatformMonitor.Configurator
                     "ScheduleSeconds",
                     "DataUpdateJobStatus",
                     "Office365AdobeImportTables",
+                    "SRSImportDate",
                     "LicenseManagerServices",
                     "LicenseManagerDeviceReporting",
                     "LicenseManagerDeviceThreshold",
@@ -77,6 +78,7 @@ namespace SnowPlatformMonitor.Configurator
                     numServiceMScheduleTimeSecs.Value.ToString(),
                     cbConfigDUJStatus.Checked.ToString(),
                     cbConfigOffice365Adobe.Checked.ToString(),
+                    cbConfigSRSImport.Checked.ToString(),
                     cbConfigSLMServices.Checked.ToString(),
                     cbConfigSLMDeviceReporting.Checked.ToString(),
                     numConfigAdvSLMDeviceThreshold.Value.ToString(),
@@ -245,6 +247,19 @@ namespace SnowPlatformMonitor.Configurator
                 MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnSMTPTest_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Mailer m = new Mailer();
+                m.SendTestEmail(ProductVersion);
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+            }
+        }
         #endregion
 
         #region Service
@@ -339,6 +354,8 @@ namespace SnowPlatformMonitor.Configurator
                 svcLog4Net.SelectSingleNode("//log4net/appender/layout/conversionPattern").Attributes["value"].Value = txtLoggingServiceFormat.Text;
                 svcLog4Net.SelectSingleNode("//log4net/appender/maximumFileSize").Attributes["value"].Value = string.Format("{0}{1}", numLoggingServiceSize.Value, "MB");
                 svcLog4Net.Save("SnowPlatformMonitor.Service.exe.config");
+
+                MessageBox.Show("Configuration saved", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             } catch (Exception ex)
             {
                 log.Error(ex);
@@ -464,6 +481,7 @@ namespace SnowPlatformMonitor.Configurator
                     // Core
                     cbConfigDUJStatus.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "DataUpdateJobStatus"));
                     cbConfigOffice365Adobe.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "Office365AdobeImportTables"));
+                    cbConfigSRSImport.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "SRSImportDate"));
                     log.Debug("Core values have been populated from Configuration File");
 
                     // License Manager
@@ -623,6 +641,18 @@ namespace SnowPlatformMonitor.Configurator
             }
         }
 
+        private void LoadEmailTemplates()
+        {
+            try
+            {
+                Mailer m = new Mailer();
+                m.OnLoad();
+            } catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+        }
+
         private void AppLoad()
         {
             CheckForUpdates();
@@ -632,6 +662,7 @@ namespace SnowPlatformMonitor.Configurator
             LoadSMTPConfiguration();
             LoadLogging();
             LoadServiceStatus();
+            LoadEmailTemplates();
             log.Debug("AppLoad completed");
         }
 
@@ -654,23 +685,5 @@ namespace SnowPlatformMonitor.Configurator
         #endregion
 
         #endregion
-
-
-        //debug, remove in release
-        private void button1_Click(object sender, EventArgs e)
-        {
-            DataRetriever exporter = new DataRetriever();
-            exporter.GetDataUpdateJob();
-            exporter.GetWindowsServices("Inventory", "localhost");
-            exporter.GetConnectorImportTables();
-            exporter.GetReportedToday(true, true);
-            exporter.GetWindowsStorage("License Manager", txtServersSLM.Text);
-            exporter.GetWindowsStorage("Inventory Server", txtServersINV.Text);
-
-            MessageBox.Show(exporter.GetSRSImportDate());
-            MessageBox.Show(exporter.GetInventoryDirectoryCount());
-        }
-
-
     }
 }

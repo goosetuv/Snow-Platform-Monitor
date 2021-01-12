@@ -160,24 +160,37 @@ namespace SnowPlatformMonitor.Service
 
                 bool DataUpdateJobStatus = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "DataUpdateJobStatus"));
                 log.Debug("DataUpdateJobStatus bool value set");
+
                 bool Office365AdobeImportTables = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "Office365AdobeImportTables"));
                 log.Debug("Office365AdobeImportTables bool value set");
+
+                bool SRSImportDate = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "SRSImportDate"));
+                log.Debug("SRSImportDate bool value set");
+
                 bool LicenseManagerServices = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "LicenseManagerServices"));
                 log.Debug("LicenseManagerServices bool value set");
+
                 bool LicenseManagerDeviceReporting = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "LicenseManagerDeviceReporting"));
                 log.Debug("LicenseManagerDeviceReporting bool value set");
+
                 bool LicenseManagerStorage = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "LicenseManagerStorage"));
                 log.Debug("LicenseManagerStorage bool value set");
+
                 bool InventoryServerServices = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "InventoryServerServices"));
                 log.Debug("InventoryServerServices bool value set");
+
                 bool InventoryServerStorage = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "InventoryServerStorage"));
                 log.Debug("InventoryServerStorage bool value set");
+
                 bool InventoryServerDeviceReporting = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "InventoryServerDeviceReporting"));
                 log.Debug("InventoryServerDeviceReporting bool value set");
+
                 bool InventoryServerProcessing = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "InventoryServerProcessing"));
                 log.Debug("InventoryServerProcessing bool value set");
+
                 string LicenseManagerServer = Utilities.ReadXMLValue(ServerConfig, "LicenseManager");
                 log.Debug("LicenseManagerServer string value set");
+
                 string InventoryServer = Utilities.ReadXMLValue(ServerConfig, "InventoryServer");
                 log.Debug("InventoryServer string value set");
 
@@ -247,9 +260,25 @@ namespace SnowPlatformMonitor.Service
                 {
                     if (dataRetriever.GetReportedToday(sinv: true))
                     {
-                        log.Info("SnowInvenotry Device Reporting exported");
+                        log.Info("SnowInventory Device Reporting exported");
                     }
                 }
+
+                if(SRSImportDate == true || InventoryServerProcessing == true)
+                {
+                    if (dataRetriever.GetExtras(SRSImportDate, InventoryServerProcessing))
+                    {
+                        log.Info("GetExtras exported");
+                    }
+                }
+
+
+                Mailer m = new Mailer();
+                string filename = dc.Export + DateTime.Now.ToString(dataRetriever.DateFormat) + dataRetriever.ExportName;
+                log.Debug("New mailer initialized");
+
+                m.SendEmail(filename, Assembly.GetExecutingAssembly().GetName().Version.ToString());
+                log.Debug("Email command sent");
 
                 log.Info("Schedule will now be refreshed for next run!");
                 _timer.Dispose();

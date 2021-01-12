@@ -107,7 +107,6 @@
             this.btnServiceMngrInstall = new System.Windows.Forms.Button();
             this.btnServiceMngrStop = new System.Windows.Forms.Button();
             this.btnServiceMngrStart = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.pbServiceMngrStatus = new System.Windows.Forms.PictureBox();
             this.tabLogging = new System.Windows.Forms.TabPage();
             this.linkLoggingFormat = new System.Windows.Forms.LinkLabel();
@@ -137,6 +136,7 @@
             this.btnHelpLogDir = new System.Windows.Forms.Button();
             this.lblHelpAppInfo = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.cbConfigSRSImport = new System.Windows.Forms.CheckBox();
             this.tabControlMain.SuspendLayout();
             this.tabConfiguration.SuspendLayout();
             this.gbConfigAdvanced.SuspendLayout();
@@ -184,6 +184,7 @@
             // 
             // tabConfiguration
             // 
+            this.tabConfiguration.Controls.Add(this.cbConfigSRSImport);
             this.tabConfiguration.Controls.Add(this.btnConfigAdvanced);
             this.tabConfiguration.Controls.Add(this.btnConfigSave);
             this.tabConfiguration.Controls.Add(this.cbConfigLogInterrogator);
@@ -233,7 +234,7 @@
             // 
             this.cbConfigLogInterrogator.AutoSize = true;
             this.cbConfigLogInterrogator.Enabled = false;
-            this.cbConfigLogInterrogator.Location = new System.Drawing.Point(20, 136);
+            this.cbConfigLogInterrogator.Location = new System.Drawing.Point(20, 159);
             this.cbConfigLogInterrogator.Name = "cbConfigLogInterrogator";
             this.cbConfigLogInterrogator.Size = new System.Drawing.Size(147, 17);
             this.cbConfigLogInterrogator.TabIndex = 18;
@@ -455,7 +456,7 @@
             // cbConfigINVStorage
             // 
             this.cbConfigINVStorage.AutoSize = true;
-            this.cbConfigINVStorage.Location = new System.Drawing.Point(20, 297);
+            this.cbConfigINVStorage.Location = new System.Drawing.Point(20, 320);
             this.cbConfigINVStorage.Name = "cbConfigINVStorage";
             this.cbConfigINVStorage.Size = new System.Drawing.Size(174, 17);
             this.cbConfigINVStorage.TabIndex = 7;
@@ -466,7 +467,7 @@
             // cbConfigSLMStorage
             // 
             this.cbConfigSLMStorage.AutoSize = true;
-            this.cbConfigSLMStorage.Location = new System.Drawing.Point(20, 205);
+            this.cbConfigSLMStorage.Location = new System.Drawing.Point(20, 228);
             this.cbConfigSLMStorage.Name = "cbConfigSLMStorage";
             this.cbConfigSLMStorage.Size = new System.Drawing.Size(212, 17);
             this.cbConfigSLMStorage.TabIndex = 6;
@@ -477,7 +478,7 @@
             // cbConfigINVProcessingDir
             // 
             this.cbConfigINVProcessingDir.AutoSize = true;
-            this.cbConfigINVProcessingDir.Location = new System.Drawing.Point(20, 274);
+            this.cbConfigINVProcessingDir.Location = new System.Drawing.Point(20, 297);
             this.cbConfigINVProcessingDir.Name = "cbConfigINVProcessingDir";
             this.cbConfigINVProcessingDir.Size = new System.Drawing.Size(200, 17);
             this.cbConfigINVProcessingDir.TabIndex = 5;
@@ -488,7 +489,7 @@
             // cbConfigINVServices
             // 
             this.cbConfigINVServices.AutoSize = true;
-            this.cbConfigINVServices.Location = new System.Drawing.Point(20, 228);
+            this.cbConfigINVServices.Location = new System.Drawing.Point(20, 251);
             this.cbConfigINVServices.Name = "cbConfigINVServices";
             this.cbConfigINVServices.Size = new System.Drawing.Size(178, 17);
             this.cbConfigINVServices.TabIndex = 4;
@@ -499,7 +500,7 @@
             // cbConfigINVDeviceReporting
             // 
             this.cbConfigINVDeviceReporting.AutoSize = true;
-            this.cbConfigINVDeviceReporting.Location = new System.Drawing.Point(20, 251);
+            this.cbConfigINVDeviceReporting.Location = new System.Drawing.Point(20, 274);
             this.cbConfigINVDeviceReporting.Name = "cbConfigINVDeviceReporting";
             this.cbConfigINVDeviceReporting.Size = new System.Drawing.Size(186, 17);
             this.cbConfigINVDeviceReporting.TabIndex = 3;
@@ -510,7 +511,7 @@
             // cbConfigSLMDeviceReporting
             // 
             this.cbConfigSLMDeviceReporting.AutoSize = true;
-            this.cbConfigSLMDeviceReporting.Location = new System.Drawing.Point(20, 182);
+            this.cbConfigSLMDeviceReporting.Location = new System.Drawing.Point(20, 205);
             this.cbConfigSLMDeviceReporting.Name = "cbConfigSLMDeviceReporting";
             this.cbConfigSLMDeviceReporting.Size = new System.Drawing.Size(224, 17);
             this.cbConfigSLMDeviceReporting.TabIndex = 2;
@@ -521,7 +522,7 @@
             // cbConfigSLMServices
             // 
             this.cbConfigSLMServices.AutoSize = true;
-            this.cbConfigSLMServices.Location = new System.Drawing.Point(20, 159);
+            this.cbConfigSLMServices.Location = new System.Drawing.Point(20, 182);
             this.cbConfigSLMServices.Name = "cbConfigSLMServices";
             this.cbConfigSLMServices.Size = new System.Drawing.Size(216, 17);
             this.cbConfigSLMServices.TabIndex = 1;
@@ -826,6 +827,7 @@
             this.btnSMTPTest.TabIndex = 37;
             this.btnSMTPTest.Text = "Test";
             this.btnSMTPTest.UseVisualStyleBackColor = true;
+            this.btnSMTPTest.Click += new System.EventHandler(this.btnSMTPTest_Click);
             // 
             // btnSMTPSave
             // 
@@ -949,7 +951,6 @@
             this.tabServiceManager.Controls.Add(this.btnServiceMngrInstall);
             this.tabServiceManager.Controls.Add(this.btnServiceMngrStop);
             this.tabServiceManager.Controls.Add(this.btnServiceMngrStart);
-            this.tabServiceManager.Controls.Add(this.button1);
             this.tabServiceManager.Controls.Add(this.pbServiceMngrStatus);
             this.tabServiceManager.Location = new System.Drawing.Point(4, 22);
             this.tabServiceManager.Name = "tabServiceManager";
@@ -1001,16 +1002,6 @@
             this.btnServiceMngrStart.Text = "Start";
             this.btnServiceMngrStart.UseVisualStyleBackColor = true;
             this.btnServiceMngrStart.Click += new System.EventHandler(this.btnServiceMngrStart_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(9, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Dev";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // pbServiceMngrStatus
             // 
@@ -1339,6 +1330,17 @@
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
+            // cbConfigSRSImport
+            // 
+            this.cbConfigSRSImport.AutoSize = true;
+            this.cbConfigSRSImport.Location = new System.Drawing.Point(20, 136);
+            this.cbConfigSRSImport.Name = "cbConfigSRSImport";
+            this.cbConfigSRSImport.Size = new System.Drawing.Size(106, 17);
+            this.cbConfigSRSImport.TabIndex = 19;
+            this.cbConfigSRSImport.TabStop = false;
+            this.cbConfigSRSImport.Text = "SRS Import Date";
+            this.cbConfigSRSImport.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1434,7 +1436,6 @@
         private System.Windows.Forms.TextBox txtServersINVDrive;
         private System.Windows.Forms.Label lblServersINVDrive;
         private System.Windows.Forms.Label lblServersSLMDrive;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox gbServiceMSchedule;
         private System.Windows.Forms.Label lblServiceMTimeSecs;
         private System.Windows.Forms.Label lblServiceMTimeMins;
@@ -1503,6 +1504,7 @@
         private System.Windows.Forms.TextBox txtSMTPPassword;
         private System.Windows.Forms.Label lblSMTPUsername;
         private System.Windows.Forms.TextBox txtSMTPUsername;
+        private System.Windows.Forms.CheckBox cbConfigSRSImport;
     }
 }
 
