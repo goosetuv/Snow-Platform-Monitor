@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowPlatformMonitor.Core", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowPlatformMonitor.Service", "SnowPlatformMonitor.Service\SnowPlatformMonitor.Service.csproj", "{46DBA673-D017-4A49-80EC-D471C6087751}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SnowPlatformMonitor.Installer", "SnowPlatformMonitor.Installer\SnowPlatformMonitor.Installer.vdproj", "{A9ADE016-903F-4B8F-9317-C490A5073369}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{46DBA673-D017-4A49-80EC-D471C6087751}.Release|Any CPU.Build.0 = Release|Any CPU
 		{46DBA673-D017-4A49-80EC-D471C6087751}.Release|x64.ActiveCfg = Release|Any CPU
 		{46DBA673-D017-4A49-80EC-D471C6087751}.Release|x64.Build.0 = Release|Any CPU
+		{A9ADE016-903F-4B8F-9317-C490A5073369}.Debug|Any CPU.ActiveCfg = Debug
+		{A9ADE016-903F-4B8F-9317-C490A5073369}.Debug|x64.ActiveCfg = Debug
+		{A9ADE016-903F-4B8F-9317-C490A5073369}.Release|Any CPU.ActiveCfg = Release
+		{A9ADE016-903F-4B8F-9317-C490A5073369}.Release|x64.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

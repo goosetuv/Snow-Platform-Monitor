@@ -569,7 +569,7 @@ namespace SnowPlatformMonitor.Configurator
         {
             this.Size = new Size(MinimumSize.Width, MinimumSize.Height);
 
-            lblHelpAppInfo.Text = $"v{ProductVersion}{Environment.NewLine}PRE-RELEASE-BUILD{Environment.NewLine}Copyright (c) 2020 - {DateTime.Now.Year} Laim McKenzie.";
+            lblHelpAppInfo.Text = $"v{ProductVersion}{Environment.NewLine}Copyright (c) 2020 - {DateTime.Now.Year} Laim McKenzie."; // PRE-RELEASE-BUILD{Environment.NewLine}
 
             Text = string.Format("{0} Configurator", ProductName); 
         }

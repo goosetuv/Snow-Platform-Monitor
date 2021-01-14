@@ -10,8 +10,10 @@ using SnowPlatformMonitor.Core.Configuration;
 
 namespace SnowPlatformMonitor.Core.Classes
 {
-    //TODO: Change the Tab Color function, because it sucks.
-    //TODO CONT.: Change validation for when a function runs instead of checking if the file exists lol
+    // TODO (All): Change validation for when a function runs instead of checking if the file exists lol
+    // TODO (TabColor):
+    //      This method really isn't pretty, it gets the job done but it definitely has a performance impact (it must do...)
+    //      This needs updated eventually to a nicer method because it's a mess
 
     public class DataRetriever
     {
@@ -22,6 +24,10 @@ namespace SnowPlatformMonitor.Core.Classes
         public readonly string DateFormat = "ddMMyyyy";
         #endregion
 
+        /// <summary>
+        /// Gets the data update job data
+        /// </summary>
+        /// <returns>Excel Spreadsheet</returns>
         public bool GetDataUpdateJob()
         {
             SqlRunner sqlRunner = new SqlRunner();
@@ -35,7 +41,10 @@ namespace SnowPlatformMonitor.Core.Classes
                 pck.Workbook.Worksheets.Add("Error Severe").Cells["A1"].LoadFromDataTable(sqlRunner.RunSQLDataTable("DataUpdateJobErrorSevere"), true).AutoFitColumns();
                 pck.Workbook.Worksheets.Add("Parallel Step").Cells["A1"].LoadFromDataTable(sqlRunner.RunSQLDataTable("DataUpdateJobParallel"), true).AutoFitColumns();
 
-                TabColor(pck, "RowCount");
+                TabColor(pck, "RowCount", wsName: "Status");
+                TabColor(pck, "RowCount", wsName: "Error Log");
+                TabColor(pck, "RowCount", wsName: "Error Severe");
+                TabColor(pck, "RowCount", wsName: "Parallel Step");
 
                 pck.Save();
             }
@@ -62,7 +71,8 @@ namespace SnowPlatformMonitor.Core.Classes
             {
                 pck.Workbook.Worksheets.Add("Office 365").Cells["A1"].LoadFromDataTable(licenseManager.Office365Import(), true).AutoFitColumns();
                 pck.Workbook.Worksheets.Add("Adobe Creative Cloud").Cells["A1"].LoadFromDataTable(licenseManager.AdobeImport(), true).AutoFitColumns();
-                TabColor(pck, "RowCount");
+                TabColor(pck, "RowCount", wsName: "Office 365");
+                TabColor(pck, "RowCount", wsName: "Adobe Creative Cloud");
 
                 pck.Save();
             }
@@ -128,7 +138,7 @@ namespace SnowPlatformMonitor.Core.Classes
             using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName)))
             {
                 pck.Workbook.Worksheets.Add(type + " Services").Cells["A1"].LoadFromDataTable(dtWindowsServices, true).AutoFitColumns();
-                TabColor(pck, "ServiceCheck");
+                TabColor(pck, "ServiceCheck", wsName: type + " Services");
                 pck.Save();
             }
 
@@ -164,7 +174,7 @@ namespace SnowPlatformMonitor.Core.Classes
             using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName)))
             {
                 pck.Workbook.Worksheets.Add("Extras").Cells["A1"].LoadFromDataTable(dt, true).AutoFitColumns();
-                TabColor(pck, "Default", worksheetName: "Extras");
+                TabColor(pck, "Default", wsName: "Extras");
                 pck.Save();
             }
 
@@ -206,7 +216,7 @@ namespace SnowPlatformMonitor.Core.Classes
             using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName)))
             {
                 pck.Workbook.Worksheets.Add(type + " Storage").Cells["A1"].LoadFromDataTable(dtWindowsStorage, true).AutoFitColumns();
-                TabColor(pck, "Default", worksheetName: type + " Storage");
+                TabColor(pck, "Default", wsName: type + " Storage");
                 pck.Save();
             }
 
@@ -232,67 +242,100 @@ namespace SnowPlatformMonitor.Core.Classes
             return endRow - startRow;
         }
 
+
         /// <summary>
         /// Changes the tab color of an ExcelWorksheet if it has more than 0 rows
         /// </summary>
-        /// <param name="pck">The ExcelPackage</param>
+        /// <param name="pck">Excel Package</param>
+        /// <param name="type">The type of sheet</param>
+        /// <param name="rowCount">How many rows the sheet should have (default: 0)</param>
+        /// <param name="wsName">The name of the specific worksheet (default: blank)</param>
         /// <returns></returns>
-        internal ExcelPackage TabColor(ExcelPackage pck, string type, int rowCount = 0, string worksheetName = "")
+        internal ExcelPackage TabColor(ExcelPackage pck, string type, int rowCount = 0, string wsName = "")
         {
-            foreach (ExcelWorksheet worksheet in pck.Workbook.Worksheets)
+            switch (type)
             {
-                if(type == "RowCount")
-                {
-                    if (GetDimensionRows(worksheet) > 0)
+                case "RowCount":
+                    foreach (ExcelWorksheet ws in pck.Workbook.Worksheets)
                     {
-                        worksheet.TabColor = Color.Red;
-                    }
-                    else
-                    {
-                        worksheet.TabColor = Color.Green;
-                    }
-                }
-
-                if (type == "DeviceReporting" && worksheet.Name == worksheetName)
-                {
-                    if (GetDimensionRows(worksheet) < rowCount)
-                    {
-                        worksheet.TabColor = Color.Red;
-                    }
-                    else
-                    {
-                        worksheet.TabColor = Color.Green;
-                    }
-                }
-
-                if (type == "ServiceCheck")
-                {
-                    bool StoppedService = false;
-
-                    foreach (var worksheetCell in worksheet.Cells)
-                    {
-                        if (worksheetCell.Value.ToString() == "Stopped")
+                        if(ws.Name == wsName)
                         {
-                            StoppedService = true;
+                            if (GetDimensionRows(ws) > 0)
+                            {
+                                ws.TabColor = Color.Red;
+                            }
+                            else
+                            {
+                                ws.TabColor = Color.Green;
+                            }
                         }
                     }
+                    return pck;
+                    //break;
+                case "DeviceReporting":
 
-                    if(StoppedService == true)
+                    foreach (ExcelWorksheet ws in pck.Workbook.Worksheets)
                     {
-                        worksheet.TabColor = Color.Red;
-                    } else
-                    {
-                        worksheet.TabColor = Color.Green;
+                        if(ws.Name == wsName)
+                        {
+                            if (GetDimensionRows(ws) < rowCount)
+                            {
+                                ws.TabColor = Color.Red;
+                            }
+                            else
+                            {
+                                ws.TabColor = Color.Green;
+                            }
+                        }
                     }
-                }
+                    return pck;
+                    //break;
+                case "ServiceCheck":
 
-                if (type == "Default" && worksheet.Name == worksheetName)
-                {
-                    worksheet.TabColor = Color.Orange;
-                }
+                    foreach (ExcelWorksheet ws in pck.Workbook.Worksheets)
+                    {
+                        if(ws.Name == wsName)
+                        {
+                            bool StoppedService = false;
+
+                            foreach (var worksheetCell in ws.Cells)
+                            {
+                                if (worksheetCell.Value.ToString() == "Stopped")
+                                {
+                                    StoppedService = true;
+                                }
+                            }
+
+                            if (StoppedService == true)
+                            {
+                                ws.TabColor = Color.Red;
+                            }
+                            else
+                            {
+                                ws.TabColor = Color.Green;
+                            }
+                        }
+                    }
+                    return pck;
+                    //break;
+                case "Default":
+                    foreach (ExcelWorksheet ws in pck.Workbook.Worksheets)
+                    {
+                        if(ws.Name == wsName)
+                        {
+                            ws.TabColor = Color.Orange;
+                        }
+                    }
+                    return pck;
+                    //break;
+                default:
+                    foreach (ExcelWorksheet ws in pck.Workbook.Worksheets)
+                    {
+                        ws.TabColor = Color.Orange;
+                    }
+                    return pck;
+                    //break;
             }
-
-            return pck;
         }
     }
 }
