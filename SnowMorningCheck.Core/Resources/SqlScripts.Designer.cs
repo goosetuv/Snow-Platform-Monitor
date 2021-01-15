@@ -70,7 +70,8 @@ namespace SnowPlatformMonitor.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT TOP 5 * FROM SnowLicenseManager.dbo.tblErrorLog
+        ///   Looks up a localized string similar to SELECT * FROM SnowLicenseManager.dbo.tblErrorLog
+        ///WHERE convert(varchar(10), LogDate, 102) = convert(varchar(10), getdate(), 102) OR convert(varchar(10), LogDate, 102) = convert(varchar(10), getdate() - 1, 102)
         ///ORDER BY logDate DESC.
         /// </summary>
         public static string DataUpdateJobErrorLog {
@@ -80,7 +81,11 @@ namespace SnowPlatformMonitor.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT TOP 5 * FROM msdb.dbo.sysjobhistory where sql_severity &gt; 0 order by run_date desc, run_time desc.
+        ///   Looks up a localized string similar to SELECT TOP 5 * FROM msdb.dbo.sysjobhistory 
+        ///WHERE
+        ///sql_severity &gt; 0 AND convert(varchar(10), msdb.dbo.agent_datetime(run_date,run_time), 102) = convert(varchar(10), getdate(), 102)
+        ///OR sql_severity &gt; 0 AND convert(varchar(10), msdb.dbo.agent_datetime(run_date,run_time), 102) = convert(varchar(10), getdate() - 1, 102)
+        ///order by run_date desc, run_time desc.
         /// </summary>
         public static string DataUpdateJobErrorSevere {
             get {
@@ -159,7 +164,7 @@ namespace SnowPlatformMonitor.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT TOP 1 UpdatedDate, SRSUpdateDate FROM SnowLicenseManager.dbo.tblApplication
+        ///   Looks up a localized string similar to SELECT TOP 1 SRSUpdateDate FROM SnowLicenseManager.dbo.tblApplication
         ///ORDER BY SRSUpdateDate DESC.
         /// </summary>
         public static string SRSUpdateDate {

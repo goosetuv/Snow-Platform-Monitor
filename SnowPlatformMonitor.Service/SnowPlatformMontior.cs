@@ -158,6 +158,7 @@ namespace SnowPlatformMonitor.Service
                 string ServerConfig = dc.Config + ac.ServerConfig;
                 log.Debug("AppConfig and ServerConfig set");
 
+                #region Set Variables
                 bool DataUpdateJobStatus = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "DataUpdateJobStatus"));
                 log.Debug("DataUpdateJobStatus bool value set");
 
@@ -193,13 +194,35 @@ namespace SnowPlatformMonitor.Service
 
                 string InventoryServer = Utilities.ReadXMLValue(ServerConfig, "InventoryServer");
                 log.Debug("InventoryServer string value set");
-
+                #endregion
                 log.Info("Configuration files loaded");
 
                 DataRetriever dataRetriever = new DataRetriever();
 
                 log.Info("Data Retriever loaded");
-                
+
+                #region Garbage Collector
+                log.Info("Export garbage collector starting...");
+                int exportCounter = 0;
+                foreach (var file in System.IO.Directory.GetFiles(dc.Export))
+                {
+                    if (System.IO.File.Exists(file))
+                    {
+                        System.IO.File.Delete(file);
+                        exportCounter += 1;
+                        log.Debug(string.Format("{0} deleted!", file));
+                    }
+                }
+                log.Info(exportCounter + " files deleted, for more details in future enable debug logging!");
+                log.Info("Export garbage collector finished...");
+                #endregion
+
+                #region Log Retention
+                log.Info("Log Retention module starting...");
+                Utilities.LogRetention(dc.Logs, 10);
+                log.Info("Log Retention module finished...");
+                #endregion
+
                 if (DataUpdateJobStatus)
                 {
                     if (dataRetriever.GetDataUpdateJob())

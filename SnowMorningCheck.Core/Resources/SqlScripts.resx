@@ -122,13 +122,18 @@
     <comment>Gets the import table for Adobe Creative Cloud</comment>
   </data>
   <data name="DataUpdateJobErrorLog" xml:space="preserve">
-    <value>SELECT TOP 5 * FROM SnowLicenseManager.dbo.tblErrorLog
+    <value>SELECT * FROM SnowLicenseManager.dbo.tblErrorLog
+WHERE convert(varchar(10), LogDate, 102) = convert(varchar(10), getdate(), 102) OR convert(varchar(10), LogDate, 102) = convert(varchar(10), getdate() - 1, 102)
 ORDER BY logDate DESC</value>
-    <comment>Gets the most recent 5 error logs for DUJ</comment>
+    <comment>Gets all data from tblErrorLog that is from either today or yesterday, to account for errors that may happen before Midnight</comment>
   </data>
   <data name="DataUpdateJobErrorSevere" xml:space="preserve">
-    <value>SELECT TOP 5 * FROM msdb.dbo.sysjobhistory where sql_severity &gt; 0 order by run_date desc, run_time desc</value>
-    <comment>Gets sysjobhistory</comment>
+    <value>SELECT TOP 5 * FROM msdb.dbo.sysjobhistory 
+WHERE
+sql_severity &gt; 0 AND convert(varchar(10), msdb.dbo.agent_datetime(run_date,run_time), 102) = convert(varchar(10), getdate(), 102)
+OR sql_severity &gt; 0 AND convert(varchar(10), msdb.dbo.agent_datetime(run_date,run_time), 102) = convert(varchar(10), getdate() - 1, 102)
+order by run_date desc, run_time desc</value>
+    <comment>Gets all data from sysJobHistory that is from either today or yesterday, to account for errors that may happen before Midnight AND severity is higher than 0</comment>
   </data>
   <data name="DataUpdateJobParallel" xml:space="preserve">
     <value>SELECT * FROM SnowLicenseManager.inv.tblJobParallelStep
@@ -180,7 +185,7 @@ WHERE CAST(LastScanDate AS DATE) = CAST(GETDATE() - 1 AS Date)</value>
     <comment>Gets the import table for Microsoft Office 365</comment>
   </data>
   <data name="SRSUpdateDate" xml:space="preserve">
-    <value>SELECT TOP 1 UpdatedDate, SRSUpdateDate FROM SnowLicenseManager.dbo.tblApplication
+    <value>SELECT TOP 1 SRSUpdateDate FROM SnowLicenseManager.dbo.tblApplication
 ORDER BY SRSUpdateDate DESC</value>
     <comment>Gets the most recent updated application dates</comment>
   </data>

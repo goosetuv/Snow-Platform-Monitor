@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabConfiguration = new System.Windows.Forms.TabPage();
+            this.cbConfigSRSImport = new System.Windows.Forms.CheckBox();
             this.btnConfigAdvanced = new System.Windows.Forms.Button();
             this.btnConfigSave = new System.Windows.Forms.Button();
             this.cbConfigLogInterrogator = new System.Windows.Forms.CheckBox();
@@ -136,7 +137,6 @@
             this.btnHelpLogDir = new System.Windows.Forms.Button();
             this.lblHelpAppInfo = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.cbConfigSRSImport = new System.Windows.Forms.CheckBox();
             this.tabControlMain.SuspendLayout();
             this.tabConfiguration.SuspendLayout();
             this.gbConfigAdvanced.SuspendLayout();
@@ -206,6 +206,17 @@
             this.tabConfiguration.TabIndex = 4;
             this.tabConfiguration.Text = "General";
             this.tabConfiguration.UseVisualStyleBackColor = true;
+            // 
+            // cbConfigSRSImport
+            // 
+            this.cbConfigSRSImport.AutoSize = true;
+            this.cbConfigSRSImport.Location = new System.Drawing.Point(20, 136);
+            this.cbConfigSRSImport.Name = "cbConfigSRSImport";
+            this.cbConfigSRSImport.Size = new System.Drawing.Size(106, 17);
+            this.cbConfigSRSImport.TabIndex = 19;
+            this.cbConfigSRSImport.TabStop = false;
+            this.cbConfigSRSImport.Text = "SRS Import Date";
+            this.cbConfigSRSImport.UseVisualStyleBackColor = true;
             // 
             // btnConfigAdvanced
             // 
@@ -1329,17 +1340,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
-            // 
-            // cbConfigSRSImport
-            // 
-            this.cbConfigSRSImport.AutoSize = true;
-            this.cbConfigSRSImport.Location = new System.Drawing.Point(20, 136);
-            this.cbConfigSRSImport.Name = "cbConfigSRSImport";
-            this.cbConfigSRSImport.Size = new System.Drawing.Size(106, 17);
-            this.cbConfigSRSImport.TabIndex = 19;
-            this.cbConfigSRSImport.TabStop = false;
-            this.cbConfigSRSImport.Text = "SRS Import Date";
-            this.cbConfigSRSImport.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 

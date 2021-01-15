@@ -1,5 +1,6 @@
 ﻿#region Dependencies
 using System;
+using System.IO;
 using System.Net.NetworkInformation;
 using Laim;
 #endregion
@@ -56,5 +57,19 @@ namespace SnowPlatformMonitor.Core.Classes
                 return false;
             }
         }
-}
+
+        public static void LogRetention(string logDirectory, int retentionDays)
+        {
+            string[] files = Directory.GetFiles(logDirectory);
+
+            foreach (string file in files)
+            {
+                FileInfo fileInfo = new FileInfo(file);
+                if (fileInfo.LastAccessTime < DateTime.Now.AddDays(-retentionDays))
+                {
+                    fileInfo.Delete();
+                }
+            }
+        }
+    }
 }
