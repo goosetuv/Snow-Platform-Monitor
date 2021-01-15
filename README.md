@@ -5,8 +5,6 @@ Windows Tool for doing platform checks on Snow Software platforms (Morning Check
 
 ---
 
-## Application View
-
 <p align="center">
     <img src="https://user-images.githubusercontent.com/14845036/104764418-4bca7080-575f-11eb-9191-58bd0961891e.gif" alt="spm main"/>
 </p>
