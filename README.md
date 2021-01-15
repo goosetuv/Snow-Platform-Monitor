@@ -8,7 +8,7 @@ Windows Tool for doing platform checks on Snow Software platforms (Morning Check
 
 Download the latest release and run the installer.  Detailed steps regarding installation can be found on the [wiki](https://github.com/goosetuv/Snow-Platform-Monitor/wiki).
 
-# System Requirements
+## System Requirements
 
 | Component        | Requirement                                                   |
 |------------------|---------------------------------------------------------------|
