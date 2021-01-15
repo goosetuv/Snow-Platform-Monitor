@@ -1,8 +1,15 @@
-<a href="http://github.com/goosetuv/Snow-Platform-Monitor"><img src="https://github.com/goosetuv/Snow-Platform-Monitor/blob/master/Product%20Design/logo.png" title="Snow Update Checker" alt="SUC Logo"></a>
-
+<p align="center">
+  <a href="http://github.com/goosetuv/Snow-Platform-Monitor"><img src="https://github.com/goosetuv/Snow-Platform-Monitor/blob/master/Product%20Design/logo.png" title="Snow Update Checker" alt="SUC Logo"></a>
+</p>
 Windows Tool for doing platform checks on Snow Software platforms (Morning Checks)
 
 ---
+
+## Application View
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/14845036/104764418-4bca7080-575f-11eb-9191-58bd0961891e.gif" alt="spm main"/>
+</p>
 
 ## Installation
 
