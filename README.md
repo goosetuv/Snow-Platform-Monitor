@@ -9,12 +9,15 @@ Windows Tool for doing platform checks on Snow Software platforms (Morning Check
     <img src="https://user-images.githubusercontent.com/14845036/104764418-4bca7080-575f-11eb-9191-58bd0961891e.gif" alt="spm main"/>
 </p>
 
-## Installation
+## Example Data
+The following spreadsheet is an example of the data that is exported and emailed from the application. 
 
+[15012021-SnowPlatformMonitor.xlsx](https://github.com/goosetuv/Snow-Platform-Monitor/files/5822318/15012021-SnowPlatformMonitor.xlsx)
+
+## Installation
 Download the latest release and run the installer.  Detailed steps regarding installation can be found on the [wiki](https://github.com/goosetuv/Snow-Platform-Monitor/wiki).
 
 ## System Requirements
-
 | Component        | Requirement                                                   |
 |------------------|---------------------------------------------------------------|
 | .NET Framework   | 4.7.2                                                         |
