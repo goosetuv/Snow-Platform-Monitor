@@ -25,7 +25,9 @@ Download the latest release and run the installer.  Detailed steps regarding ins
 | Processor        | 1Ghz or higher                                                |
 | RAM              | 512MB minimum, 1GB recommended                                |
 | Architecture     | 64-bit                                                        |
-| Permissions      | [Required Permissions](https://github.com/goosetuv/Snow-Platform-Monitor/wiki/Permissions)                                             |
+| Snow License Manager  | 9.6.X or higher                                                       |
+| Snow Inventory | 5.X or higher |
+| Permissions      | [Required Permissions](https://github.com/goosetuv/Snow-Platform-Monitor/wiki/Permissions)  |
 
 ## Contributing
 Happy for anyone to make a pull request to assist in making the application better.
