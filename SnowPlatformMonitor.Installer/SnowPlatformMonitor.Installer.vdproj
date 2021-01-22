@@ -615,15 +615,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Snow Platform Monitor"
-        "ProductCode" = "8:{F0C58900-3A1D-4DBA-A9D0-C0ECB878858F}"
-        "PackageCode" = "8:{C2531C97-E836-4427-81E3-328C7607EFCC}"
+        "ProductCode" = "8:{C3FE89EF-EBFE-4E06-851A-FEFC3B3F4223}"
+        "PackageCode" = "8:{20AE1BB3-5E7A-4432-9450-9DBB83E24FBB}"
         "UpgradeCode" = "8:{C42F9519-9070-42C8-98FB-7676AE873617}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
-        "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.1"
+        "InstallAllUsers" = "11:TRUE"
+        "ProductVersion" = "8:1.2"
         "Manufacturer" = "8:Laim McKenzie"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://laim.scot"
@@ -1193,7 +1193,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B3955A3E6DB04A9D874B91E3A6BDA241"
             {
-            "SourcePath" = "8:..\\SnowMorningCheck.Configurator\\obj\\x64\\Release\\SnowPlatformMonitor.exe"
+            "SourcePath" = "8:..\\SnowMorningCheck.Configurator\\obj\\x64\\Release\\SnowPlatformMonitor.Configurator.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7B8DB894B1964293B87A700B63BC9842"

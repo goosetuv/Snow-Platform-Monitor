@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Configuration GUI for Snow Platform Monitor")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Laim McKenzie")]
-[assembly: AssemblyProduct("SnowPlatformMonitor")]
+[assembly: AssemblyProduct("Snow Platform Monitor")]
 [assembly: AssemblyCopyright("Copyright © Laim McKenzie 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.1")]
-[assembly: AssemblyFileVersion("1.1")]
+[assembly: AssemblyVersion("1.2")]
+[assembly: AssemblyFileVersion("1.2")]

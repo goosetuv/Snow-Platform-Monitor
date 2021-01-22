@@ -109,6 +109,29 @@ namespace SnowPlatformMonitor.Configurator
             }
         }
 
+        private void btnConfigTest_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("This runs a full test of your current configuration, including SMTP and all checkboxes above.  Do you wish to proceed?", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    if (File.Exists(dc.Resources + "exportertest.bat"))
+                    {
+                        Process.Start(dc.Resources + "exportertest.bat");
+                    }
+                    else
+                    {
+                        log.Error("Exportertest batch file does not exist.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+            }
+        }
+
         private void btnConfigAdvanced_Click(object sender, EventArgs e)
         {
             if (Size.Width == MinimumSize.Width && Size.Height == MinimumSize.Height)
@@ -215,6 +238,7 @@ namespace SnowPlatformMonitor.Configurator
                     "Port",
                     "SSLEnabled",
                     "Host",
+                    "SenderName",
                     "Sender",
                     "SendTo",
                     "CC",
@@ -226,6 +250,7 @@ namespace SnowPlatformMonitor.Configurator
                     numSMTPPort.Text,
                     cbxSMTPEnableSSL.Checked.ToString(),
                     txtSMTPHost.Text,
+                    txtSMTPSenderName.Text,
                     txtSMTPSender.Text,
                     txtSMTPSendTo.Text,
                     txtSMTPcc.Text,
@@ -254,6 +279,7 @@ namespace SnowPlatformMonitor.Configurator
             {
                 Mailer m = new Mailer();
                 m.SendTestEmail(ProductVersion);
+                MessageBox.Show("Test email as been sent", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -332,6 +358,19 @@ namespace SnowPlatformMonitor.Configurator
                 log.Error(ex);
             }
         }
+
+        private void btnServiceMngrRefresh_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadServiceStatus();
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+            }
+
+        }
         #endregion
 
         #region Logging
@@ -341,7 +380,7 @@ namespace SnowPlatformMonitor.Configurator
             {
                 // Load log4net settings for the GUI
                 XmlDocument guiLog4Net = new XmlDocument();
-                guiLog4Net.Load("SnowPlatformMonitor.exe.config");
+                guiLog4Net.Load("SnowPlatformMonitor.Configurator.exe.config");
                 guiLog4Net.SelectSingleNode("//log4net/root/level").Attributes["value"].Value = cbLoggingGUILevel.SelectedItem.ToString();
                 guiLog4Net.SelectSingleNode("//log4net/appender/layout/conversionPattern").Attributes["value"].Value = txtLoggingGUIFormat.Text;
                 guiLog4Net.SelectSingleNode("//log4net/appender/maximumFileSize").Attributes["value"].Value = string.Format("{0}{1}", numLoggingGUISize.Value, "MB");
@@ -435,7 +474,7 @@ namespace SnowPlatformMonitor.Configurator
             }
         }
 
-        private void btnHelpGuides_Click(object sender, EventArgs e)
+        private void btnHelpWiki_Click(object sender, EventArgs e)
         {
             try
             {
@@ -521,6 +560,7 @@ namespace SnowPlatformMonitor.Configurator
                     numSMTPPort.Text = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Port");
                     cbxSMTPEnableSSL.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "SSLEnabled"));
                     txtSMTPHost.Text = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Host");
+                    txtSMTPSenderName.Text = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "SenderName");
                     txtSMTPSender.Text = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Sender");
                     txtSMTPSendTo.Text = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "SendTo");
                     txtSMTPcc.Text = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "CC");
@@ -571,7 +611,7 @@ namespace SnowPlatformMonitor.Configurator
 
             lblHelpAppInfo.Text = $"v{ProductVersion}{Environment.NewLine}Copyright (c) 2020 - {DateTime.Now.Year} Laim McKenzie."; // PRE-RELEASE-BUILD{Environment.NewLine}
 
-            Text = string.Format("{0} Configurator", ProductName); 
+            Text = string.Format("{0}", ProductName); 
         }
 
         private void LoadLogging()
@@ -581,7 +621,7 @@ namespace SnowPlatformMonitor.Configurator
 
                 // Load log4net settings for the GUI
                 XmlDocument guiLog4Net = new XmlDocument();
-                guiLog4Net.Load("SnowPlatformMonitor.exe.config");
+                guiLog4Net.Load("SnowPlatformMonitor.Configurator.exe.config");
                 
                 cbLoggingGUILevel.SelectedItem = guiLog4Net.SelectSingleNode("//log4net/root/level").Attributes["value"].Value;
                 txtLoggingGUIFormat.Text = guiLog4Net.SelectSingleNode("//log4net/appender/layout/conversionPattern").Attributes["value"].Value;
@@ -653,6 +693,20 @@ namespace SnowPlatformMonitor.Configurator
             }
         }
 
+        private void LoadExporterTest()
+        {
+            try
+            {
+                if (!File.Exists(dc.Resources + "exportertest.bat"))
+                {
+                    File.WriteAllText(dc.Resources + "exportertest.bat", Properties.Resources.exportertest);
+                }
+            } catch (Exception ex)
+            {
+                log.Error(ex);
+            }
+        }
+
         private void AppLoad()
         {
             CheckForUpdates();
@@ -663,6 +717,7 @@ namespace SnowPlatformMonitor.Configurator
             LoadLogging();
             LoadServiceStatus();
             LoadEmailTemplates();
+            LoadExporterTest();
             log.Debug("AppLoad completed");
         }
 
@@ -681,6 +736,7 @@ namespace SnowPlatformMonitor.Configurator
             AutoUpdater.PersistenceProvider = new JsonFilePersistenceProvider(Path.Combine(dc.Resources, "updates.json"));
             log.Debug("Update check finished, popup should appear if there are updates available");
         }
+
 
         #endregion
 

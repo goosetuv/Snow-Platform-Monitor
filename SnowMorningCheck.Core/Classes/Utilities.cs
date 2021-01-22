@@ -1,7 +1,10 @@
 ﻿#region Dependencies
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.NetworkInformation;
+using System.Text;
+using System.Threading;
 using Laim;
 #endregion
 
@@ -24,7 +27,13 @@ namespace SnowPlatformMonitor.Core.Classes
         // Read the specific node from a configuration file
         public static string ReadXMLValue(string path, string node)
         {
-            return XmlConfigurator.Read(path, node);
+            try
+            {
+                return XmlConfigurator.Read(path, node);
+            } catch (Exception)
+            {
+                return "";
+            }
         }
 
         // Date Format, that's all really

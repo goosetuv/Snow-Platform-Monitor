@@ -40,8 +40,8 @@ namespace SnowPlatformMonitor.Service
             // 
             // serviceInstaller1
             // 
-            this.serviceInstaller1.Description = "SnowPlatformMonitor Service Runner";
-            this.serviceInstaller1.DisplayName = "SnowPlatformMonitor";
+            this.serviceInstaller1.Description = "Collects Snow Software Platform data and configuration for monitoring";
+            this.serviceInstaller1.DisplayName = "Snow Platform Monitor";
             this.serviceInstaller1.ServiceName = "SnowPlatformMonitor";
             this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 

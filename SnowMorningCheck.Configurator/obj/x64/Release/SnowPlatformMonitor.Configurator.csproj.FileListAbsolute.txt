@@ -13,3 +13,14 @@ C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Configurator\ob
 C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Configurator\obj\x64\Release\SnowPlatformMonitor.Configurator.csproj.CopyComplete
 C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Configurator\obj\x64\Release\SnowMorningCheck.Configurator.exe
 C:\Development\Source Code\Snow-Platform-Checks\SnowMorningCheck.Configurator\obj\x64\Release\SnowMorningCheck.Configurator.pdb
+C:\Development\Source Code\Snow-Platform-Monitor\Build\Release\SnowPlatformMonitor.Configurator.exe.config
+C:\Development\Source Code\Snow-Platform-Monitor\Build\Release\SnowPlatformMonitor.Configurator.exe
+C:\Development\Source Code\Snow-Platform-Monitor\Build\Release\SnowPlatformMonitor.Configurator.pdb
+C:\Development\Source Code\Snow-Platform-Monitor\SnowMorningCheck.Configurator\obj\x64\Release\SnowPlatformMonitor.Configurator.csprojAssemblyReference.cache
+C:\Development\Source Code\Snow-Platform-Monitor\SnowMorningCheck.Configurator\obj\x64\Release\SnowPlatformMonitor.Configurator.frmMain.resources
+C:\Development\Source Code\Snow-Platform-Monitor\SnowMorningCheck.Configurator\obj\x64\Release\SnowPlatformMonitor.Configurator.Properties.Resources.resources
+C:\Development\Source Code\Snow-Platform-Monitor\SnowMorningCheck.Configurator\obj\x64\Release\SnowPlatformMonitor.Configurator.csproj.GenerateResource.cache
+C:\Development\Source Code\Snow-Platform-Monitor\SnowMorningCheck.Configurator\obj\x64\Release\SnowPlatformMonitor.Configurator.csproj.CoreCompileInputs.cache
+C:\Development\Source Code\Snow-Platform-Monitor\SnowMorningCheck.Configurator\obj\x64\Release\SnowPlatformMonitor.Configurator.csproj.CopyComplete
+C:\Development\Source Code\Snow-Platform-Monitor\SnowMorningCheck.Configurator\obj\x64\Release\SnowPlatformMonitor.Configurator.exe
+C:\Development\Source Code\Snow-Platform-Monitor\SnowMorningCheck.Configurator\obj\x64\Release\SnowPlatformMonitor.Configurator.pdb

@@ -61,7 +61,7 @@ namespace SnowPlatformMonitor.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM SnowLicenseManager.adobecc.Import.
+        ///   Looks up a localized string similar to SELECT CID, ImportID, AddedDate FROM SnowLicenseManager.adobecc.Import.
         /// </summary>
         public static string AdobeImport {
             get {
@@ -135,7 +135,7 @@ namespace SnowPlatformMonitor.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM SnowInventory.inv.DataClientView2
+        ///   Looks up a localized string similar to SELECT ClientID, SiteName, HostName, ClientVersion FROM SnowInventory.inv.DataClientView2
         ///WHERE CAST(LastUpdate AS DATE) = CAST(GETDATE() AS Date).
         /// </summary>
         public static string InventoryReportedToday {
@@ -145,7 +145,7 @@ namespace SnowPlatformMonitor.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM SnowLicenseManager.dbo.tblComputer
+        ///   Looks up a localized string similar to SELECT ComputerID, ClientSiteName, HostName, ClientVersion FROM SnowLicenseManager.dbo.tblComputer
         ///WHERE CAST(LastScanDate AS DATE) = CAST(GETDATE() - 1 AS Date).
         /// </summary>
         public static string LicenseManagerReportedToday {
@@ -155,7 +155,7 @@ namespace SnowPlatformMonitor.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM SnowLicenseManager.o365.Import.
+        ///   Looks up a localized string similar to SELECT TenantID, ImportID, AddedDate FROM SnowLicenseManager.o365.Import.
         /// </summary>
         public static string Office365Import {
             get {

@@ -15,6 +15,7 @@ namespace SnowPlatformMonitor.Core.Classes
 
         private string subject;
         private string sender;
+        private string displayname;
         private string host;
         private string port;
         private string user;
@@ -43,6 +44,14 @@ namespace SnowPlatformMonitor.Core.Classes
             sslEnabled = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "SSLEnabled"));
             host = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Host");
             sender = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Sender");
+            if (Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "SenderName").Length < 1)
+            {
+                displayname = sender;
+            }
+            else
+            {
+                displayname = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "SenderName");
+            }
             to = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "SendTo");
             cc = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "CC");
 
@@ -65,6 +74,13 @@ namespace SnowPlatformMonitor.Core.Classes
             sslEnabled = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "SSLEnabled"));
             host = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Host");
             sender = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Sender");
+            if(Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "SenderName").Length < 1)
+            {
+                displayname = sender;
+            } else
+            {
+                displayname = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "SenderName");
+            }
             to = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "SendTo");
             cc = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "CC");
             subject = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Subject");
@@ -83,10 +99,11 @@ namespace SnowPlatformMonitor.Core.Classes
         {
             MailMessage mail = new MailMessage
             {
-                From = new MailAddress(sender),
+                From = new MailAddress(sender, displayname),
                 IsBodyHtml = true,
                 Subject = emailSubject,
-                Body = body
+                Body = body,
+                Priority = MailPriority.Normal // for ... future stuff 
             };
 
             SmtpClient smtp = new SmtpClient(host)

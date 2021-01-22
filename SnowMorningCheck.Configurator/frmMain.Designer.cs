@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabConfiguration = new System.Windows.Forms.TabPage();
+            this.btnConfigTest = new System.Windows.Forms.Button();
             this.cbConfigSRSImport = new System.Windows.Forms.CheckBox();
             this.btnConfigAdvanced = new System.Windows.Forms.Button();
             this.btnConfigSave = new System.Windows.Forms.Button();
@@ -84,6 +85,8 @@
             this.txtServersSQLUser = new System.Windows.Forms.TextBox();
             this.lblServersSQLUser = new System.Windows.Forms.Label();
             this.tabSMTP = new System.Windows.Forms.TabPage();
+            this.lblSMTPSenderName = new System.Windows.Forms.Label();
+            this.txtSMTPSenderName = new System.Windows.Forms.TextBox();
             this.lblSMTPSubject = new System.Windows.Forms.Label();
             this.txtSMTPSubject = new System.Windows.Forms.TextBox();
             this.cbxSMTPEnableSSL = new System.Windows.Forms.CheckBox();
@@ -104,6 +107,7 @@
             this.lblSMTPUsername = new System.Windows.Forms.Label();
             this.txtSMTPUsername = new System.Windows.Forms.TextBox();
             this.tabServiceManager = new System.Windows.Forms.TabPage();
+            this.btnServiceMngrRefresh = new System.Windows.Forms.Button();
             this.btnServiceMngrUninstall = new System.Windows.Forms.Button();
             this.btnServiceMngrInstall = new System.Windows.Forms.Button();
             this.btnServiceMngrStop = new System.Windows.Forms.Button();
@@ -129,7 +133,7 @@
             this.cbLoggingGUILevel = new System.Windows.Forms.ComboBox();
             this.lblLoggingGUILevel = new System.Windows.Forms.Label();
             this.tabHelp = new System.Windows.Forms.TabPage();
-            this.btnHelpGuides = new System.Windows.Forms.Button();
+            this.btnHelpWiki = new System.Windows.Forms.Button();
             this.btnHelpReleases = new System.Windows.Forms.Button();
             this.btnHelpSupport = new System.Windows.Forms.Button();
             this.btnHelpExportsDir = new System.Windows.Forms.Button();
@@ -178,12 +182,13 @@
             this.tabControlMain.Location = new System.Drawing.Point(12, 12);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(316, 407);
+            this.tabControlMain.Size = new System.Drawing.Size(316, 620);
             this.tabControlMain.TabIndex = 0;
             this.tabControlMain.TabStop = false;
             // 
             // tabConfiguration
             // 
+            this.tabConfiguration.Controls.Add(this.btnConfigTest);
             this.tabConfiguration.Controls.Add(this.cbConfigSRSImport);
             this.tabConfiguration.Controls.Add(this.btnConfigAdvanced);
             this.tabConfiguration.Controls.Add(this.btnConfigSave);
@@ -202,10 +207,21 @@
             this.tabConfiguration.Location = new System.Drawing.Point(4, 22);
             this.tabConfiguration.Name = "tabConfiguration";
             this.tabConfiguration.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConfiguration.Size = new System.Drawing.Size(308, 381);
+            this.tabConfiguration.Size = new System.Drawing.Size(308, 594);
             this.tabConfiguration.TabIndex = 4;
             this.tabConfiguration.Text = "General";
             this.tabConfiguration.UseVisualStyleBackColor = true;
+            // 
+            // btnConfigTest
+            // 
+            this.btnConfigTest.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnConfigTest.Location = new System.Drawing.Point(117, 565);
+            this.btnConfigTest.Name = "btnConfigTest";
+            this.btnConfigTest.Size = new System.Drawing.Size(75, 23);
+            this.btnConfigTest.TabIndex = 20;
+            this.btnConfigTest.Text = "Test";
+            this.btnConfigTest.UseVisualStyleBackColor = true;
+            this.btnConfigTest.Click += new System.EventHandler(this.btnConfigTest_Click);
             // 
             // cbConfigSRSImport
             // 
@@ -221,7 +237,7 @@
             // btnConfigAdvanced
             // 
             this.btnConfigAdvanced.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnConfigAdvanced.Location = new System.Drawing.Point(20, 352);
+            this.btnConfigAdvanced.Location = new System.Drawing.Point(20, 565);
             this.btnConfigAdvanced.Name = "btnConfigAdvanced";
             this.btnConfigAdvanced.Size = new System.Drawing.Size(75, 23);
             this.btnConfigAdvanced.TabIndex = 16;
@@ -232,7 +248,7 @@
             // btnConfigSave
             // 
             this.btnConfigSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnConfigSave.Location = new System.Drawing.Point(213, 352);
+            this.btnConfigSave.Location = new System.Drawing.Point(213, 565);
             this.btnConfigSave.Name = "btnConfigSave";
             this.btnConfigSave.Size = new System.Drawing.Size(75, 23);
             this.btnConfigSave.TabIndex = 8;
@@ -561,7 +577,7 @@
             this.tabServers.Location = new System.Drawing.Point(4, 22);
             this.tabServers.Name = "tabServers";
             this.tabServers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabServers.Size = new System.Drawing.Size(308, 381);
+            this.tabServers.Size = new System.Drawing.Size(308, 594);
             this.tabServers.TabIndex = 0;
             this.tabServers.Text = "Servers";
             this.tabServers.UseVisualStyleBackColor = true;
@@ -765,6 +781,8 @@
             // 
             // tabSMTP
             // 
+            this.tabSMTP.Controls.Add(this.lblSMTPSenderName);
+            this.tabSMTP.Controls.Add(this.txtSMTPSenderName);
             this.tabSMTP.Controls.Add(this.lblSMTPSubject);
             this.tabSMTP.Controls.Add(this.txtSMTPSubject);
             this.tabSMTP.Controls.Add(this.cbxSMTPEnableSSL);
@@ -787,15 +805,31 @@
             this.tabSMTP.Location = new System.Drawing.Point(4, 22);
             this.tabSMTP.Name = "tabSMTP";
             this.tabSMTP.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSMTP.Size = new System.Drawing.Size(308, 381);
+            this.tabSMTP.Size = new System.Drawing.Size(308, 594);
             this.tabSMTP.TabIndex = 1;
             this.tabSMTP.Text = "SMTP";
             this.tabSMTP.UseVisualStyleBackColor = true;
             // 
+            // lblSMTPSenderName
+            // 
+            this.lblSMTPSenderName.AutoSize = true;
+            this.lblSMTPSenderName.Location = new System.Drawing.Point(3, 124);
+            this.lblSMTPSenderName.Name = "lblSMTPSenderName";
+            this.lblSMTPSenderName.Size = new System.Drawing.Size(75, 13);
+            this.lblSMTPSenderName.TabIndex = 43;
+            this.lblSMTPSenderName.Text = "Sender Name:";
+            // 
+            // txtSMTPSenderName
+            // 
+            this.txtSMTPSenderName.Location = new System.Drawing.Point(84, 121);
+            this.txtSMTPSenderName.Name = "txtSMTPSenderName";
+            this.txtSMTPSenderName.Size = new System.Drawing.Size(204, 20);
+            this.txtSMTPSenderName.TabIndex = 42;
+            // 
             // lblSMTPSubject
             // 
             this.lblSMTPSubject.AutoSize = true;
-            this.lblSMTPSubject.Location = new System.Drawing.Point(32, 202);
+            this.lblSMTPSubject.Location = new System.Drawing.Point(32, 228);
             this.lblSMTPSubject.Name = "lblSMTPSubject";
             this.lblSMTPSubject.Size = new System.Drawing.Size(46, 13);
             this.lblSMTPSubject.TabIndex = 41;
@@ -803,7 +837,7 @@
             // 
             // txtSMTPSubject
             // 
-            this.txtSMTPSubject.Location = new System.Drawing.Point(84, 199);
+            this.txtSMTPSubject.Location = new System.Drawing.Point(84, 225);
             this.txtSMTPSubject.Name = "txtSMTPSubject";
             this.txtSMTPSubject.Size = new System.Drawing.Size(204, 20);
             this.txtSMTPSubject.TabIndex = 40;
@@ -811,7 +845,7 @@
             // cbxSMTPEnableSSL
             // 
             this.cbxSMTPEnableSSL.AutoSize = true;
-            this.cbxSMTPEnableSSL.Location = new System.Drawing.Point(84, 225);
+            this.cbxSMTPEnableSSL.Location = new System.Drawing.Point(84, 251);
             this.cbxSMTPEnableSSL.Name = "cbxSMTPEnableSSL";
             this.cbxSMTPEnableSSL.Size = new System.Drawing.Size(130, 17);
             this.cbxSMTPEnableSSL.TabIndex = 39;
@@ -853,7 +887,7 @@
             // lblSMTPcc
             // 
             this.lblSMTPcc.AutoSize = true;
-            this.lblSMTPcc.Location = new System.Drawing.Point(54, 176);
+            this.lblSMTPcc.Location = new System.Drawing.Point(54, 202);
             this.lblSMTPcc.Name = "lblSMTPcc";
             this.lblSMTPcc.Size = new System.Drawing.Size(24, 13);
             this.lblSMTPcc.TabIndex = 36;
@@ -861,7 +895,7 @@
             // 
             // txtSMTPcc
             // 
-            this.txtSMTPcc.Location = new System.Drawing.Point(84, 173);
+            this.txtSMTPcc.Location = new System.Drawing.Point(84, 199);
             this.txtSMTPcc.Name = "txtSMTPcc";
             this.txtSMTPcc.Size = new System.Drawing.Size(204, 20);
             this.txtSMTPcc.TabIndex = 35;
@@ -869,7 +903,7 @@
             // lbSMTPSendTo
             // 
             this.lbSMTPSendTo.AutoSize = true;
-            this.lbSMTPSendTo.Location = new System.Drawing.Point(27, 150);
+            this.lbSMTPSendTo.Location = new System.Drawing.Point(27, 176);
             this.lbSMTPSendTo.Name = "lbSMTPSendTo";
             this.lbSMTPSendTo.Size = new System.Drawing.Size(51, 13);
             this.lbSMTPSendTo.TabIndex = 34;
@@ -877,7 +911,7 @@
             // 
             // txtSMTPSendTo
             // 
-            this.txtSMTPSendTo.Location = new System.Drawing.Point(84, 147);
+            this.txtSMTPSendTo.Location = new System.Drawing.Point(84, 173);
             this.txtSMTPSendTo.Name = "txtSMTPSendTo";
             this.txtSMTPSendTo.Size = new System.Drawing.Size(204, 20);
             this.txtSMTPSendTo.TabIndex = 32;
@@ -885,7 +919,7 @@
             // lblSMTPSender
             // 
             this.lblSMTPSender.AutoSize = true;
-            this.lblSMTPSender.Location = new System.Drawing.Point(34, 124);
+            this.lblSMTPSender.Location = new System.Drawing.Point(34, 150);
             this.lblSMTPSender.Name = "lblSMTPSender";
             this.lblSMTPSender.Size = new System.Drawing.Size(44, 13);
             this.lblSMTPSender.TabIndex = 31;
@@ -893,7 +927,7 @@
             // 
             // txtSMTPSender
             // 
-            this.txtSMTPSender.Location = new System.Drawing.Point(84, 121);
+            this.txtSMTPSender.Location = new System.Drawing.Point(84, 147);
             this.txtSMTPSender.Name = "txtSMTPSender";
             this.txtSMTPSender.Size = new System.Drawing.Size(204, 20);
             this.txtSMTPSender.TabIndex = 30;
@@ -958,6 +992,7 @@
             // 
             // tabServiceManager
             // 
+            this.tabServiceManager.Controls.Add(this.btnServiceMngrRefresh);
             this.tabServiceManager.Controls.Add(this.btnServiceMngrUninstall);
             this.tabServiceManager.Controls.Add(this.btnServiceMngrInstall);
             this.tabServiceManager.Controls.Add(this.btnServiceMngrStop);
@@ -965,10 +1000,20 @@
             this.tabServiceManager.Controls.Add(this.pbServiceMngrStatus);
             this.tabServiceManager.Location = new System.Drawing.Point(4, 22);
             this.tabServiceManager.Name = "tabServiceManager";
-            this.tabServiceManager.Size = new System.Drawing.Size(308, 381);
+            this.tabServiceManager.Size = new System.Drawing.Size(308, 594);
             this.tabServiceManager.TabIndex = 2;
             this.tabServiceManager.Text = "Service";
             this.tabServiceManager.UseVisualStyleBackColor = true;
+            // 
+            // btnServiceMngrRefresh
+            // 
+            this.btnServiceMngrRefresh.Location = new System.Drawing.Point(90, 306);
+            this.btnServiceMngrRefresh.Name = "btnServiceMngrRefresh";
+            this.btnServiceMngrRefresh.Size = new System.Drawing.Size(128, 23);
+            this.btnServiceMngrRefresh.TabIndex = 6;
+            this.btnServiceMngrRefresh.Text = "Refresh";
+            this.btnServiceMngrRefresh.UseVisualStyleBackColor = true;
+            this.btnServiceMngrRefresh.Click += new System.EventHandler(this.btnServiceMngrRefresh_Click);
             // 
             // btnServiceMngrUninstall
             // 
@@ -1033,7 +1078,7 @@
             this.tabLogging.Location = new System.Drawing.Point(4, 22);
             this.tabLogging.Name = "tabLogging";
             this.tabLogging.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLogging.Size = new System.Drawing.Size(308, 381);
+            this.tabLogging.Size = new System.Drawing.Size(308, 594);
             this.tabLogging.TabIndex = 5;
             this.tabLogging.Text = "Logging";
             this.tabLogging.UseVisualStyleBackColor = true;
@@ -1246,7 +1291,7 @@
             // 
             // tabHelp
             // 
-            this.tabHelp.Controls.Add(this.btnHelpGuides);
+            this.tabHelp.Controls.Add(this.btnHelpWiki);
             this.tabHelp.Controls.Add(this.btnHelpReleases);
             this.tabHelp.Controls.Add(this.btnHelpSupport);
             this.tabHelp.Controls.Add(this.btnHelpExportsDir);
@@ -1256,20 +1301,20 @@
             this.tabHelp.Controls.Add(this.pictureBox1);
             this.tabHelp.Location = new System.Drawing.Point(4, 22);
             this.tabHelp.Name = "tabHelp";
-            this.tabHelp.Size = new System.Drawing.Size(308, 381);
+            this.tabHelp.Size = new System.Drawing.Size(308, 594);
             this.tabHelp.TabIndex = 3;
             this.tabHelp.Text = "Help";
             this.tabHelp.UseVisualStyleBackColor = true;
             // 
-            // btnHelpGuides
+            // btnHelpWiki
             // 
-            this.btnHelpGuides.Location = new System.Drawing.Point(210, 166);
-            this.btnHelpGuides.Name = "btnHelpGuides";
-            this.btnHelpGuides.Size = new System.Drawing.Size(75, 23);
-            this.btnHelpGuides.TabIndex = 9;
-            this.btnHelpGuides.Text = "Guides";
-            this.btnHelpGuides.UseVisualStyleBackColor = true;
-            this.btnHelpGuides.Click += new System.EventHandler(this.btnHelpGuides_Click);
+            this.btnHelpWiki.Location = new System.Drawing.Point(210, 166);
+            this.btnHelpWiki.Name = "btnHelpWiki";
+            this.btnHelpWiki.Size = new System.Drawing.Size(75, 23);
+            this.btnHelpWiki.TabIndex = 9;
+            this.btnHelpWiki.Text = "Wiki";
+            this.btnHelpWiki.UseVisualStyleBackColor = true;
+            this.btnHelpWiki.Click += new System.EventHandler(this.btnHelpWiki_Click);
             // 
             // btnHelpReleases
             // 
@@ -1346,7 +1391,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(340, 431);
+            this.ClientSize = new System.Drawing.Size(340, 644);
             this.Controls.Add(this.tabControlMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1484,7 +1529,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnHelpReleases;
         private System.Windows.Forms.Button btnHelpSupport;
-        private System.Windows.Forms.Button btnHelpGuides;
+        private System.Windows.Forms.Button btnHelpWiki;
         private System.Windows.Forms.Label lblSMTPSubject;
         private System.Windows.Forms.TextBox txtSMTPSubject;
         private System.Windows.Forms.CheckBox cbxSMTPEnableSSL;
@@ -1505,6 +1550,10 @@
         private System.Windows.Forms.Label lblSMTPUsername;
         private System.Windows.Forms.TextBox txtSMTPUsername;
         private System.Windows.Forms.CheckBox cbConfigSRSImport;
+        private System.Windows.Forms.Label lblSMTPSenderName;
+        private System.Windows.Forms.TextBox txtSMTPSenderName;
+        private System.Windows.Forms.Button btnServiceMngrRefresh;
+        private System.Windows.Forms.Button btnConfigTest;
     }
 }
 

@@ -149,7 +149,7 @@ namespace SnowPlatformMonitor.Service
         /// Used for pulling the data that has been selected in the configuration
         /// </summary>
         /// <param name="state"></param>
-        public void ServiceExporter(object state)
+        public void ServiceExporter(object state = null)
         {
             try
             {
@@ -304,7 +304,12 @@ namespace SnowPlatformMonitor.Service
                 log.Debug("Email command sent");
 
                 log.Info("Schedule will now be refreshed for next run!");
-                _timer.Dispose();
+                
+                if(state != null)
+                {
+                    _timer.Dispose();
+                }
+
                 InitializeSchedule();
             } catch (Exception ex)
             {

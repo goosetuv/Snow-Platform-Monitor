@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AdobeImport" xml:space="preserve">
-    <value>SELECT * FROM SnowLicenseManager.adobecc.Import</value>
+    <value>SELECT CID, ImportID, AddedDate FROM SnowLicenseManager.adobecc.Import</value>
     <comment>Gets the import table for Adobe Creative Cloud</comment>
   </data>
   <data name="DataUpdateJobErrorLog" xml:space="preserve">
@@ -171,17 +171,17 @@ WHERE
     <comment>Gets the current running status of the data update job, i.e if the job is running or not</comment>
   </data>
   <data name="InventoryReportedToday" xml:space="preserve">
-    <value>SELECT * FROM SnowInventory.inv.DataClientView2
+    <value>SELECT ClientID, SiteName, HostName, ClientVersion FROM SnowInventory.inv.DataClientView2
 WHERE CAST(LastUpdate AS DATE) = CAST(GETDATE() AS Date)</value>
     <comment>Gets the amount of devices that have reported today</comment>
   </data>
   <data name="LicenseManagerReportedToday" xml:space="preserve">
-    <value>SELECT * FROM SnowLicenseManager.dbo.tblComputer
+    <value>SELECT ComputerID, ClientSiteName, HostName, ClientVersion FROM SnowLicenseManager.dbo.tblComputer
 WHERE CAST(LastScanDate AS DATE) = CAST(GETDATE() - 1 AS Date)</value>
     <comment>Gets the amount of devives that have reported today (todays date - 1 since SLM is a day behind)</comment>
   </data>
   <data name="Office365Import" xml:space="preserve">
-    <value>SELECT * FROM SnowLicenseManager.o365.Import</value>
+    <value>SELECT TenantID, ImportID, AddedDate FROM SnowLicenseManager.o365.Import</value>
     <comment>Gets the import table for Microsoft Office 365</comment>
   </data>
   <data name="SRSUpdateDate" xml:space="preserve">
