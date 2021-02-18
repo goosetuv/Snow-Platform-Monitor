@@ -20,8 +20,7 @@ namespace SnowPlatformMonitor.Core.Classes
         #region Fields
         private readonly DirectoryConfiguration dc = new DirectoryConfiguration();
         private readonly ApplicationConfiguration ac = new ApplicationConfiguration();
-        public readonly string ExportName = "-SnowPlatformMonitor.xlsx";
-        public readonly string DateFormat = "ddMMyyyy";
+        public readonly string ExportName = Utilities.GenerateGUID() +".xlsx";
         #endregion
 
         /// <summary>
@@ -30,11 +29,12 @@ namespace SnowPlatformMonitor.Core.Classes
         /// <returns>Excel Spreadsheet</returns>
         public bool GetDataUpdateJob()
         {
+
             SqlRunner sqlRunner = new SqlRunner();
 
             // create a work book and add the duj data into their own seperate sheets
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName)))
+            using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + ExportName)))
             {
                 pck.Workbook.Worksheets.Add("Status").Cells["A1"].LoadFromDataTable(sqlRunner.RunSQLDataTable("DataUpdateJobStatus"), true).AutoFitColumns();
                 pck.Workbook.Worksheets.Add("Error Log").Cells["A1"].LoadFromDataTable(sqlRunner.RunSQLDataTable("DataUpdateJobErrorLog"), true).AutoFitColumns();
@@ -49,7 +49,7 @@ namespace SnowPlatformMonitor.Core.Classes
                 pck.Save();
             }
 
-            if(File.Exists(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName))
+            if(File.Exists(dc.Export + ExportName))
             {
                 return true;
             } else {
@@ -67,7 +67,7 @@ namespace SnowPlatformMonitor.Core.Classes
 
             // create a work book and add the duj data into their own seperate sheets
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName)))
+            using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + ExportName)))
             {
                 pck.Workbook.Worksheets.Add("Office 365").Cells["A1"].LoadFromDataTable(licenseManager.Office365Import(), true).AutoFitColumns();
                 pck.Workbook.Worksheets.Add("Adobe Creative Cloud").Cells["A1"].LoadFromDataTable(licenseManager.AdobeImport(), true).AutoFitColumns();
@@ -77,7 +77,7 @@ namespace SnowPlatformMonitor.Core.Classes
                 pck.Save();
             }
 
-            if (File.Exists(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName))
+            if (File.Exists(dc.Export + ExportName))
             {
                 return true;
             }
@@ -96,7 +96,7 @@ namespace SnowPlatformMonitor.Core.Classes
             InventoryServer inventoryServer = new InventoryServer();
             LicenseManager licenseManager = new LicenseManager();
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName)))
+            using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + ExportName)))
             {
                 if(slm)
                 {
@@ -112,7 +112,7 @@ namespace SnowPlatformMonitor.Core.Classes
                 pck.Save();
             }
 
-            if (File.Exists(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName))
+            if (File.Exists(dc.Export + ExportName))
             {
                 return true;
             }
@@ -135,14 +135,14 @@ namespace SnowPlatformMonitor.Core.Classes
             DataTable dtWindowsServices = windowsServices.GetServices(hostname);
 
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName)))
+            using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + ExportName)))
             {
                 pck.Workbook.Worksheets.Add(type + " Services").Cells["A1"].LoadFromDataTable(dtWindowsServices, true).AutoFitColumns();
                 TabColor(pck, "ServiceCheck", wsName: type + " Services");
                 pck.Save();
             }
 
-            if (File.Exists(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName))
+            if (File.Exists(dc.Export + ExportName))
             {
                 return true;
             }
@@ -171,14 +171,14 @@ namespace SnowPlatformMonitor.Core.Classes
             }
 
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName)))
+            using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + ExportName)))
             {
                 pck.Workbook.Worksheets.Add("Extras").Cells["A1"].LoadFromDataTable(dt, true).AutoFitColumns();
                 TabColor(pck, "Default", wsName: "Extras");
                 pck.Save();
             }
 
-            if (File.Exists(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName))
+            if (File.Exists(dc.Export + ExportName))
             {
                 return true;
             }
@@ -213,14 +213,14 @@ namespace SnowPlatformMonitor.Core.Classes
             DataTable dtWindowsStorage = windowsStorage.GetWindowStorage(hostname, "Win32_LogicalDisk");
 
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName)))
+            using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + ExportName)))
             {
                 pck.Workbook.Worksheets.Add(type + " Storage").Cells["A1"].LoadFromDataTable(dtWindowsStorage, true).AutoFitColumns();
                 TabColor(pck, "Default", wsName: type + " Storage");
                 pck.Save();
             }
 
-            if (File.Exists(dc.Export + DateTime.Now.ToString(DateFormat) + ExportName))
+            if (File.Exists(dc.Export + ExportName))
             {
                 return true;
             }

@@ -113,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Resources\sqlscripts_.resource" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Credits.txt" />

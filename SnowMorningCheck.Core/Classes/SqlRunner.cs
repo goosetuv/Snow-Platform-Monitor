@@ -2,6 +2,7 @@
 using Laim;
 using SnowPlatformMonitor.Core.Configuration;
 using System.Data;
+using System.IO;
 #endregion
 
 namespace SnowPlatformMonitor.Core.Classes
@@ -13,6 +14,7 @@ namespace SnowPlatformMonitor.Core.Classes
         private readonly ApplicationConfiguration ac = new ApplicationConfiguration();
         #endregion
 
+        // Runs a SQL Script and returns it as a DataTable based on resourceName (uses VS Resources)
         public DataTable RunSQLDataTable(string resourceName)
         {
             // decrypt the connection string
@@ -22,6 +24,7 @@ namespace SnowPlatformMonitor.Core.Classes
             return RunResourceDataTable(resourceName, ConnectionString + ConnectionStringParameters);
         }
 
+        // Runs a SQL Script and returns it as a string based on resourceName (uses VS Resources)
         public string RunSQLString(string resourceName)
         {
             // decrypt the connection string

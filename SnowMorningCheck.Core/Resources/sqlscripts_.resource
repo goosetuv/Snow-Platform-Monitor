@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SqlScripts>
+  <AdobeImport>SELECT CID, ImportID, AddedDate FROM SnowLicenseManager.adobecc.Import</AdobeImport>
+  <Office365Import>SELECT TenantID, ImportID, AddedDate FROM SnowLicenseManager.o365.Import</Office365Import>
+  <SRSUpdateDate>SELECT TOP 1 SRSUpdateDate FROM SnowLicenseManager.dbo.tblApplication ORDER BY SRSUpdateDate DESC</SRSUpdateDate>
+  <DataUpdateJobErrorLog>SELECT * FROM SnowLicenseManager.dbo.tblErrorLog WHERE convert(varchar(10), LogDate, 102) = convert(varchar(10), getdate(), 102) OR convert(varchar(10), LogDate, 102) = convert(varchar(10), getdate() - 1, 102) ORDER BY logDate DESC</DataUpdateJobErrorLog>
+  <DataUpdateJobErrorSevere>SELECT TOP 5 * FROM msdb.dbo.sysjobhistory WHERE sql_severity > 0 AND convert(varchar(10), msdb.dbo.agent_datetime(run_date,run_time), 102) = convert(varchar(10), getdate(), 102) OR sql_severity > 0 AND convert(varchar(10), msdb.dbo.agent_datetime(run_date,run_time), 102) = convert(varchar(10), getdate() - 1, 102) order by run_date desc, run_time desc</DataUpdateJobErrorSevere>
+  <DataUpdateJobParallel>SELECT * FROM SnowLicenseManager.inv.tblJobParallelStep WHERE Status = -1</DataUpdateJobParallel>
+  <DataUpdateJobStatus>SELECT job.name, job.job_id, job.originating_server, activity.run_requested_date, DATEDIFF(SECOND, activity.run_requested_date, GETDATE()) as Elapsed FROM msdb.dbo.sysjobs_view job JOIN msdb.dbo.sysjobactivity activity ON job.job_id = activity.job_id JOIN msdb.dbo.syssessions sess ON sess.session_id = activity.session_id JOIN ( SELECT MAX(agent_start_date) AS max_agent_start_date FROM msdb.dbo.syssessions) sess_max ON sess.agent_start_date = sess_max.max_agent_start_date WHERE run_requested_date IS NOT NULL AND stop_execution_date IS NULL AND job.name LIKE '%License Manager%'</DataUpdateJobStatus>
+  <InventoryReportedToday>SELECT ClientID, SiteName, HostName, ClientVersion FROM SnowInventory.inv.DataClientView2 WHERE CAST(LastUpdate AS DATE) = CAST(GETDATE() AS Date)</InventoryReportedToday>
+  <LicenseManagerReportedToday>SELECT ComputerID, ClientSiteName, HostName, ClientVersion FROM SnowLicenseManager.dbo.tblComputer WHERE CAST(LastScanDate AS DATE) = CAST(GETDATE() - 1 AS Date)</LicenseManagerReportedToday>
+</SqlScripts>

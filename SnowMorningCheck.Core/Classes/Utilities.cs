@@ -42,11 +42,13 @@ namespace SnowPlatformMonitor.Core.Classes
             return date.ToString(format);
         }
 
+        // Confirms if the sql connection is valid
         public static bool IsSqlCorrect(string sqlConnection)
         {
             return MSSqlServer.CheckConnnection(sqlConnection);
         }   
 
+        // Pings the computer to confirm it's online
         public static bool PingHost(string hostName)
         {
             try
@@ -67,6 +69,7 @@ namespace SnowPlatformMonitor.Core.Classes
             }
         }
 
+        // Log retention module for removing old logs
         public static void LogRetention(string logDirectory, int retentionDays)
         {
             string[] files = Directory.GetFiles(logDirectory);
@@ -79,6 +82,11 @@ namespace SnowPlatformMonitor.Core.Classes
                     fileInfo.Delete();
                 }
             }
+        }
+
+        public static string GenerateGUID()
+        {
+            return Guid.NewGuid().ToString();
         }
     }
 }

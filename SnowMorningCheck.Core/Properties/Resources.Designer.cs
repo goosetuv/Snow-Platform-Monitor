@@ -67,7 +67,7 @@ namespace SnowPlatformMonitor.Core.Properties {
         ///&lt;head&gt;
         ///&lt;!--[if gte mso 9]&gt;&lt;xml&gt;&lt;o:OfficeDocumentSettings&gt;&lt;o:AllowPNG/&gt;&lt;o:PixelsPerInch&gt;96&lt;/o:PixelsPerInch&gt;&lt;/o:OfficeDocumentSettings&gt;&lt;/xml&gt;&lt;![endif]--&gt;
         ///&lt;meta content=&quot;text/html; charset=utf-8&quot; http-equiv=&quot;Content-Type&quot;/&gt;
-        ///&lt;meta content=&quot;width=device-widt [rest of string was truncated]&quot;;.
+        ///&lt;meta content=&quot;width=devic [rest of string was truncated]&quot;;.
         /// </summary>
         public static string email {
             get {

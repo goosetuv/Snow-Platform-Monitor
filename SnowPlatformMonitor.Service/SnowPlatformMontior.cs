@@ -297,7 +297,7 @@ namespace SnowPlatformMonitor.Service
 
 
                 Mailer m = new Mailer();
-                string filename = dc.Export + DateTime.Now.ToString(dataRetriever.DateFormat) + dataRetriever.ExportName;
+                string filename = dc.Export + dataRetriever.ExportName;
                 log.Debug("New mailer initialized");
 
                 m.SendEmail(filename, Assembly.GetExecutingAssembly().GetName().Version.ToString());

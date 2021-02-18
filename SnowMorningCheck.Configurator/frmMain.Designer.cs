@@ -141,6 +141,7 @@
             this.btnHelpLogDir = new System.Windows.Forms.Button();
             this.lblHelpAppInfo = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControlMain.SuspendLayout();
             this.tabConfiguration.SuspendLayout();
             this.gbConfigAdvanced.SuspendLayout();
@@ -188,6 +189,7 @@
             // 
             // tabConfiguration
             // 
+            this.tabConfiguration.Controls.Add(this.label1);
             this.tabConfiguration.Controls.Add(this.btnConfigTest);
             this.tabConfiguration.Controls.Add(this.cbConfigSRSImport);
             this.tabConfiguration.Controls.Add(this.btnConfigAdvanced);
@@ -1386,6 +1388,15 @@
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(210, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 13);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "PREVIEW BUILD";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1554,6 +1565,7 @@
         private System.Windows.Forms.TextBox txtSMTPSenderName;
         private System.Windows.Forms.Button btnServiceMngrRefresh;
         private System.Windows.Forms.Button btnConfigTest;
+        private System.Windows.Forms.Label label1;
     }
 }
 
