@@ -12,7 +12,16 @@ namespace SnowPlatformMonitor.Core.Classes
         #region Fields
         private readonly DirectoryConfiguration dc = new DirectoryConfiguration();
         private readonly ApplicationConfiguration ac = new ApplicationConfiguration();
+        private readonly string SqlResourceFileName = "sql.resource";
         #endregion
+
+        public void OnLoad()
+        {
+            if (!File.Exists(dc.Resources + SqlResourceFileName))
+            {
+                File.WriteAllText(dc.Resources + SqlResourceFileName, Properties.Resources.sqlresource);
+            }
+        }
 
         // Runs a SQL Script and returns it as a DataTable based on resourceName (uses VS Resources)
         public DataTable RunSQLDataTable(string resourceName)
@@ -36,12 +45,14 @@ namespace SnowPlatformMonitor.Core.Classes
 
         internal DataTable RunResourceDataTable(string resourceName, string connectionString)
         {
-            return MSSqlServer.ExecuteReadDataTable(connectionString, Resources.SqlScripts.ResourceManager.GetString(resourceName));
+            return MSSqlServer.ExecuteReadDataTable(connectionString, Utilities.ReadXMLValue(dc.Resources + SqlResourceFileName, resourceName, "Resource"));
+            //return MSSqlServer.ExecuteReadDataTable(connectionString, Resources.SqlScripts.ResourceManager.GetString(resourceName));
         }
 
         internal string RunResourceString(string resourceName, string connectionString)
         {
-            return MSSqlServer.ExecuteReadString(connectionString, Resources.SqlScripts.ResourceManager.GetString(resourceName));
+            return MSSqlServer.ExecuteReadString(connectionString, Utilities.ReadXMLValue(dc.Resources + SqlResourceFileName, resourceName, "Resource"));
+            //return MSSqlServer.ExecuteReadString(connectionString, Resources.SqlScripts.ResourceManager.GetString(resourceName));
         }
     }
 }

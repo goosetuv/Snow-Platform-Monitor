@@ -141,7 +141,6 @@
             this.btnHelpLogDir = new System.Windows.Forms.Button();
             this.lblHelpAppInfo = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabControlMain.SuspendLayout();
             this.tabConfiguration.SuspendLayout();
             this.gbConfigAdvanced.SuspendLayout();
@@ -189,7 +188,6 @@
             // 
             // tabConfiguration
             // 
-            this.tabConfiguration.Controls.Add(this.label1);
             this.tabConfiguration.Controls.Add(this.btnConfigTest);
             this.tabConfiguration.Controls.Add(this.cbConfigSRSImport);
             this.tabConfiguration.Controls.Add(this.btnConfigAdvanced);
@@ -220,7 +218,7 @@
             this.btnConfigTest.Location = new System.Drawing.Point(117, 565);
             this.btnConfigTest.Name = "btnConfigTest";
             this.btnConfigTest.Size = new System.Drawing.Size(75, 23);
-            this.btnConfigTest.TabIndex = 20;
+            this.btnConfigTest.TabIndex = 16;
             this.btnConfigTest.Text = "Test";
             this.btnConfigTest.UseVisualStyleBackColor = true;
             this.btnConfigTest.Click += new System.EventHandler(this.btnConfigTest_Click);
@@ -231,8 +229,7 @@
             this.cbConfigSRSImport.Location = new System.Drawing.Point(20, 136);
             this.cbConfigSRSImport.Name = "cbConfigSRSImport";
             this.cbConfigSRSImport.Size = new System.Drawing.Size(106, 17);
-            this.cbConfigSRSImport.TabIndex = 19;
-            this.cbConfigSRSImport.TabStop = false;
+            this.cbConfigSRSImport.TabIndex = 6;
             this.cbConfigSRSImport.Text = "SRS Import Date";
             this.cbConfigSRSImport.UseVisualStyleBackColor = true;
             // 
@@ -242,7 +239,7 @@
             this.btnConfigAdvanced.Location = new System.Drawing.Point(20, 565);
             this.btnConfigAdvanced.Name = "btnConfigAdvanced";
             this.btnConfigAdvanced.Size = new System.Drawing.Size(75, 23);
-            this.btnConfigAdvanced.TabIndex = 16;
+            this.btnConfigAdvanced.TabIndex = 15;
             this.btnConfigAdvanced.Text = "Advanced";
             this.btnConfigAdvanced.UseVisualStyleBackColor = true;
             this.btnConfigAdvanced.Click += new System.EventHandler(this.btnConfigAdvanced_Click);
@@ -253,8 +250,7 @@
             this.btnConfigSave.Location = new System.Drawing.Point(213, 565);
             this.btnConfigSave.Name = "btnConfigSave";
             this.btnConfigSave.Size = new System.Drawing.Size(75, 23);
-            this.btnConfigSave.TabIndex = 8;
-            this.btnConfigSave.TabStop = false;
+            this.btnConfigSave.TabIndex = 17;
             this.btnConfigSave.Text = "Save";
             this.btnConfigSave.UseVisualStyleBackColor = true;
             this.btnConfigSave.Click += new System.EventHandler(this.btnConfigSave_Click);
@@ -266,7 +262,7 @@
             this.cbConfigLogInterrogator.Location = new System.Drawing.Point(20, 159);
             this.cbConfigLogInterrogator.Name = "cbConfigLogInterrogator";
             this.cbConfigLogInterrogator.Size = new System.Drawing.Size(147, 17);
-            this.cbConfigLogInterrogator.TabIndex = 18;
+            this.cbConfigLogInterrogator.TabIndex = 7;
             this.cbConfigLogInterrogator.Text = "Platform Logs Interrogator";
             this.cbConfigLogInterrogator.UseVisualStyleBackColor = true;
             // 
@@ -303,6 +299,7 @@
             this.txtConfigAdvINVProcessingDirectory.Name = "txtConfigAdvINVProcessingDirectory";
             this.txtConfigAdvINVProcessingDirectory.Size = new System.Drawing.Size(227, 20);
             this.txtConfigAdvINVProcessingDirectory.TabIndex = 6;
+            this.txtConfigAdvINVProcessingDirectory.TabStop = false;
             this.txtConfigAdvINVProcessingDirectory.Text = "\\Program Files\\Snow Software\\Snow Inventory\\Server\\Incoming\\data\\processing";
             // 
             // lblConfigAdvINVProcessingThreshold
@@ -325,6 +322,7 @@
             this.numConfigAdvINVProcessingThreshold.Name = "numConfigAdvINVProcessingThreshold";
             this.numConfigAdvINVProcessingThreshold.Size = new System.Drawing.Size(227, 20);
             this.numConfigAdvINVProcessingThreshold.TabIndex = 4;
+            this.numConfigAdvINVProcessingThreshold.TabStop = false;
             this.numConfigAdvINVProcessingThreshold.Value = new decimal(new int[] {
             100,
             0,
@@ -351,6 +349,7 @@
             this.numConfigAdvINVDeviceThreshold.Name = "numConfigAdvINVDeviceThreshold";
             this.numConfigAdvINVDeviceThreshold.Size = new System.Drawing.Size(227, 20);
             this.numConfigAdvINVDeviceThreshold.TabIndex = 2;
+            this.numConfigAdvINVDeviceThreshold.TabStop = false;
             this.numConfigAdvINVDeviceThreshold.Value = new decimal(new int[] {
             200,
             0,
@@ -368,6 +367,7 @@
             this.numConfigAdvSLMDeviceThreshold.Name = "numConfigAdvSLMDeviceThreshold";
             this.numConfigAdvSLMDeviceThreshold.Size = new System.Drawing.Size(227, 20);
             this.numConfigAdvSLMDeviceThreshold.TabIndex = 1;
+            this.numConfigAdvSLMDeviceThreshold.TabStop = false;
             this.numConfigAdvSLMDeviceThreshold.Value = new decimal(new int[] {
             200,
             0,
@@ -389,8 +389,7 @@
             this.cbConfigOffice365Adobe.Location = new System.Drawing.Point(20, 113);
             this.cbConfigOffice365Adobe.Name = "cbConfigOffice365Adobe";
             this.cbConfigOffice365Adobe.Size = new System.Drawing.Size(197, 17);
-            this.cbConfigOffice365Adobe.TabIndex = 15;
-            this.cbConfigOffice365Adobe.TabStop = false;
+            this.cbConfigOffice365Adobe.TabIndex = 5;
             this.cbConfigOffice365Adobe.Text = "Office 365 and Adobe Import Tables";
             this.cbConfigOffice365Adobe.UseVisualStyleBackColor = true;
             // 
@@ -488,8 +487,7 @@
             this.cbConfigINVStorage.Location = new System.Drawing.Point(20, 320);
             this.cbConfigINVStorage.Name = "cbConfigINVStorage";
             this.cbConfigINVStorage.Size = new System.Drawing.Size(174, 17);
-            this.cbConfigINVStorage.TabIndex = 7;
-            this.cbConfigINVStorage.TabStop = false;
+            this.cbConfigINVStorage.TabIndex = 14;
             this.cbConfigINVStorage.Text = "Snow Inventory Server Storage";
             this.cbConfigINVStorage.UseVisualStyleBackColor = true;
             // 
@@ -499,8 +497,7 @@
             this.cbConfigSLMStorage.Location = new System.Drawing.Point(20, 228);
             this.cbConfigSLMStorage.Name = "cbConfigSLMStorage";
             this.cbConfigSLMStorage.Size = new System.Drawing.Size(212, 17);
-            this.cbConfigSLMStorage.TabIndex = 6;
-            this.cbConfigSLMStorage.TabStop = false;
+            this.cbConfigSLMStorage.TabIndex = 10;
             this.cbConfigSLMStorage.Text = "Snow License Manager Server Storage";
             this.cbConfigSLMStorage.UseVisualStyleBackColor = true;
             // 
@@ -510,8 +507,7 @@
             this.cbConfigINVProcessingDir.Location = new System.Drawing.Point(20, 297);
             this.cbConfigINVProcessingDir.Name = "cbConfigINVProcessingDir";
             this.cbConfigINVProcessingDir.Size = new System.Drawing.Size(200, 17);
-            this.cbConfigINVProcessingDir.TabIndex = 5;
-            this.cbConfigINVProcessingDir.TabStop = false;
+            this.cbConfigINVProcessingDir.TabIndex = 13;
             this.cbConfigINVProcessingDir.Text = "Snow Inventory Processing Directory";
             this.cbConfigINVProcessingDir.UseVisualStyleBackColor = true;
             // 
@@ -521,8 +517,7 @@
             this.cbConfigINVServices.Location = new System.Drawing.Point(20, 251);
             this.cbConfigINVServices.Name = "cbConfigINVServices";
             this.cbConfigINVServices.Size = new System.Drawing.Size(178, 17);
-            this.cbConfigINVServices.TabIndex = 4;
-            this.cbConfigINVServices.TabStop = false;
+            this.cbConfigINVServices.TabIndex = 11;
             this.cbConfigINVServices.Text = "Snow Inventory Server Services";
             this.cbConfigINVServices.UseVisualStyleBackColor = true;
             // 
@@ -532,8 +527,7 @@
             this.cbConfigINVDeviceReporting.Location = new System.Drawing.Point(20, 274);
             this.cbConfigINVDeviceReporting.Name = "cbConfigINVDeviceReporting";
             this.cbConfigINVDeviceReporting.Size = new System.Drawing.Size(186, 17);
-            this.cbConfigINVDeviceReporting.TabIndex = 3;
-            this.cbConfigINVDeviceReporting.TabStop = false;
+            this.cbConfigINVDeviceReporting.TabIndex = 12;
             this.cbConfigINVDeviceReporting.Text = "Snow Inventory Device Reporting";
             this.cbConfigINVDeviceReporting.UseVisualStyleBackColor = true;
             // 
@@ -543,8 +537,7 @@
             this.cbConfigSLMDeviceReporting.Location = new System.Drawing.Point(20, 205);
             this.cbConfigSLMDeviceReporting.Name = "cbConfigSLMDeviceReporting";
             this.cbConfigSLMDeviceReporting.Size = new System.Drawing.Size(224, 17);
-            this.cbConfigSLMDeviceReporting.TabIndex = 2;
-            this.cbConfigSLMDeviceReporting.TabStop = false;
+            this.cbConfigSLMDeviceReporting.TabIndex = 9;
             this.cbConfigSLMDeviceReporting.Text = "Snow License Manager Device Reporting";
             this.cbConfigSLMDeviceReporting.UseVisualStyleBackColor = true;
             // 
@@ -554,8 +547,7 @@
             this.cbConfigSLMServices.Location = new System.Drawing.Point(20, 182);
             this.cbConfigSLMServices.Name = "cbConfigSLMServices";
             this.cbConfigSLMServices.Size = new System.Drawing.Size(216, 17);
-            this.cbConfigSLMServices.TabIndex = 1;
-            this.cbConfigSLMServices.TabStop = false;
+            this.cbConfigSLMServices.TabIndex = 8;
             this.cbConfigSLMServices.Text = "Snow License Manager Server Services";
             this.cbConfigSLMServices.UseVisualStyleBackColor = true;
             // 
@@ -565,8 +557,7 @@
             this.cbConfigDUJStatus.Location = new System.Drawing.Point(20, 90);
             this.cbConfigDUJStatus.Name = "cbConfigDUJStatus";
             this.cbConfigDUJStatus.Size = new System.Drawing.Size(140, 17);
-            this.cbConfigDUJStatus.TabIndex = 0;
-            this.cbConfigDUJStatus.TabStop = false;
+            this.cbConfigDUJStatus.TabIndex = 4;
             this.cbConfigDUJStatus.Text = "Data Update Job Status";
             this.cbConfigDUJStatus.UseVisualStyleBackColor = true;
             // 
@@ -682,7 +673,7 @@
             this.btnServersSave.Location = new System.Drawing.Point(213, 352);
             this.btnServersSave.Name = "btnServersSave";
             this.btnServersSave.Size = new System.Drawing.Size(75, 23);
-            this.btnServersSave.TabIndex = 7;
+            this.btnServersSave.TabIndex = 10;
             this.btnServersSave.TabStop = false;
             this.btnServersSave.Text = "Save";
             this.btnServersSave.UseVisualStyleBackColor = true;
@@ -826,7 +817,7 @@
             this.txtSMTPSenderName.Location = new System.Drawing.Point(84, 121);
             this.txtSMTPSenderName.Name = "txtSMTPSenderName";
             this.txtSMTPSenderName.Size = new System.Drawing.Size(204, 20);
-            this.txtSMTPSenderName.TabIndex = 42;
+            this.txtSMTPSenderName.TabIndex = 5;
             // 
             // lblSMTPSubject
             // 
@@ -842,7 +833,7 @@
             this.txtSMTPSubject.Location = new System.Drawing.Point(84, 225);
             this.txtSMTPSubject.Name = "txtSMTPSubject";
             this.txtSMTPSubject.Size = new System.Drawing.Size(204, 20);
-            this.txtSMTPSubject.TabIndex = 40;
+            this.txtSMTPSubject.TabIndex = 9;
             // 
             // cbxSMTPEnableSSL
             // 
@@ -850,7 +841,7 @@
             this.cbxSMTPEnableSSL.Location = new System.Drawing.Point(84, 251);
             this.cbxSMTPEnableSSL.Name = "cbxSMTPEnableSSL";
             this.cbxSMTPEnableSSL.Size = new System.Drawing.Size(130, 17);
-            this.cbxSMTPEnableSSL.TabIndex = 39;
+            this.cbxSMTPEnableSSL.TabIndex = 10;
             this.cbxSMTPEnableSSL.Text = "Enable SSL (Optional)";
             this.cbxSMTPEnableSSL.UseVisualStyleBackColor = true;
             // 
@@ -864,14 +855,14 @@
             0});
             this.numSMTPPort.Name = "numSMTPPort";
             this.numSMTPPort.Size = new System.Drawing.Size(204, 20);
-            this.numSMTPPort.TabIndex = 38;
+            this.numSMTPPort.TabIndex = 3;
             // 
             // btnSMTPTest
             // 
             this.btnSMTPTest.Location = new System.Drawing.Point(213, 323);
             this.btnSMTPTest.Name = "btnSMTPTest";
             this.btnSMTPTest.Size = new System.Drawing.Size(75, 23);
-            this.btnSMTPTest.TabIndex = 37;
+            this.btnSMTPTest.TabIndex = 11;
             this.btnSMTPTest.Text = "Test";
             this.btnSMTPTest.UseVisualStyleBackColor = true;
             this.btnSMTPTest.Click += new System.EventHandler(this.btnSMTPTest_Click);
@@ -881,7 +872,7 @@
             this.btnSMTPSave.Location = new System.Drawing.Point(213, 352);
             this.btnSMTPSave.Name = "btnSMTPSave";
             this.btnSMTPSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSMTPSave.TabIndex = 33;
+            this.btnSMTPSave.TabIndex = 12;
             this.btnSMTPSave.Text = "Save";
             this.btnSMTPSave.UseVisualStyleBackColor = true;
             this.btnSMTPSave.Click += new System.EventHandler(this.btnSMTPSave_Click);
@@ -900,7 +891,7 @@
             this.txtSMTPcc.Location = new System.Drawing.Point(84, 199);
             this.txtSMTPcc.Name = "txtSMTPcc";
             this.txtSMTPcc.Size = new System.Drawing.Size(204, 20);
-            this.txtSMTPcc.TabIndex = 35;
+            this.txtSMTPcc.TabIndex = 8;
             // 
             // lbSMTPSendTo
             // 
@@ -916,7 +907,7 @@
             this.txtSMTPSendTo.Location = new System.Drawing.Point(84, 173);
             this.txtSMTPSendTo.Name = "txtSMTPSendTo";
             this.txtSMTPSendTo.Size = new System.Drawing.Size(204, 20);
-            this.txtSMTPSendTo.TabIndex = 32;
+            this.txtSMTPSendTo.TabIndex = 7;
             // 
             // lblSMTPSender
             // 
@@ -932,7 +923,7 @@
             this.txtSMTPSender.Location = new System.Drawing.Point(84, 147);
             this.txtSMTPSender.Name = "txtSMTPSender";
             this.txtSMTPSender.Size = new System.Drawing.Size(204, 20);
-            this.txtSMTPSender.TabIndex = 30;
+            this.txtSMTPSender.TabIndex = 6;
             // 
             // lblSMTPHost
             // 
@@ -948,7 +939,7 @@
             this.txtSMTPHost.Location = new System.Drawing.Point(84, 95);
             this.txtSMTPHost.Name = "txtSMTPHost";
             this.txtSMTPHost.Size = new System.Drawing.Size(204, 20);
-            this.txtSMTPHost.TabIndex = 28;
+            this.txtSMTPHost.TabIndex = 4;
             // 
             // lblSMTPPort
             // 
@@ -973,7 +964,7 @@
             this.txtSMTPPassword.Location = new System.Drawing.Point(84, 43);
             this.txtSMTPPassword.Name = "txtSMTPPassword";
             this.txtSMTPPassword.Size = new System.Drawing.Size(204, 20);
-            this.txtSMTPPassword.TabIndex = 25;
+            this.txtSMTPPassword.TabIndex = 2;
             this.txtSMTPPassword.UseSystemPasswordChar = true;
             // 
             // lblSMTPUsername
@@ -990,7 +981,7 @@
             this.txtSMTPUsername.Location = new System.Drawing.Point(84, 17);
             this.txtSMTPUsername.Name = "txtSMTPUsername";
             this.txtSMTPUsername.Size = new System.Drawing.Size(204, 20);
-            this.txtSMTPUsername.TabIndex = 23;
+            this.txtSMTPUsername.TabIndex = 1;
             // 
             // tabServiceManager
             // 
@@ -1388,15 +1379,6 @@
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(210, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 13);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "PREVIEW BUILD";
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1565,7 +1547,6 @@
         private System.Windows.Forms.TextBox txtSMTPSenderName;
         private System.Windows.Forms.Button btnServiceMngrRefresh;
         private System.Windows.Forms.Button btnConfigTest;
-        private System.Windows.Forms.Label label1;
     }
 }
 

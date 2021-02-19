@@ -384,7 +384,7 @@ namespace SnowPlatformMonitor.Configurator
                 guiLog4Net.SelectSingleNode("//log4net/root/level").Attributes["value"].Value = cbLoggingGUILevel.SelectedItem.ToString();
                 guiLog4Net.SelectSingleNode("//log4net/appender/layout/conversionPattern").Attributes["value"].Value = txtLoggingGUIFormat.Text;
                 guiLog4Net.SelectSingleNode("//log4net/appender/maximumFileSize").Attributes["value"].Value = string.Format("{0}{1}", numLoggingGUISize.Value, "MB");
-                guiLog4Net.Save("SnowPlatformMonitor.exe.config");
+                guiLog4Net.Save("SnowPlatformMonitor.Configurator.exe.config");
 
                 // Load log4net settings for the Service
                 XmlDocument svcLog4Net = new XmlDocument();
@@ -681,12 +681,18 @@ namespace SnowPlatformMonitor.Configurator
             }
         }
 
-        private void LoadEmailTemplates()
+        private void LoadRequiredResources()
         {
             try
             {
+                // Mailer Resource
                 Mailer m = new Mailer();
                 m.OnLoad();
+
+                // SQL Resource
+                SqlRunner sqlRunner = new SqlRunner();
+                sqlRunner.OnLoad();
+
             } catch (Exception ex)
             {
                 log.Error(ex.Message);
@@ -716,7 +722,7 @@ namespace SnowPlatformMonitor.Configurator
             LoadSMTPConfiguration();
             LoadLogging();
             LoadServiceStatus();
-            LoadEmailTemplates();
+            LoadRequiredResources();
             LoadExporterTest();
             log.Debug("AppLoad completed");
         }

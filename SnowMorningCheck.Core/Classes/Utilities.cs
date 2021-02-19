@@ -25,11 +25,11 @@ namespace SnowPlatformMonitor.Core.Classes
         }
 
         // Read the specific node from a configuration file
-        public static string ReadXMLValue(string path, string node)
+        public static string ReadXMLValue(string path, string node, string rootNode = "Configuration")
         {
             try
             {
-                return XmlConfigurator.Read(path, node);
+                return XmlConfigurator.Read(path, node, rootNode);
             } catch (Exception)
             {
                 return "";

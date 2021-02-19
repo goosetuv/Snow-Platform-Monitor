@@ -74,5 +74,19 @@ namespace SnowPlatformMonitor.Core.Properties {
                 return ResourceManager.GetString("email", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;SqlScripts&gt;
+        ///  &lt;AdobeImport&gt;SELECT CID, ImportID, AddedDate FROM SnowLicenseManager.adobecc.Import&lt;/AdobeImport&gt;
+        ///  &lt;Office365Import&gt;SELECT TenantID, ImportID, AddedDate FROM SnowLicenseManager.o365.Import&lt;/Office365Import&gt;
+        ///  &lt;SRSUpdateDate&gt;SELECT TOP 1 SRSUpdateDate FROM SnowLicenseManager.dbo.tblApplication ORDER BY SRSUpdateDate DESC&lt;/SRSUpdateDate&gt;
+        ///  &lt;DataUpdateJobErrorLog&gt;SELECT * FROM SnowLicenseManager.dbo.tblErrorLog WHERE convert(varchar(10), LogDate, 102) [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string sqlresource {
+            get {
+                return ResourceManager.GetString("sqlresource", resourceCulture);
+            }
+        }
     }
 }
