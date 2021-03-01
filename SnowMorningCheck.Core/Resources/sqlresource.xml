@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Resource>
-  <AdobeImport>SELECT CID, ImportID, AddedDate FROM SnowLicenseManager.adobecc.Import</AdobeImport>
+  <AdobeImport>SELECT ImportID, AddedDate FROM SnowLicenseManager.adobecc.Import</AdobeImport>
   <Office365Import>SELECT TenantID, ImportID, AddedDate FROM SnowLicenseManager.o365.Import</Office365Import>
   <SRSUpdateDate>SELECT TOP 1 SRSUpdateDate FROM SnowLicenseManager.dbo.tblApplication ORDER BY SRSUpdateDate DESC</SRSUpdateDate>
   <DataUpdateJobErrorLog>SELECT * FROM SnowLicenseManager.dbo.tblErrorLog WHERE convert(varchar(10), LogDate, 102) = convert(varchar(10), getdate(), 102) OR convert(varchar(10), LogDate, 102) = convert(varchar(10), getdate() - 1, 102) ORDER BY logDate DESC</DataUpdateJobErrorLog>

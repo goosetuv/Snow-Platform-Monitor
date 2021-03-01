@@ -201,6 +201,33 @@ namespace SnowPlatformMonitor.Core.Classes
         }
 
         /// <summary>
+        /// Gets the condition of log files, i.e if they contain ERROR, ERR, FATAL or FATL
+        /// </summary>
+        /// <returns></returns>
+        public bool GetSnowLogCondition()
+        {
+
+            SnowLogs sl = new SnowLogs();
+
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + ExportName)))
+            {
+                pck.Workbook.Worksheets.Add("Log Interrogator").Cells["A1"].LoadFromDataTable(sl.GetLogData(@"C:\Program Files\Snow Software\Logs\"), true).AutoFitColumns();
+                TabColor(pck, "LogInterrogator", wsName: "Log Interrogator");
+                pck.Save();
+            }
+
+            if (File.Exists(dc.Export + ExportName))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Returns the storage from the chosen server
         /// </summary>
         /// <param name="type">SLM or SINV</param>
@@ -273,7 +300,6 @@ namespace SnowPlatformMonitor.Core.Classes
                     return pck;
                     //break;
                 case "DeviceReporting":
-
                     foreach (ExcelWorksheet ws in pck.Workbook.Worksheets)
                     {
                         if(ws.Name == wsName)
@@ -291,7 +317,6 @@ namespace SnowPlatformMonitor.Core.Classes
                     return pck;
                     //break;
                 case "ServiceCheck":
-
                     foreach (ExcelWorksheet ws in pck.Workbook.Worksheets)
                     {
                         if(ws.Name == wsName)
@@ -317,7 +342,34 @@ namespace SnowPlatformMonitor.Core.Classes
                         }
                     }
                     return pck;
-                    //break;
+                //break;
+                case "LogInterrogator":
+                    foreach (ExcelWorksheet ws in pck.Workbook.Worksheets)
+                    {
+                        if (ws.Name == wsName)
+                        {
+                            bool TrueValuePresent = false;
+
+                            foreach (var worksheetCell in ws.Cells)
+                            {
+                                if (worksheetCell.Value.ToString() == "True")
+                                {
+                                    TrueValuePresent = true;
+                                }
+                            }
+
+                            if (TrueValuePresent == true)
+                            {
+                                ws.TabColor = Color.Red;
+                            }
+                            else
+                            {
+                                ws.TabColor = Color.Green;
+                            }
+                        }
+                    }
+                    return pck;
+                //break;
                 case "Default":
                     foreach (ExcelWorksheet ws in pck.Workbook.Worksheets)
                     {

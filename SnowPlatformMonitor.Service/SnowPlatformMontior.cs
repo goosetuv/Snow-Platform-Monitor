@@ -168,6 +168,9 @@ namespace SnowPlatformMonitor.Service
                 bool SRSImportDate = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "SRSImportDate"));
                 log.Debug("SRSImportDate bool value set");
 
+                bool LogInterrogator = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "LogInterrogator"));
+                log.Debug("LogInterrogator bool value set");
+
                 bool LicenseManagerServices = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "LicenseManagerServices"));
                 log.Debug("LicenseManagerServices bool value set");
 
@@ -271,6 +274,14 @@ namespace SnowPlatformMonitor.Service
                     }
                 }
 
+                if(LogInterrogator)
+                {
+                    if (dataRetriever.GetSnowLogCondition())
+                    {
+                        log.Info("Log Conditions exported");
+                    }
+                }
+                
                 if (LicenseManagerDeviceReporting)
                 {
                     if (dataRetriever.GetReportedToday(slm: true))

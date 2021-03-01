@@ -11,6 +11,7 @@ using AutoUpdaterDotNET;
 using System.Drawing;
 using System.Configuration.Install;
 using System.Xml;
+using System.Data;
 #endregion
 
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
@@ -35,6 +36,7 @@ namespace SnowPlatformMonitor.Configurator
         {
             InitializeComponent();
             AppLoad();
+            MessageBox.Show("This is a preview build.");
         }
         #endregion
 
@@ -53,6 +55,7 @@ namespace SnowPlatformMonitor.Configurator
                     "DataUpdateJobStatus",
                     "Office365AdobeImportTables",
                     "SRSImportDate",
+                    "LogInterrogator",
                     "LicenseManagerServices",
                     "LicenseManagerDeviceReporting",
                     "LicenseManagerDeviceThreshold",
@@ -79,6 +82,7 @@ namespace SnowPlatformMonitor.Configurator
                     cbConfigDUJStatus.Checked.ToString(),
                     cbConfigOffice365Adobe.Checked.ToString(),
                     cbConfigSRSImport.Checked.ToString(),
+                    cbConfigLogInterrogator.Checked.ToString(),
                     cbConfigSLMServices.Checked.ToString(),
                     cbConfigSLMDeviceReporting.Checked.ToString(),
                     numConfigAdvSLMDeviceThreshold.Value.ToString(),
@@ -521,6 +525,10 @@ namespace SnowPlatformMonitor.Configurator
                     cbConfigDUJStatus.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "DataUpdateJobStatus"));
                     cbConfigOffice365Adobe.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "Office365AdobeImportTables"));
                     cbConfigSRSImport.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "SRSImportDate"));
+                    if(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "LogInterrogator").Length > 0)
+                    {
+                        cbConfigLogInterrogator.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "LogInterrogator"));
+                    }
                     log.Debug("Core values have been populated from Configuration File");
 
                     // License Manager
@@ -747,5 +755,6 @@ namespace SnowPlatformMonitor.Configurator
         #endregion
 
         #endregion
+
     }
 }

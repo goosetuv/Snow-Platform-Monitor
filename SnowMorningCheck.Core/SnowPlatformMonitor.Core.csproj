@@ -81,6 +81,7 @@
     <Compile Include="Classes\LicenseManager.cs" />
     <Compile Include="Classes\Mailer.cs" />
     <Compile Include="Classes\ServiceManager.cs" />
+    <Compile Include="Classes\SnowLogs.cs" />
     <Compile Include="Classes\SqlRunner.cs" />
     <Compile Include="Classes\WindowsServices.cs" />
     <Compile Include="Classes\WindowsStorage.cs" />

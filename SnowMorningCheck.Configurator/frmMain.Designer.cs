@@ -258,7 +258,6 @@
             // cbConfigLogInterrogator
             // 
             this.cbConfigLogInterrogator.AutoSize = true;
-            this.cbConfigLogInterrogator.Enabled = false;
             this.cbConfigLogInterrogator.Location = new System.Drawing.Point(20, 159);
             this.cbConfigLogInterrogator.Name = "cbConfigLogInterrogator";
             this.cbConfigLogInterrogator.Size = new System.Drawing.Size(147, 17);
