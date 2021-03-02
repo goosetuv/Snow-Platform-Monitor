@@ -388,6 +388,7 @@ namespace SnowPlatformMonitor.Configurator
                 guiLog4Net.SelectSingleNode("//log4net/root/level").Attributes["value"].Value = cbLoggingGUILevel.SelectedItem.ToString();
                 guiLog4Net.SelectSingleNode("//log4net/appender/layout/conversionPattern").Attributes["value"].Value = txtLoggingGUIFormat.Text;
                 guiLog4Net.SelectSingleNode("//log4net/appender/maximumFileSize").Attributes["value"].Value = string.Format("{0}{1}", numLoggingGUISize.Value, "MB");
+                guiLog4Net.SelectSingleNode("//log4net/custom/retentionDays").Attributes["value"].Value = numLoggingRetention.Value.ToString();
                 guiLog4Net.Save("SnowPlatformMonitor.Configurator.exe.config");
 
                 // Load log4net settings for the Service
@@ -396,6 +397,7 @@ namespace SnowPlatformMonitor.Configurator
                 svcLog4Net.SelectSingleNode("//log4net/root/level").Attributes["value"].Value = cbLoggingServiceLevel.SelectedItem.ToString();
                 svcLog4Net.SelectSingleNode("//log4net/appender/layout/conversionPattern").Attributes["value"].Value = txtLoggingServiceFormat.Text;
                 svcLog4Net.SelectSingleNode("//log4net/appender/maximumFileSize").Attributes["value"].Value = string.Format("{0}{1}", numLoggingServiceSize.Value, "MB");
+                svcLog4Net.SelectSingleNode("//log4net/custom/retentionDays").Attributes["value"].Value = numLoggingRetention.Value.ToString();
                 svcLog4Net.Save("SnowPlatformMonitor.Service.exe.config");
 
                 MessageBox.Show("Configuration saved", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -514,7 +516,7 @@ namespace SnowPlatformMonitor.Configurator
             {
                 if(File.Exists(dc.Config + ac.AppConfig))
                 {
-
+                    log.Debug("Starting...");
                     // Schedule
                     numServiceMScheduleTimeHours.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ScheduleHours"));
                     numServiceMScheduleTimeMins.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ScheduleMinutes"));
@@ -550,6 +552,7 @@ namespace SnowPlatformMonitor.Configurator
                     numConfigAdvSLMDeviceThreshold.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "LicenseManagerDeviceThreshold"));
                     txtConfigAdvINVProcessingDirectory.Text = Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "InventoryServerProcessingDirectory");
                     log.Debug("Advanced Configuration values have been populated from Configuration File");
+                    log.Debug("Finished...");
                 }
             } catch (Exception ex)
             {
@@ -563,6 +566,7 @@ namespace SnowPlatformMonitor.Configurator
             {
                 if (ac.ConfigExists(ac.SMTPConfig))
                 {
+                    log.Debug("Starting...");
                     txtSMTPUsername.Text = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Username");
                     txtSMTPPassword.Text = Utilities.Decrypt(Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Password"));
                     numSMTPPort.Text = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Port");
@@ -574,6 +578,7 @@ namespace SnowPlatformMonitor.Configurator
                     txtSMTPcc.Text = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "CC");
                     txtSMTPSubject.Text = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Subject");
                     log.Debug("SMTP values have been populated from Configuration File");
+                    log.Debug("Finished...");
                 }
             } catch (Exception ex)
             {
@@ -587,6 +592,7 @@ namespace SnowPlatformMonitor.Configurator
             {
                 if(File.Exists(dc.Config + ac.ServerConfig))
                 {
+                    log.Debug("Starting...");
                     // License Manager
                     txtServersSLM.Text = Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "LicenseManager");
                     txtServersSLMDrive.Text = Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "LicenseManagerDrive");
@@ -605,6 +611,7 @@ namespace SnowPlatformMonitor.Configurator
                     txtServersSQLPass.Text = cs.Password;
                     txtServersSQLParam.Text = Utilities.Decrypt(Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "ConnectionStringParameters"));
                     log.Debug("SQL Server values have been populated from Configuration File");
+                    log.Debug("Finished...");
                 }
 
             } catch (Exception ex)
@@ -615,18 +622,20 @@ namespace SnowPlatformMonitor.Configurator
 
         private void LoadVisualDesign()
         {
+            log.Debug("Starting...");
             this.Size = new Size(MinimumSize.Width, MinimumSize.Height);
 
             lblHelpAppInfo.Text = $"v{ProductVersion}{Environment.NewLine}Copyright (c) 2020 - {DateTime.Now.Year} Laim McKenzie."; // PRE-RELEASE-BUILD{Environment.NewLine}
 
-            Text = string.Format("{0}", ProductName); 
+            Text = string.Format("{0}", ProductName);
+            log.Debug("Finished...");
         }
 
         private void LoadLogging()
         {
             try
             {
-
+                log.Debug("Starting...");
                 // Load log4net settings for the GUI
                 XmlDocument guiLog4Net = new XmlDocument();
                 guiLog4Net.Load("SnowPlatformMonitor.Configurator.exe.config");
@@ -634,7 +643,9 @@ namespace SnowPlatformMonitor.Configurator
                 cbLoggingGUILevel.SelectedItem = guiLog4Net.SelectSingleNode("//log4net/root/level").Attributes["value"].Value;
                 txtLoggingGUIFormat.Text = guiLog4Net.SelectSingleNode("//log4net/appender/layout/conversionPattern").Attributes["value"].Value;
                 string guiFileSize = guiLog4Net.SelectSingleNode("//log4net/appender/maximumFileSize").Attributes["value"].Value;
-                numLoggingGUISize.Value = Convert.ToInt32(guiFileSize.Remove(guiFileSize.Length - 2));
+                numLoggingGUISize.Value = Convert.ToInt32(guiFileSize.Remove(guiFileSize.Length - 2)); // removes MB from the end
+                numLoggingRetention.Value = Convert.ToInt32(guiLog4Net.SelectSingleNode("//log4net/custom/retentionDays").Attributes["value"].Value);
+
 
                 // Load log4net settings for the Service
                 XmlDocument svcLog4Net = new XmlDocument();
@@ -643,8 +654,8 @@ namespace SnowPlatformMonitor.Configurator
                 cbLoggingServiceLevel.SelectedItem = svcLog4Net.SelectSingleNode("//log4net/root/level").Attributes["value"].Value;
                 txtLoggingServiceFormat.Text = svcLog4Net.SelectSingleNode("//log4net/appender/layout/conversionPattern").Attributes["value"].Value;
                 string svcFileSize = svcLog4Net.SelectSingleNode("//log4net/appender/maximumFileSize").Attributes["value"].Value;
-                numLoggingServiceSize.Value = Convert.ToInt32(svcFileSize.Remove(svcFileSize.Length - 2));
-
+                numLoggingServiceSize.Value = Convert.ToInt32(svcFileSize.Remove(svcFileSize.Length - 2)); // removes MB from the end
+                log.Debug("Finished...");
             } catch (Exception ex)
             {
                 log.Fatal(ex);
@@ -655,6 +666,7 @@ namespace SnowPlatformMonitor.Configurator
         {
             try
             {
+                log.Debug("Starting...");
                 string serviceStatus = sc.ServiceStatus("SnowPlatformMonitor");
                 if (serviceStatus == "Running")
                 {
@@ -676,6 +688,7 @@ namespace SnowPlatformMonitor.Configurator
                     btnServiceMngrInstall.Enabled = false;
                     btnServiceMngrUninstall.Enabled = true;
                 }
+                log.Debug("Finished...");
             } catch (Exception ex)
             {
                 if(ex.Message.Contains("was not found on computer"))
@@ -693,6 +706,7 @@ namespace SnowPlatformMonitor.Configurator
         {
             try
             {
+                log.Debug("Starting...");
                 // Mailer Resource
                 Mailer m = new Mailer();
                 m.OnLoad();
@@ -700,7 +714,7 @@ namespace SnowPlatformMonitor.Configurator
                 // SQL Resource
                 SqlRunner sqlRunner = new SqlRunner();
                 sqlRunner.OnLoad();
-
+                log.Debug("Finished...");
             } catch (Exception ex)
             {
                 log.Error(ex.Message);
@@ -711,10 +725,12 @@ namespace SnowPlatformMonitor.Configurator
         {
             try
             {
+                log.Debug("Starting...");
                 if (!File.Exists(dc.Resources + "exportertest.bat"))
                 {
                     File.WriteAllText(dc.Resources + "exportertest.bat", Properties.Resources.exportertest);
                 }
+                log.Debug("Finished...");
             } catch (Exception ex)
             {
                 log.Error(ex);
@@ -741,14 +757,14 @@ namespace SnowPlatformMonitor.Configurator
         /// </summary>
         private void CheckForUpdates()
         {
-            log.Debug("Checking for updates...");
+            log.Debug("Starting...");
             AutoUpdater.Start("https://laim.scot/updates/spm.xml");
             AutoUpdater.ShowSkipButton = false;
             AutoUpdater.OpenDownloadPage = true;
             AutoUpdater.HttpUserAgent = "AutoUpdater-SPM";
             AutoUpdater.UpdateFormSize = new Size(Width, Height);
             AutoUpdater.PersistenceProvider = new JsonFilePersistenceProvider(Path.Combine(dc.Resources, "updates.json"));
-            log.Debug("Update check finished, popup should appear if there are updates available");
+            log.Debug("Finished...");
         }
 
 

@@ -114,6 +114,9 @@
             this.btnServiceMngrStart = new System.Windows.Forms.Button();
             this.pbServiceMngrStatus = new System.Windows.Forms.PictureBox();
             this.tabLogging = new System.Windows.Forms.TabPage();
+            this.lblLoggingRetentionDAYS = new System.Windows.Forms.Label();
+            this.numLoggingRetention = new System.Windows.Forms.NumericUpDown();
+            this.lblLoggingRetention = new System.Windows.Forms.Label();
             this.linkLoggingFormat = new System.Windows.Forms.LinkLabel();
             this.btnLoggingSave = new System.Windows.Forms.Button();
             this.gbLoggingService = new System.Windows.Forms.GroupBox();
@@ -160,6 +163,7 @@
             this.tabServiceManager.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbServiceMngrStatus)).BeginInit();
             this.tabLogging.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numLoggingRetention)).BeginInit();
             this.gbLoggingService.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numLoggingServiceSize)).BeginInit();
             this.gbLoggingGUI.SuspendLayout();
@@ -569,7 +573,7 @@
             this.tabServers.Location = new System.Drawing.Point(4, 22);
             this.tabServers.Name = "tabServers";
             this.tabServers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabServers.Size = new System.Drawing.Size(308, 594);
+            this.tabServers.Size = new System.Drawing.Size(308, 381);
             this.tabServers.TabIndex = 0;
             this.tabServers.Text = "Servers";
             this.tabServers.UseVisualStyleBackColor = true;
@@ -797,7 +801,7 @@
             this.tabSMTP.Location = new System.Drawing.Point(4, 22);
             this.tabSMTP.Name = "tabSMTP";
             this.tabSMTP.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSMTP.Size = new System.Drawing.Size(308, 594);
+            this.tabSMTP.Size = new System.Drawing.Size(308, 381);
             this.tabSMTP.TabIndex = 1;
             this.tabSMTP.Text = "SMTP";
             this.tabSMTP.UseVisualStyleBackColor = true;
@@ -992,7 +996,7 @@
             this.tabServiceManager.Controls.Add(this.pbServiceMngrStatus);
             this.tabServiceManager.Location = new System.Drawing.Point(4, 22);
             this.tabServiceManager.Name = "tabServiceManager";
-            this.tabServiceManager.Size = new System.Drawing.Size(308, 594);
+            this.tabServiceManager.Size = new System.Drawing.Size(308, 381);
             this.tabServiceManager.TabIndex = 2;
             this.tabServiceManager.Text = "Service";
             this.tabServiceManager.UseVisualStyleBackColor = true;
@@ -1063,6 +1067,9 @@
             // 
             // tabLogging
             // 
+            this.tabLogging.Controls.Add(this.lblLoggingRetentionDAYS);
+            this.tabLogging.Controls.Add(this.numLoggingRetention);
+            this.tabLogging.Controls.Add(this.lblLoggingRetention);
             this.tabLogging.Controls.Add(this.linkLoggingFormat);
             this.tabLogging.Controls.Add(this.btnLoggingSave);
             this.tabLogging.Controls.Add(this.gbLoggingService);
@@ -1070,15 +1077,50 @@
             this.tabLogging.Location = new System.Drawing.Point(4, 22);
             this.tabLogging.Name = "tabLogging";
             this.tabLogging.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLogging.Size = new System.Drawing.Size(308, 594);
+            this.tabLogging.Size = new System.Drawing.Size(308, 381);
             this.tabLogging.TabIndex = 5;
             this.tabLogging.Text = "Logging";
             this.tabLogging.UseVisualStyleBackColor = true;
             // 
+            // lblLoggingRetentionDAYS
+            // 
+            this.lblLoggingRetentionDAYS.AutoSize = true;
+            this.lblLoggingRetentionDAYS.Location = new System.Drawing.Point(243, 274);
+            this.lblLoggingRetentionDAYS.Name = "lblLoggingRetentionDAYS";
+            this.lblLoggingRetentionDAYS.Size = new System.Drawing.Size(37, 13);
+            this.lblLoggingRetentionDAYS.TabIndex = 10;
+            this.lblLoggingRetentionDAYS.Text = "Day(s)";
+            // 
+            // numLoggingRetention
+            // 
+            this.numLoggingRetention.Location = new System.Drawing.Point(112, 272);
+            this.numLoggingRetention.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numLoggingRetention.Name = "numLoggingRetention";
+            this.numLoggingRetention.Size = new System.Drawing.Size(125, 20);
+            this.numLoggingRetention.TabIndex = 10;
+            this.numLoggingRetention.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // lblLoggingRetention
+            // 
+            this.lblLoggingRetention.AutoSize = true;
+            this.lblLoggingRetention.Location = new System.Drawing.Point(17, 274);
+            this.lblLoggingRetention.Name = "lblLoggingRetention";
+            this.lblLoggingRetention.Size = new System.Drawing.Size(89, 13);
+            this.lblLoggingRetention.TabIndex = 10;
+            this.lblLoggingRetention.Text = "Retention Period:";
+            // 
             // linkLoggingFormat
             // 
             this.linkLoggingFormat.AutoSize = true;
-            this.linkLoggingFormat.Location = new System.Drawing.Point(17, 275);
+            this.linkLoggingFormat.Location = new System.Drawing.Point(17, 314);
             this.linkLoggingFormat.Name = "linkLoggingFormat";
             this.linkLoggingFormat.Size = new System.Drawing.Size(161, 13);
             this.linkLoggingFormat.TabIndex = 9;
@@ -1293,7 +1335,7 @@
             this.tabHelp.Controls.Add(this.pictureBox1);
             this.tabHelp.Location = new System.Drawing.Point(4, 22);
             this.tabHelp.Name = "tabHelp";
-            this.tabHelp.Size = new System.Drawing.Size(308, 594);
+            this.tabHelp.Size = new System.Drawing.Size(308, 381);
             this.tabHelp.TabIndex = 3;
             this.tabHelp.Text = "Help";
             this.tabHelp.UseVisualStyleBackColor = true;
@@ -1420,6 +1462,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbServiceMngrStatus)).EndInit();
             this.tabLogging.ResumeLayout(false);
             this.tabLogging.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numLoggingRetention)).EndInit();
             this.gbLoggingService.ResumeLayout(false);
             this.gbLoggingService.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numLoggingServiceSize)).EndInit();
@@ -1546,6 +1589,9 @@
         private System.Windows.Forms.TextBox txtSMTPSenderName;
         private System.Windows.Forms.Button btnServiceMngrRefresh;
         private System.Windows.Forms.Button btnConfigTest;
+        private System.Windows.Forms.Label lblLoggingRetentionDAYS;
+        private System.Windows.Forms.NumericUpDown numLoggingRetention;
+        private System.Windows.Forms.Label lblLoggingRetention;
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿#region Dependencies
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.ServiceProcess;
 using System.Threading;
@@ -14,7 +15,6 @@ namespace SnowPlatformMonitor.Service
 {
     public partial class SnowPlatformMonitor : ServiceBase
     {
-
         #region Fields
         private Timer _timer = null;
         readonly DirectoryConfiguration dc = new DirectoryConfiguration();
@@ -24,12 +24,16 @@ namespace SnowPlatformMonitor.Service
         private bool Configured = false;
 
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(SnowPlatformMonitor));
+
+        private XmlDocument LogConfig = new XmlDocument();
+
         #endregion
 
         #region Constructor
         public SnowPlatformMonitor()
         {
             InitializeComponent();
+            LogConfig.Load("SnowPlatformMonitor.Service.exe.config");
         }
         #endregion
 
@@ -198,6 +202,7 @@ namespace SnowPlatformMonitor.Service
                 string InventoryServer = Utilities.ReadXMLValue(ServerConfig, "InventoryServer");
                 log.Debug("InventoryServer string value set");
                 #endregion
+
                 log.Info("Configuration files loaded");
 
                 DataRetriever dataRetriever = new DataRetriever();
@@ -222,7 +227,7 @@ namespace SnowPlatformMonitor.Service
 
                 #region Log Retention
                 log.Info("Log Retention module starting...");
-                Utilities.LogRetention(dc.Logs, 10);
+                Utilities.LogRetention(dc.Logs, Convert.ToInt32(LogConfig.SelectSingleNode("//log4net/custom/retentionDays").Attributes["value"].Value));
                 log.Info("Log Retention module finished...");
                 #endregion
 
@@ -274,11 +279,13 @@ namespace SnowPlatformMonitor.Service
                     }
                 }
 
+                // Incomplete
                 if(LogInterrogator)
                 {
-                    if (dataRetriever.GetSnowLogCondition())
+                    List<string> directoryList = new List<string>();
+                    if (dataRetriever.GetSnowLogHealth(directoryList))
                     {
-                        log.Info("Log Conditions exported");
+                        log.Info("Snow Log Health exported");
                     }
                 }
                 

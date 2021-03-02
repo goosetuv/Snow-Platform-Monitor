@@ -8,7 +8,6 @@ namespace SnowPlatformMonitor.Core.Classes
 {
     public class SnowLogs
     {
-        readonly string[] SEARCH_TYPE = { " ERROR ", " ERR ", " FATAL ", " FTL " };
 
         internal static List<string> GetSubDirectories(string directory)
         {
@@ -58,7 +57,7 @@ namespace SnowPlatformMonitor.Core.Classes
             dt.Columns.Add("Error");
             dt.Columns.Add("Fatal");
 
-            foreach (string dir in GetSubDirectories(@"C:\Program Files\Snow Software\Logs\"))
+            foreach (string dir in GetSubDirectories(directory))
             {
                 if(dir.Contains("ImportTool") == false) 
                 {

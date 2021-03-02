@@ -1,5 +1,6 @@
 ﻿#region Dependencies
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -201,10 +202,10 @@ namespace SnowPlatformMonitor.Core.Classes
         }
 
         /// <summary>
-        /// Gets the condition of log files, i.e if they contain ERROR, ERR, FATAL or FATL
+        /// Gets the health status of log files, i.e if they contain ERROR, ERR, FATAL or FATL
         /// </summary>
         /// <returns></returns>
-        public bool GetSnowLogCondition()
+        public bool GetSnowLogHealth(List<string> directoryList)
         {
 
             SnowLogs sl = new SnowLogs();
@@ -212,9 +213,14 @@ namespace SnowPlatformMonitor.Core.Classes
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + ExportName)))
             {
-                pck.Workbook.Worksheets.Add("Log Interrogator").Cells["A1"].LoadFromDataTable(sl.GetLogData(@"C:\Program Files\Snow Software\Logs\"), true).AutoFitColumns();
-                TabColor(pck, "LogInterrogator", wsName: "Log Interrogator");
-                pck.Save();
+                int directoryCounter = 0;
+                foreach(string directory in directoryList)
+                {
+                    directoryCounter += 1;
+                    pck.Workbook.Worksheets.Add("Log Interrogator " + directoryCounter).Cells["A1"].LoadFromDataTable(sl.GetLogData(directory), true).AutoFitColumns();
+                    TabColor(pck, "LogInterrogator", wsName: "Log Interrogator " + directoryCounter);
+                    pck.Save();
+                }
             }
 
             if (File.Exists(dc.Export + ExportName))
