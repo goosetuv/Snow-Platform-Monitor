@@ -1,6 +1,6 @@
 ﻿#region Dependencies
 using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using System.ServiceProcess;
 using System.Threading;
@@ -25,7 +25,7 @@ namespace SnowPlatformMonitor.Service
 
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(SnowPlatformMonitor));
 
-        private XmlDocument LogConfig = new XmlDocument();
+        private XmlDocument LogConfig = new XmlDocument(); // used for retention periods
 
         #endregion
 
@@ -33,7 +33,13 @@ namespace SnowPlatformMonitor.Service
         public SnowPlatformMonitor()
         {
             InitializeComponent();
-            LogConfig.Load("SnowPlatformMonitor.Service.exe.config");
+            try
+            {
+                LogConfig.Load(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "SnowPlatformMonitor.Service.exe.config"));
+            } catch (Exception ex)
+            {
+                log.Fatal(ex);
+            }
         }
         #endregion
 
@@ -175,6 +181,9 @@ namespace SnowPlatformMonitor.Service
                 bool LogInterrogator = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "LogInterrogator"));
                 log.Debug("LogInterrogator bool value set");
 
+                bool PlatformVersionCheck = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "PlatformVersionCheck"));
+                log.Debug("PlatformVersionCheck bool value set");
+
                 bool LicenseManagerServices = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "LicenseManagerServices"));
                 log.Debug("LicenseManagerServices bool value set");
 
@@ -212,11 +221,11 @@ namespace SnowPlatformMonitor.Service
                 #region Garbage Collector
                 log.Info("Export garbage collector starting...");
                 int exportCounter = 0;
-                foreach (var file in System.IO.Directory.GetFiles(dc.Export))
+                foreach (var file in Directory.GetFiles(dc.Export))
                 {
-                    if (System.IO.File.Exists(file))
+                    if (File.Exists(file))
                     {
-                        System.IO.File.Delete(file);
+                        File.Delete(file);
                         exportCounter += 1;
                         log.Debug(string.Format("{0} deleted!", file));
                     }
@@ -279,16 +288,22 @@ namespace SnowPlatformMonitor.Service
                     }
                 }
 
-                // Incomplete
                 if(LogInterrogator)
                 {
-                    List<string> directoryList = new List<string>();
-                    if (dataRetriever.GetSnowLogHealth(directoryList))
+                    if (dataRetriever.GetSnowLogHealth())
                     {
                         log.Info("Snow Log Health exported");
                     }
                 }
-                
+
+                if (PlatformVersionCheck)
+                {
+                    if(dataRetriever.GetProductVersions())
+                    {
+                        log.Info("Product Versions exported");
+                    }
+                }
+
                 if (LicenseManagerDeviceReporting)
                 {
                     if (dataRetriever.GetReportedToday(slm: true))
@@ -312,7 +327,6 @@ namespace SnowPlatformMonitor.Service
                         log.Info("GetExtras exported");
                     }
                 }
-
 
                 Mailer m = new Mailer();
                 string filename = dc.Export + dataRetriever.ExportName;

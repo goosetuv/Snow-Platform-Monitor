@@ -52,8 +52,8 @@ namespace SnowPlatformMonitor.Core.Classes
         {
             DataTable dt = new DataTable();
 
-            dt.Columns.Add("LogPath");
-            dt.Columns.Add("LogName");
+            dt.Columns.Add("Directory");
+            dt.Columns.Add("File Name");
             dt.Columns.Add("Error");
             dt.Columns.Add("Fatal");
 
@@ -85,9 +85,11 @@ namespace SnowPlatformMonitor.Core.Classes
                         FATAL_PRESENT = true;
                     }
 
+                    DirectoryInfo dirInfo = new DirectoryInfo(dir);
+
                     DataRow dr = dt.NewRow();
-                    dr["LogPath"] = dir;
-                    dr["LogName"] = latestFile;
+                    dr["Directory"] = dirInfo.Name;
+                    dr["File Name"] = latestFile;
                     dr["Error"] = ERROR_PRESENT;
                     dr["Fatal"] = FATAL_PRESENT;
                     dt.Rows.Add(dr);

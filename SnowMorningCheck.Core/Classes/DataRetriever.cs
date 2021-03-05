@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using Laim;
 using OfficeOpenXml;
+using OfficeOpenXml.Table;
 using SnowPlatformMonitor.Core.Configuration;
 #endregion
 
@@ -22,6 +23,7 @@ namespace SnowPlatformMonitor.Core.Classes
         private readonly DirectoryConfiguration dc = new DirectoryConfiguration();
         private readonly ApplicationConfiguration ac = new ApplicationConfiguration();
         public readonly string ExportName = Utilities.GenerateGUID() +".xlsx";
+        private readonly TableStyles tableStyle = TableStyles.Light20;
         #endregion
 
         /// <summary>
@@ -37,10 +39,10 @@ namespace SnowPlatformMonitor.Core.Classes
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + ExportName)))
             {
-                pck.Workbook.Worksheets.Add("Status").Cells["A1"].LoadFromDataTable(sqlRunner.RunSQLDataTable("DataUpdateJobStatus"), true).AutoFitColumns();
-                pck.Workbook.Worksheets.Add("Error Log").Cells["A1"].LoadFromDataTable(sqlRunner.RunSQLDataTable("DataUpdateJobErrorLog"), true).AutoFitColumns();
-                pck.Workbook.Worksheets.Add("Error Severe").Cells["A1"].LoadFromDataTable(sqlRunner.RunSQLDataTable("DataUpdateJobErrorSevere"), true).AutoFitColumns();
-                pck.Workbook.Worksheets.Add("Parallel Step").Cells["A1"].LoadFromDataTable(sqlRunner.RunSQLDataTable("DataUpdateJobParallel"), true).AutoFitColumns();
+                pck.Workbook.Worksheets.Add("Status").Cells["A1"].LoadFromDataTable(sqlRunner.RunSQLDataTable("DataUpdateJobStatus"), true, tableStyle).AutoFitColumns();
+                pck.Workbook.Worksheets.Add("Error Log").Cells["A1"].LoadFromDataTable(sqlRunner.RunSQLDataTable("DataUpdateJobErrorLog"), true, tableStyle).AutoFitColumns();
+                pck.Workbook.Worksheets.Add("Error Severe").Cells["A1"].LoadFromDataTable(sqlRunner.RunSQLDataTable("DataUpdateJobErrorSevere"), true, tableStyle).AutoFitColumns();
+                pck.Workbook.Worksheets.Add("Parallel Step").Cells["A1"].LoadFromDataTable(sqlRunner.RunSQLDataTable("DataUpdateJobParallel"), true, tableStyle).AutoFitColumns();
 
                 TabColor(pck, "RowCount", wsName: "Status");
                 TabColor(pck, "RowCount", wsName: "Error Log");
@@ -70,8 +72,8 @@ namespace SnowPlatformMonitor.Core.Classes
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + ExportName)))
             {
-                pck.Workbook.Worksheets.Add("Office 365").Cells["A1"].LoadFromDataTable(licenseManager.Office365Import(), true).AutoFitColumns();
-                pck.Workbook.Worksheets.Add("Adobe Creative Cloud").Cells["A1"].LoadFromDataTable(licenseManager.AdobeImport(), true).AutoFitColumns();
+                pck.Workbook.Worksheets.Add("Office 365").Cells["A1"].LoadFromDataTable(licenseManager.Office365Import(), true, tableStyle).AutoFitColumns();
+                pck.Workbook.Worksheets.Add("Adobe Creative Cloud").Cells["A1"].LoadFromDataTable(licenseManager.AdobeImport(), true, tableStyle).AutoFitColumns();
                 TabColor(pck, "RowCount", wsName: "Office 365");
                 TabColor(pck, "RowCount", wsName: "Adobe Creative Cloud");
 
@@ -101,13 +103,13 @@ namespace SnowPlatformMonitor.Core.Classes
             {
                 if(slm)
                 {
-                    pck.Workbook.Worksheets.Add("SLM DeviceReporting (Yday)").Cells["A1"].LoadFromDataTable(licenseManager.ReportedYesterday(), true).AutoFitColumns();
+                    pck.Workbook.Worksheets.Add("SLM DeviceReporting (Yday)").Cells["A1"].LoadFromDataTable(licenseManager.ReportedYesterday(), true, tableStyle).AutoFitColumns();
                     TabColor(pck, "DeviceReporting", Convert.ToInt32(XmlConfigurator.Read(dc.Config + ac.AppConfig, "LicenseManagerDeviceThreshold")), "SLM DeviceReporting (Yday)");
                 }
 
                 if(sinv)
                 {
-                    pck.Workbook.Worksheets.Add("SINV DeviceReporting (Today)").Cells["A1"].LoadFromDataTable(inventoryServer.ReportedToday(), true).AutoFitColumns();
+                    pck.Workbook.Worksheets.Add("SINV DeviceReporting (Today)").Cells["A1"].LoadFromDataTable(inventoryServer.ReportedToday(), true, tableStyle).AutoFitColumns();
                     TabColor(pck, "DeviceReporting", Convert.ToInt32(XmlConfigurator.Read(dc.Config + ac.AppConfig, "InventoryServerDeviceThreshold")), "SINV DeviceReporting (Today)");
                 }
                 pck.Save();
@@ -138,7 +140,7 @@ namespace SnowPlatformMonitor.Core.Classes
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + ExportName)))
             {
-                pck.Workbook.Worksheets.Add(type + " Services").Cells["A1"].LoadFromDataTable(dtWindowsServices, true).AutoFitColumns();
+                pck.Workbook.Worksheets.Add(type + " Services").Cells["A1"].LoadFromDataTable(dtWindowsServices, true, tableStyle).AutoFitColumns();
                 TabColor(pck, "ServiceCheck", wsName: type + " Services");
                 pck.Save();
             }
@@ -174,7 +176,7 @@ namespace SnowPlatformMonitor.Core.Classes
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + ExportName)))
             {
-                pck.Workbook.Worksheets.Add("Extras").Cells["A1"].LoadFromDataTable(dt, true).AutoFitColumns();
+                pck.Workbook.Worksheets.Add("Extras").Cells["A1"].LoadFromDataTable(dt, true, tableStyle).AutoFitColumns();
                 TabColor(pck, "Default", wsName: "Extras");
                 pck.Save();
             }
@@ -205,8 +207,16 @@ namespace SnowPlatformMonitor.Core.Classes
         /// Gets the health status of log files, i.e if they contain ERROR, ERR, FATAL or FATL
         /// </summary>
         /// <returns></returns>
-        public bool GetSnowLogHealth(List<string> directoryList)
+        public bool GetSnowLogHealth()
         {
+            string ServerName = Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "LicenseManager");
+            string ServerPath = @"\\" + ServerName + @"\" + Utilities.ReadXMLValue(dc.Config + ac.ServerConfig, "LicenseManagerDrive") + @"$\";
+
+            List<string> directoryList = new List<string>
+            {
+                ServerPath + Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "LicenseManagerWebLogs"),
+                ServerPath + Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "LicenseManagerServicesLogs")
+            };
 
             SnowLogs sl = new SnowLogs();
 
@@ -217,10 +227,34 @@ namespace SnowPlatformMonitor.Core.Classes
                 foreach(string directory in directoryList)
                 {
                     directoryCounter += 1;
-                    pck.Workbook.Worksheets.Add("Log Interrogator " + directoryCounter).Cells["A1"].LoadFromDataTable(sl.GetLogData(directory), true).AutoFitColumns();
+                    pck.Workbook.Worksheets.Add("Log Interrogator " + directoryCounter).Cells["A1"].LoadFromDataTable(sl.GetLogData(directory), true, tableStyle).AutoFitColumns();
                     TabColor(pck, "LogInterrogator", wsName: "Log Interrogator " + directoryCounter);
                     pck.Save();
                 }
+            }
+
+            if (File.Exists(dc.Export + ExportName))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool GetProductVersions()
+        {
+            SnowAPI snowAPI = new SnowAPI();
+
+            DataTable dt = snowAPI.IsUpdateRequired(); 
+
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + ExportName)))
+            {
+                pck.Workbook.Worksheets.Add("Versions").Cells["A1"].LoadFromDataTable(dt, true, tableStyle).AutoFitColumns();
+                TabColor(pck, "LogInterrogator", wsName: "Versions");
+                pck.Save();
             }
 
             if (File.Exists(dc.Export + ExportName))
@@ -248,7 +282,7 @@ namespace SnowPlatformMonitor.Core.Classes
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage pck = new ExcelPackage(new FileInfo(dc.Export + ExportName)))
             {
-                pck.Workbook.Worksheets.Add(type + " Storage").Cells["A1"].LoadFromDataTable(dtWindowsStorage, true).AutoFitColumns();
+                pck.Workbook.Worksheets.Add(type + " Storage").Cells["A1"].LoadFromDataTable(dtWindowsStorage, true, tableStyle).AutoFitColumns();
                 TabColor(pck, "Default", wsName: type + " Storage");
                 pck.Save();
             }

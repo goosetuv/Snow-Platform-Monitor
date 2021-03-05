@@ -58,6 +58,9 @@
       <HintPath>..\..\..\Libraries\Laim.Utility\v1.5-64b\Laim.Utility.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="RestSharp, Version=106.11.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
@@ -70,6 +73,7 @@
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,6 +85,7 @@
     <Compile Include="Classes\LicenseManager.cs" />
     <Compile Include="Classes\Mailer.cs" />
     <Compile Include="Classes\ServiceManager.cs" />
+    <Compile Include="Classes\SnowAPI.cs" />
     <Compile Include="Classes\SnowLogs.cs" />
     <Compile Include="Classes\SqlRunner.cs" />
     <Compile Include="Classes\WindowsServices.cs" />

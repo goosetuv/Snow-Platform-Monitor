@@ -36,7 +36,8 @@ namespace SnowPlatformMonitor.Configurator
         {
             InitializeComponent();
             AppLoad();
-            MessageBox.Show("This is a preview build.");
+            MessageBox.Show("Preview Build");
+            log.Info("Preview Build - 05-02-2021");
         }
         #endregion
 
@@ -56,6 +57,7 @@ namespace SnowPlatformMonitor.Configurator
                     "Office365AdobeImportTables",
                     "SRSImportDate",
                     "LogInterrogator",
+                    "PlatformVersionCheck",
                     "LicenseManagerServices",
                     "LicenseManagerDeviceReporting",
                     "LicenseManagerDeviceThreshold",
@@ -66,7 +68,9 @@ namespace SnowPlatformMonitor.Configurator
                     "InventoryServerProcessing",
                     "InventoryServerStorage",
                     "InventoryServerProcessingDirectory",
-                    "InventoryServerProcessingThreshold"
+                    "InventoryServerProcessingThreshold",
+                    "LicenseManagerWebLogs",
+                    "LicenseManagerServicesLogs"
                 };
 
                 // works out which data type we're using
@@ -83,6 +87,7 @@ namespace SnowPlatformMonitor.Configurator
                     cbConfigOffice365Adobe.Checked.ToString(),
                     cbConfigSRSImport.Checked.ToString(),
                     cbConfigLogInterrogator.Checked.ToString(),
+                    cbConfigPlatformVersionCheck.Checked.ToString(),
                     cbConfigSLMServices.Checked.ToString(),
                     cbConfigSLMDeviceReporting.Checked.ToString(),
                     numConfigAdvSLMDeviceThreshold.Value.ToString(),
@@ -93,7 +98,9 @@ namespace SnowPlatformMonitor.Configurator
                     cbConfigINVProcessingDir.Checked.ToString(),
                     cbConfigINVStorage.Checked.ToString(),
                     txtConfigAdvINVProcessingDirectory.Text,
-                    numConfigAdvINVProcessingThreshold.Value.ToString()
+                    numConfigAdvINVProcessingThreshold.Value.ToString(),
+                    @"\Program Files\Snow Software\Snow License Manager\Web\Logs",
+                    @"\Program Files\Snow Software\Logs"
                 };
 
                 string result = ac.SaveConfig("spm", NodeList, ValueList);
@@ -527,9 +534,13 @@ namespace SnowPlatformMonitor.Configurator
                     cbConfigDUJStatus.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "DataUpdateJobStatus"));
                     cbConfigOffice365Adobe.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "Office365AdobeImportTables"));
                     cbConfigSRSImport.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "SRSImportDate"));
-                    if(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "LogInterrogator").Length > 0)
+                    if (Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "LogInterrogator").Length > 0)
                     {
                         cbConfigLogInterrogator.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "LogInterrogator"));
+                    }
+                    if (Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "PlatformVersionCheck").Length > 0)
+                    {
+                        cbConfigPlatformVersionCheck.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "PlatformVersionCheck"));
                     }
                     log.Debug("Core values have been populated from Configuration File");
 

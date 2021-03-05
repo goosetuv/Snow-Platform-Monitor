@@ -1,9 +1,0 @@
-C:\Users\laimmc\source\repos\SnowMorningCheck\SnowMorningCheck.Core\bin\x64\Debug\SnowMorningCheck.Core.dll
-C:\Users\laimmc\source\repos\SnowMorningCheck\SnowMorningCheck.Core\bin\x64\Debug\SnowMorningCheck.Core.pdb
-C:\Users\laimmc\source\repos\SnowMorningCheck\SnowMorningCheck.Core\bin\x64\Debug\Laim.Utility.dll
-C:\Users\laimmc\source\repos\SnowMorningCheck\SnowMorningCheck.Core\bin\x64\Debug\Laim.Utility.xml
-C:\Users\laimmc\source\repos\SnowMorningCheck\SnowMorningCheck.Core\obj\x64\Debug\SnowMorningCheck.Core.csprojAssemblyReference.cache
-C:\Users\laimmc\source\repos\SnowMorningCheck\SnowMorningCheck.Core\obj\x64\Debug\SnowMorningCheck.Core.csproj.CoreCompileInputs.cache
-C:\Users\laimmc\source\repos\SnowMorningCheck\SnowMorningCheck.Core\obj\x64\Debug\SnowMorningCheck.Core.csproj.CopyComplete
-C:\Users\laimmc\source\repos\SnowMorningCheck\SnowMorningCheck.Core\obj\x64\Debug\SnowMorningCheck.Core.dll
-C:\Users\laimmc\source\repos\SnowMorningCheck\SnowMorningCheck.Core\obj\x64\Debug\SnowMorningCheck.Core.pdb

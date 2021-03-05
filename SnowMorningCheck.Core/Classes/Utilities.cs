@@ -5,6 +5,7 @@ using System.IO;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading;
+using System.Xml;
 using Laim;
 #endregion
 
@@ -30,7 +31,7 @@ namespace SnowPlatformMonitor.Core.Classes
             try
             {
                 return XmlConfigurator.Read(path, node, rootNode);
-            } catch (Exception)
+            } catch (Exception ex)
             {
                 return "";
             }
