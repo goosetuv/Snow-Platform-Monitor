@@ -36,8 +36,8 @@ namespace SnowPlatformMonitor.Configurator
         {
             InitializeComponent();
             AppLoad();
-            MessageBox.Show("Preview Build");
-            log.Info("Preview Build - 05-02-2021");
+            //MessageBox.Show("Preview Build");
+            //log.Info("Preview Build - 05-02-2021");
         }
         #endregion
 
