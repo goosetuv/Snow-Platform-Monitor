@@ -124,7 +124,7 @@ namespace SnowPlatformMonitor.Configurator
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("This runs a full test of your current configuration, including SMTP and all checkboxes above.  Do you wish to proceed?", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                DialogResult dialogResult = MessageBox.Show("This runs a full test of your current configuration, including SMTP and all checkboxes above. Please ensure you are running the GUI as Administrator as this will start and stop the SPM Service.  Do you wish to proceed?", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (dialogResult == DialogResult.Yes)
                 {
                     if (File.Exists(dc.Resources + "exportertest.bat"))
@@ -133,6 +133,7 @@ namespace SnowPlatformMonitor.Configurator
                     }
                     else
                     {
+                        MessageBox.Show("Error Resource missing, please review logs.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         log.Error("Exportertest batch file does not exist.");
                     }
                 }
@@ -502,21 +503,6 @@ namespace SnowPlatformMonitor.Configurator
 
         #region Functions
 
-        /// <summary>
-        /// Used for checking or unchecking all checkboxes on the configuration tab
-        /// </summary>
-        /// <param name="chk">true or false for checked or unchecked</param>
-        private void CheckBoxChanger(bool chk)
-        {
-            foreach (Control ctrl in tabConfiguration.Controls)
-            {
-                if (ctrl is CheckBox cb)
-                {
-                    cb.Checked = chk;
-                }
-            }
-        }
-
         private void LoadConfiguration()
         {
             try
@@ -739,7 +725,34 @@ namespace SnowPlatformMonitor.Configurator
                 log.Debug("Starting...");
                 if (!File.Exists(dc.Resources + "exportertest.bat"))
                 {
+                    log.Debug("Exportertest does not exist! Creating...");
                     File.WriteAllText(dc.Resources + "exportertest.bat", Properties.Resources.exportertest);
+                } else
+                {
+                    string exporterTest = File.ReadAllText(dc.Resources + "exportertest.bat");
+                    if (!exporterTest.Contains(ProductVersion))
+                    {
+                        bool v1_4_1_or_higher = false;
+                        if (exporterTest.Contains(":: AUTOMATICALLY UPDATE:")) {
+                            v1_4_1_or_higher = true;
+                            log.Debug("Exportertest is from at least v1.4.1");
+                        }
+
+                        if (v1_4_1_or_higher == true)
+                        {
+                            if (exporterTest.Contains(":: AUTOMATICALLY UPDATE: TRUE"))
+                            {
+                                log.Debug("Exportertest exists but requires an update, automatic being run...");
+                                File.Delete(dc.Resources + "exportertest.bat");
+                                File.WriteAllText(dc.Resources + "exportertest.bat", Properties.Resources.exportertest);
+                            }
+                        } else
+                        {
+                            log.Debug("Exportertest is older than v1.4.1, this will be replaced with a newer version...");
+                            File.Delete(dc.Resources + "exportertest.bat");
+                            File.WriteAllText(dc.Resources + "exportertest.bat", Properties.Resources.exportertest);
+                        }
+                    }
                 }
                 log.Debug("Finished...");
             } catch (Exception ex)

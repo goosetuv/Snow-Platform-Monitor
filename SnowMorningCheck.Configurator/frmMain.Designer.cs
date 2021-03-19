@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabConfiguration = new System.Windows.Forms.TabPage();
+            this.cbConfigPlatformVersionCheck = new System.Windows.Forms.CheckBox();
             this.btnConfigTest = new System.Windows.Forms.Button();
             this.cbConfigSRSImport = new System.Windows.Forms.CheckBox();
             this.btnConfigAdvanced = new System.Windows.Forms.Button();
@@ -144,7 +145,6 @@
             this.btnHelpLogDir = new System.Windows.Forms.Button();
             this.lblHelpAppInfo = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.cbConfigPlatformVersionCheck = new System.Windows.Forms.CheckBox();
             this.tabControlMain.SuspendLayout();
             this.tabConfiguration.SuspendLayout();
             this.gbConfigAdvanced.SuspendLayout();
@@ -187,7 +187,7 @@
             this.tabControlMain.Location = new System.Drawing.Point(12, 12);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(316, 407);
+            this.tabControlMain.Size = new System.Drawing.Size(316, 419);
             this.tabControlMain.TabIndex = 0;
             this.tabControlMain.TabStop = false;
             // 
@@ -213,15 +213,25 @@
             this.tabConfiguration.Location = new System.Drawing.Point(4, 22);
             this.tabConfiguration.Name = "tabConfiguration";
             this.tabConfiguration.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConfiguration.Size = new System.Drawing.Size(308, 381);
+            this.tabConfiguration.Size = new System.Drawing.Size(308, 393);
             this.tabConfiguration.TabIndex = 4;
             this.tabConfiguration.Text = "General";
             this.tabConfiguration.UseVisualStyleBackColor = true;
             // 
+            // cbConfigPlatformVersionCheck
+            // 
+            this.cbConfigPlatformVersionCheck.AutoSize = true;
+            this.cbConfigPlatformVersionCheck.Location = new System.Drawing.Point(20, 171);
+            this.cbConfigPlatformVersionCheck.Name = "cbConfigPlatformVersionCheck";
+            this.cbConfigPlatformVersionCheck.Size = new System.Drawing.Size(136, 17);
+            this.cbConfigPlatformVersionCheck.TabIndex = 18;
+            this.cbConfigPlatformVersionCheck.Text = "Platform Version Check";
+            this.cbConfigPlatformVersionCheck.UseVisualStyleBackColor = true;
+            // 
             // btnConfigTest
             // 
             this.btnConfigTest.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnConfigTest.Location = new System.Drawing.Point(117, 352);
+            this.btnConfigTest.Location = new System.Drawing.Point(117, 364);
             this.btnConfigTest.Name = "btnConfigTest";
             this.btnConfigTest.Size = new System.Drawing.Size(75, 23);
             this.btnConfigTest.TabIndex = 16;
@@ -234,15 +244,15 @@
             this.cbConfigSRSImport.AutoSize = true;
             this.cbConfigSRSImport.Location = new System.Drawing.Point(20, 125);
             this.cbConfigSRSImport.Name = "cbConfigSRSImport";
-            this.cbConfigSRSImport.Size = new System.Drawing.Size(106, 17);
+            this.cbConfigSRSImport.Size = new System.Drawing.Size(218, 17);
             this.cbConfigSRSImport.TabIndex = 6;
-            this.cbConfigSRSImport.Text = "SRS Import Date";
+            this.cbConfigSRSImport.Text = "Snow Recognition Service Import Check";
             this.cbConfigSRSImport.UseVisualStyleBackColor = true;
             // 
             // btnConfigAdvanced
             // 
             this.btnConfigAdvanced.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnConfigAdvanced.Location = new System.Drawing.Point(20, 352);
+            this.btnConfigAdvanced.Location = new System.Drawing.Point(20, 364);
             this.btnConfigAdvanced.Name = "btnConfigAdvanced";
             this.btnConfigAdvanced.Size = new System.Drawing.Size(75, 23);
             this.btnConfigAdvanced.TabIndex = 15;
@@ -253,7 +263,7 @@
             // btnConfigSave
             // 
             this.btnConfigSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnConfigSave.Location = new System.Drawing.Point(213, 352);
+            this.btnConfigSave.Location = new System.Drawing.Point(213, 364);
             this.btnConfigSave.Name = "btnConfigSave";
             this.btnConfigSave.Size = new System.Drawing.Size(75, 23);
             this.btnConfigSave.TabIndex = 17;
@@ -266,9 +276,9 @@
             this.cbConfigLogInterrogator.AutoSize = true;
             this.cbConfigLogInterrogator.Location = new System.Drawing.Point(20, 148);
             this.cbConfigLogInterrogator.Name = "cbConfigLogInterrogator";
-            this.cbConfigLogInterrogator.Size = new System.Drawing.Size(147, 17);
+            this.cbConfigLogInterrogator.Size = new System.Drawing.Size(158, 17);
             this.cbConfigLogInterrogator.TabIndex = 7;
-            this.cbConfigLogInterrogator.Text = "Platform Logs Interrogator";
+            this.cbConfigLogInterrogator.Text = "Platform Logs Health Check";
             this.cbConfigLogInterrogator.UseVisualStyleBackColor = true;
             // 
             // gbConfigAdvanced
@@ -466,6 +476,11 @@
             this.numServiceMScheduleTimeMins.Size = new System.Drawing.Size(47, 20);
             this.numServiceMScheduleTimeMins.TabIndex = 2;
             this.numServiceMScheduleTimeMins.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numServiceMScheduleTimeMins.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
             // 
             // numServiceMScheduleTimeHours
             // 
@@ -479,6 +494,11 @@
             this.numServiceMScheduleTimeHours.Size = new System.Drawing.Size(47, 20);
             this.numServiceMScheduleTimeHours.TabIndex = 1;
             this.numServiceMScheduleTimeHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numServiceMScheduleTimeHours.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
             // 
             // lblServiceMScheduleTime
             // 
@@ -578,7 +598,7 @@
             this.tabServers.Location = new System.Drawing.Point(4, 22);
             this.tabServers.Name = "tabServers";
             this.tabServers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabServers.Size = new System.Drawing.Size(308, 594);
+            this.tabServers.Size = new System.Drawing.Size(308, 393);
             this.tabServers.TabIndex = 0;
             this.tabServers.Text = "Servers";
             this.tabServers.UseVisualStyleBackColor = true;
@@ -616,11 +636,11 @@
             // lblServersINV
             // 
             this.lblServersINV.AutoSize = true;
-            this.lblServersINV.Location = new System.Drawing.Point(33, 22);
+            this.lblServersINV.Location = new System.Drawing.Point(2, 22);
             this.lblServersINV.Name = "lblServersINV";
-            this.lblServersINV.Size = new System.Drawing.Size(45, 13);
+            this.lblServersINV.Size = new System.Drawing.Size(76, 13);
             this.lblServersINV.TabIndex = 4;
-            this.lblServersINV.Text = "Server*:";
+            this.lblServersINV.Text = "Server Name*:";
             // 
             // txtServersINV
             // 
@@ -669,11 +689,11 @@
             // lblServersSLM
             // 
             this.lblServersSLM.AutoSize = true;
-            this.lblServersSLM.Location = new System.Drawing.Point(33, 23);
+            this.lblServersSLM.Location = new System.Drawing.Point(2, 23);
             this.lblServersSLM.Name = "lblServersSLM";
-            this.lblServersSLM.Size = new System.Drawing.Size(45, 13);
+            this.lblServersSLM.Size = new System.Drawing.Size(76, 13);
             this.lblServersSLM.TabIndex = 0;
-            this.lblServersSLM.Text = "Server*:";
+            this.lblServersSLM.Text = "Server Name*:";
             // 
             // btnServersSave
             // 
@@ -727,11 +747,11 @@
             // lblServersSql
             // 
             this.lblServersSql.AutoSize = true;
-            this.lblServersSql.Location = new System.Drawing.Point(9, 22);
+            this.lblServersSql.Location = new System.Drawing.Point(2, 22);
             this.lblServersSql.Name = "lblServersSql";
-            this.lblServersSql.Size = new System.Drawing.Size(69, 13);
+            this.lblServersSql.Size = new System.Drawing.Size(76, 13);
             this.lblServersSql.TabIndex = 5;
-            this.lblServersSql.Text = "SQL Server*:";
+            this.lblServersSql.Text = "Server Name*:";
             // 
             // txtServersSQLParam
             // 
@@ -806,7 +826,7 @@
             this.tabSMTP.Location = new System.Drawing.Point(4, 22);
             this.tabSMTP.Name = "tabSMTP";
             this.tabSMTP.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSMTP.Size = new System.Drawing.Size(308, 594);
+            this.tabSMTP.Size = new System.Drawing.Size(308, 393);
             this.tabSMTP.TabIndex = 1;
             this.tabSMTP.Text = "SMTP";
             this.tabSMTP.UseVisualStyleBackColor = true;
@@ -864,6 +884,11 @@
             this.numSMTPPort.Name = "numSMTPPort";
             this.numSMTPPort.Size = new System.Drawing.Size(204, 20);
             this.numSMTPPort.TabIndex = 3;
+            this.numSMTPPort.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
             // 
             // btnSMTPTest
             // 
@@ -1001,7 +1026,7 @@
             this.tabServiceManager.Controls.Add(this.pbServiceMngrStatus);
             this.tabServiceManager.Location = new System.Drawing.Point(4, 22);
             this.tabServiceManager.Name = "tabServiceManager";
-            this.tabServiceManager.Size = new System.Drawing.Size(308, 594);
+            this.tabServiceManager.Size = new System.Drawing.Size(308, 393);
             this.tabServiceManager.TabIndex = 2;
             this.tabServiceManager.Text = "Service";
             this.tabServiceManager.UseVisualStyleBackColor = true;
@@ -1082,7 +1107,7 @@
             this.tabLogging.Location = new System.Drawing.Point(4, 22);
             this.tabLogging.Name = "tabLogging";
             this.tabLogging.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLogging.Size = new System.Drawing.Size(308, 594);
+            this.tabLogging.Size = new System.Drawing.Size(308, 393);
             this.tabLogging.TabIndex = 5;
             this.tabLogging.Text = "Logging";
             this.tabLogging.UseVisualStyleBackColor = true;
@@ -1340,7 +1365,7 @@
             this.tabHelp.Controls.Add(this.pictureBox1);
             this.tabHelp.Location = new System.Drawing.Point(4, 22);
             this.tabHelp.Name = "tabHelp";
-            this.tabHelp.Size = new System.Drawing.Size(308, 594);
+            this.tabHelp.Size = new System.Drawing.Size(308, 393);
             this.tabHelp.TabIndex = 3;
             this.tabHelp.Text = "Help";
             this.tabHelp.UseVisualStyleBackColor = true;
@@ -1425,28 +1450,18 @@
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
-            // cbConfigPlatformVersionCheck
-            // 
-            this.cbConfigPlatformVersionCheck.AutoSize = true;
-            this.cbConfigPlatformVersionCheck.Location = new System.Drawing.Point(20, 171);
-            this.cbConfigPlatformVersionCheck.Name = "cbConfigPlatformVersionCheck";
-            this.cbConfigPlatformVersionCheck.Size = new System.Drawing.Size(136, 17);
-            this.cbConfigPlatformVersionCheck.TabIndex = 18;
-            this.cbConfigPlatformVersionCheck.Text = "Platform Version Check";
-            this.cbConfigPlatformVersionCheck.UseVisualStyleBackColor = true;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(340, 431);
+            this.ClientSize = new System.Drawing.Size(340, 443);
             this.Controls.Add(this.tabControlMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(356, 700);
-            this.MinimumSize = new System.Drawing.Size(356, 470);
+            this.MinimumSize = new System.Drawing.Size(356, 476);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AppName AppType";
