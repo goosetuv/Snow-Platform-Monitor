@@ -28,7 +28,7 @@ namespace SnowPlatformMonitor.Core.Classes
                 return "";
 
             FileInfo[] files = directoryInfo.GetFiles();
-            DateTime recentWrite = DateTime.MinValue;
+            DateTime recentWrite = DateTime.Now.AddDays(-1);
             FileInfo recentFile = null;
 
             foreach (FileInfo file in files)
@@ -41,7 +41,7 @@ namespace SnowPlatformMonitor.Core.Classes
             }
             if(recentFile != null )
             {
-                return recentFile.Name;
+               return recentFile.Name;
             } else
             {
                 return "";
