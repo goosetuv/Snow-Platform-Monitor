@@ -94,8 +94,33 @@ namespace SnowPlatformMonitor.Core.Classes
             File.Delete(attachment);
         }
 
+        public void SendFailureAlert(string alertBody)
+        {
+            user = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Username");
+            pass = Utilities.Decrypt(Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Password"));
+            port = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Port");
+            sslEnabled = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "SSLEnabled"));
+            host = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Host");
+            sender = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Sender");
+            if (Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "SenderName").Length < 1)
+            {
+                displayname = sender;
+            }
+            else
+            {
+                displayname = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "SenderName");
+            }
+            to = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "SendTo");
+            cc = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "CC");
+            subject = "Export Failure" + Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Subject");
 
-        internal void Emailer(string filePath, string emailSubject = "Report - Snow Platform Monitor")
+            body = alertBody;
+
+            Emailer(subject);
+        }
+
+
+        internal void Emailer(string filePath = null, string emailSubject = "Report - Snow Platform Monitor")
         {
             MailMessage mail = new MailMessage
             {
@@ -113,9 +138,12 @@ namespace SnowPlatformMonitor.Core.Classes
                 EnableSsl = sslEnabled
             };
 
-            Attachment att = new Attachment(filePath);
+            if(filePath != null)
+            {
+                Attachment att = new Attachment(filePath);
+                mail.Attachments.Add(att);
+            }
 
-            mail.Attachments.Add(att);
             mail.To.Add(to);
 
             if (cc.Length > 0)

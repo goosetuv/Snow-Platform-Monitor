@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 
 namespace SnowPlatformMonitor.Core.Classes
 {
@@ -28,7 +27,7 @@ namespace SnowPlatformMonitor.Core.Classes
                 return "";
 
             FileInfo[] files = directoryInfo.GetFiles();
-            DateTime recentWrite = DateTime.Now.AddDays(-1);
+            DateTime recentWrite = DateTime.MinValue;
             FileInfo recentFile = null;
 
             foreach (FileInfo file in files)

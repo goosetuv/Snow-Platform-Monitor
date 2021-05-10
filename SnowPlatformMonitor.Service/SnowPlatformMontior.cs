@@ -5,6 +5,7 @@ using System.Reflection;
 using System.ServiceProcess;
 using System.Threading;
 using System.Xml;
+using Microsoft.Win32;
 using SnowPlatformMonitor.Core.Classes;
 using SnowPlatformMonitor.Core.Configuration;
 #endregion
@@ -67,7 +68,7 @@ namespace SnowPlatformMonitor.Service
             } catch (Exception ex)
             {
                 log.Fatal(ex);
-                Stop();
+                //Stop();
             }
         }
 
@@ -95,7 +96,7 @@ namespace SnowPlatformMonitor.Service
             } catch (Exception ex)
             {
                 log.Fatal(ex);
-                Stop();
+                //Stop();
             }
         }
 
@@ -125,7 +126,7 @@ namespace SnowPlatformMonitor.Service
             } catch (Exception ex)
             {
                 log.Fatal(ex);
-                Stop(); 
+                //Stop(); 
             }
         }
 
@@ -151,7 +152,7 @@ namespace SnowPlatformMonitor.Service
             } catch (Exception ex)
             {
                 log.Fatal(ex);
-                Stop();
+                //Stop();
             }
         }
 
@@ -167,188 +168,276 @@ namespace SnowPlatformMonitor.Service
                 string AppConfig = dc.Config + ac.AppConfig;
                 string ServerConfig = dc.Config + ac.ServerConfig;
                 log.Debug("AppConfig and ServerConfig set");
+                log.Debug(string.Format("Last Aggregation Date: {0}", GetLastAggregateRegistry()));
 
-                #region Set Variables
-                bool DataUpdateJobStatus = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "DataUpdateJobStatus"));
-                log.Debug("DataUpdateJobStatus bool value set");
-
-                bool Office365AdobeImportTables = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "Office365AdobeImportTables"));
-                log.Debug("Office365AdobeImportTables bool value set");
-
-                bool SRSImportDate = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "SRSImportDate"));
-                log.Debug("SRSImportDate bool value set");
-
-                bool LogInterrogator = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "LogInterrogator"));
-                log.Debug("LogInterrogator bool value set");
-
-                bool PlatformVersionCheck = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "PlatformVersionCheck"));
-                log.Debug("PlatformVersionCheck bool value set");
-
-                bool LicenseManagerServices = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "LicenseManagerServices"));
-                log.Debug("LicenseManagerServices bool value set");
-
-                bool LicenseManagerDeviceReporting = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "LicenseManagerDeviceReporting"));
-                log.Debug("LicenseManagerDeviceReporting bool value set");
-
-                bool LicenseManagerStorage = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "LicenseManagerStorage"));
-                log.Debug("LicenseManagerStorage bool value set");
-
-                bool InventoryServerServices = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "InventoryServerServices"));
-                log.Debug("InventoryServerServices bool value set");
-
-                bool InventoryServerStorage = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "InventoryServerStorage"));
-                log.Debug("InventoryServerStorage bool value set");
-
-                bool InventoryServerDeviceReporting = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "InventoryServerDeviceReporting"));
-                log.Debug("InventoryServerDeviceReporting bool value set");
-
-                bool InventoryServerProcessing = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "InventoryServerProcessing"));
-                log.Debug("InventoryServerProcessing bool value set");
-
-                string LicenseManagerServer = Utilities.ReadXMLValue(ServerConfig, "LicenseManager");
-                log.Debug("LicenseManagerServer string value set");
-
-                string InventoryServer = Utilities.ReadXMLValue(ServerConfig, "InventoryServer");
-                log.Debug("InventoryServer string value set");
-                #endregion
-
-                log.Info("Configuration files loaded");
-
-                DataRetriever dataRetriever = new DataRetriever();
-
-                log.Info("Data Retriever loaded");
-
-                #region Garbage Collector
-                log.Info("Export garbage collector starting...");
-                int exportCounter = 0;
-                foreach (var file in Directory.GetFiles(dc.Export))
+                if(GetLastAggregateRegistry() == DateTime.Now.ToString("d-MM-yyyy"))
                 {
-                    if (File.Exists(file))
+                    log.Info("Export has ran today already, skipping run to prevent possible duplication in reports...");
+                } else
+                {
+                    #region Set Variables
+                    bool DataUpdateJobStatus = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "DataUpdateJobStatus"));
+                    log.Debug("DataUpdateJobStatus bool value set");
+
+                    bool Office365AdobeImportTables = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "Office365AdobeImportTables"));
+                    log.Debug("Office365AdobeImportTables bool value set");
+
+                    bool SRSImportDate = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "SRSImportDate"));
+                    log.Debug("SRSImportDate bool value set");
+
+                    bool LogInterrogator = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "LogInterrogator"));
+                    log.Debug("LogInterrogator bool value set");
+
+                    bool PlatformVersionCheck = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "PlatformVersionCheck"));
+                    log.Debug("PlatformVersionCheck bool value set");
+
+                    bool LicenseManagerServices = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "LicenseManagerServices"));
+                    log.Debug("LicenseManagerServices bool value set");
+
+                    bool LicenseManagerDeviceReporting = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "LicenseManagerDeviceReporting"));
+                    log.Debug("LicenseManagerDeviceReporting bool value set");
+
+                    bool LicenseManagerStorage = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "LicenseManagerStorage"));
+                    log.Debug("LicenseManagerStorage bool value set");
+
+                    bool InventoryServerServices = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "InventoryServerServices"));
+                    log.Debug("InventoryServerServices bool value set");
+
+                    bool InventoryServerStorage = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "InventoryServerStorage"));
+                    log.Debug("InventoryServerStorage bool value set");
+
+                    bool InventoryServerDeviceReporting = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "InventoryServerDeviceReporting"));
+                    log.Debug("InventoryServerDeviceReporting bool value set");
+
+                    bool InventoryServerProcessing = Convert.ToBoolean(Utilities.ReadXMLValue(AppConfig, "InventoryServerProcessing"));
+                    log.Debug("InventoryServerProcessing bool value set");
+
+                    string LicenseManagerServer = Utilities.ReadXMLValue(ServerConfig, "LicenseManager");
+                    log.Debug("LicenseManagerServer string value set");
+
+                    string InventoryServer = Utilities.ReadXMLValue(ServerConfig, "InventoryServer");
+                    log.Debug("InventoryServer string value set");
+                    #endregion
+
+                    log.Info("Configuration files loaded");
+
+                    DataRetriever dataRetriever = new DataRetriever();
+
+                    log.Info("Data Retriever loaded");
+
+                    #region Garbage Collector
+                    log.Info("Export garbage collector starting...");
+                    int exportCounter = 0;
+                    foreach (var file in Directory.GetFiles(dc.Export))
                     {
-                        File.Delete(file);
-                        exportCounter += 1;
-                        log.Debug(string.Format("{0} deleted!", file));
+                        if (File.Exists(file))
+                        {
+                            File.Delete(file);
+                            exportCounter += 1;
+                            log.Debug(string.Format("{0} deleted!", file));
+                        }
                     }
-                }
-                log.Info(exportCounter + " files deleted, for more details in future enable debug logging!");
-                log.Info("Export garbage collector finished...");
-                #endregion
+                    log.Info(exportCounter + " files deleted, for more details in future enable debug logging!");
+                    log.Info("Export garbage collector finished...");
+                    #endregion
 
-                #region Log Retention
-                log.Info("Log Retention module starting...");
-                Utilities.LogRetention(dc.Logs, Convert.ToInt32(LogConfig.SelectSingleNode("//log4net/custom/retentionDays").Attributes["value"].Value));
-                log.Info("Log Retention module finished...");
-                #endregion
+                    #region Log Retention
+                    log.Info("Log Retention module starting...");
+                    Utilities.LogRetention(dc.Logs, Convert.ToInt32(LogConfig.SelectSingleNode("//log4net/custom/retentionDays").Attributes["value"].Value));
+                    log.Info("Log Retention module finished...");
+                    #endregion
 
-                if (DataUpdateJobStatus)
-                {
-                    if (dataRetriever.GetDataUpdateJob())
+                    // DUJ Status
+                    try
                     {
-                        log.Info("Data Update Job information exported");
+                        if (DataUpdateJobStatus)
+                        {
+                            if (dataRetriever.GetDataUpdateJob())
+                            {
+                                log.Info("Data Update Job information exported");
+                            }
+                        }
                     }
-                }
+                    catch (Exception ex) { log.Error(ex); }
 
-                if (LicenseManagerServices)
-                {
-                    if (dataRetriever.GetWindowsServices("License Manager", LicenseManagerServer))
+                    // License Manager Services
+                    try
                     {
-                        log.Info("Windows Services information exported for LicenseManager");
+                        if (LicenseManagerServices)
+                        {
+                            if (dataRetriever.GetWindowsServices("License Manager", LicenseManagerServer))
+                            {
+                                log.Info("Windows Services information exported for LicenseManager");
+                            }
+                        }
                     }
-                }
+                    catch (Exception ex) { log.Error(ex); }
 
-                if (InventoryServerServices)
-                {
-                    if (dataRetriever.GetWindowsServices("Inventory Server", InventoryServer))
+                    // Inventory Service Services
+                    try
                     {
-                        log.Info("Windows Services information exported for InventoryServer");
+                        if (InventoryServerServices)
+                        {
+                            if (dataRetriever.GetWindowsServices("Inventory Server", InventoryServer))
+                            {
+                                log.Info("Windows Services information exported for InventoryServer");
+                            }
+                        }
                     }
-                }
+                    catch (Exception ex) { log.Error(ex); }
 
-                if (InventoryServerStorage)
-                {
-                    if (dataRetriever.GetWindowsStorage("Inventory Server", InventoryServer))
+                    // Inventory Server Storage
+                    try
                     {
-                        log.Info("Windows Storage information exported for InventoryServer");
+                        if (InventoryServerStorage)
+                        {
+                            if (dataRetriever.GetWindowsStorage("Inventory Server", InventoryServer))
+                            {
+                                log.Info("Windows Storage information exported for InventoryServer");
+                            }
+                        }
                     }
-                }
+                    catch (Exception ex) { log.Error(ex); }
 
-                if (LicenseManagerStorage)
-                {
-                    if (dataRetriever.GetWindowsStorage("License Manager", LicenseManagerServer))
+                    // License Manager Storage
+                    try
                     {
-                        log.Info("Windows Storage information exported for LicenseManager");
+                        if (LicenseManagerStorage)
+                        {
+                            if (dataRetriever.GetWindowsStorage("License Manager", LicenseManagerServer))
+                            {
+                                log.Info("Windows Storage information exported for LicenseManager");
+                            }
+                        }
                     }
-                }
+                    catch (Exception ex) { log.Error(ex); }
 
-                if (Office365AdobeImportTables)
-                {
-                    if(dataRetriever.GetConnectorImportTables())
+                    // Office365 Adobe Import Tables
+                    try
                     {
-                        log.Info("Office 365 and Adobe Import tables exported");
+                        if (Office365AdobeImportTables)
+                        {
+                            if (dataRetriever.GetConnectorImportTables())
+                            {
+                                log.Info("Office 365 and Adobe Import tables exported");
+                            }
+                        }
                     }
-                }
+                    catch (Exception ex) { log.Error(ex); }
 
-                if(LogInterrogator)
-                {
-                    if (dataRetriever.GetSnowLogHealth())
+                    // Log Interrogator
+                    try
                     {
-                        log.Info("Snow Log Health exported");
+                        if (LogInterrogator)
+                        {
+                            if (dataRetriever.GetSnowLogHealth())
+                            {
+                                log.Info("Snow Log Health exported");
+                            }
+                        }
                     }
-                }
+                    catch (Exception ex) { log.Error(ex); }
 
-                if (PlatformVersionCheck)
-                {
-                    if(dataRetriever.GetProductVersions())
+                    // Platform Version Check
+                    try
                     {
-                        log.Info("Product Versions exported");
+                        if (PlatformVersionCheck)
+                        {
+                            if (dataRetriever.GetProductVersions())
+                            {
+                                log.Info("Product Versions exported");
+                            }
+                        }
                     }
-                }
+                    catch (Exception ex) { log.Error(ex); }
 
-                if (LicenseManagerDeviceReporting)
-                {
-                    if (dataRetriever.GetReportedToday(slm: true))
+                    // License Manager Device Reporting
+                    try
                     {
-                        log.Info("LicenseManager Device Reporting exported");
+                        if (LicenseManagerDeviceReporting)
+                        {
+                            if (dataRetriever.GetReportedToday(slm: true))
+                            {
+                                log.Info("LicenseManager Device Reporting exported");
+                            }
+                        }
                     }
-                }
+                    catch (Exception ex) { log.Error(ex); }
 
-                if (InventoryServerDeviceReporting)
-                {
-                    if (dataRetriever.GetReportedToday(sinv: true))
+                    // Inventory Server Device Reporting
+                    try
                     {
-                        log.Info("SnowInventory Device Reporting exported");
+                        if (InventoryServerDeviceReporting)
+                        {
+                            if (dataRetriever.GetReportedToday(sinv: true))
+                            {
+                                log.Info("SnowInventory Device Reporting exported");
+                            }
+                        }
                     }
-                }
+                    catch (Exception ex) { log.Error(ex); }
 
-                if(SRSImportDate == true || InventoryServerProcessing == true)
-                {
-                    if (dataRetriever.GetExtras(SRSImportDate, InventoryServerProcessing))
+                    // SRS Import Date and Inventory Server Processing
+                    try
                     {
-                        log.Info("GetExtras exported");
+                        if (SRSImportDate == true || InventoryServerProcessing == true)
+                        {
+                            if (dataRetriever.GetExtras(SRSImportDate, InventoryServerProcessing))
+                            {
+                                log.Info("GetExtras exported");
+                            }
+                        }
                     }
+                    catch (Exception ex) { log.Error(ex); }
+
+                    Mailer m = new Mailer();
+                    string filename = dc.Export + dataRetriever.ExportName;
+                    log.Debug("New mailer initialized");
+
+                    m.SendEmail(filename, Assembly.GetExecutingAssembly().GetName().Version.ToString());
+                    log.Debug("Email command sent");
+
+                    log.Info("Schedule will now be refreshed for next run!");
+
+                    if (state != null)
+                    {
+                        _timer.Dispose();
+                    }
+
+                    InitializeSchedule();
+
+                    // Set the last aggregation date as today to prevent duplicates (hopefully?, at a strain with this now...)
+                    SetLastAggregateRegistry();
                 }
-
-                Mailer m = new Mailer();
-                string filename = dc.Export + dataRetriever.ExportName;
-                log.Debug("New mailer initialized");
-
-                m.SendEmail(filename, Assembly.GetExecutingAssembly().GetName().Version.ToString());
-                log.Debug("Email command sent");
-
-                log.Info("Schedule will now be refreshed for next run!");
-                
-                if(state != null)
-                {
-                    _timer.Dispose();
-                }
-
-                InitializeSchedule();
             } catch (Exception ex)
             {
                 log.Fatal(ex);
-                Stop();
+                Mailer m = new Mailer();
+                m.SendFailureAlert("Failure to export" + Environment.NewLine + ex.Message + ex.StackTrace + Environment.NewLine + " Please investigate!");
             }
         }
+
+        private void SetLastAggregateRegistry()
+        {
+            RegistryKey k = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\LaimMcKenzie\SnowPlatformMonitor");
+            k.SetValue("LastAggregate", DateTime.Today.ToString("d-MM-yyyy"));
+            k.Close();
+        }
+
+        private string GetLastAggregateRegistry()
+        {
+            RegistryKey k = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\LaimMcKenzie\SnowPlatformMonitor");
+            if(k != null)
+            {
+                if(k.GetValue("LastAggregate") != null)
+                {
+                    return (string)k.GetValue("LastAggregate");
+                }
+            }
+
+            return "01-01-1970";
+        }
+
         #endregion
     }
 }
