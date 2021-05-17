@@ -68,7 +68,6 @@ namespace SnowPlatformMonitor.Service
             } catch (Exception ex)
             {
                 log.Fatal(ex);
-                //Stop();
             }
         }
 
@@ -92,11 +91,15 @@ namespace SnowPlatformMonitor.Service
 
                 log.Info(string.Format("Schedule loaded from configuration file, run at {0:00}:{1:00}:{2:00} every {3:00}h{4:00}m{5:00}s.", Hours, Minutes, Seconds, FrequencyHours, FrequencyMinutes, FrequencySeconds));
 
+                if(_timer != null)
+                {
+                    _timer.Dispose();
+                }
+
                 ServiceSchedule(new TimeSpan(Hours, Minutes, Seconds), new TimeSpan(FrequencyHours, FrequencyMinutes, FrequencySeconds));
             } catch (Exception ex)
             {
                 log.Fatal(ex);
-                //Stop();
             }
         }
 
@@ -126,7 +129,6 @@ namespace SnowPlatformMonitor.Service
             } catch (Exception ex)
             {
                 log.Fatal(ex);
-                //Stop(); 
             }
         }
 
@@ -145,14 +147,16 @@ namespace SnowPlatformMonitor.Service
                 TimerCallback callback = new TimerCallback(ServiceExporter);
 
                 // create timer
-                _timer = new Timer(callback, null, Convert.ToInt32(firstExecution), Convert.ToInt32(intervalPeriod));
+                if(_timer == null)
+                {
+                    _timer = new Timer(callback, null, Convert.ToInt32(firstExecution), Convert.ToInt32(intervalPeriod));
+                }
 
                 // Add some log events so the user knows what's actually happening 
                 log.Info(string.Format("Next run is scheduled for - {0}.", DateTime.Now.AddMilliseconds(firstExecution).ToString()));
             } catch (Exception ex)
             {
                 log.Fatal(ex);
-                //Stop();
             }
         }
 
@@ -172,7 +176,7 @@ namespace SnowPlatformMonitor.Service
 
                 if(GetLastAggregateRegistry() == DateTime.Now.ToString("d-MM-yyyy"))
                 {
-                    log.Info("Export has ran today already, skipping run to prevent possible duplication in reports...");
+                    log.Info("Exporter has already ran today, skipping run to prevent possible duplication.");
                 } else
                 {
                     #region Set Variables
@@ -237,7 +241,7 @@ namespace SnowPlatformMonitor.Service
                             log.Debug(string.Format("{0} deleted!", file));
                         }
                     }
-                    log.Info(exportCounter + " files deleted, for more details in future enable debug logging!");
+                    log.Info(exportCounter + " left over export deleted");
                     log.Info("Export garbage collector finished...");
                     #endregion
 
@@ -247,6 +251,7 @@ namespace SnowPlatformMonitor.Service
                     log.Info("Log Retention module finished...");
                     #endregion
 
+                    #region Exporters
                     // DUJ Status
                     try
                     {
@@ -389,13 +394,23 @@ namespace SnowPlatformMonitor.Service
                         }
                     }
                     catch (Exception ex) { log.Error(ex); }
+                    #endregion
 
-                    Mailer m = new Mailer();
-                    string filename = dc.Export + dataRetriever.ExportName;
-                    log.Debug("New mailer initialized");
+                    #region Mailer
 
-                    m.SendEmail(filename, Assembly.GetExecutingAssembly().GetName().Version.ToString());
-                    log.Debug("Email command sent");
+                    if (GetLastAggregateRegistry() == DateTime.Now.ToString("d-MM-yyyy"))
+                    {
+                        log.Info("Export mailer has already ran today, skipping run to prevent possible duplication.");
+                    } else
+                    {
+                        Mailer m = new Mailer();
+                        string filename = dc.Export + dataRetriever.ExportName;
+                        log.Debug("New mailer initialized");
+
+                        m.SendEmail(filename, Assembly.GetExecutingAssembly().GetName().Version.ToString());
+                        log.Debug("Email command sent");
+                    }
+                    #endregion
 
                     log.Info("Schedule will now be refreshed for next run!");
 
@@ -404,10 +419,8 @@ namespace SnowPlatformMonitor.Service
                         _timer.Dispose();
                     }
 
-                    InitializeSchedule();
-
-                    // Set the last aggregation date as today to prevent duplicates (hopefully?, at a strain with this now...)
                     SetLastAggregateRegistry();
+                    InitializeSchedule();
                 }
             } catch (Exception ex)
             {
@@ -419,23 +432,33 @@ namespace SnowPlatformMonitor.Service
 
         private void SetLastAggregateRegistry()
         {
-            RegistryKey k = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\LaimMcKenzie\SnowPlatformMonitor");
-            k.SetValue("LastAggregate", DateTime.Today.ToString("d-MM-yyyy"));
-            k.Close();
+            try
+            {
+                log.Info("Setting last aggregate date in the registry");
+
+                RegistryKey k = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\LaimMcKenzie\SnowPlatformMonitor");
+                k.SetValue("LastAggregate", DateTime.Today.ToString("d-MM-yyyy"));
+                k.Close();
+            } catch (Exception ex) { log.Fatal(ex); }
         }
 
         private string GetLastAggregateRegistry()
         {
-            RegistryKey k = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\LaimMcKenzie\SnowPlatformMonitor");
-            if(k != null)
+            try
             {
-                if(k.GetValue("LastAggregate") != null)
-                {
-                    return (string)k.GetValue("LastAggregate");
-                }
-            }
+                log.Info("Getting last aggregate date from registry");
 
-            return "01-01-1970";
+                RegistryKey k = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\LaimMcKenzie\SnowPlatformMonitor");
+                if (k != null)
+                {
+                    if (k.GetValue("LastAggregate") != null)
+                    {
+                        return (string)k.GetValue("LastAggregate");
+                    }
+                }
+
+                return "01-01-1970";
+            } catch (Exception ex) { log.Fatal(ex); return "01-01-1970"; }
         }
 
         #endregion

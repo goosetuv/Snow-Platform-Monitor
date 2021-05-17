@@ -15,18 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_351414AA0CC68AE0E10F519A972B1325"
-        "OwnerKey" = "8:_B34ECAC795EF495FA1BBD63515391B09"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_351414AA0CC68AE0E10F519A972B1325"
-        "OwnerKey" = "8:_B3955A3E6DB04A9D874B91E3A6BDA241"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_3F0AAF9B87BE6445EE5F3D4C7A5D1146"
         "OwnerKey" = "8:_B28C7443D6D14EBCA9AC9B0BDE945CF8"
         "MsmSig" = "8:_UNDEFINED"
@@ -40,7 +28,19 @@
         "Entry"
         {
         "MsmKey" = "8:_3F6A8EC04B2A477B4D6227E56664101C"
-        "OwnerKey" = "8:_EA3DD220D2A8F5D1A962F2F97344EB07"
+        "OwnerKey" = "8:_42FBE64C46D54040FB61DFF8A5F90D0B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_42FBE64C46D54040FB61DFF8A5F90D0B"
+        "OwnerKey" = "8:_B34ECAC795EF495FA1BBD63515391B09"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_42FBE64C46D54040FB61DFF8A5F90D0B"
+        "OwnerKey" = "8:_B3955A3E6DB04A9D874B91E3A6BDA241"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -106,13 +106,13 @@
         "Entry"
         {
         "MsmKey" = "8:_AFD609EF8B242B5AE0FCA74E2D39F829"
-        "OwnerKey" = "8:_B3955A3E6DB04A9D874B91E3A6BDA241"
+        "OwnerKey" = "8:_42FBE64C46D54040FB61DFF8A5F90D0B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_AFD609EF8B242B5AE0FCA74E2D39F829"
-        "OwnerKey" = "8:_EA3DD220D2A8F5D1A962F2F97344EB07"
+        "OwnerKey" = "8:_B3955A3E6DB04A9D874B91E3A6BDA241"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -141,6 +141,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_BCF00AD9F5D156EB18BD61A763FE744F"
+        "OwnerKey" = "8:_B34ECAC795EF495FA1BBD63515391B09"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BCF00AD9F5D156EB18BD61A763FE744F"
+        "OwnerKey" = "8:_B3955A3E6DB04A9D874B91E3A6BDA241"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_DF2E2B3A7ED463BDDA62184C0425A69C"
         "OwnerKey" = "8:_B3955A3E6DB04A9D874B91E3A6BDA241"
         "MsmSig" = "8:_UNDEFINED"
@@ -160,13 +172,13 @@
         "Entry"
         {
         "MsmKey" = "8:_E885FD7D14B3710BB63442CBA79A200C"
-        "OwnerKey" = "8:_B3955A3E6DB04A9D874B91E3A6BDA241"
+        "OwnerKey" = "8:_42FBE64C46D54040FB61DFF8A5F90D0B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_E885FD7D14B3710BB63442CBA79A200C"
-        "OwnerKey" = "8:_EA3DD220D2A8F5D1A962F2F97344EB07"
+        "OwnerKey" = "8:_B3955A3E6DB04A9D874B91E3A6BDA241"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -177,18 +189,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_EA3DD220D2A8F5D1A962F2F97344EB07"
-        "OwnerKey" = "8:_B34ECAC795EF495FA1BBD63515391B09"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_EA3DD220D2A8F5D1A962F2F97344EB07"
-        "OwnerKey" = "8:_B3955A3E6DB04A9D874B91E3A6BDA241"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B3955A3E6DB04A9D874B91E3A6BDA241"
         "MsmSig" = "8:_UNDEFINED"
@@ -196,13 +196,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_EA3DD220D2A8F5D1A962F2F97344EB07"
+        "OwnerKey" = "8:_42FBE64C46D54040FB61DFF8A5F90D0B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_351414AA0CC68AE0E10F519A972B1325"
+        "OwnerKey" = "8:_BCF00AD9F5D156EB18BD61A763FE744F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -360,37 +360,6 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_351414AA0CC68AE0E10F519A972B1325"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Laim.Utility, Version=1.5.0.0, Culture=neutral, processorArchitecture=AMD64"
-                "ScatterAssemblies"
-                {
-                    "_351414AA0CC68AE0E10F519A972B1325"
-                    {
-                    "Name" = "8:Laim.Utility.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Laim.Utility.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_7B8DB894B1964293B87A700B63BC9842"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3F0AAF9B87BE6445EE5F3D4C7A5D1146"
             {
             "AssemblyRegister" = "3:1"
@@ -436,6 +405,32 @@
                     }
                 }
             "SourcePath" = "8:Laim.Utility.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7B8DB894B1964293B87A700B63BC9842"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_42FBE64C46D54040FB61DFF8A5F90D0B"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:SnowPlatformMonitor.Core, Version=1.4.4.0, Culture=neutral, processorArchitecture=AMD64"
+                "ScatterAssemblies"
+                {
+                }
+            "SourcePath" = "8:SnowPlatformMonitor.Core.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7B8DB894B1964293B87A700B63BC9842"
@@ -637,6 +632,32 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BCF00AD9F5D156EB18BD61A763FE744F"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Laim.Utility, Version=1.5.0.0, Culture=neutral, processorArchitecture=AMD64"
+                "ScatterAssemblies"
+                {
+                }
+            "SourcePath" = "8:Laim.Utility.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7B8DB894B1964293B87A700B63BC9842"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DF2E2B3A7ED463BDDA62184C0425A69C"
             {
             "AssemblyRegister" = "3:1"
@@ -702,37 +723,6 @@
                     }
                 }
             "SourcePath" = "8:EPPlus.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_7B8DB894B1964293B87A700B63BC9842"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EA3DD220D2A8F5D1A962F2F97344EB07"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SnowPlatformMonitor.Core, Version=1.4.3.0, Culture=neutral, processorArchitecture=AMD64"
-                "ScatterAssemblies"
-                {
-                    "_EA3DD220D2A8F5D1A962F2F97344EB07"
-                    {
-                    "Name" = "8:SnowPlatformMonitor.Core.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:SnowPlatformMonitor.Core.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7B8DB894B1964293B87A700B63BC9842"
@@ -850,15 +840,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Snow Platform Monitor"
-        "ProductCode" = "8:{807E1595-7F14-49E6-B6BE-06E4F0A005C4}"
-        "PackageCode" = "8:{335F076E-C6B8-42C6-A73F-B10112942E07}"
+        "ProductCode" = "8:{E6186881-C2B8-4B99-B671-0A3ABFEA1209}"
+        "PackageCode" = "8:{4A7CC137-B194-4C0E-BD54-02C82A49A741}"
         "UpgradeCode" = "8:{C42F9519-9070-42C8-98FB-7676AE873617}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.4.3"
+        "ProductVersion" = "8:1.4.4"
         "Manufacturer" = "8:Laim McKenzie"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://laim.scot"
@@ -973,7 +963,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_EEE6356017B54F79B19BE61D41092C18"
             {
-            "Name" = "8:Shortcut to Primary output from SnowPlatformMonitor.Configurator (Active)"
+            "Name" = "8:SnowPlatformMonitor.Configurator"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1492,7 +1482,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B28C7443D6D14EBCA9AC9B0BDE945CF8"
             {
-            "SourcePath" = "8:..\\SnowMorningCheck.Core\\obj\\x64\\Release\\SnowPlatformMonitor.Core.dll"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7B8DB894B1964293B87A700B63BC9842"
