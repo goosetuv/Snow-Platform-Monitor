@@ -24,7 +24,6 @@ namespace SnowPlatformMonitor.Configurator
         #region Fields
         readonly ApplicationConfiguration ac = new ApplicationConfiguration();
         readonly DirectoryConfiguration dc = new DirectoryConfiguration();
-        readonly ServiceManager sc = new ServiceManager();
         private string ConnectionString;
         private string ConnectionStringParameters;
 
@@ -80,9 +79,6 @@ namespace SnowPlatformMonitor.Configurator
                 string[] ValueList =
                 {
                     ExportType,
-                    numServiceMScheduleTimeHours.Value.ToString(),
-                    numServiceMScheduleTimeMins.Value.ToString(),
-                    numServiceMScheduleTimeSecs.Value.ToString(),
                     cbConfigDUJStatus.Checked.ToString(),
                     cbConfigOffice365Adobe.Checked.ToString(),
                     cbConfigSRSImport.Checked.ToString(),
@@ -124,7 +120,7 @@ namespace SnowPlatformMonitor.Configurator
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("This runs a full test of your current configuration, including SMTP and all checkboxes above. Please ensure you are running the GUI as Administrator as this will start and stop the SPM Service.  Do you wish to proceed?", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                DialogResult dialogResult = MessageBox.Show("This runs a full test of your current configuration, including SMTP and all checkboxes above. Please ensure you are running the GUI as Administrator.  Do you wish to proceed?", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (dialogResult == DialogResult.Yes)
                 {
                     if (File.Exists(dc.Resources + "exportertest.bat"))
@@ -300,91 +296,6 @@ namespace SnowPlatformMonitor.Configurator
         }
         #endregion
 
-        #region Service
-        private void btnServiceMngrInstall_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                ManagedInstallerClass.InstallHelper(new string[] { "SnowPlatformMonitor.Service.exe" });
-                LoadServiceStatus();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Exception thrown, please review ServiceInstaller logs in the root directory.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                log.Error(ex);
-            }
-        }
-
-        private void btnServiceMngrUninstall_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                ManagedInstallerClass.InstallHelper(new string[] { "/u", "SnowPlatformMonitor.Service.exe" });
-                LoadServiceStatus();
-                btnServiceMngrStart.Enabled = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Exception thrown, please review ServiceInstaller logs in the root directory.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                log.Error(ex);
-            }
-        }
-
-        private void btnServiceMngrStart_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (sc.ServiceStatus("SnowPlatformMonitor") != "Running")
-                {
-                    sc.Start("SnowPlatformMonitor");
-                    log.Debug("Service Started via SPM GUI");
-                    System.Threading.Thread.Sleep(3000);
-                    LoadServiceStatus();
-                    log.Debug("Service Manager refreshed");
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Service error", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                log.Error(ex);
-            }
-        }
-
-        private void btnServiceMngrStop_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (sc.ServiceStatus("SnowPlatformMonitor") == "Running")
-                {
-                    sc.Stop("SnowPlatformMonitor");
-                    log.Debug("Service Stopped via SPM GUI");
-                    System.Threading.Thread.Sleep(3000);
-                    LoadServiceStatus();
-                    log.Debug("Service Manager refreshed");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Service error", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                log.Error(ex);
-            }
-        }
-
-        private void btnServiceMngrRefresh_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                LoadServiceStatus();
-            }
-            catch (Exception ex)
-            {
-                log.Error(ex);
-            }
-
-        }
-        #endregion
-
         #region Logging
         private void btnLoggingSave_Click(object sender, EventArgs e)
         {
@@ -396,17 +307,15 @@ namespace SnowPlatformMonitor.Configurator
                 guiLog4Net.SelectSingleNode("//log4net/root/level").Attributes["value"].Value = cbLoggingGUILevel.SelectedItem.ToString();
                 guiLog4Net.SelectSingleNode("//log4net/appender/layout/conversionPattern").Attributes["value"].Value = txtLoggingGUIFormat.Text;
                 guiLog4Net.SelectSingleNode("//log4net/appender/maximumFileSize").Attributes["value"].Value = string.Format("{0}{1}", numLoggingGUISize.Value, "MB");
-                guiLog4Net.SelectSingleNode("//log4net/custom/retentionDays").Attributes["value"].Value = numLoggingRetention.Value.ToString();
                 guiLog4Net.Save("SnowPlatformMonitor.Configurator.exe.config");
 
-                // Load log4net settings for the Service
+                // Load log4net settings for the Aggregator
                 XmlDocument svcLog4Net = new XmlDocument();
-                svcLog4Net.Load("SnowPlatformMonitor.Service.exe.config");
-                svcLog4Net.SelectSingleNode("//log4net/root/level").Attributes["value"].Value = cbLoggingServiceLevel.SelectedItem.ToString();
-                svcLog4Net.SelectSingleNode("//log4net/appender/layout/conversionPattern").Attributes["value"].Value = txtLoggingServiceFormat.Text;
-                svcLog4Net.SelectSingleNode("//log4net/appender/maximumFileSize").Attributes["value"].Value = string.Format("{0}{1}", numLoggingServiceSize.Value, "MB");
-                svcLog4Net.SelectSingleNode("//log4net/custom/retentionDays").Attributes["value"].Value = numLoggingRetention.Value.ToString();
-                svcLog4Net.Save("SnowPlatformMonitor.Service.exe.config");
+                svcLog4Net.Load("SnowPlatformMonitor.Aggregator.exe.config");
+                svcLog4Net.SelectSingleNode("//log4net/root/level").Attributes["value"].Value = cbLoggingAggregatorLevel.SelectedItem.ToString();
+                svcLog4Net.SelectSingleNode("//log4net/appender/layout/conversionPattern").Attributes["value"].Value = txtLoggingAggregatorFormat.Text;
+                svcLog4Net.SelectSingleNode("//log4net/appender/maximumFileSize").Attributes["value"].Value = string.Format("{0}{1}", numLoggingAggregatorSize.Value, "MB");
+                svcLog4Net.Save("SnowPlatformMonitor.Aggregator.exe.config");
 
                 MessageBox.Show("Configuration saved", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             } catch (Exception ex)
@@ -510,11 +419,6 @@ namespace SnowPlatformMonitor.Configurator
                 if(File.Exists(dc.Config + ac.AppConfig))
                 {
                     log.Debug("Started");
-                    // Schedule
-                    numServiceMScheduleTimeHours.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ScheduleHours"));
-                    numServiceMScheduleTimeMins.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ScheduleMinutes"));
-                    numServiceMScheduleTimeSecs.Value = Convert.ToInt32(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "ScheduleSeconds"));
-                    log.Debug("Schedule values have been populated from Configuration File");
 
                     // Core
                     cbConfigDUJStatus.Checked = Convert.ToBoolean(Utilities.ReadXMLValue(dc.Config + ac.AppConfig, "DataUpdateJobStatus"));
@@ -644,56 +548,18 @@ namespace SnowPlatformMonitor.Configurator
                 numLoggingRetention.Value = Convert.ToInt32(guiLog4Net.SelectSingleNode("//log4net/custom/retentionDays").Attributes["value"].Value);
 
 
-                // Load log4net settings for the Service
+                // Load log4net settings for the Aggregator
                 XmlDocument svcLog4Net = new XmlDocument();
-                svcLog4Net.Load("SnowPlatformMonitor.Service.exe.config");
+                svcLog4Net.Load("SnowPlatformMonitor.Aggregator.exe.config");
 
-                cbLoggingServiceLevel.SelectedItem = svcLog4Net.SelectSingleNode("//log4net/root/level").Attributes["value"].Value;
-                txtLoggingServiceFormat.Text = svcLog4Net.SelectSingleNode("//log4net/appender/layout/conversionPattern").Attributes["value"].Value;
+                cbLoggingAggregatorLevel.SelectedItem = svcLog4Net.SelectSingleNode("//log4net/root/level").Attributes["value"].Value;
+                txtLoggingAggregatorFormat.Text = svcLog4Net.SelectSingleNode("//log4net/appender/layout/conversionPattern").Attributes["value"].Value;
                 string svcFileSize = svcLog4Net.SelectSingleNode("//log4net/appender/maximumFileSize").Attributes["value"].Value;
-                numLoggingServiceSize.Value = Convert.ToInt32(svcFileSize.Remove(svcFileSize.Length - 2)); // removes MB from the end
+                numLoggingAggregatorSize.Value = Convert.ToInt32(svcFileSize.Remove(svcFileSize.Length - 2)); // removes MB from the end
                 log.Debug("Finished");
             } catch (Exception ex)
             {
                 log.Fatal(ex);
-            }
-        }
-
-        private void LoadServiceStatus()
-        {
-            try
-            {
-                string serviceStatus = sc.ServiceStatus("SnowPlatformMonitor");
-                if (serviceStatus == "Running")
-                {
-                    log.Debug("SnowPlatformMonitor.Service : " + serviceStatus);
-
-                    pbServiceMngrStatus.Image = Properties.Resources.play_button;
-                    btnServiceMngrStart.Enabled = false;
-                    btnServiceMngrStop.Enabled = true;
-                    btnServiceMngrInstall.Enabled = false;
-                    btnServiceMngrUninstall.Enabled = false;
-                }
-                else
-                {
-                    log.Debug("SnowPlatformMonitor.Service : " + serviceStatus);
-
-                    pbServiceMngrStatus.Image = Properties.Resources.stop_button;
-                    btnServiceMngrStop.Enabled = false;
-                    btnServiceMngrStart.Enabled = true;
-                    btnServiceMngrInstall.Enabled = false;
-                    btnServiceMngrUninstall.Enabled = true;
-                }
-            } catch (Exception ex)
-            {
-                if(ex.Message.Contains("was not found on computer"))
-                {
-                    btnServiceMngrInstall.Enabled = true;
-                    btnServiceMngrUninstall.Enabled = false;
-                } else
-                {
-                    log.Error(ex);
-                }
             }
         }
 
@@ -767,7 +633,6 @@ namespace SnowPlatformMonitor.Configurator
             LoadServersConfiguration();
             LoadSMTPConfiguration();
             LoadLogging();
-            LoadServiceStatus();
             LoadRequiredResources();
             LoadExporterTest();
             log.Debug("AppLoad completed");

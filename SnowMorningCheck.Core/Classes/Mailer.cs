@@ -66,7 +66,7 @@ namespace SnowPlatformMonitor.Core.Classes
             File.Delete(testAttachment);
         }
 
-        public void SendEmail(string attachment, string version)
+        public void SendEmail(string attachment, string version, string subjectAddition = null)
         {
             user = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Username");
             pass = Utilities.Decrypt(Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Password"));
@@ -83,7 +83,14 @@ namespace SnowPlatformMonitor.Core.Classes
             }
             to = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "SendTo");
             cc = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "CC");
-            subject = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Subject");
+            
+            if(subjectAddition == null)
+            {
+                subject = Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Subject");
+            } else
+            {
+                subject = subjectAddition + ": " + Utilities.ReadXMLValue(dc.Config + ac.SMTPConfig, "Subject");
+            }
 
             body = File.ReadAllText(dc.Resources + "email.html")
                 .Replace("{year}", DateTime.Now.Year.ToString())

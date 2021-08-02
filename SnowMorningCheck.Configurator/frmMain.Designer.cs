@@ -47,14 +47,6 @@
             this.numConfigAdvSLMDeviceThreshold = new System.Windows.Forms.NumericUpDown();
             this.lblConfigAdvSLMDeviceThreshold = new System.Windows.Forms.Label();
             this.cbConfigOffice365Adobe = new System.Windows.Forms.CheckBox();
-            this.gbServiceMSchedule = new System.Windows.Forms.GroupBox();
-            this.lblServiceMTimeSecs = new System.Windows.Forms.Label();
-            this.lblServiceMTimeMins = new System.Windows.Forms.Label();
-            this.numServiceMScheduleTimeSecs = new System.Windows.Forms.NumericUpDown();
-            this.lblServiceMTimeHours = new System.Windows.Forms.Label();
-            this.numServiceMScheduleTimeMins = new System.Windows.Forms.NumericUpDown();
-            this.numServiceMScheduleTimeHours = new System.Windows.Forms.NumericUpDown();
-            this.lblServiceMScheduleTime = new System.Windows.Forms.Label();
             this.cbConfigINVStorage = new System.Windows.Forms.CheckBox();
             this.cbConfigSLMStorage = new System.Windows.Forms.CheckBox();
             this.cbConfigINVProcessingDir = new System.Windows.Forms.CheckBox();
@@ -107,27 +99,20 @@
             this.txtSMTPPassword = new System.Windows.Forms.TextBox();
             this.lblSMTPUsername = new System.Windows.Forms.Label();
             this.txtSMTPUsername = new System.Windows.Forms.TextBox();
-            this.tabServiceManager = new System.Windows.Forms.TabPage();
-            this.btnServiceMngrRefresh = new System.Windows.Forms.Button();
-            this.btnServiceMngrUninstall = new System.Windows.Forms.Button();
-            this.btnServiceMngrInstall = new System.Windows.Forms.Button();
-            this.btnServiceMngrStop = new System.Windows.Forms.Button();
-            this.btnServiceMngrStart = new System.Windows.Forms.Button();
-            this.pbServiceMngrStatus = new System.Windows.Forms.PictureBox();
             this.tabLogging = new System.Windows.Forms.TabPage();
             this.lblLoggingRetentionDAYS = new System.Windows.Forms.Label();
             this.numLoggingRetention = new System.Windows.Forms.NumericUpDown();
             this.lblLoggingRetention = new System.Windows.Forms.Label();
             this.linkLoggingFormat = new System.Windows.Forms.LinkLabel();
             this.btnLoggingSave = new System.Windows.Forms.Button();
-            this.gbLoggingService = new System.Windows.Forms.GroupBox();
-            this.lblLoggingServiceSizeMB = new System.Windows.Forms.Label();
-            this.lblLoggingServiceFormat = new System.Windows.Forms.Label();
-            this.numLoggingServiceSize = new System.Windows.Forms.NumericUpDown();
-            this.lblLoggingServiceSize = new System.Windows.Forms.Label();
-            this.txtLoggingServiceFormat = new System.Windows.Forms.TextBox();
-            this.cbLoggingServiceLevel = new System.Windows.Forms.ComboBox();
-            this.lblLoggingServiceLevel = new System.Windows.Forms.Label();
+            this.gbLoggingAggregator = new System.Windows.Forms.GroupBox();
+            this.lblLoggingAggregatorSizeMB = new System.Windows.Forms.Label();
+            this.lblLoggingAggregatorFormat = new System.Windows.Forms.Label();
+            this.numLoggingAggregatorSize = new System.Windows.Forms.NumericUpDown();
+            this.lblLoggingAggregatorSize = new System.Windows.Forms.Label();
+            this.txtLoggingAggregatorFormat = new System.Windows.Forms.TextBox();
+            this.cbLoggingAggregatorLevel = new System.Windows.Forms.ComboBox();
+            this.lblLoggingAggregatorLevel = new System.Windows.Forms.Label();
             this.gbLoggingGUI = new System.Windows.Forms.GroupBox();
             this.lblLoggingGUISizeMB = new System.Windows.Forms.Label();
             this.numLoggingGUISize = new System.Windows.Forms.NumericUpDown();
@@ -151,22 +136,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.numConfigAdvINVProcessingThreshold)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numConfigAdvINVDeviceThreshold)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numConfigAdvSLMDeviceThreshold)).BeginInit();
-            this.gbServiceMSchedule.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numServiceMScheduleTimeSecs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numServiceMScheduleTimeMins)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numServiceMScheduleTimeHours)).BeginInit();
             this.tabServers.SuspendLayout();
             this.gbServersINV.SuspendLayout();
             this.gbServersSLM.SuspendLayout();
             this.gbServersSQL.SuspendLayout();
             this.tabSMTP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSMTPPort)).BeginInit();
-            this.tabServiceManager.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbServiceMngrStatus)).BeginInit();
             this.tabLogging.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numLoggingRetention)).BeginInit();
-            this.gbLoggingService.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numLoggingServiceSize)).BeginInit();
+            this.gbLoggingAggregator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numLoggingAggregatorSize)).BeginInit();
             this.gbLoggingGUI.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numLoggingGUISize)).BeginInit();
             this.tabHelp.SuspendLayout();
@@ -181,7 +160,6 @@
             this.tabControlMain.Controls.Add(this.tabConfiguration);
             this.tabControlMain.Controls.Add(this.tabServers);
             this.tabControlMain.Controls.Add(this.tabSMTP);
-            this.tabControlMain.Controls.Add(this.tabServiceManager);
             this.tabControlMain.Controls.Add(this.tabLogging);
             this.tabControlMain.Controls.Add(this.tabHelp);
             this.tabControlMain.Location = new System.Drawing.Point(12, 12);
@@ -193,6 +171,7 @@
             // 
             // tabConfiguration
             // 
+            this.tabConfiguration.BackColor = System.Drawing.Color.White;
             this.tabConfiguration.Controls.Add(this.cbConfigPlatformVersionCheck);
             this.tabConfiguration.Controls.Add(this.btnConfigTest);
             this.tabConfiguration.Controls.Add(this.cbConfigSRSImport);
@@ -201,7 +180,6 @@
             this.tabConfiguration.Controls.Add(this.cbConfigLogInterrogator);
             this.tabConfiguration.Controls.Add(this.gbConfigAdvanced);
             this.tabConfiguration.Controls.Add(this.cbConfigOffice365Adobe);
-            this.tabConfiguration.Controls.Add(this.gbServiceMSchedule);
             this.tabConfiguration.Controls.Add(this.cbConfigINVStorage);
             this.tabConfiguration.Controls.Add(this.cbConfigSLMStorage);
             this.tabConfiguration.Controls.Add(this.cbConfigINVProcessingDir);
@@ -216,12 +194,11 @@
             this.tabConfiguration.Size = new System.Drawing.Size(308, 393);
             this.tabConfiguration.TabIndex = 4;
             this.tabConfiguration.Text = "General";
-            this.tabConfiguration.UseVisualStyleBackColor = true;
             // 
             // cbConfigPlatformVersionCheck
             // 
             this.cbConfigPlatformVersionCheck.AutoSize = true;
-            this.cbConfigPlatformVersionCheck.Location = new System.Drawing.Point(20, 171);
+            this.cbConfigPlatformVersionCheck.Location = new System.Drawing.Point(20, 113);
             this.cbConfigPlatformVersionCheck.Name = "cbConfigPlatformVersionCheck";
             this.cbConfigPlatformVersionCheck.Size = new System.Drawing.Size(136, 17);
             this.cbConfigPlatformVersionCheck.TabIndex = 18;
@@ -242,7 +219,7 @@
             // cbConfigSRSImport
             // 
             this.cbConfigSRSImport.AutoSize = true;
-            this.cbConfigSRSImport.Location = new System.Drawing.Point(20, 125);
+            this.cbConfigSRSImport.Location = new System.Drawing.Point(20, 67);
             this.cbConfigSRSImport.Name = "cbConfigSRSImport";
             this.cbConfigSRSImport.Size = new System.Drawing.Size(218, 17);
             this.cbConfigSRSImport.TabIndex = 6;
@@ -274,7 +251,7 @@
             // cbConfigLogInterrogator
             // 
             this.cbConfigLogInterrogator.AutoSize = true;
-            this.cbConfigLogInterrogator.Location = new System.Drawing.Point(20, 148);
+            this.cbConfigLogInterrogator.Location = new System.Drawing.Point(20, 90);
             this.cbConfigLogInterrogator.Name = "cbConfigLogInterrogator";
             this.cbConfigLogInterrogator.Size = new System.Drawing.Size(158, 17);
             this.cbConfigLogInterrogator.TabIndex = 7;
@@ -401,118 +378,17 @@
             // cbConfigOffice365Adobe
             // 
             this.cbConfigOffice365Adobe.AutoSize = true;
-            this.cbConfigOffice365Adobe.Location = new System.Drawing.Point(20, 102);
+            this.cbConfigOffice365Adobe.Location = new System.Drawing.Point(20, 44);
             this.cbConfigOffice365Adobe.Name = "cbConfigOffice365Adobe";
             this.cbConfigOffice365Adobe.Size = new System.Drawing.Size(197, 17);
             this.cbConfigOffice365Adobe.TabIndex = 5;
             this.cbConfigOffice365Adobe.Text = "Office 365 and Adobe Import Tables";
             this.cbConfigOffice365Adobe.UseVisualStyleBackColor = true;
             // 
-            // gbServiceMSchedule
-            // 
-            this.gbServiceMSchedule.Controls.Add(this.lblServiceMTimeSecs);
-            this.gbServiceMSchedule.Controls.Add(this.lblServiceMTimeMins);
-            this.gbServiceMSchedule.Controls.Add(this.numServiceMScheduleTimeSecs);
-            this.gbServiceMSchedule.Controls.Add(this.lblServiceMTimeHours);
-            this.gbServiceMSchedule.Controls.Add(this.numServiceMScheduleTimeMins);
-            this.gbServiceMSchedule.Controls.Add(this.numServiceMScheduleTimeHours);
-            this.gbServiceMSchedule.Controls.Add(this.lblServiceMScheduleTime);
-            this.gbServiceMSchedule.Location = new System.Drawing.Point(20, 20);
-            this.gbServiceMSchedule.Name = "gbServiceMSchedule";
-            this.gbServiceMSchedule.Size = new System.Drawing.Size(268, 53);
-            this.gbServiceMSchedule.TabIndex = 14;
-            this.gbServiceMSchedule.TabStop = false;
-            this.gbServiceMSchedule.Text = "Schedule (Daily)";
-            // 
-            // lblServiceMTimeSecs
-            // 
-            this.lblServiceMTimeSecs.AutoSize = true;
-            this.lblServiceMTimeSecs.Location = new System.Drawing.Point(249, 22);
-            this.lblServiceMTimeSecs.Name = "lblServiceMTimeSecs";
-            this.lblServiceMTimeSecs.Size = new System.Drawing.Size(14, 13);
-            this.lblServiceMTimeSecs.TabIndex = 4;
-            this.lblServiceMTimeSecs.Text = "S";
-            // 
-            // lblServiceMTimeMins
-            // 
-            this.lblServiceMTimeMins.AutoSize = true;
-            this.lblServiceMTimeMins.Location = new System.Drawing.Point(178, 22);
-            this.lblServiceMTimeMins.Name = "lblServiceMTimeMins";
-            this.lblServiceMTimeMins.Size = new System.Drawing.Size(16, 13);
-            this.lblServiceMTimeMins.TabIndex = 3;
-            this.lblServiceMTimeMins.Text = "M";
-            // 
-            // numServiceMScheduleTimeSecs
-            // 
-            this.numServiceMScheduleTimeSecs.Location = new System.Drawing.Point(200, 18);
-            this.numServiceMScheduleTimeSecs.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.numServiceMScheduleTimeSecs.Name = "numServiceMScheduleTimeSecs";
-            this.numServiceMScheduleTimeSecs.Size = new System.Drawing.Size(47, 20);
-            this.numServiceMScheduleTimeSecs.TabIndex = 3;
-            this.numServiceMScheduleTimeSecs.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lblServiceMTimeHours
-            // 
-            this.lblServiceMTimeHours.AutoSize = true;
-            this.lblServiceMTimeHours.Location = new System.Drawing.Point(108, 22);
-            this.lblServiceMTimeHours.Name = "lblServiceMTimeHours";
-            this.lblServiceMTimeHours.Size = new System.Drawing.Size(15, 13);
-            this.lblServiceMTimeHours.TabIndex = 2;
-            this.lblServiceMTimeHours.Text = "H";
-            // 
-            // numServiceMScheduleTimeMins
-            // 
-            this.numServiceMScheduleTimeMins.Location = new System.Drawing.Point(129, 18);
-            this.numServiceMScheduleTimeMins.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.numServiceMScheduleTimeMins.Name = "numServiceMScheduleTimeMins";
-            this.numServiceMScheduleTimeMins.Size = new System.Drawing.Size(47, 20);
-            this.numServiceMScheduleTimeMins.TabIndex = 2;
-            this.numServiceMScheduleTimeMins.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numServiceMScheduleTimeMins.Value = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            // 
-            // numServiceMScheduleTimeHours
-            // 
-            this.numServiceMScheduleTimeHours.Location = new System.Drawing.Point(59, 18);
-            this.numServiceMScheduleTimeHours.Maximum = new decimal(new int[] {
-            24,
-            0,
-            0,
-            0});
-            this.numServiceMScheduleTimeHours.Name = "numServiceMScheduleTimeHours";
-            this.numServiceMScheduleTimeHours.Size = new System.Drawing.Size(47, 20);
-            this.numServiceMScheduleTimeHours.TabIndex = 1;
-            this.numServiceMScheduleTimeHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numServiceMScheduleTimeHours.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            // 
-            // lblServiceMScheduleTime
-            // 
-            this.lblServiceMScheduleTime.AutoSize = true;
-            this.lblServiceMScheduleTime.Location = new System.Drawing.Point(20, 20);
-            this.lblServiceMScheduleTime.Name = "lblServiceMScheduleTime";
-            this.lblServiceMScheduleTime.Size = new System.Drawing.Size(33, 13);
-            this.lblServiceMScheduleTime.TabIndex = 0;
-            this.lblServiceMScheduleTime.Text = "Time:";
-            // 
             // cbConfigINVStorage
             // 
             this.cbConfigINVStorage.AutoSize = true;
-            this.cbConfigINVStorage.Location = new System.Drawing.Point(20, 332);
+            this.cbConfigINVStorage.Location = new System.Drawing.Point(20, 274);
             this.cbConfigINVStorage.Name = "cbConfigINVStorage";
             this.cbConfigINVStorage.Size = new System.Drawing.Size(174, 17);
             this.cbConfigINVStorage.TabIndex = 14;
@@ -522,7 +398,7 @@
             // cbConfigSLMStorage
             // 
             this.cbConfigSLMStorage.AutoSize = true;
-            this.cbConfigSLMStorage.Location = new System.Drawing.Point(20, 240);
+            this.cbConfigSLMStorage.Location = new System.Drawing.Point(20, 182);
             this.cbConfigSLMStorage.Name = "cbConfigSLMStorage";
             this.cbConfigSLMStorage.Size = new System.Drawing.Size(212, 17);
             this.cbConfigSLMStorage.TabIndex = 10;
@@ -532,7 +408,7 @@
             // cbConfigINVProcessingDir
             // 
             this.cbConfigINVProcessingDir.AutoSize = true;
-            this.cbConfigINVProcessingDir.Location = new System.Drawing.Point(20, 309);
+            this.cbConfigINVProcessingDir.Location = new System.Drawing.Point(20, 251);
             this.cbConfigINVProcessingDir.Name = "cbConfigINVProcessingDir";
             this.cbConfigINVProcessingDir.Size = new System.Drawing.Size(200, 17);
             this.cbConfigINVProcessingDir.TabIndex = 13;
@@ -542,7 +418,7 @@
             // cbConfigINVServices
             // 
             this.cbConfigINVServices.AutoSize = true;
-            this.cbConfigINVServices.Location = new System.Drawing.Point(20, 263);
+            this.cbConfigINVServices.Location = new System.Drawing.Point(20, 205);
             this.cbConfigINVServices.Name = "cbConfigINVServices";
             this.cbConfigINVServices.Size = new System.Drawing.Size(178, 17);
             this.cbConfigINVServices.TabIndex = 11;
@@ -552,7 +428,7 @@
             // cbConfigINVDeviceReporting
             // 
             this.cbConfigINVDeviceReporting.AutoSize = true;
-            this.cbConfigINVDeviceReporting.Location = new System.Drawing.Point(20, 286);
+            this.cbConfigINVDeviceReporting.Location = new System.Drawing.Point(20, 228);
             this.cbConfigINVDeviceReporting.Name = "cbConfigINVDeviceReporting";
             this.cbConfigINVDeviceReporting.Size = new System.Drawing.Size(186, 17);
             this.cbConfigINVDeviceReporting.TabIndex = 12;
@@ -562,7 +438,7 @@
             // cbConfigSLMDeviceReporting
             // 
             this.cbConfigSLMDeviceReporting.AutoSize = true;
-            this.cbConfigSLMDeviceReporting.Location = new System.Drawing.Point(20, 217);
+            this.cbConfigSLMDeviceReporting.Location = new System.Drawing.Point(20, 159);
             this.cbConfigSLMDeviceReporting.Name = "cbConfigSLMDeviceReporting";
             this.cbConfigSLMDeviceReporting.Size = new System.Drawing.Size(224, 17);
             this.cbConfigSLMDeviceReporting.TabIndex = 9;
@@ -572,7 +448,7 @@
             // cbConfigSLMServices
             // 
             this.cbConfigSLMServices.AutoSize = true;
-            this.cbConfigSLMServices.Location = new System.Drawing.Point(20, 194);
+            this.cbConfigSLMServices.Location = new System.Drawing.Point(20, 136);
             this.cbConfigSLMServices.Name = "cbConfigSLMServices";
             this.cbConfigSLMServices.Size = new System.Drawing.Size(216, 17);
             this.cbConfigSLMServices.TabIndex = 8;
@@ -582,7 +458,7 @@
             // cbConfigDUJStatus
             // 
             this.cbConfigDUJStatus.AutoSize = true;
-            this.cbConfigDUJStatus.Location = new System.Drawing.Point(20, 79);
+            this.cbConfigDUJStatus.Location = new System.Drawing.Point(20, 21);
             this.cbConfigDUJStatus.Name = "cbConfigDUJStatus";
             this.cbConfigDUJStatus.Size = new System.Drawing.Size(140, 17);
             this.cbConfigDUJStatus.TabIndex = 4;
@@ -591,6 +467,7 @@
             // 
             // tabServers
             // 
+            this.tabServers.BackColor = System.Drawing.Color.White;
             this.tabServers.Controls.Add(this.gbServersINV);
             this.tabServers.Controls.Add(this.gbServersSLM);
             this.tabServers.Controls.Add(this.btnServersSave);
@@ -601,7 +478,6 @@
             this.tabServers.Size = new System.Drawing.Size(308, 393);
             this.tabServers.TabIndex = 0;
             this.tabServers.Text = "Servers";
-            this.tabServers.UseVisualStyleBackColor = true;
             // 
             // gbServersINV
             // 
@@ -802,6 +678,7 @@
             // 
             // tabSMTP
             // 
+            this.tabSMTP.BackColor = System.Drawing.Color.White;
             this.tabSMTP.Controls.Add(this.lblSMTPSenderName);
             this.tabSMTP.Controls.Add(this.txtSMTPSenderName);
             this.tabSMTP.Controls.Add(this.lblSMTPSubject);
@@ -823,13 +700,13 @@
             this.tabSMTP.Controls.Add(this.txtSMTPPassword);
             this.tabSMTP.Controls.Add(this.lblSMTPUsername);
             this.tabSMTP.Controls.Add(this.txtSMTPUsername);
+            this.tabSMTP.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabSMTP.Location = new System.Drawing.Point(4, 22);
             this.tabSMTP.Name = "tabSMTP";
             this.tabSMTP.Padding = new System.Windows.Forms.Padding(3);
             this.tabSMTP.Size = new System.Drawing.Size(308, 393);
             this.tabSMTP.TabIndex = 1;
             this.tabSMTP.Text = "SMTP";
-            this.tabSMTP.UseVisualStyleBackColor = true;
             // 
             // lblSMTPSenderName
             // 
@@ -1016,93 +893,15 @@
             this.txtSMTPUsername.Size = new System.Drawing.Size(204, 20);
             this.txtSMTPUsername.TabIndex = 1;
             // 
-            // tabServiceManager
-            // 
-            this.tabServiceManager.Controls.Add(this.btnServiceMngrRefresh);
-            this.tabServiceManager.Controls.Add(this.btnServiceMngrUninstall);
-            this.tabServiceManager.Controls.Add(this.btnServiceMngrInstall);
-            this.tabServiceManager.Controls.Add(this.btnServiceMngrStop);
-            this.tabServiceManager.Controls.Add(this.btnServiceMngrStart);
-            this.tabServiceManager.Controls.Add(this.pbServiceMngrStatus);
-            this.tabServiceManager.Location = new System.Drawing.Point(4, 22);
-            this.tabServiceManager.Name = "tabServiceManager";
-            this.tabServiceManager.Size = new System.Drawing.Size(308, 393);
-            this.tabServiceManager.TabIndex = 2;
-            this.tabServiceManager.Text = "Service";
-            this.tabServiceManager.UseVisualStyleBackColor = true;
-            // 
-            // btnServiceMngrRefresh
-            // 
-            this.btnServiceMngrRefresh.Location = new System.Drawing.Point(90, 306);
-            this.btnServiceMngrRefresh.Name = "btnServiceMngrRefresh";
-            this.btnServiceMngrRefresh.Size = new System.Drawing.Size(128, 23);
-            this.btnServiceMngrRefresh.TabIndex = 6;
-            this.btnServiceMngrRefresh.Text = "Refresh";
-            this.btnServiceMngrRefresh.UseVisualStyleBackColor = true;
-            this.btnServiceMngrRefresh.Click += new System.EventHandler(this.btnServiceMngrRefresh_Click);
-            // 
-            // btnServiceMngrUninstall
-            // 
-            this.btnServiceMngrUninstall.Enabled = false;
-            this.btnServiceMngrUninstall.Location = new System.Drawing.Point(90, 241);
-            this.btnServiceMngrUninstall.Name = "btnServiceMngrUninstall";
-            this.btnServiceMngrUninstall.Size = new System.Drawing.Size(128, 23);
-            this.btnServiceMngrUninstall.TabIndex = 5;
-            this.btnServiceMngrUninstall.Text = "Uninstall Service";
-            this.btnServiceMngrUninstall.UseVisualStyleBackColor = true;
-            this.btnServiceMngrUninstall.Click += new System.EventHandler(this.btnServiceMngrUninstall_Click);
-            // 
-            // btnServiceMngrInstall
-            // 
-            this.btnServiceMngrInstall.Enabled = false;
-            this.btnServiceMngrInstall.Location = new System.Drawing.Point(90, 212);
-            this.btnServiceMngrInstall.Name = "btnServiceMngrInstall";
-            this.btnServiceMngrInstall.Size = new System.Drawing.Size(128, 23);
-            this.btnServiceMngrInstall.TabIndex = 4;
-            this.btnServiceMngrInstall.Text = "Install Service";
-            this.btnServiceMngrInstall.UseVisualStyleBackColor = true;
-            this.btnServiceMngrInstall.Click += new System.EventHandler(this.btnServiceMngrInstall_Click);
-            // 
-            // btnServiceMngrStop
-            // 
-            this.btnServiceMngrStop.Enabled = false;
-            this.btnServiceMngrStop.Location = new System.Drawing.Point(90, 183);
-            this.btnServiceMngrStop.Name = "btnServiceMngrStop";
-            this.btnServiceMngrStop.Size = new System.Drawing.Size(128, 23);
-            this.btnServiceMngrStop.TabIndex = 3;
-            this.btnServiceMngrStop.Text = "Stop";
-            this.btnServiceMngrStop.UseVisualStyleBackColor = true;
-            this.btnServiceMngrStop.Click += new System.EventHandler(this.btnServiceMngrStop_Click);
-            // 
-            // btnServiceMngrStart
-            // 
-            this.btnServiceMngrStart.Enabled = false;
-            this.btnServiceMngrStart.Location = new System.Drawing.Point(90, 154);
-            this.btnServiceMngrStart.Name = "btnServiceMngrStart";
-            this.btnServiceMngrStart.Size = new System.Drawing.Size(128, 23);
-            this.btnServiceMngrStart.TabIndex = 2;
-            this.btnServiceMngrStart.Text = "Start";
-            this.btnServiceMngrStart.UseVisualStyleBackColor = true;
-            this.btnServiceMngrStart.Click += new System.EventHandler(this.btnServiceMngrStart_Click);
-            // 
-            // pbServiceMngrStatus
-            // 
-            this.pbServiceMngrStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbServiceMngrStatus.Location = new System.Drawing.Point(90, 20);
-            this.pbServiceMngrStatus.Name = "pbServiceMngrStatus";
-            this.pbServiceMngrStatus.Size = new System.Drawing.Size(128, 128);
-            this.pbServiceMngrStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbServiceMngrStatus.TabIndex = 1;
-            this.pbServiceMngrStatus.TabStop = false;
-            // 
             // tabLogging
             // 
+            this.tabLogging.BackColor = System.Drawing.Color.White;
             this.tabLogging.Controls.Add(this.lblLoggingRetentionDAYS);
             this.tabLogging.Controls.Add(this.numLoggingRetention);
             this.tabLogging.Controls.Add(this.lblLoggingRetention);
             this.tabLogging.Controls.Add(this.linkLoggingFormat);
             this.tabLogging.Controls.Add(this.btnLoggingSave);
-            this.tabLogging.Controls.Add(this.gbLoggingService);
+            this.tabLogging.Controls.Add(this.gbLoggingAggregator);
             this.tabLogging.Controls.Add(this.gbLoggingGUI);
             this.tabLogging.Location = new System.Drawing.Point(4, 22);
             this.tabLogging.Name = "tabLogging";
@@ -1110,7 +909,6 @@
             this.tabLogging.Size = new System.Drawing.Size(308, 393);
             this.tabLogging.TabIndex = 5;
             this.tabLogging.Text = "Logging";
-            this.tabLogging.UseVisualStyleBackColor = true;
             // 
             // lblLoggingRetentionDAYS
             // 
@@ -1120,6 +918,7 @@
             this.lblLoggingRetentionDAYS.Size = new System.Drawing.Size(37, 13);
             this.lblLoggingRetentionDAYS.TabIndex = 10;
             this.lblLoggingRetentionDAYS.Text = "Day(s)";
+            this.lblLoggingRetentionDAYS.Visible = false;
             // 
             // numLoggingRetention
             // 
@@ -1137,6 +936,7 @@
             0,
             0,
             0});
+            this.numLoggingRetention.Visible = false;
             // 
             // lblLoggingRetention
             // 
@@ -1146,6 +946,7 @@
             this.lblLoggingRetention.Size = new System.Drawing.Size(89, 13);
             this.lblLoggingRetention.TabIndex = 10;
             this.lblLoggingRetention.Text = "Retention Period:";
+            this.lblLoggingRetention.Visible = false;
             // 
             // linkLoggingFormat
             // 
@@ -1169,97 +970,97 @@
             this.btnLoggingSave.UseVisualStyleBackColor = true;
             this.btnLoggingSave.Click += new System.EventHandler(this.btnLoggingSave_Click);
             // 
-            // gbLoggingService
+            // gbLoggingAggregator
             // 
-            this.gbLoggingService.Controls.Add(this.lblLoggingServiceSizeMB);
-            this.gbLoggingService.Controls.Add(this.lblLoggingServiceFormat);
-            this.gbLoggingService.Controls.Add(this.numLoggingServiceSize);
-            this.gbLoggingService.Controls.Add(this.lblLoggingServiceSize);
-            this.gbLoggingService.Controls.Add(this.txtLoggingServiceFormat);
-            this.gbLoggingService.Controls.Add(this.cbLoggingServiceLevel);
-            this.gbLoggingService.Controls.Add(this.lblLoggingServiceLevel);
-            this.gbLoggingService.Location = new System.Drawing.Point(20, 144);
-            this.gbLoggingService.Name = "gbLoggingService";
-            this.gbLoggingService.Size = new System.Drawing.Size(268, 118);
-            this.gbLoggingService.TabIndex = 1;
-            this.gbLoggingService.TabStop = false;
-            this.gbLoggingService.Text = "Service Configuration";
+            this.gbLoggingAggregator.Controls.Add(this.lblLoggingAggregatorSizeMB);
+            this.gbLoggingAggregator.Controls.Add(this.lblLoggingAggregatorFormat);
+            this.gbLoggingAggregator.Controls.Add(this.numLoggingAggregatorSize);
+            this.gbLoggingAggregator.Controls.Add(this.lblLoggingAggregatorSize);
+            this.gbLoggingAggregator.Controls.Add(this.txtLoggingAggregatorFormat);
+            this.gbLoggingAggregator.Controls.Add(this.cbLoggingAggregatorLevel);
+            this.gbLoggingAggregator.Controls.Add(this.lblLoggingAggregatorLevel);
+            this.gbLoggingAggregator.Location = new System.Drawing.Point(20, 144);
+            this.gbLoggingAggregator.Name = "gbLoggingAggregator";
+            this.gbLoggingAggregator.Size = new System.Drawing.Size(268, 118);
+            this.gbLoggingAggregator.TabIndex = 1;
+            this.gbLoggingAggregator.TabStop = false;
+            this.gbLoggingAggregator.Text = "Aggregator Configuration";
             // 
-            // lblLoggingServiceSizeMB
+            // lblLoggingAggregatorSizeMB
             // 
-            this.lblLoggingServiceSizeMB.AutoSize = true;
-            this.lblLoggingServiceSizeMB.Location = new System.Drawing.Point(223, 82);
-            this.lblLoggingServiceSizeMB.Name = "lblLoggingServiceSizeMB";
-            this.lblLoggingServiceSizeMB.Size = new System.Drawing.Size(23, 13);
-            this.lblLoggingServiceSizeMB.TabIndex = 9;
-            this.lblLoggingServiceSizeMB.Text = "MB";
+            this.lblLoggingAggregatorSizeMB.AutoSize = true;
+            this.lblLoggingAggregatorSizeMB.Location = new System.Drawing.Point(223, 82);
+            this.lblLoggingAggregatorSizeMB.Name = "lblLoggingAggregatorSizeMB";
+            this.lblLoggingAggregatorSizeMB.Size = new System.Drawing.Size(23, 13);
+            this.lblLoggingAggregatorSizeMB.TabIndex = 9;
+            this.lblLoggingAggregatorSizeMB.Text = "MB";
             // 
-            // lblLoggingServiceFormat
+            // lblLoggingAggregatorFormat
             // 
-            this.lblLoggingServiceFormat.AutoSize = true;
-            this.lblLoggingServiceFormat.Location = new System.Drawing.Point(14, 57);
-            this.lblLoggingServiceFormat.Name = "lblLoggingServiceFormat";
-            this.lblLoggingServiceFormat.Size = new System.Drawing.Size(63, 13);
-            this.lblLoggingServiceFormat.TabIndex = 4;
-            this.lblLoggingServiceFormat.Text = "Log Format:";
+            this.lblLoggingAggregatorFormat.AutoSize = true;
+            this.lblLoggingAggregatorFormat.Location = new System.Drawing.Point(14, 57);
+            this.lblLoggingAggregatorFormat.Name = "lblLoggingAggregatorFormat";
+            this.lblLoggingAggregatorFormat.Size = new System.Drawing.Size(63, 13);
+            this.lblLoggingAggregatorFormat.TabIndex = 4;
+            this.lblLoggingAggregatorFormat.Text = "Log Format:";
             // 
-            // numLoggingServiceSize
+            // numLoggingAggregatorSize
             // 
-            this.numLoggingServiceSize.Location = new System.Drawing.Point(83, 80);
-            this.numLoggingServiceSize.Minimum = new decimal(new int[] {
+            this.numLoggingAggregatorSize.Location = new System.Drawing.Point(83, 80);
+            this.numLoggingAggregatorSize.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numLoggingServiceSize.Name = "numLoggingServiceSize";
-            this.numLoggingServiceSize.Size = new System.Drawing.Size(134, 20);
-            this.numLoggingServiceSize.TabIndex = 8;
-            this.numLoggingServiceSize.Value = new decimal(new int[] {
+            this.numLoggingAggregatorSize.Name = "numLoggingAggregatorSize";
+            this.numLoggingAggregatorSize.Size = new System.Drawing.Size(134, 20);
+            this.numLoggingAggregatorSize.TabIndex = 8;
+            this.numLoggingAggregatorSize.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // lblLoggingServiceSize
+            // lblLoggingAggregatorSize
             // 
-            this.lblLoggingServiceSize.AutoSize = true;
-            this.lblLoggingServiceSize.Location = new System.Drawing.Point(5, 82);
-            this.lblLoggingServiceSize.Name = "lblLoggingServiceSize";
-            this.lblLoggingServiceSize.Size = new System.Drawing.Size(72, 13);
-            this.lblLoggingServiceSize.TabIndex = 7;
-            this.lblLoggingServiceSize.Text = "Max File Size:";
+            this.lblLoggingAggregatorSize.AutoSize = true;
+            this.lblLoggingAggregatorSize.Location = new System.Drawing.Point(5, 82);
+            this.lblLoggingAggregatorSize.Name = "lblLoggingAggregatorSize";
+            this.lblLoggingAggregatorSize.Size = new System.Drawing.Size(72, 13);
+            this.lblLoggingAggregatorSize.TabIndex = 7;
+            this.lblLoggingAggregatorSize.Text = "Max File Size:";
             // 
-            // txtLoggingServiceFormat
+            // txtLoggingAggregatorFormat
             // 
-            this.txtLoggingServiceFormat.Location = new System.Drawing.Point(83, 54);
-            this.txtLoggingServiceFormat.Name = "txtLoggingServiceFormat";
-            this.txtLoggingServiceFormat.Size = new System.Drawing.Size(163, 20);
-            this.txtLoggingServiceFormat.TabIndex = 4;
+            this.txtLoggingAggregatorFormat.Location = new System.Drawing.Point(83, 54);
+            this.txtLoggingAggregatorFormat.Name = "txtLoggingAggregatorFormat";
+            this.txtLoggingAggregatorFormat.Size = new System.Drawing.Size(163, 20);
+            this.txtLoggingAggregatorFormat.TabIndex = 4;
             // 
-            // cbLoggingServiceLevel
+            // cbLoggingAggregatorLevel
             // 
-            this.cbLoggingServiceLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLoggingServiceLevel.FormattingEnabled = true;
-            this.cbLoggingServiceLevel.Items.AddRange(new object[] {
+            this.cbLoggingAggregatorLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLoggingAggregatorLevel.FormattingEnabled = true;
+            this.cbLoggingAggregatorLevel.Items.AddRange(new object[] {
             "ALL",
             "DEBUG",
             "INFO",
             "WARN",
             "ERROR",
             "FATAL"});
-            this.cbLoggingServiceLevel.Location = new System.Drawing.Point(83, 27);
-            this.cbLoggingServiceLevel.Name = "cbLoggingServiceLevel";
-            this.cbLoggingServiceLevel.Size = new System.Drawing.Size(163, 21);
-            this.cbLoggingServiceLevel.TabIndex = 2;
+            this.cbLoggingAggregatorLevel.Location = new System.Drawing.Point(83, 27);
+            this.cbLoggingAggregatorLevel.Name = "cbLoggingAggregatorLevel";
+            this.cbLoggingAggregatorLevel.Size = new System.Drawing.Size(163, 21);
+            this.cbLoggingAggregatorLevel.TabIndex = 2;
             // 
-            // lblLoggingServiceLevel
+            // lblLoggingAggregatorLevel
             // 
-            this.lblLoggingServiceLevel.AutoSize = true;
-            this.lblLoggingServiceLevel.Location = new System.Drawing.Point(20, 30);
-            this.lblLoggingServiceLevel.Name = "lblLoggingServiceLevel";
-            this.lblLoggingServiceLevel.Size = new System.Drawing.Size(57, 13);
-            this.lblLoggingServiceLevel.TabIndex = 2;
-            this.lblLoggingServiceLevel.Text = "Log Level:";
+            this.lblLoggingAggregatorLevel.AutoSize = true;
+            this.lblLoggingAggregatorLevel.Location = new System.Drawing.Point(20, 30);
+            this.lblLoggingAggregatorLevel.Name = "lblLoggingAggregatorLevel";
+            this.lblLoggingAggregatorLevel.Size = new System.Drawing.Size(57, 13);
+            this.lblLoggingAggregatorLevel.TabIndex = 2;
+            this.lblLoggingAggregatorLevel.Text = "Log Level:";
             // 
             // gbLoggingGUI
             // 
@@ -1355,6 +1156,7 @@
             // 
             // tabHelp
             // 
+            this.tabHelp.BackColor = System.Drawing.Color.White;
             this.tabHelp.Controls.Add(this.btnHelpWiki);
             this.tabHelp.Controls.Add(this.btnHelpReleases);
             this.tabHelp.Controls.Add(this.btnHelpSupport);
@@ -1368,7 +1170,6 @@
             this.tabHelp.Size = new System.Drawing.Size(308, 393);
             this.tabHelp.TabIndex = 3;
             this.tabHelp.Text = "Help";
-            this.tabHelp.UseVisualStyleBackColor = true;
             // 
             // btnHelpWiki
             // 
@@ -1441,6 +1242,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Image = global::SnowPlatformMonitor.Configurator.Properties.Resources.logo;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
@@ -1473,11 +1275,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numConfigAdvINVProcessingThreshold)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numConfigAdvINVDeviceThreshold)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numConfigAdvSLMDeviceThreshold)).EndInit();
-            this.gbServiceMSchedule.ResumeLayout(false);
-            this.gbServiceMSchedule.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numServiceMScheduleTimeSecs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numServiceMScheduleTimeMins)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numServiceMScheduleTimeHours)).EndInit();
             this.tabServers.ResumeLayout(false);
             this.gbServersINV.ResumeLayout(false);
             this.gbServersINV.PerformLayout();
@@ -1488,14 +1285,12 @@
             this.tabSMTP.ResumeLayout(false);
             this.tabSMTP.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSMTPPort)).EndInit();
-            this.tabServiceManager.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbServiceMngrStatus)).EndInit();
             this.tabLogging.ResumeLayout(false);
             this.tabLogging.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numLoggingRetention)).EndInit();
-            this.gbLoggingService.ResumeLayout(false);
-            this.gbLoggingService.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numLoggingServiceSize)).EndInit();
+            this.gbLoggingAggregator.ResumeLayout(false);
+            this.gbLoggingAggregator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numLoggingAggregatorSize)).EndInit();
             this.gbLoggingGUI.ResumeLayout(false);
             this.gbLoggingGUI.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numLoggingGUISize)).EndInit();
@@ -1510,7 +1305,6 @@
         private System.Windows.Forms.TabControl tabControlMain;
         private System.Windows.Forms.TabPage tabServers;
         private System.Windows.Forms.TabPage tabSMTP;
-        private System.Windows.Forms.TabPage tabServiceManager;
         private System.Windows.Forms.TabPage tabHelp;
         private System.Windows.Forms.TextBox txtServersSLM;
         private System.Windows.Forms.Label lblServersSLM;
@@ -1546,14 +1340,6 @@
         private System.Windows.Forms.TextBox txtServersINVDrive;
         private System.Windows.Forms.Label lblServersINVDrive;
         private System.Windows.Forms.Label lblServersSLMDrive;
-        private System.Windows.Forms.GroupBox gbServiceMSchedule;
-        private System.Windows.Forms.Label lblServiceMTimeSecs;
-        private System.Windows.Forms.Label lblServiceMTimeMins;
-        private System.Windows.Forms.NumericUpDown numServiceMScheduleTimeSecs;
-        private System.Windows.Forms.Label lblServiceMTimeHours;
-        private System.Windows.Forms.NumericUpDown numServiceMScheduleTimeMins;
-        private System.Windows.Forms.NumericUpDown numServiceMScheduleTimeHours;
-        private System.Windows.Forms.Label lblServiceMScheduleTime;
         private System.Windows.Forms.CheckBox cbConfigOffice365Adobe;
         private System.Windows.Forms.Button btnConfigAdvanced;
         private System.Windows.Forms.GroupBox gbConfigAdvanced;
@@ -1566,29 +1352,24 @@
         private System.Windows.Forms.Label lblConfigAdvProcessingDirectory;
         private System.Windows.Forms.TextBox txtConfigAdvINVProcessingDirectory;
         private System.Windows.Forms.CheckBox cbConfigLogInterrogator;
-        private System.Windows.Forms.PictureBox pbServiceMngrStatus;
-        private System.Windows.Forms.Button btnServiceMngrStart;
-        private System.Windows.Forms.Button btnServiceMngrStop;
-        private System.Windows.Forms.Button btnServiceMngrInstall;
-        private System.Windows.Forms.Button btnServiceMngrUninstall;
         private System.Windows.Forms.Button btnHelpExportsDir;
         private System.Windows.Forms.TabPage tabLogging;
-        private System.Windows.Forms.GroupBox gbLoggingService;
+        private System.Windows.Forms.GroupBox gbLoggingAggregator;
         private System.Windows.Forms.GroupBox gbLoggingGUI;
         private System.Windows.Forms.Label lblLoggingGUILevel;
         private System.Windows.Forms.ComboBox cbLoggingGUILevel;
-        private System.Windows.Forms.ComboBox cbLoggingServiceLevel;
-        private System.Windows.Forms.Label lblLoggingServiceLevel;
+        private System.Windows.Forms.ComboBox cbLoggingAggregatorLevel;
+        private System.Windows.Forms.Label lblLoggingAggregatorLevel;
         private System.Windows.Forms.TextBox txtLoggingGUIFormat;
         private System.Windows.Forms.Label lblLoggingGUIFormat;
-        private System.Windows.Forms.Label lblLoggingServiceFormat;
-        private System.Windows.Forms.TextBox txtLoggingServiceFormat;
+        private System.Windows.Forms.Label lblLoggingAggregatorFormat;
+        private System.Windows.Forms.TextBox txtLoggingAggregatorFormat;
         private System.Windows.Forms.Label lblLoggingGUISizeMB;
         private System.Windows.Forms.NumericUpDown numLoggingGUISize;
         private System.Windows.Forms.Label lblLoggingGUISize;
-        private System.Windows.Forms.Label lblLoggingServiceSizeMB;
-        private System.Windows.Forms.NumericUpDown numLoggingServiceSize;
-        private System.Windows.Forms.Label lblLoggingServiceSize;
+        private System.Windows.Forms.Label lblLoggingAggregatorSizeMB;
+        private System.Windows.Forms.NumericUpDown numLoggingAggregatorSize;
+        private System.Windows.Forms.Label lblLoggingAggregatorSize;
         private System.Windows.Forms.Button btnLoggingSave;
         private System.Windows.Forms.LinkLabel linkLoggingFormat;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -1617,7 +1398,6 @@
         private System.Windows.Forms.CheckBox cbConfigSRSImport;
         private System.Windows.Forms.Label lblSMTPSenderName;
         private System.Windows.Forms.TextBox txtSMTPSenderName;
-        private System.Windows.Forms.Button btnServiceMngrRefresh;
         private System.Windows.Forms.Button btnConfigTest;
         private System.Windows.Forms.Label lblLoggingRetentionDAYS;
         private System.Windows.Forms.NumericUpDown numLoggingRetention;

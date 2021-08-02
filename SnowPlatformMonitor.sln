@@ -1,11 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30406.217
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31423.177
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowPlatformMonitor.Configurator", "SnowMorningCheck.Configurator\SnowPlatformMonitor.Configurator.csproj", "{3CA77F2C-9A5F-4756-A4F2-9396416C2ECD}"
 	ProjectSection(ProjectDependencies) = postProject
-		{46DBA673-D017-4A49-80EC-D471C6087751} = {46DBA673-D017-4A49-80EC-D471C6087751}
+		{55222431-1CE3-4CC3-AE9E-99916F3CC2C6} = {55222431-1CE3-4CC3-AE9E-99916F3CC2C6}
+		{242BE146-025F-4D30-AEC2-8F51CFA51228} = {242BE146-025F-4D30-AEC2-8F51CFA51228}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowPlatformMonitor.Core", "SnowMorningCheck.Core\SnowPlatformMonitor.Core.csproj", "{242BE146-025F-4D30-AEC2-8F51CFA51228}"
@@ -13,6 +14,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowPlatformMonitor.Service", "SnowPlatformMonitor.Service\SnowPlatformMonitor.Service.csproj", "{46DBA673-D017-4A49-80EC-D471C6087751}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SnowPlatformMonitor.Installer", "SnowPlatformMonitor.Installer\SnowPlatformMonitor.Installer.vdproj", "{A9ADE016-903F-4B8F-9317-C490A5073369}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowPlatformMonitor.Aggregator", "SnowPlatformMonitor.Aggregator\SnowPlatformMonitor.Aggregator.csproj", "{55222431-1CE3-4CC3-AE9E-99916F3CC2C6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{242BE146-025F-4D30-AEC2-8F51CFA51228} = {242BE146-025F-4D30-AEC2-8F51CFA51228}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,17 +45,21 @@ Global
 		{242BE146-025F-4D30-AEC2-8F51CFA51228}.Release|x64.ActiveCfg = Release|x64
 		{242BE146-025F-4D30-AEC2-8F51CFA51228}.Release|x64.Build.0 = Release|x64
 		{46DBA673-D017-4A49-80EC-D471C6087751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46DBA673-D017-4A49-80EC-D471C6087751}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46DBA673-D017-4A49-80EC-D471C6087751}.Debug|x64.ActiveCfg = Debug|x64
-		{46DBA673-D017-4A49-80EC-D471C6087751}.Debug|x64.Build.0 = Debug|x64
 		{46DBA673-D017-4A49-80EC-D471C6087751}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46DBA673-D017-4A49-80EC-D471C6087751}.Release|Any CPU.Build.0 = Release|Any CPU
 		{46DBA673-D017-4A49-80EC-D471C6087751}.Release|x64.ActiveCfg = Release|Any CPU
-		{46DBA673-D017-4A49-80EC-D471C6087751}.Release|x64.Build.0 = Release|Any CPU
 		{A9ADE016-903F-4B8F-9317-C490A5073369}.Debug|Any CPU.ActiveCfg = Debug
 		{A9ADE016-903F-4B8F-9317-C490A5073369}.Debug|x64.ActiveCfg = Debug
 		{A9ADE016-903F-4B8F-9317-C490A5073369}.Release|Any CPU.ActiveCfg = Release
 		{A9ADE016-903F-4B8F-9317-C490A5073369}.Release|x64.ActiveCfg = Release
+		{55222431-1CE3-4CC3-AE9E-99916F3CC2C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55222431-1CE3-4CC3-AE9E-99916F3CC2C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55222431-1CE3-4CC3-AE9E-99916F3CC2C6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{55222431-1CE3-4CC3-AE9E-99916F3CC2C6}.Debug|x64.Build.0 = Debug|Any CPU
+		{55222431-1CE3-4CC3-AE9E-99916F3CC2C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55222431-1CE3-4CC3-AE9E-99916F3CC2C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55222431-1CE3-4CC3-AE9E-99916F3CC2C6}.Release|x64.ActiveCfg = Release|Any CPU
+		{55222431-1CE3-4CC3-AE9E-99916F3CC2C6}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
