@@ -165,7 +165,7 @@
             this.tabControlMain.Location = new System.Drawing.Point(12, 12);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(316, 419);
+            this.tabControlMain.Size = new System.Drawing.Size(316, 363);
             this.tabControlMain.TabIndex = 0;
             this.tabControlMain.TabStop = false;
             // 
@@ -191,7 +191,7 @@
             this.tabConfiguration.Location = new System.Drawing.Point(4, 22);
             this.tabConfiguration.Name = "tabConfiguration";
             this.tabConfiguration.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConfiguration.Size = new System.Drawing.Size(308, 393);
+            this.tabConfiguration.Size = new System.Drawing.Size(308, 337);
             this.tabConfiguration.TabIndex = 4;
             this.tabConfiguration.Text = "General";
             // 
@@ -208,7 +208,7 @@
             // btnConfigTest
             // 
             this.btnConfigTest.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnConfigTest.Location = new System.Drawing.Point(117, 364);
+            this.btnConfigTest.Location = new System.Drawing.Point(117, 308);
             this.btnConfigTest.Name = "btnConfigTest";
             this.btnConfigTest.Size = new System.Drawing.Size(75, 23);
             this.btnConfigTest.TabIndex = 16;
@@ -229,7 +229,7 @@
             // btnConfigAdvanced
             // 
             this.btnConfigAdvanced.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnConfigAdvanced.Location = new System.Drawing.Point(20, 364);
+            this.btnConfigAdvanced.Location = new System.Drawing.Point(20, 308);
             this.btnConfigAdvanced.Name = "btnConfigAdvanced";
             this.btnConfigAdvanced.Size = new System.Drawing.Size(75, 23);
             this.btnConfigAdvanced.TabIndex = 15;
@@ -240,7 +240,7 @@
             // btnConfigSave
             // 
             this.btnConfigSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnConfigSave.Location = new System.Drawing.Point(213, 364);
+            this.btnConfigSave.Location = new System.Drawing.Point(213, 308);
             this.btnConfigSave.Name = "btnConfigSave";
             this.btnConfigSave.Size = new System.Drawing.Size(75, 23);
             this.btnConfigSave.TabIndex = 17;
@@ -268,7 +268,7 @@
             this.gbConfigAdvanced.Controls.Add(this.numConfigAdvINVDeviceThreshold);
             this.gbConfigAdvanced.Controls.Add(this.numConfigAdvSLMDeviceThreshold);
             this.gbConfigAdvanced.Controls.Add(this.lblConfigAdvSLMDeviceThreshold);
-            this.gbConfigAdvanced.Location = new System.Drawing.Point(20, 365);
+            this.gbConfigAdvanced.Location = new System.Drawing.Point(20, 310);
             this.gbConfigAdvanced.Name = "gbConfigAdvanced";
             this.gbConfigAdvanced.Size = new System.Drawing.Size(268, 211);
             this.gbConfigAdvanced.TabIndex = 17;
@@ -1257,13 +1257,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(340, 443);
+            this.ClientSize = new System.Drawing.Size(340, 387);
             this.Controls.Add(this.tabControlMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(356, 700);
-            this.MinimumSize = new System.Drawing.Size(356, 476);
+            this.MaximumSize = new System.Drawing.Size(356, 652);
+            this.MinimumSize = new System.Drawing.Size(356, 426);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AppName AppType";

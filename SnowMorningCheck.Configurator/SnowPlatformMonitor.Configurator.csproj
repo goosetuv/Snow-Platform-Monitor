@@ -45,7 +45,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>..\Build\Release\</OutputPath>
+    <OutputPath>..\Build\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -64,10 +64,6 @@
     </Reference>
     <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="SnowPlatformMonitor.Core, Version=1.4.4.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Build\SnowPlatformMonitor.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -123,6 +119,7 @@
   <ItemGroup>
     <Content Include="icon.ico" />
     <None Include="Resources\exportertest.bat" />
+    <None Include="Resources\legacycleanup.bat" />
     <None Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +130,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\play-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SnowMorningCheck.Core\SnowPlatformMonitor.Core.csproj">
+      <Project>{242be146-025f-4d30-aec2-8f51cfa51228}</Project>
+      <Name>SnowPlatformMonitor.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

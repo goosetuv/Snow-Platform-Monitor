@@ -49,9 +49,6 @@ namespace SnowPlatformMonitor.Configurator
                 string[] NodeList =
                 {
                     "ExportType",
-                    "ScheduleHours",
-                    "ScheduleMinutes",
-                    "ScheduleSeconds",
                     "DataUpdateJobStatus",
                     "Office365AdobeImportTables",
                     "SRSImportDate",
@@ -336,7 +333,7 @@ namespace SnowPlatformMonitor.Configurator
             }
         }
         #endregion
-
+   
         #region Help
         private void btnHelpLogDir_Click(object sender, EventArgs e)
         {
@@ -625,6 +622,53 @@ namespace SnowPlatformMonitor.Configurator
             }
         }
 
+        private void LoadLegacyCleanup()
+        {
+            try
+            {
+                log.Debug("Started");
+                if (!File.Exists(dc.Resources + "legacycleanup.bat"))
+                {
+                    log.Debug("Legacycleanup does not exist! Creating...");
+                    File.WriteAllText(dc.Resources + "legacycleanup.bat", Properties.Resources.legacycleanup);
+                }
+                else
+                {
+                    string legacycleanup = File.ReadAllText(dc.Resources + "legacycleanup.bat");
+                    if (!legacycleanup.Contains(ProductVersion))
+                    {
+                        bool v2_higher = false;
+                        if (legacycleanup.Contains(":: AUTOMATICALLY UPDATE:"))
+                        {
+                            v2_higher = true;
+                            log.Debug("Legacycleanup is from at least v2.0");
+                        }
+
+                        if (v2_higher == true)
+                        {
+                            if (legacycleanup.Contains(":: AUTOMATICALLY UPDATE: TRUE"))
+                            {
+                                log.Debug("Legacycleanup exists but requires an update, automatic being run...");
+                                File.Delete(dc.Resources + "legacycleanup.bat");
+                                File.WriteAllText(dc.Resources + "legacycleanup.bat", Properties.Resources.legacycleanup);
+                            }
+                        }
+                        else
+                        {
+                            log.Debug("Exportertest is older than v2.0, this will be replaced with a newer version...");
+                            File.Delete(dc.Resources + "legacycleanup.bat");
+                            File.WriteAllText(dc.Resources + "legacycleanup.bat", Properties.Resources.legacycleanup);
+                        }
+                    }
+                }
+                log.Debug("Finished");
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+            }
+        }
+
         private void AppLoad()
         {
             CheckForUpdates();
@@ -635,6 +679,7 @@ namespace SnowPlatformMonitor.Configurator
             LoadLogging();
             LoadRequiredResources();
             LoadExporterTest();
+            LoadLegacyCleanup();
             log.Debug("AppLoad completed");
         }
 

@@ -61,11 +61,36 @@ namespace SnowPlatformMonitor.Configurator.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SnowPlatformMonitor.Service.exe --test.
+        ///   Looks up a localized string similar to ::===============================================================
+        ///:: Batch file for running the aggregator test command
+        ///:: File Version 2.0.0.0
+        ///:: Author: Laim McKenzie
+        ///:: Copyright (c) Laim McKenzie 2021
+        ///:: AUTOMATICALLY UPDATE: TRUE
+        ///::===============================================================
+        ///SnowPlatformMonitor.Aggregator.exe -test
+        ///pause.
         /// </summary>
         public static string exportertest {
             get {
                 return ResourceManager.GetString("exportertest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ::===============================================================
+        ///:: Batch file for cleaning up v1.x.x installations
+        ///:: File Version 2.0.0.0
+        ///:: Author: Laim McKenzie
+        ///:: Copyright (c) Laim McKenzie 2021
+        ///:: AUTOMATICALLY UPDATE: TRUE
+        ///::===============================================================
+        ///sc delete SnowPlatformMonitor
+        ///pause.
+        /// </summary>
+        public static string legacycleanup {
+            get {
+                return ResourceManager.GetString("legacycleanup", resourceCulture);
             }
         }
         
