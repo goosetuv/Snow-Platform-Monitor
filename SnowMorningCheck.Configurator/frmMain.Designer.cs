@@ -163,9 +163,10 @@
             this.tabControlMain.Controls.Add(this.tabLogging);
             this.tabControlMain.Controls.Add(this.tabHelp);
             this.tabControlMain.Location = new System.Drawing.Point(12, 12);
+            this.tabControlMain.MinimumSize = new System.Drawing.Size(316, 408);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(316, 363);
+            this.tabControlMain.Size = new System.Drawing.Size(316, 409);
             this.tabControlMain.TabIndex = 0;
             this.tabControlMain.TabStop = false;
             // 
@@ -191,7 +192,7 @@
             this.tabConfiguration.Location = new System.Drawing.Point(4, 22);
             this.tabConfiguration.Name = "tabConfiguration";
             this.tabConfiguration.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConfiguration.Size = new System.Drawing.Size(308, 337);
+            this.tabConfiguration.Size = new System.Drawing.Size(308, 383);
             this.tabConfiguration.TabIndex = 4;
             this.tabConfiguration.Text = "General";
             // 
@@ -208,7 +209,7 @@
             // btnConfigTest
             // 
             this.btnConfigTest.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnConfigTest.Location = new System.Drawing.Point(117, 308);
+            this.btnConfigTest.Location = new System.Drawing.Point(117, 354);
             this.btnConfigTest.Name = "btnConfigTest";
             this.btnConfigTest.Size = new System.Drawing.Size(75, 23);
             this.btnConfigTest.TabIndex = 16;
@@ -229,7 +230,7 @@
             // btnConfigAdvanced
             // 
             this.btnConfigAdvanced.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnConfigAdvanced.Location = new System.Drawing.Point(20, 308);
+            this.btnConfigAdvanced.Location = new System.Drawing.Point(20, 354);
             this.btnConfigAdvanced.Name = "btnConfigAdvanced";
             this.btnConfigAdvanced.Size = new System.Drawing.Size(75, 23);
             this.btnConfigAdvanced.TabIndex = 15;
@@ -240,7 +241,7 @@
             // btnConfigSave
             // 
             this.btnConfigSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnConfigSave.Location = new System.Drawing.Point(213, 308);
+            this.btnConfigSave.Location = new System.Drawing.Point(213, 354);
             this.btnConfigSave.Name = "btnConfigSave";
             this.btnConfigSave.Size = new System.Drawing.Size(75, 23);
             this.btnConfigSave.TabIndex = 17;
@@ -475,7 +476,7 @@
             this.tabServers.Location = new System.Drawing.Point(4, 22);
             this.tabServers.Name = "tabServers";
             this.tabServers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabServers.Size = new System.Drawing.Size(308, 393);
+            this.tabServers.Size = new System.Drawing.Size(308, 382);
             this.tabServers.TabIndex = 0;
             this.tabServers.Text = "Servers";
             // 
@@ -704,7 +705,7 @@
             this.tabSMTP.Location = new System.Drawing.Point(4, 22);
             this.tabSMTP.Name = "tabSMTP";
             this.tabSMTP.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSMTP.Size = new System.Drawing.Size(308, 393);
+            this.tabSMTP.Size = new System.Drawing.Size(308, 337);
             this.tabSMTP.TabIndex = 1;
             this.tabSMTP.Text = "SMTP";
             // 
@@ -906,7 +907,7 @@
             this.tabLogging.Location = new System.Drawing.Point(4, 22);
             this.tabLogging.Name = "tabLogging";
             this.tabLogging.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLogging.Size = new System.Drawing.Size(308, 393);
+            this.tabLogging.Size = new System.Drawing.Size(308, 337);
             this.tabLogging.TabIndex = 5;
             this.tabLogging.Text = "Logging";
             // 
@@ -1167,7 +1168,7 @@
             this.tabHelp.Controls.Add(this.pictureBox1);
             this.tabHelp.Location = new System.Drawing.Point(4, 22);
             this.tabHelp.Name = "tabHelp";
-            this.tabHelp.Size = new System.Drawing.Size(308, 393);
+            this.tabHelp.Size = new System.Drawing.Size(308, 337);
             this.tabHelp.TabIndex = 3;
             this.tabHelp.Text = "Help";
             // 
@@ -1257,13 +1258,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(340, 387);
+            this.ClientSize = new System.Drawing.Size(340, 433);
             this.Controls.Add(this.tabControlMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(356, 652);
-            this.MinimumSize = new System.Drawing.Size(356, 426);
+            this.MinimumSize = new System.Drawing.Size(356, 472);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AppName AppType";
