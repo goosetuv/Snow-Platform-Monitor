@@ -1,280 +1,156 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
+<!doctype html>
+<html>
 <head>
-<!--[if gte mso 9]><xml><o:OfficeDocumentSettings><o:AllowPNG/><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml><![endif]-->
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-<meta content="width=device-width" name="viewport"/>
-<!--[if !mso]><!-->
-<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-<!--<![endif]-->
-<title></title>
-<!--[if !mso]><!-->
-<!--<![endif]-->
-<style type="text/css">
-		body {
-			margin: 0;
-			padding: 0;
-		}
-
-		table,
-		td,
-		tr {
-			vertical-align: top;
-			border-collapse: collapse;
-		}
-
-		* {
-			line-height: inherit;
-		}
-
-		a[x-apple-data-detectors=true] {
-			color: inherit !important;
-			text-decoration: none !important;
-		}
-
-		img.autowidth {
-				max-width: 100% !important;
-			}
-	</style>
-<style id="media-query" type="text/css">
-		@media (max-width: 520px) {
-
-			.block-grid,
-			.col {
-				min-width: 320px !important;
-				max-width: 100% !important;
-				display: block !important;
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Snow Platform Monitor</title>
+	<style>
+		@media only screen and (max-width: 620px) {
+			table.body h1 {
+				font-size: 28px !important;
+				margin-bottom: 10px !important;
 			}
 
-			.block-grid {
+			table.body p,
+			table.body ul,
+			table.body ol,
+			table.body td,
+			table.body span,
+			table.body a {
+				font-size: 16px !important;
+			}
+
+			table.body .wrapper,
+			table.body .article {
+				padding: 10px !important;
+			}
+
+			table.body .content {
+				padding: 0 !important;
+			}
+
+			table.body .container {
+				padding: 0 !important;
 				width: 100% !important;
 			}
 
-			.col {
+			table.body .main {
+				border-left-width: 0 !important;
+				border-radius: 0 !important;
+				border-right-width: 0 !important;
+			}
+
+			table.body .btn table {
 				width: 100% !important;
 			}
 
-			.col_cont {
-				margin: 0 auto;
+			table.body .btn a {
+				width: 100% !important;
 			}
 
-			img.fullwidth,
-			img.fullwidthOnMobile {
+			table.body .img-responsive {
+				height: auto !important;
 				max-width: 100% !important;
+				width: auto !important;
+			}
+		}
+
+		@media all {
+			.ExternalClass {
+				width: 100%;
 			}
 
-			.no-stack .col {
-				min-width: 0 !important;
-				display: table-cell !important;
+				.ExternalClass,
+				.ExternalClass p,
+				.ExternalClass span,
+				.ExternalClass font,
+				.ExternalClass td,
+				.ExternalClass div {
+					line-height: 100%;
+				}
+
+			.apple-link a {
+				color: inherit !important;
+				font-family: inherit !important;
+				font-size: inherit !important;
+				font-weight: inherit !important;
+				line-height: inherit !important;
+				text-decoration: none !important;
 			}
 
-			.no-stack.two-up .col {
-				width: 50% !important;
+			#MessageViewBody a {
+				color: inherit;
+				text-decoration: none;
+				font-size: inherit;
+				font-family: inherit;
+				font-weight: inherit;
+				line-height: inherit;
 			}
 
-			.no-stack .col.num2 {
-				width: 16.6% !important;
+			.btn-primary table td:hover {
+				background-color: #34495e !important;
 			}
 
-			.no-stack .col.num3 {
-				width: 25% !important;
-			}
-
-			.no-stack .col.num4 {
-				width: 33% !important;
-			}
-
-			.no-stack .col.num5 {
-				width: 41.6% !important;
-			}
-
-			.no-stack .col.num6 {
-				width: 50% !important;
-			}
-
-			.no-stack .col.num7 {
-				width: 58.3% !important;
-			}
-
-			.no-stack .col.num8 {
-				width: 66.6% !important;
-			}
-
-			.no-stack .col.num9 {
-				width: 75% !important;
-			}
-
-			.no-stack .col.num10 {
-				width: 83.3% !important;
-			}
-
-			.video-block {
-				max-width: none !important;
-			}
-
-			.mobile_hide {
-				min-height: 0px;
-				max-height: 0px;
-				max-width: 0px;
-				display: none;
-				overflow: hidden;
-				font-size: 0px;
-			}
-
-			.desktop_hide {
-				display: block !important;
-				max-height: none !important;
+			.btn-primary a:hover {
+				background-color: #34495e !important;
+				border-color: #34495e !important;
 			}
 		}
 	</style>
 </head>
-<body class="clean-body" style="margin: 0; padding: 0; -webkit-text-size-adjust: 100%; background-color: #FFFFFF;">
-<!--[if IE]><div class="ie-browser"><![endif]-->
-<table bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" class="nl-container" role="presentation" style="table-layout: fixed; vertical-align: top; min-width: 320px; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #FFFFFF; width: 100%;" valign="top" width="100%">
-<tbody>
-<tr style="vertical-align: top;" valign="top">
-<td style="word-break: break-word; vertical-align: top;" valign="top">
-<!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" style="background-color:#FFFFFF"><![endif]-->
-<div style="background-color:transparent;">
-<div class="block-grid" style="min-width: 320px; max-width: 500px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; Margin: 0 auto; background-color: transparent;">
-<div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
-<!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:transparent;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:500px"><tr class="layout-full-width" style="background-color:transparent"><![endif]-->
-<!--[if (mso)|(IE)]><td align="center" width="500" style="background-color:transparent;width:500px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;"><![endif]-->
-<div class="col num12" style="min-width: 320px; max-width: 500px; display: table-cell; vertical-align: top; width: 500px;">
-<div class="col_cont" style="width:100% !important;">
-<!--[if (!mso)&(!IE)]><!-->
-<div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
-<!--<![endif]-->
-<div align="center" class="img-container center fullwidthOnMobile autowidth" style="padding-right: 30px;padding-left: 30px;">
-<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 30px;padding-left: 30px;" align="center"><![endif]-->
-<div style="font-size:1px;line-height:30px"> </div> <img align="center" alt="Snow Platform Monitor" border="0" class="center fullwidthOnMobile autowidth" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAqgAAACWCAIAAACdNe3/AAAACXBIWXMAAAsTAAALEwEAmpwYAAALkGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLWMwMDMgNzkuMTY0NTI3LCAyMDIwLzEwLzE1LTE3OjQ4OjMyICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnRpZmY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vdGlmZi8xLjAvIiB4bWxuczpleGlmPSJodHRwOi8vbnMuYWRvYmUuY29tL2V4aWYvMS4wLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIwLTA3LTA1VDE2OjEwOjIzKzAxOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDIxLTAxLTA3VDE3OjMzOjMwWiIgeG1wOk1vZGlmeURhdGU9IjIwMjEtMDEtMDdUMTc6MzM6MzBaIiBwaG90b3Nob3A6Q29sb3JNb2RlPSIzIiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpmODg4ZDYxZC0xNWVhLTVjNDEtOWNlNS01NDY1YTc1NmEyNmMiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDpmZmM5NDM4MC1iZmQyLWZlNGUtYjMzYi1iMGIxMWFhNzBmYTEiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo3ZDI1MmI1Yi04MDE3LWRhNDUtOTE4My0xZjE0MTExZDdiODAiIHRpZmY6T3JpZW50YXRpb249IjEiIHRpZmY6WFJlc29sdXRpb249IjcyMDAwMC8xMDAwMCIgdGlmZjpZUmVzb2x1dGlvbj0iNzIwMDAwLzEwMDAwIiB0aWZmOlJlc29sdXRpb25Vbml0PSIyIiBleGlmOkNvbG9yU3BhY2U9IjY1NTM1IiBleGlmOlBpeGVsWERpbWVuc2lvbj0iODUwIiBleGlmOlBpeGVsWURpbWVuc2lvbj0iMTUwIj4gPHBob3Rvc2hvcDpUZXh0TGF5ZXJzPiA8cmRmOkJhZz4gPHJkZjpsaSBwaG90b3Nob3A6TGF5ZXJOYW1lPSJTbm93IFBsYXRmb3JtIE1vbml0b3IiIHBob3Rvc2hvcDpMYXllclRleHQ9IlNub3cgUGxhdGZvcm0gTW9uaXRvciIvPiA8L3JkZjpCYWc+IDwvcGhvdG9zaG9wOlRleHRMYXllcnM+IDxwaG90b3Nob3A6RG9jdW1lbnRBbmNlc3RvcnM+IDxyZGY6QmFnPiA8cmRmOmxpPmFkb2JlOmRvY2lkOnBob3Rvc2hvcDpkYTAwODE1My0zNTJjLWZhNGItYjgyZS02YTcxY2IxZGU2MDM8L3JkZjpsaT4gPC9yZGY6QmFnPiA8L3Bob3Rvc2hvcDpEb2N1bWVudEFuY2VzdG9ycz4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iY3JlYXRlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo3ZDI1MmI1Yi04MDE3LWRhNDUtOTE4My0xZjE0MTExZDdiODAiIHN0RXZ0OndoZW49IjIwMjAtMDctMDVUMTY6MTA6MjMrMDE6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMS4yIChXaW5kb3dzKSIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6YzIzYzcxNjEtZGM2MS0xNDQwLWEyNWUtMTMxMmY1YWRlOTZhIiBzdEV2dDp3aGVuPSIyMDIxLTAxLTA3VDE3OjMzOjIwWiIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIyLjEgKFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo5YTZmYTNmNS04N2JmLTlmNDgtOWMyYy0xNzMwZDAzNDc4YWMiIHN0RXZ0OndoZW49IjIwMjEtMDEtMDdUMTc6MzM6MzBaIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjIuMSAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNvbnZlcnRlZCIgc3RFdnQ6cGFyYW1ldGVycz0iZnJvbSBhcHBsaWNhdGlvbi92bmQuYWRvYmUucGhvdG9zaG9wIHRvIGltYWdlL3BuZyIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iZGVyaXZlZCIgc3RFdnQ6cGFyYW1ldGVycz0iY29udmVydGVkIGZyb20gYXBwbGljYXRpb24vdm5kLmFkb2JlLnBob3Rvc2hvcCB0byBpbWFnZS9wbmciLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOmY4ODhkNjFkLTE1ZWEtNWM0MS05Y2U1LTU0NjVhNzU2YTI2YyIgc3RFdnQ6d2hlbj0iMjAyMS0wMS0wN1QxNzozMzozMFoiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMi4xIChXaW5kb3dzKSIgc3RFdnQ6Y2hh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" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 500px; display: block;" title="Snow Platform Monitor" width="500"/>
-<div style="font-size:1px;line-height:30px"> </div>
-<!--[if mso]></td></tr></table><![endif]-->
-</div>
-<!--[if (!mso)&(!IE)]><!-->
-</div>
-<!--<![endif]-->
-</div>
-</div>
-<!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-<!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
-</div>
-</div>
-</div>
-<div style="background-color:transparent;">
-<div class="block-grid" style="min-width: 320px; max-width: 500px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; Margin: 0 auto; background-color: transparent;">
-<div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
-<!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:transparent;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:500px"><tr class="layout-full-width" style="background-color:transparent"><![endif]-->
-<!--[if (mso)|(IE)]><td align="center" width="500" style="background-color:transparent;width:500px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;"><![endif]-->
-<div class="col num12" style="min-width: 320px; max-width: 500px; display: table-cell; vertical-align: top; width: 500px;">
-<div class="col_cont" style="width:100% !important;">
-<!--[if (!mso)&(!IE)]><!-->
-<div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
-<!--<![endif]-->
-<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
-<div style="color:#555555;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
-<div style="line-height: 1.2; font-size: 12px; color: #555555; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 14px;">
-<p style="font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin: 0;">Hello, </p>
-<p style="font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin: 0;"> </p>
-<p style="font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin: 0;">Please see attached output from Snow Platform Monitor from <strong>{datetime}</strong>.</p>
-<p style="font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin: 0;"> </p>
-<p style="font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin: 0;">Sheets marked in red should be investigated as this shows that there is currently an issue within the environment.  All green sheets are for informational purposes only, and indicate that section of the platform is running OK at the time of report.  Orange sheets are sheets that have not been checked by the program, and should be reviewed by an end-user.</p>
-</div>
-</div>
-<!--[if mso]></td></tr></table><![endif]-->
-<!--[if (!mso)&(!IE)]><!-->
-</div>
-<!--<![endif]-->
-</div>
-</div>
-<!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-<!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
-</div>
-</div>
-</div>
-<div style="background-color:transparent;">
-<div class="block-grid" style="min-width: 320px; max-width: 500px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; Margin: 0 auto; background-color: transparent;">
-<div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
-<!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:transparent;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:500px"><tr class="layout-full-width" style="background-color:transparent"><![endif]-->
-<!--[if (mso)|(IE)]><td align="center" width="500" style="background-color:transparent;width:500px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;"><![endif]-->
-<div class="col num12" style="min-width: 320px; max-width: 500px; display: table-cell; vertical-align: top; width: 500px;">
-<div class="col_cont" style="width:100% !important;">
-<!--[if (!mso)&(!IE)]><!-->
-<div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
-<!--<![endif]-->
-<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
-<div style="color:#555555;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
-<div style="line-height: 1.2; font-size: 12px; color: #555555; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 14px;">
-<p style="font-size: 10; line-height: 1.2; word-break: break-word; text-align: center; mso-line-height-alt: 17px; margin: 0;"><strong>Copyright (c) <a href="https://laim.scot" rel="noopener" style="text-decoration: underline; color: #0068A5;" target="_blank">Laim McKenzie</a> 2020 - {year}</strong></p>
-<p style="font-size: 10; line-height: 1.2; word-break: break-word; text-align: center; mso-line-height-alt: 17px; margin: 0;">All rights reserved. </p>
-<p style="font-size: 10; line-height: 1.2; word-break: break-word; text-align: center; mso-line-height-alt: 17px; margin: 0;">Snow Platform Monitor v{version}. </p>
-<p style="font-size: 10; line-height: 1.2; word-break: break-word; text-align: center; mso-line-height-alt: 17px; margin: 0;"><a href="https://laim.scot/policies/privacy" rel="noopener" style="text-decoration: underline; color: #0068A5;" target="_blank">Privacy Policy</a> | <a href="https://laim.scot/policies/licensing" rel="noopener" style="text-decoration: underline; color: #0068A5;" target="_blank">Licensing Policy</a></p>
-<p style="font-size: 10; line-height: 1.2; word-break: break-word; text-align: center; mso-line-height-alt: 17px; margin: 0;"> </p>
-<p style="font-size: 10px; line-height: 1.2; word-break: break-word; text-align: center; mso-line-height-alt: 17px; margin: 0;">
-	Snow Platform Monitor is not affiliated or endorsed by Snow Software AB. </p>
-<p style="font-size: 10px; line-height: 1.2; word-break: break-word; text-align: center; mso-line-height-alt: 17px; margin: 0;"> 
-	Trademarks and brands are the property of their respective owners.</p>
-</div>
-</div>
-<!--[if mso]></td></tr></table><![endif]-->
-<!--[if (!mso)&(!IE)]><!-->
-</div>
-<!--<![endif]-->
-</div>
-</div>
-<!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-<!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
-</div>
-</div>
-</div>
-<div style="background-color:transparent;">
-<div class="block-grid two-up no-stack" style="min-width: 320px; max-width: 500px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; Margin: 0 auto; background-color: transparent;">
-<div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
-<!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:transparent;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:500px"><tr class="layout-full-width" style="background-color:transparent"><![endif]-->
-<!--[if (mso)|(IE)]><td align="center" width="250" style="background-color:transparent;width:250px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:10px; padding-bottom:10px;"><![endif]-->
-<div class="col num6" style="display: table-cell; vertical-align: top; max-width: 320px; min-width: 246px; width: 250px;">
-<div class="col_cont" style="width:100% !important;">
-<!--[if (!mso)&(!IE)]><!-->
-<div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:10px; padding-bottom:10px; padding-right: 0px; padding-left: 0px;">
-<!--<![endif]-->
-<div align="right" class="img-container right fixedwidth" style="padding-right: 5px;padding-left: 0px;">
-<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 5px;padding-left: 0px;" align="right"><![endif]-->
-<!--[if mso]></td></tr></table><![endif]-->
-</div>
-<!--[if (!mso)&(!IE)]><!-->
-</div>
-<!--<![endif]-->
-</div>
-</div>
-<!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-<!--[if (mso)|(IE)]></td><td align="center" width="250" style="background-color:transparent;width:250px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:10px; padding-bottom:10px;"><![endif]-->
-<div class="col num6" style="display: table-cell; vertical-align: top; max-width: 320px; min-width: 246px; width: 250px;">
-<div class="col_cont" style="width:100% !important;">
-<!--[if (!mso)&(!IE)]><!-->
-<div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:10px; padding-bottom:10px; padding-right: 0px; padding-left: 0px;">
-<!--<![endif]-->
-<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 4px; padding-left: 4px; padding-top: 4px; padding-bottom: 4px; font-family: Tahoma, Verdana, sans-serif"><![endif]-->
-<div style="color:#9d9d9d;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:1.2;padding-top:4px;padding-right:4px;padding-bottom:4px;padding-left:4px;">
-<div style="line-height: 1.2; font-size: 12px; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #9d9d9d; mso-line-height-alt: 14px;">
-</div>
-</div>
-<!--[if mso]></td></tr></table><![endif]-->
-<!--[if (!mso)&(!IE)]><!-->
-</div>
-<!--<![endif]-->
-</div>
-</div>
-<!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-<!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
-</div>
-</div>
-</div>
-<!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-</td>
-</tr>
-</tbody>
-</table>
-<!--[if (IE)]></div><![endif]-->
+<body class="" style="font-family: sans-serif; -webkit-font-smoothing: antialiased; font-size: 14px; line-height: 1.4; margin: 0; padding: 0; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+	<span class="preheader" style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;">Snow Platform Monitor Report {datetime}</span>
+	<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+		<tr>
+			<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">&nbsp;</td>
+			<td class="container" style="font-family: sans-serif; font-size: 14px; vertical-align: top; display: block; max-width: 580px; padding: 10px; width: 580px; margin: 0 auto;" width="580" valign="top">
+				<div class="content" style="box-sizing: border-box; display: block; margin: 0 auto; max-width: 580px; padding: 10px;">
+
+					<!-- START CENTERED WHITE CONTAINER -->
+					<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; background: #ffffff; border-radius: 3px; width: 100%;" width="100%">
+
+						<!-- START MAIN CONTENT AREA -->
+						<tr>
+							<td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 20px;" valign="top">
+								<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+									<tr>
+										<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">
+											<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Hi there,</p>
+											<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Please find attached the Snow Platform Monitor Report for {datetime}.</p>
+											<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Sheets marked in red should be investigated as this shows there may be a current problem within the platform.  Orange sheets have not been checked by Snow Platform Monitor and should be checked manually.</p>
+											<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Best Regards</p>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+
+						<!-- END MAIN CONTENT AREA -->
+					</table>
+					<!-- END CENTERED WHITE CONTAINER -->
+					<!-- START FOOTER -->
+					<div class="footer" style="clear: both; margin-top: 10px; text-align: center; width: 100%;">
+						<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+							<tr>
+								<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; color: #999999; font-size: 12px; text-align: center;" valign="top" align="center">
+									<span class="apple-link" style="color: #999999; font-size: 12px; text-align: center;"><strong>Copyright (c) <a href="https://laim.scot" rel="noopener" style="font-size: 12px; text-align: center; text-decoration: underline; color: #0068A5;" target="_blank">Laim McKenzie</a> 2020 - {year}</strong></span>
+									<br> All rights reserved.
+									<br> <a href="https://laim.scot/policies/privacy" rel="noopener" style="font-size: 12px; text-align: center; text-decoration: underline; color: #0068A5;" target="_blank">Privacy Policy</a> | <a href="https://laim.scot/policies/licensing" rel="noopener" style="font-size: 12px; text-align: center; text-decoration: underline; color: #0068A5;" target="_blank">Licensing Policy</a>
+								</td>
+							</tr>
+							<tr>
+								<td class="content-block powered-by" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; color: #999999; font-size: 12px; text-align: center;" valign="top" align="center">
+									<a href="https://github.com/goosetuv/Snow-Platform-Monitor" rel="noopener" style="font-size: 12px; text-align: center; text-decoration: underline; color: #0068A5;" target="_blank">Snow Platform Monitor</a> {version}
+								</td>
+							</tr>
+						</table>
+					</div>
+					<!-- END FOOTER -->
+
+				</div>
+			</td>
+			<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">&nbsp;</td>
+		</tr>
+	</table>
 </body>
 </html>

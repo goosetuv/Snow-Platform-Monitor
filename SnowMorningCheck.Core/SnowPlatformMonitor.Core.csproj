@@ -57,7 +57,7 @@
       <HintPath>..\packages\EPPlus.5.4.2\lib\net45\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="Laim.Utility">
-      <HintPath>..\..\..\Libraries\Laim.Utility\v1.5-64b\Laim.Utility.dll</HintPath>
+      <HintPath>..\..\..\..\Users\McKenzieL\OneDrive - Softcat Plc\Documents\Development\Libraries\Laim.Utility\v1.5-64b\Laim.Utility.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="RestSharp, Version=106.12.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">

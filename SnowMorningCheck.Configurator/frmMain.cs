@@ -374,7 +374,7 @@ namespace SnowPlatformMonitor.Configurator
         {
             try
             {
-                Process.Start("https://github.com/goosetuv/Snow-Platform-Monitor/issues");
+                Process.Start("https://support.laim.scot");
             }
             catch (Exception ex)
             {
