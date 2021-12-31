@@ -87,8 +87,8 @@ namespace SnowPlatformMonitor.Aggregator.Classes
                     log.Info("Data Retriever has been initialized");
 
                     #region Exporters
-                    log.Info("This might take a while, be paitent...");
-                    Console.WriteLine("This might take a while, be paitent...");
+                    log.Info("This might take a while, be patient...");
+                    Console.WriteLine("This might take a while, be patient...");
 
                     // DUJ Status
                     try

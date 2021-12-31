@@ -104,13 +104,13 @@ namespace SnowPlatformMonitor.Core.Classes
                 if(slm)
                 {
                     pck.Workbook.Worksheets.Add("SLM DeviceReporting (Yday)").Cells["A1"].LoadFromDataTable(licenseManager.ReportedYesterday(), true, tableStyle).AutoFitColumns();
-                    TabColor(pck, "DeviceReporting", Convert.ToInt32(XmlConfigurator.Read(dc.Config + ac.AppConfig, "LicenseManagerDeviceThreshold")), "SLM DeviceReporting (Yday)");
+                    TabColor(pck, "Default", Convert.ToInt32(XmlConfigurator.Read(dc.Config + ac.AppConfig, "LicenseManagerDeviceThreshold")), "SLM DeviceReporting (Yday)");
                 }
 
                 if(sinv)
                 {
                     pck.Workbook.Worksheets.Add("SINV DeviceReporting (Today)").Cells["A1"].LoadFromDataTable(inventoryServer.ReportedToday(), true, tableStyle).AutoFitColumns();
-                    TabColor(pck, "DeviceReporting", Convert.ToInt32(XmlConfigurator.Read(dc.Config + ac.AppConfig, "InventoryServerDeviceThreshold")), "SINV DeviceReporting (Today)");
+                    TabColor(pck, "Default", Convert.ToInt32(XmlConfigurator.Read(dc.Config + ac.AppConfig, "InventoryServerDeviceThreshold")), "SINV DeviceReporting (Today)");
                 }
                 pck.Save();
             }
@@ -339,22 +339,22 @@ namespace SnowPlatformMonitor.Core.Classes
                     }
                     return pck;
                     //break;
-                case "DeviceReporting":
-                    foreach (ExcelWorksheet ws in pck.Workbook.Worksheets)
-                    {
-                        if(ws.Name == wsName)
-                        {
-                            if (GetDimensionRows(ws) < rowCount)
-                            {
-                                ws.TabColor = Color.Red;
-                            }
-                            else
-                            {
-                                ws.TabColor = Color.Green;
-                            }
-                        }
-                    }
-                    return pck;
+                //case "DeviceReporting":
+                //    foreach (ExcelWorksheet ws in pck.Workbook.Worksheets)
+                //    {
+                //        if(ws.Name == wsName)
+                //        {
+                //            if (GetDimensionRows(ws) < rowCount)
+                //            {
+                //                ws.TabColor = Color.Red;
+                //            }
+                //            else
+                //            {
+                //                ws.TabColor = Color.Green;
+                //            }
+                //        }
+                //    }
+                //    return pck;
                     //break;
                 case "ServiceCheck":
                     foreach (ExcelWorksheet ws in pck.Workbook.Worksheets)

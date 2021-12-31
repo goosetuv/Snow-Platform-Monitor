@@ -95,7 +95,8 @@ namespace SnowPlatformMonitor.Core.Classes
             body = File.ReadAllText(dc.Resources + "email.html")
                 .Replace("{year}", DateTime.Now.Year.ToString())
                 .Replace("{version}", version)
-                .Replace("{datetime}", DateTime.Now.ToString("d-MMMM-yyyy HH:mm:ss"));
+                .Replace("{datetime}", DateTime.Now.ToString("d-MMMM-yyyy HH:mm:ss"))
+                .Replace("{server-name}", Environment.MachineName);
 
             Emailer(attachment, subject);
             File.Delete(attachment);

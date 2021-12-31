@@ -1,156 +1,178 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta name="x-apple-disable-message-reformatting">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+	<meta http-equiv="Content-Type" content="text/html charset=UTF-8">
+	<meta name="color-scheme" content="light dark">
+	<meta name="supported-color-schemes" content="light dark">
+	<!--[if mso]>
+	  <noscript>
+		<xml>
+		  <o:OfficeDocumentSettings
+			xmlns:o="urn:schemas-microsoft-com:office:office"
+		  >
+			<o:PixelsPerInch>96</o:PixelsPerInch>
+		  </o:OfficeDocumentSettings>
+		</xml>
+	  </noscript>
+	  <style>
+		td,
+		th,
+		div,
+		p,
+		a,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+		  font-family: "Segoe UI", sans-serif;
+		  mso-line-height-rule: exactly;
+		}
+	  </style>
+	<![endif]-->
 	<title>Snow Platform Monitor</title>
 	<style>
-		@media only screen and (max-width: 620px) {
-			table.body h1 {
-				font-size: 28px !important;
-				margin-bottom: 10px !important;
-			}
+		:root {
+			color-scheme: light dark;
+			supported-color-schemes: light dark;
+		}
+	</style>
+	<style>
+		.hover-bg-blue-600:hover {
+			background-color: #2563eb !important;
+		}
 
-			table.body p,
-			table.body ul,
-			table.body ol,
-			table.body td,
-			table.body span,
-			table.body a {
-				font-size: 16px !important;
-			}
+		.hover-underline:hover {
+			text-decoration: underline !important;
+		}
 
-			table.body .wrapper,
-			table.body .article {
-				padding: 10px !important;
-			}
-
-			table.body .content {
-				padding: 0 !important;
-			}
-
-			table.body .container {
-				padding: 0 !important;
+		@media (max-width: 600px) {
+			.sm-w-full {
 				width: 100% !important;
 			}
 
-			table.body .main {
-				border-left-width: 0 !important;
-				border-radius: 0 !important;
-				border-right-width: 0 !important;
+			.sm-py-32 {
+				padding-top: 32px !important;
+				padding-bottom: 32px !important;
 			}
 
-			table.body .btn table {
-				width: 100% !important;
+			.sm-px-24 {
+				padding-left: 24px !important;
+				padding-right: 24px !important;
 			}
 
-			table.body .btn a {
-				width: 100% !important;
-			}
-
-			table.body .img-responsive {
-				height: auto !important;
-				max-width: 100% !important;
-				width: auto !important;
+			.sm-leading-32 {
+				line-height: 32px !important;
 			}
 		}
 
-		@media all {
-			.ExternalClass {
-				width: 100%;
+		@media (prefers-color-scheme: dark) {
+			.dark-mode-bg-gray-999 {
+				background-color: #1b1c1e !important;
 			}
 
-				.ExternalClass,
-				.ExternalClass p,
-				.ExternalClass span,
-				.ExternalClass font,
-				.ExternalClass td,
-				.ExternalClass div {
-					line-height: 100%;
-				}
-
-			.apple-link a {
-				color: inherit !important;
-				font-family: inherit !important;
-				font-size: inherit !important;
-				font-weight: inherit !important;
-				line-height: inherit !important;
-				text-decoration: none !important;
+			.dark-mode-bg-gray-989 {
+				background-color: #2d2d2d !important;
 			}
 
-			#MessageViewBody a {
-				color: inherit;
-				text-decoration: none;
-				font-size: inherit;
-				font-family: inherit;
-				font-weight: inherit;
-				line-height: inherit;
+			.dark-mode-text-gray-979 {
+				color: #a9a9a9 !important;
 			}
 
-			.btn-primary table td:hover {
-				background-color: #34495e !important;
-			}
-
-			.btn-primary a:hover {
-				background-color: #34495e !important;
-				border-color: #34495e !important;
+			.dark-mode-text-white {
+				color: #ffffff !important;
 			}
 		}
 	</style>
 </head>
-<body class="" style="font-family: sans-serif; -webkit-font-smoothing: antialiased; font-size: 14px; line-height: 1.4; margin: 0; padding: 0; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
-	<span class="preheader" style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;">Snow Platform Monitor Report {datetime}</span>
-	<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
-		<tr>
-			<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">&nbsp;</td>
-			<td class="container" style="font-family: sans-serif; font-size: 14px; vertical-align: top; display: block; max-width: 580px; padding: 10px; width: 580px; margin: 0 auto;" width="580" valign="top">
-				<div class="content" style="box-sizing: border-box; display: block; margin: 0 auto; max-width: 580px; padding: 10px;">
-
-					<!-- START CENTERED WHITE CONTAINER -->
-					<table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; background: #ffffff; border-radius: 3px; width: 100%;" width="100%">
-
-						<!-- START MAIN CONTENT AREA -->
+<body class="dark-mode-bg-gray-999" style="margin: 0; width: 100%; padding: 0; word-break: break-word; -webkit-font-smoothing: antialiased; background-color: #f3f4f6;">
+	<div style="display: none;">
+		Snow Platform Monitor Report&#847; &#847; &#847; &#847; &#847; &#847; &#847;
+		&#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847;
+		&#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847;
+		&#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847;
+		&#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847;
+		&#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &zwnj;
+		&#160;&#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847;
+		&#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847;
+		&#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847;
+		&#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847;
+		&#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847;
+		&#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &zwnj;
+		&#160;&#847; &#847; &#847; &#847; &#847;
+	</div>
+	<div role="article" aria-roledescription="email" aria-label="Snow Platform Monitor" lang="en">
+		<table class="sm-w-full" align="center" style="width: 600px;" cellpadding="0" cellspacing="0" role="presentation">
+			<tr>
+				<td class="sm-py-32 sm-px-24" style="padding: 48px; text-align: center;">
+					<a href="https://laim.scot">
+						<img src="https://raw.githubusercontent.com/goosetuv/Snow-Platform-Monitor/master/Product%20Design/icon.png" width="75" alt="Snow Platform Monitor Icon" style="max-width: 100%; vertical-align: middle; line-height: 100%; border: 0;">
+					</a>
+				</td>
+			</tr>
+		</table>
+		<table style="width: 100%; font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;" cellpadding="0" cellspacing="0" role="presentation">
+			<tr>
+				<td align="center" class="dark-mode-bg-gray-999" style="background-color: #f3f4f6;">
+					<table class="sm-w-full" style="width: 600px;" cellpadding="0" cellspacing="0" role="presentation">
 						<tr>
-							<td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 20px;" valign="top">
-								<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+							<td align="center" class="sm-px-24">
+								<table style="margin-bottom: 48px; width: 100%;" cellpadding="0" cellspacing="0" role="presentation">
 									<tr>
-										<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">
-											<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Hi there,</p>
-											<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Please find attached the Snow Platform Monitor Report for {datetime}.</p>
-											<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Sheets marked in red should be investigated as this shows there may be a current problem within the platform.  Orange sheets have not been checked by Snow Platform Monitor and should be checked manually.</p>
-											<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Best Regards</p>
+										<td class="dark-mode-bg-gray-989 dark-mode-text-gray-979 sm-px-24" style="background-color: #ffffff; padding: 48px; text-align: left; font-size: 16px; line-height: 24px; color: #1f2937;">
+											<p class="sm-leading-32 dark-mode-text-white" style="margin: 0; margin-bottom: 36px; font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif; font-size: 24px; font-weight: 600; color: #000000;">
+												Snow Platform Monitor Report
+											</p>
+											<p style="margin: 0; margin-bottom: 24px;">
+												<span style="color: green; font-weight: bold">Green</span> tabs have been checked by the Software automatically and no errors have been deteched.
+												<br>
+												<br>
+												<span style="color: orange; font-weight: bold">Orange</span> tabs have not been checked by the software and will require manual user-checks to ensure the data is correct.
+												<br>
+												<br>
+												<span style="color: Red; font-weight: bold">Red</span> tabs have been checked by the software and at least 1 error has been found and require an end user to resolve.
+											</p>
+											<table style="width: 100%;" cellpadding="0" cellspacing="0" role="presentation">
+												<tr>
+													<td style="padding-top: 32px; padding-bottom: 32px;">
+														<hr style="border-bottom-width: 0px; border-color: #f3f4f6;">
+													</td>
+												</tr>
+											</table>
+											<p style="margin: 0; margin-bottom: 16px; color: #9a9da3;">
+												You are receiving this message because you are set up as a contact for this report on {server-name}.
+											</p>
 										</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
-
-						<!-- END MAIN CONTENT AREA -->
 					</table>
-					<!-- END CENTERED WHITE CONTAINER -->
-					<!-- START FOOTER -->
-					<div class="footer" style="clear: both; margin-top: 10px; text-align: center; width: 100%;">
-						<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
-							<tr>
-								<td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; color: #999999; font-size: 12px; text-align: center;" valign="top" align="center">
-									<span class="apple-link" style="color: #999999; font-size: 12px; text-align: center;"><strong>Copyright (c) <a href="https://laim.scot" rel="noopener" style="font-size: 12px; text-align: center; text-decoration: underline; color: #0068A5;" target="_blank">Laim McKenzie</a> 2020 - {year}</strong></span>
-									<br> All rights reserved.
-									<br> <a href="https://laim.scot/policies/privacy" rel="noopener" style="font-size: 12px; text-align: center; text-decoration: underline; color: #0068A5;" target="_blank">Privacy Policy</a> | <a href="https://laim.scot/policies/licensing" rel="noopener" style="font-size: 12px; text-align: center; text-decoration: underline; color: #0068A5;" target="_blank">Licensing Policy</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="content-block powered-by" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; color: #999999; font-size: 12px; text-align: center;" valign="top" align="center">
-									<a href="https://github.com/goosetuv/Snow-Platform-Monitor" rel="noopener" style="font-size: 12px; text-align: center; text-decoration: underline; color: #0068A5;" target="_blank">Snow Platform Monitor</a> {version}
-								</td>
-							</tr>
-						</table>
-					</div>
-					<!-- END FOOTER -->
-
-				</div>
-			</td>
-			<td style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">&nbsp;</td>
-		</tr>
-	</table>
+				</td>
+			</tr>
+		</table>
+		<table style="width: 100%; font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;" cellpadding="0" cellspacing="0" role="presentation">
+			<tr>
+				<td style="padding-left: 24px; padding-right: 24px; text-align: center; font-size: 12px; color: #4b5563;">
+					<p style="margin: 0; margin-bottom: 4px; text-transform: uppercase;">
+						Powered by
+						<a href="https://github.com/goosetuv/snow-platform-monitor" class="hover-underline" style="color: #3b82f6; text-decoration: none;">Snow Platform Monitor</a>
+					</p>
+					<p style="margin: 0; font-style: italic;">{version}</p>
+					<p style="cursor: default;">
+						<a href="https://laim.scot/policies/licensing" class="hover-underline" style="color: #3b82f6; text-decoration: none;">Licensing</a> &bull;
+						<a href="https://laim.scot/policies/privacy" class="hover-underline" style="color: #3b82f6; text-decoration: none;">Privacy</a> &bull;
+						<a href="https://github.com/goosetuv" class="hover-underline" style="color: #3b82f6; text-decoration: none;">GitHub</a>
+					</p>
+				</td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>
